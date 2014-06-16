@@ -41,6 +41,8 @@ GEM
       emblem-source
     bcrypt (3.1.7)
     bson (1.10.1)
+    bson_ext (1.10.1)
+      bson (~> 1.10.1)
     builder (3.2.2)
     bundler-unload (1.0.2)
     bunny (1.2.2)
@@ -485,6 +487,7 @@ DEPENDENCIES
   active_model_serializers
   activerecord-jdbc-adapter
   activerecord-jdbcmysql-adapter
+  bson_ext
   bunny
   byebug
   capybara-screenshot

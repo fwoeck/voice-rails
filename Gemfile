@@ -68,5 +68,6 @@ end
 
 platforms :ruby do
   gem 'mysql2'
+  gem 'bson_ext'
   gem 'git-smart',               require: false
 end
