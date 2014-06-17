@@ -9,7 +9,7 @@ gem 'redis'
 gem 'bunny'
 gem 'devise'
 gem 'wirble',                    require: false
-gem 'mongoid'
+gem 'mongoid',                   '= 4.0.0.rc2'
 gem 'slim-rails'
 gem 'redis-rails'
 gem 'connection_pool'
@@ -68,6 +68,5 @@ end
 
 platforms :ruby do
   gem 'mysql2'
-  gem 'bson_ext'
   gem 'git-smart',               require: false
 end

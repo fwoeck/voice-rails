@@ -40,9 +40,7 @@ GEM
       barber (>= 0.4.1)
       emblem-source
     bcrypt (3.1.7)
-    bson (1.10.1)
-    bson_ext (1.10.1)
-      bson (~> 1.10.1)
+    bson (2.3.0)
     builder (3.2.2)
     bundler-unload (1.0.2)
     bunny (1.2.2)
@@ -84,7 +82,6 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    durran-validatable (2.0.1)
     ember-data-source (1.0.0.beta.7)
       ember-source
     ember-rails (0.15.0)
@@ -126,7 +123,6 @@ GEM
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
-    leshill-will_paginate (2.3.11)
     listen (2.7.8)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -138,17 +134,21 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.3.4)
-    mongo (1.10.1)
-      bson (~> 1.10.1)
-    mongoid (1.0.6)
-      activesupport (>= 2.2.2)
-      durran-validatable (>= 2.0.1)
-      leshill-will_paginate (>= 2.3.11)
-      mongo (>= 0.18.2)
+    mongoid (4.0.0.rc2)
+      activemodel (~> 4.0)
+      moped (~> 2.0.0.rc2)
+      origin (~> 2.1)
+      tzinfo (>= 0.3.37)
+    moped (2.0.0.rc2)
+      bson (~> 2.2)
+      connection_pool (~> 2.0)
+      optionable (~> 0.2.0)
     multi_json (1.10.1)
     mysql2 (0.3.16)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
+    optionable (0.2.0)
+    origin (2.1.1)
     orm_adapter (0.5.0)
     poltergeist (1.5.1)
       capybara (~> 2.1)
@@ -443,7 +443,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (2.1.4)
+    slim-rails (2.1.5)
       actionpack (>= 3.0, < 4.2)
       activesupport (>= 3.0, < 4.2)
       railties (>= 3.0, < 4.2)
@@ -487,7 +487,6 @@ DEPENDENCIES
   active_model_serializers
   activerecord-jdbc-adapter
   activerecord-jdbcmysql-adapter
-  bson_ext
   bunny
   byebug
   capybara-screenshot
@@ -505,7 +504,7 @@ DEPENDENCIES
   hirb
   jruby-openssl
   listen
-  mongoid
+  mongoid (= 4.0.0.rc2)
   mysql2
   poltergeist
   pry
