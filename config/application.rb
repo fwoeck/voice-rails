@@ -1,10 +1,15 @@
 require File.expand_path('../boot', __FILE__)
+ENV['TZ'] = 'UTC'
 
 require 'rails/all'
+require 'yaml'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+Time.zone = 'Etc/UTC'
+WimConfig = YAML.load_file('./config/app.yml')
 
 module Voice
   class Application < Rails::Application

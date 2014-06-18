@@ -10,23 +10,23 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
 default: &default
-  adapter: mysql2
+  adapter:  mysql2
   encoding: utf8
-  pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  database: asterisk
+  username: astrealtime
+  password: ***REMOVED***
+  socket:   /var/run/mysqld/mysqld.sock
+  pool:     5
 
 development:
   <<: *default
-  database: voice_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: voice_test
+  database: asterisk_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +49,3 @@ test:
 #
 production:
   <<: *default
-  database: voice_production
-  username: voice
-  password: <%= ENV['VOICE_DATABASE_PASSWORD'] %>
