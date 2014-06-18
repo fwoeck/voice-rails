@@ -35,7 +35,7 @@ module AMQPManager
 
       queue.bind(xchange, routing_key: 'voice.ahn')
       queue.subscribe do |delivery_info, metadata, payload|
-        AmiEvent.create(payload: payload)
+        AmiEvent.log(payload)
       end
     end
   end

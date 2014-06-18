@@ -1,4 +1,4 @@
-class Sse
+class SseEvent
 
   def initialize(io)
     @io = io
