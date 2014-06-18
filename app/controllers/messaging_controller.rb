@@ -6,6 +6,7 @@ class MessagingController < ApplicationController
     sse = SseEvent.new(response.stream)
 
     begin
+      Rails.logger.info ">>> Serving new SSE-connection #{self.object_id}."
       time_stamp = AmiEvent.last.try(:created_at) || Time.now
 
       loop do
@@ -18,6 +19,7 @@ class MessagingController < ApplicationController
     rescue IOError
     ensure
       sse.close
+      Rails.logger.info ">>> Closed SSE-connection #{self.object_id}."
     end
   end
 end
