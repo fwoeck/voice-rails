@@ -1,34 +1,42 @@
 module AMQPManager
 
-  def self.channel
-    Thread.current[:channel] ||= @connection.create_channel
-  end
+  class << self
 
-  def self.xchange
-    Thread.current[:xchange] ||= channel.topic('voice.ahn', auto_delete: false)
-  end
+    def channel
+      Thread.current[:channel] ||= @connection.create_channel
+    end
 
-  def self.ahn_publish(*args)
-    xchange.publish(*args)
-  end
+    def xchange
+      Thread.current[:xchange] ||= channel.topic('voice.ahn', auto_delete: false)
+    end
 
-  def self.shutdown
-    @connection.close
-  end
+    def queue
+      Thread.current[:queue] ||= channel.queue('voice.ahn', auto_delete: false)
+    end
 
-  def self.start
-    @connection = Bunny.new(
-      host:     WimConfig['rabbit_host'],
-      user:     WimConfig['rabbit_user'],
-      password: WimConfig['rabbit_pass']
-    )
-    @connection.start
+    def ahn_publish(*args)
+      xchange.publish(*args)
+    end
 
-    queue = channel.queue('voice.ahn', auto_delete: false)
-    queue.bind(xchange, routing_key: 'voice.ahn')
+    def shutdown
+      @connection.close
+    end
 
-    queue.subscribe do |delivery_info, metadata, payload|
-      Rails.logger.info "Received AMQP-Message: #{payload}"
+    def establish_connection
+      @connection = Bunny.new(
+        host:     WimConfig['rabbit_host'],
+        user:     WimConfig['rabbit_user'],
+        password: WimConfig['rabbit_pass']
+      ).tap { |c| c.start }
+    end
+
+    def start
+      establish_connection
+
+      queue.bind(xchange, routing_key: 'voice.ahn')
+      queue.subscribe do |delivery_info, metadata, payload|
+        AmiEvent.create(payload: payload)
+      end
     end
   end
 end
