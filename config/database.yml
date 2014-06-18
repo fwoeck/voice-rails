@@ -10,8 +10,8 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
 default: &default
-  adapter:  mysql2
   encoding: utf8
+  adapter:  jdbcmysql
   database: asterisk
   username: astrealtime
   password: ***REMOVED***
