@@ -11,7 +11,7 @@
 #
 default: &default
   encoding: utf8
-  adapter:  jdbcmysql
+  adapter:  mysql2
   database: asterisk
   username: astrealtime
   password: ***REMOVED***
