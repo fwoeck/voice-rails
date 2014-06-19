@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flashphoner>
+  <wcs_server>33.33.33.100</wcs_server>
+  <use_wss>false</use_wss>
+  <wss_port>8443</wss_port>
+  <ws_port>8080</ws_port>
+  <use_dtls>true</use_dtls>
+  <rtmfp_port>1935</rtmfp_port>
+  <register_required>true</register_required>
+  <application>phone_app</application>
+  <video_width>352</video_width>
+  <video_height>288</video_height>
+  <check_validation_callee>true</check_validation_callee>
+  <use_enhanced_mic>true</use_enhanced_mic>
+  <ring_sound></ring_sound>
+  <busy_sound></busy_sound>
+  <register_sound></register_sound>
+  <finish_sound></finish_sound>
+</flashphoner>
