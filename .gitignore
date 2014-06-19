@@ -1,4 +1,5 @@
 /log/*.log
+/tags
 /tmp
 /vendor/bundle
 /config/*.yml
