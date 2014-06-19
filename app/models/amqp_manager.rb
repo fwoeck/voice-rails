@@ -1,4 +1,4 @@
-module AMQPManager
+module AmqpManager
 
   class << self
 
@@ -40,5 +40,3 @@ module AMQPManager
     end
   end
 end
-
-AMQPManager.start
