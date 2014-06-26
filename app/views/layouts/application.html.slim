@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Wimdu-Voice
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+  body
+    video#remoteVideo autoplay='' style='display: none'
+    video#localVideo autoplay='' style='display: none'
+    = javascript_include_tag 'application'
+
+    pre
+      | Login and access mic:
+          o = {login: '100', password: '0000'}; phone.app.login(o); phone.app.getAccessToAudio();
+        Call 000-extension:
+          phone.app.call('000');
+          cid = phone.app.calls[0].id;
+        Send some DTMF tones:
+          phone.app.sendDTMF(cid, 1);
+        Show my login status:
+          phone.app.getInfoAboutMe();
+        Finally hangup:
+          phone.app.hangup(cid);
+

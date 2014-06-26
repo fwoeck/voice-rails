@@ -1,4 +1,7 @@
 #= require jquery
+#= require jquery.json.js
+#= require jquery.websocket
+#= require phone
 #= require handlebars
 #= require ember
 #= require ember-data

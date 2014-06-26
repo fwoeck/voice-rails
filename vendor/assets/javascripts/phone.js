@@ -1,5 +1,10 @@
 "use strict";
 
+window.Wim = {
+  sipHost:    '33.33.33.100',
+  sslEnabled:  false
+};
+
 window.phone = {
   notify: function () { },
   notifyStats: function () { },
@@ -578,7 +583,7 @@ WebSocketManager.prototype = {
 
     hash.port = 5060;
     hash.useProxy = true;
-    hash.domain = Dkm.sipHost;
+    hash.domain = Wim.sipHost;
     hash.registerRequired = false;
     hash.outboundProxy = '127.0.0.1';
     hash.authenticationName = hash.login;
@@ -827,18 +832,18 @@ DefaultListener.prototype = {
 
 var PhoneAppLoader = function () {
   this.app = null;
-  this.wsPort = '80';
   this.useDTLS = true;
   this.xcapUrl = null;
-  this.wssPort = '443';
-  this.stunServer = "";
+  this.stunServer = ''
+  this.wsPort = '8080';
+  this.wssPort = '8443';
   this.useWebRTC = true;
   this.urlServer = null;
   this.videoWidth = 352;
   this.videoHeight = 288;
-  this.wcsIP = Dkm.sipHost;
+  this.wcsIP = Wim.sipHost;
   this.appName = 'phone_app';
-  this.useWss = Dkm.sslEnabled;
+  this.useWss = Wim.sslEnabled;
   this.registerRequired = false;
   this.stripCodecs = new Array();
   this.appListener = new DefaultListener();
