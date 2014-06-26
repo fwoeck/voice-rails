@@ -11,10 +11,13 @@ html
 
     pre
       | Login and access mic:
-          o = {login: '100', password: '0000'}; phone.app.login(o); phone.app.getAccessToAudio();
-        Call 000-extension:
+          l = {login: '101', password: '0000'}; phone.app.login(l); phone.app.getAccessToAudio();
+        Call an extension:
           phone.app.call('000');
           cid = phone.app.calls[0].id;
+        Answer a call (not working yet):
+          cid = phone.app.calls[0].id;
+          phone.app.answer(cid, false);
         Send some DTMF tones:
           phone.app.sendDTMF(cid, 1);
         Show my login status:
