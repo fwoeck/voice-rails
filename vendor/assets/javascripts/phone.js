@@ -585,7 +585,7 @@ WebSocketManager.prototype = {
     hash.useProxy = true;
     hash.domain = Wim.sipHost;
     hash.registerRequired = true;
-    hash.outboundProxy = '127.0.0.1';
+    hash.outboundProxy = '127.0.1.1';
     hash.authenticationName = hash.login;
     hash.useDTLS = phone.appLoader.useDTLS;
 
