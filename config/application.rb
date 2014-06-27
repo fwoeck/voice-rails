@@ -26,6 +26,3 @@ module Voice
     # config.i18n.default_locale = :de
   end
 end
-
-require_dependency 'app/models/amqp_manager'
-AmqpManager.start
