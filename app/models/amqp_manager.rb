@@ -1,5 +1,5 @@
+require 'rails/mongoid'
 require_dependency './app/models/ami_event.rb'
-
 
 module AmqpManager
   class << self
