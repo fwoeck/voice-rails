@@ -1,5 +1,7 @@
-module AmqpManager
+require_dependency './app/models/ami_event.rb'
 
+
+module AmqpManager
   class << self
 
     def channel
