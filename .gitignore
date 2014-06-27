@@ -3,3 +3,4 @@
 /tmp
 /vendor/bundle
 /config/*.yml
+/.ruby-version
