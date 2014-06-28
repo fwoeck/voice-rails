@@ -1,6 +1,6 @@
 <div id='login_header'></div>
 <div id='login_body' class='row'>
-  <div class='large-4'>
+  <div class='large-4 medium-6 small-8 columns'>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
       <%= devise_error_messages! %>
       <%= f.hidden_field :reset_password_token %>
