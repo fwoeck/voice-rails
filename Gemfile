@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '= 4.1.1'
+gem 'rails', '= 4.1.2'
 
 gem 'puma',                      require: false
 gem 'hirb',                      require: false
@@ -9,7 +9,7 @@ gem 'redis'
 gem 'bunny'
 gem 'devise'
 gem 'wirble',                    require: false
-gem 'mongoid',                   '= 4.0.0.rc2'
+gem 'mongoid'
 gem 'slim-rails'
 gem 'redis-rails'
 gem 'connection_pool'
@@ -17,7 +17,7 @@ gem 'rubygems-bundler',          require: false
 gem 'active_model_serializers'
 
 gem 'uglifier'
-gem 'sprockets',                '= 2.11.0'
+gem 'sprockets'
 gem 'sass-rails',               '~> 4.0'
 gem 'ember-rails'
 gem 'emblem-rails'
