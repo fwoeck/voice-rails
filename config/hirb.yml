@@ -1,0 +1,13 @@
+---
+  :output:
+    User:
+      :options:
+        :fields:
+          - id
+          - email
+          - name
+          - fullcontact
+          - ipaddr
+          - last_sign_in_at
+          - last_sign_in_ip
+          - updated_at

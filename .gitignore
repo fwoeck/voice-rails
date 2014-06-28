@@ -5,3 +5,4 @@
 /config/*.yml
 /.ruby-version
 /.rbx
+/public/assets

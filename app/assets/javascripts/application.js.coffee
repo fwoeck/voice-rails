@@ -1,7 +1,9 @@
 #= require jquery
+#= require rails
 #= require jquery.json.js
 #= require jquery.websocket
-#= require phone
+#= require foundation/foundation
+#= require js-phone
 #= require handlebars
 #= require ember
 #= require ember-data
@@ -34,3 +36,7 @@ sseSource.onmessage = (event) ->
     console.log(new Date, 'Call from:', data.from, 'To:', data.to)
   else if messageRegex.test(data.name)
     console.log(new Date, data.name, data.headers)
+
+
+jQuery ->
+  $(document).foundation()
