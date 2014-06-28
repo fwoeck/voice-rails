@@ -1,7 +1,8 @@
 #= require jquery
+#= require rails
 #= require jquery.json.js
 #= require jquery.websocket
-#= require foundation
+#= require foundation/foundation
 #= require js-phone
 #= require handlebars
 #= require ember
