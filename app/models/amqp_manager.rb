@@ -1,28 +1,41 @@
-require 'rails/mongoid'
-require_dependency './app/models/ami_event.rb'
-
 module AmqpManager
   class << self
 
-    def channel
-      Thread.current[:channel] ||= @connection.create_channel
+
+    def rails_channel
+      Thread.current[:rails_channel] ||= @connection.create_channel
     end
 
-    def xchange
-      Thread.current[:xchange] ||= channel.topic('voice.ahn', auto_delete: false)
+
+    def rails_xchange
+      Thread.current[:rails_xchange] ||= rails_channel.topic('voice.rails', auto_delete: false)
     end
 
-    def queue
-      Thread.current[:queue] ||= channel.queue('voice.ahn', auto_delete: false)
+
+    def rails_queue
+      Thread.current[:rails_queue] ||= rails_channel.queue('voice.rails', auto_delete: false)
     end
 
-    def ahn_publish(*args)
-      xchange.publish(*args)
+
+    def push_channel
+      Thread.current[:push_channel] ||= @connection.create_channel
     end
+
+
+    def push_xchange
+      Thread.current[:push_xchange] ||= push_channel.fanout('voice.push', auto_delete: false)
+    end
+
+
+    def push_publish(payload)
+      push_xchange.publish(payload)
+    end
+
 
     def shutdown
       @connection.close
     end
+
 
     def establish_connection
       @connection = Bunny.new(
@@ -32,12 +45,14 @@ module AmqpManager
       ).tap { |c| c.start }
     end
 
+
     def start
       establish_connection
 
-      queue.bind(xchange, routing_key: 'voice.ahn')
-      queue.subscribe do |delivery_info, metadata, payload|
-        AmiEvent.log(payload)
+      rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
+      rails_queue.subscribe do |delivery_info, metadata, payload|
+        # ...
+        push_publish(payload)
       end
     end
   end
