@@ -27,8 +27,8 @@ module AmqpManager
     end
 
 
-    def publish_to_push(*args)
-      push_xchange.publish(*args)
+    def push_publish(payload)
+      push_xchange.publish(payload)
     end
 
 
@@ -52,6 +52,7 @@ module AmqpManager
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
         # ...
+        push_publish(payload)
       end
     end
   end
