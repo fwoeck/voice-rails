@@ -1,6 +1,3 @@
-require 'rails/mongoid'
-require_dependency './app/models/ami_event.rb'
-
 module AmqpManager
   class << self
 
@@ -9,14 +6,14 @@ module AmqpManager
     end
 
     def xchange
-      Thread.current[:xchange] ||= channel.topic('voice.ahn', auto_delete: false)
+      Thread.current[:xchange] ||= channel.topic('voice.rails', auto_delete: false)
     end
 
     def queue
-      Thread.current[:queue] ||= channel.queue('voice.ahn', auto_delete: false)
+      Thread.current[:queue] ||= channel.queue('voice.rails', auto_delete: false)
     end
 
-    def ahn_publish(*args)
+    def rails_publish(*args)
       xchange.publish(*args)
     end
 
@@ -35,9 +32,9 @@ module AmqpManager
     def start
       establish_connection
 
-      queue.bind(xchange, routing_key: 'voice.ahn')
+      queue.bind(xchange, routing_key: 'voice.rails')
       queue.subscribe do |delivery_info, metadata, payload|
-        AmiEvent.log(payload)
+        # ...
       end
     end
   end
