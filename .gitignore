@@ -5,4 +5,5 @@
 /config/*.yml
 /.ruby-version
 /.rbx
+/Guardfile
 /public/assets
