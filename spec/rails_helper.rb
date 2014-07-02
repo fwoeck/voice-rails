@@ -1,43 +1,74 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
+
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
+
+require 'timecop'
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'database_cleaner'
 
-# Requires supporting ruby files with custom matchers and macros, etc, in
-# spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
-# run as spec files by default. This means that files in spec/support that end
-# in _spec.rb will both be required and run as specs, causing the specs to be
-# run twice. It is recommended that you do not name files matching this glob to
-# end with _spec.rb. You can configure this pattern with with the --pattern
-# option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
+require './spec/common_helper'
+include CommonHelper
+
+Thread.abort_on_exception = true
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-
-# Checks for pending migrations before tests are run.
-# If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+
 RSpec.configure do |config|
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
   config.use_transactional_fixtures = true
-
-  # RSpec Rails can automatically mix in different behaviours to your tests
-  # based on their file location, for example enabling you to call `get` and
-  # `post` in specs under `spec/controllers`.
-  #
-  # You can disable this behaviour by removing the line below, and instead
-  # explicitly tag your specs with their type, e.g.:
-  #
-  #     RSpec.describe UsersController, :type => :controller do
-  #       # ...
-  #     end
-  #
-  # The different available types are documented in the features, such as in
-  # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+  config.mock_with :rspec
+
+  config.include Devise::TestHelpers, type: :controller
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:each) do
+    ActionMailer::Base.deliveries.clear
+  end
+
+  config.after(:each) do
+    Timecop.return
+  end
+
+  config.before(:each, js: true) do
+    Timecop.return
+  end
+
+  config.before(:suite) do
+    begin
+      DatabaseCleaner.start
+      FactoryGirl.lint
+    ensure
+      DatabaseCleaner.clean
+    end
+  end
+
+  config.after(:suite) do
+  end
+
+  unless ENV['JSCRIPT'].blank?
+    require 'puma'
+    require 'capybara-screenshot'
+    require 'capybara-screenshot/rspec'
+
+    if ENV['SELENIUM'].blank?
+      configure_poltergeist_driver
+    else
+      configure_selenium_driver
+    end
+
+    Capybara.default_selector = :css
+    Capybara.server_port      = 18080
+    Capybara.server do |app, port|
+      server = Puma::Server.new(app).tap do |s|
+        s.add_tcp_listener '0.0.0.0', 18080
+        s.min_threads = 2
+        s.max_threads = 8
+      end.run
+
+      server.join
+    end
+  end
 end

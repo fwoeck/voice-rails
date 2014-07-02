@@ -31,7 +31,7 @@ group :test, :development do
   gem 'listen',                  require: false
   gem 'rb-inotify',              require: false
   gem 'qunit-rails'
-  gem 'fabrication'
+  gem 'factory_girl'
 end
 
 group :test do
