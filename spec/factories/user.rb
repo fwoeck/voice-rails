@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :user do
     email                 '100@mail.com'  # => the devise login
     password              'P4ssw0rd'      # => the devise password

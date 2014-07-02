@@ -17,15 +17,18 @@ ActiveRecord::Migration.maintain_test_schema!
 
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.mock_with :rspec
+
+  config.use_transactional_fixtures = false # ! JS specs will fail if true
+  DatabaseCleaner.strategy = :truncation
 
   config.include Devise::TestHelpers, type: :controller
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:each) do
     ActionMailer::Base.deliveries.clear
+    DatabaseCleaner.clean
   end
 
   config.after(:each) do
@@ -37,12 +40,8 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-    begin
-      DatabaseCleaner.start
-      FactoryGirl.lint
-    ensure
-      DatabaseCleaner.clean
-    end
+    DatabaseCleaner.clean
+    FactoryGirl.lint
   end
 
   config.after(:suite) do
@@ -60,10 +59,10 @@ RSpec.configure do |config|
     end
 
     Capybara.default_selector = :css
-    Capybara.server_port      = 18080
+    Capybara.server_port      = 8088 # the port we direct the browser to (via nginx)
     Capybara.server do |app, port|
       server = Puma::Server.new(app).tap do |s|
-        s.add_tcp_listener '0.0.0.0', 18080
+        s.add_tcp_listener '0.0.0.0', 8089 # the port puma/test listens to internally
         s.min_threads = 2
         s.max_threads = 8
       end.run

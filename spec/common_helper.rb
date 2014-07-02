@@ -34,7 +34,6 @@ module CommonHelper
 
 
   def configure_selenium_driver
-    require 'capybara/firebug'
     require 'selenium/webdriver'
 
     Capybara.register_driver :selenium do |app|
