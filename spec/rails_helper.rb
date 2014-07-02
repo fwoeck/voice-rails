@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] = 'test'
 
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
+Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each { |name| require name }
 
 require 'timecop'
 require 'rspec/rails'
@@ -29,6 +30,7 @@ RSpec.configure do |config|
   config.before(:each) do
     ActionMailer::Base.deliveries.clear
     DatabaseCleaner.clean
+    $redis.flushdb
   end
 
   config.after(:each) do

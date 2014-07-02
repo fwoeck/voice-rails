@@ -8,8 +8,9 @@ class SessionsController < Devise::SessionsController
   private
 
   def bind_authenticity_token_to_current_user
-    key_name = redis_namespaced_key("token.#{form_authenticity_token}")
-    $redis.set(key_name, current_user.id, ex: authenticity_token_binding_ttl)
+    key_name = redis_namespaced_key("token.#{current_user.id}")
+
+    $redis.set(key_name, form_authenticity_token, ex: authenticity_token_binding_ttl)
   end
 
   def redis_namespaced_key(key)
@@ -17,6 +18,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def authenticity_token_binding_ttl
-    1.day.to_i
+    1.day
   end
 end
