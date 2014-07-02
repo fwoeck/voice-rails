@@ -19,7 +19,7 @@ module BrowserHelpers
 
   def use_browser(name)
     Capybara.session_name = name
-    set_selenium_window_size(1600, 1200)
+    set_browser_size(1200, 1000)
   end
 
 

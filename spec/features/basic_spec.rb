@@ -2,7 +2,7 @@ require 'features/spec_helper'
 
 feature 'Basic UI functions', js: true do
 
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
 
   scenario 'Basic login session' do
     sign_in_with(user.email)
