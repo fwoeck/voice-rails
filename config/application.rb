@@ -9,7 +9,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-WimConfig = YAML.load_file('./config/app.yml')
+WimConfig = YAML.load_file('./config/app.yml')[Rails.env]
 
 module Voice
   class Application < Rails::Application
