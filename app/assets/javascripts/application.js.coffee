@@ -13,8 +13,10 @@
 window.Voice = Ember.Application.create()
 
 window.setupSSE = ->
-  sseSource    = new EventSource('/events')
+  token        = encodeURI ($ 'meta[name="csrf-token"]').attr('content')
+  sseSource    = new EventSource("/events?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{token}")
   messageRegex = /^(New|DTMF|PeerStatus|Originate|Masquerade|Rename|Bridge|Hangup|SoftHangup)/
+
 
   window.onbeforeunload = ->
     sseSource.close()

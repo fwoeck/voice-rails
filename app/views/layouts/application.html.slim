@@ -15,4 +15,11 @@ html
     video#localVideo autoplay='' style='display: none'
 
     = yield
+
+    javascript:
+      window.env = {
+        railsEnv: "#{Rails.env}",
+        userId:   "#{current_user.try(:id)}"
+      }
+
     = javascript_include_tag 'application'
