@@ -1,3 +1,4 @@
+/.bundle/config
 /log/*.log
 /tags
 /tmp
