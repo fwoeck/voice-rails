@@ -17,6 +17,13 @@ module BrowserHelpers
   end
 
 
+  def sign_out
+    within('#logout_link') do
+      click_link('a')
+    end
+  end
+
+
   def use_browser(name)
     Capybara.session_name = name
     set_browser_size(1200, 1000)
