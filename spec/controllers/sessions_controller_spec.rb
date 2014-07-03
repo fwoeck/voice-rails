@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe SessionsController, type: :controller do
+
   describe "POST create" do
     before do
       @request.env["devise.mapping"] = Devise.mappings[:user]
