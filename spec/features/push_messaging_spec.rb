@@ -18,8 +18,8 @@ feature 'Checking some basic push notifications', js: true do
       expect(page).to have_content user2.email
     end
 
-    PushApi.send_message_to(user1, {payload: 'Hello 100!'})
-    PushApi.send_message_to(user2, {payload: 'Hello 101!'})
+    PushApi.send_message_to(user1.id, {payload: 'Hello 100!'})
+    PushApi.send_message_to(user2.id, {payload: 'Hello 101!'})
 
     # Not yet implemented:
 

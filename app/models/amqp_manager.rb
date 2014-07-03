@@ -57,7 +57,7 @@ module AmqpManager
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
-        # ...
+        PushApi.send_message_to 131, JSON.parse(payload)
       end
     end
   end
