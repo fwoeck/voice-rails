@@ -30,7 +30,7 @@ RSpec.configure do |config|
   config.before(:each) do
     ActionMailer::Base.deliveries.clear
     DatabaseCleaner.clean
-    $redis.flushdb
+    clear_redis_keys
   end
 
   config.after(:each) do

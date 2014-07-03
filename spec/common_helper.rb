@@ -3,6 +3,12 @@ module CommonHelper
   extend self
 
 
+  def clear_redis_keys
+    keys = $redis.keys("#{Rails.env}.*")
+    $redis.del(*keys) unless keys.empty?
+  end
+
+
   def pry_on(_binding)
     if $activate_pry
       require 'pry'
