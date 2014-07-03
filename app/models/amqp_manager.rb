@@ -54,6 +54,7 @@ module AmqpManager
     def start
       establish_connection
       push_queue.bind(push_xchange, routing_key: 'voice.push')
+      return if Rails.env.test?
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
