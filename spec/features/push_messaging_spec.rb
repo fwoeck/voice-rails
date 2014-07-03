@@ -18,7 +18,7 @@ feature 'Checking some basic push notifications', js: true do
 
       PushApi.send_message_to(user.id, {payload: "Hello #{user.email}!"})
     end
-    sleep 0.5
+    sleep 0.25
 
     [user1, user2, user3]. each do |user|
       use_browser(user)
@@ -39,7 +39,7 @@ feature 'Checking some basic push notifications', js: true do
     end
 
     PushApi.send_message_to(user1.id, {payload: "Hello #{user1.email}!"})
-    sleep 0.5
+    sleep 0.25
 
     use_browser(:left)
     expect(page.evaluate_script 'pushMessages.length').to eql(0)
@@ -60,7 +60,7 @@ feature 'Checking some basic push notifications', js: true do
     expect(page).not_to have_css '#logout_link'
 
     PushApi.send_message_to(user1.id, {payload: "Hello #{user1.email}!"})
-    sleep 0.5
+    sleep 0.25
 
     expect(page.evaluate_script 'pushMessages.length').to eql(0)
   end
@@ -76,11 +76,24 @@ feature 'Checking some basic push notifications', js: true do
     PushApi.send_message_to(user1.id, {payload: '1'})
     PushApi.send_message_to(user1.id, {payload: '2'})
     PushApi.send_message_to(user1.id, {payload: '3'})
-    sleep 0.5
+    sleep 0.25
 
     expect(page.evaluate_script 'pushMessages.length').to eql(3)
     expect(page.evaluate_script 'pushMessages[0].payload').to eql('1')
     expect(page.evaluate_script 'pushMessages[1].payload').to eql('2')
     expect(page.evaluate_script 'pushMessages[2].payload').to eql('3')
+  end
+
+
+  scenario 'Sending messages with invalid login/token' do
+    visit '/'
+    page.execute_script "env.userId='#{user1.id}'"
+    page.execute_script 'env.sessionToken="1nval1d"'
+    page.execute_script 'setupSSE()'
+
+    PushApi.send_message_to(user1.id, {payload: 'Hello'})
+    sleep 0.25
+
+    expect(page.evaluate_script 'pushMessages.length').to eql(0)
   end
 end
