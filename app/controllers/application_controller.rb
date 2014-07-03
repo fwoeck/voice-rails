@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
 
   def index
   end
+
+  def user_session_token
+    CGI::unescape(form_authenticity_token)
+  end
 end

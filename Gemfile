@@ -31,7 +31,7 @@ group :test, :development do
   gem 'listen',                  require: false
   gem 'rb-inotify',              require: false
   gem 'qunit-rails'
-  gem 'fabrication'
+  gem 'factory_girl'
 end
 
 group :test do
@@ -69,4 +69,11 @@ end
 platforms :ruby do
   gem 'mysql2'
   gem 'git-smart',               require: false
+
+  group :development do
+    gem 'spring-commands-rspec', require: false
+    gem 'guard-spring',          require: false
+    gem 'guard-rspec',           require: false
+    gem 'spring',                require: false
+  end
 end

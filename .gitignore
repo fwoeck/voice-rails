@@ -1,3 +1,4 @@
+/.bundle/config
 /log/*.log
 /tags
 /tmp
@@ -5,4 +6,5 @@
 /config/*.yml
 /.ruby-version
 /.rbx
+/Guardfile
 /public/assets

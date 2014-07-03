@@ -1,7 +1,6 @@
 module AmqpManager
   class << self
 
-
     def rails_channel
       Thread.current[:rails_channel] ||= @connection.create_channel
     end
@@ -23,12 +22,18 @@ module AmqpManager
 
 
     def push_xchange
-      Thread.current[:push_xchange] ||= push_channel.fanout('voice.push', auto_delete: false)
+      Thread.current[:push_xchange] ||= push_channel.topic('voice.push', auto_delete: false)
+    end
+
+
+    def push_queue
+      Thread.current[:push_queue] ||= push_channel.queue('voice.push', auto_delete: false)
     end
 
 
     def push_publish(payload)
-      push_xchange.publish(payload)
+      push_xchange.publish(payload.to_json, routing_key: 'voice.push')
+      true
     end
 
 
@@ -48,11 +53,11 @@ module AmqpManager
 
     def start
       establish_connection
+      push_queue.bind(push_xchange, routing_key: 'voice.push')
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
         # ...
-        push_publish(payload)
       end
     end
   end
