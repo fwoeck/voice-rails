@@ -23,4 +23,4 @@ window.setupSSE = ->
 
   sseSource.onmessage = (event) ->
     data = JSON.parse(event.data)
-    window.pushMessages.push(data) if data.payload
+    window.pushMessages.push(data) unless data.timestamp
