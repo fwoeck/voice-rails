@@ -12,7 +12,7 @@ describe SessionsController, type: :controller do
     it "binds form authenticity token to current user's id" do
       post :create, user: { email: user.email, password: user.password }
 
-      token = CGI::unescape(controller.send :form_authenticity_token)
+      token = controller.user_session_token
 
       # FIXME This is a controller spec, but we are embedding knowledge
       #       about the DB-internals here. Can we wrap this in a service-
@@ -30,14 +30,14 @@ describe SessionsController, type: :controller do
 
     it "it expires authenticity token after loggin out" do
       post :create, user: { email: user.email, password: user.password }
-      token_1 = CGI::unescape(controller.send :form_authenticity_token)
+      token_1 = controller.user_session_token
 
       delete :destroy
       expect(controller.current_user).to be_nil
 
       post :create, user: { email: user.email, password: user.password }
       expect(response).to be_success
-      token_2 = CGI::unescape(controller.send :form_authenticity_token)
+      token_2 = controller.user_session_token
 
       expect(token_1).not_to eq(token_2)
 
