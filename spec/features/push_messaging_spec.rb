@@ -2,9 +2,10 @@ require 'features/spec_helper'
 
 feature 'Checking some basic push notifications', js: true do
 
-  let(:user1) { create(:user, email: '100@mail.com', name: '100') }
-  let(:user2) { create(:user, email: '101@mail.com', name: '101') }
-  let(:user3) { create(:user, email: '102@mail.com', name: '102') }
+  let!(:user1) { create(:user, email: '100@mail.com', name: '100') }
+  let!(:user2) { create(:user, email: '101@mail.com', name: '101') }
+  let!(:user3) { create(:user, email: '102@mail.com', name: '102') }
+
 
   scenario 'Sending out messages to authenticated clients only' do
     [user1, user2, user3].each do |user|
@@ -24,6 +25,7 @@ feature 'Checking some basic push notifications', js: true do
       expect(page.evaluate_script 'pushMessages[0].payload').to eql("Hello #{user.email}!")
     end
   end
+
 
   scenario 'Sending out messages only to the last client of that user' do
     [:left, :right].each do |side|
@@ -45,6 +47,7 @@ feature 'Checking some basic push notifications', js: true do
     expect(page.evaluate_script 'pushMessages[0].payload').to eql("Hello #{user1.email}!")
   end
 
+
   scenario 'Stop sending messages after the client logged out' do
     sign_in_with(user1.email)
 
@@ -52,11 +55,10 @@ feature 'Checking some basic push notifications', js: true do
       expect(page).to have_content user1.email
     end
 
-    sign_out
     PushApi.send_message_to(user1.id, {payload: "Hello #{user1.email}!"})
-
     expect(page.evaluate_script 'pushMessages.length').to eql(0)
   end
+
 
   scenario 'Sending multiple messages to one client' do
     sign_in_with(user1.email)

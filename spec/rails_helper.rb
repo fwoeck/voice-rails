@@ -41,6 +41,11 @@ RSpec.configure do |config|
     Timecop.return
   end
 
+  config.after(:each, js: true) do
+    browser = Capybara.current_session.driver.browser
+    browser.manage.delete_all_cookies
+  end
+
   config.before(:suite) do
     DatabaseCleaner.clean
     FactoryGirl.lint

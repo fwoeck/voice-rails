@@ -2,7 +2,7 @@ window.pushMessages = []
 
 
 window.setupSSE = ->
-  return unless env.sessionToken
+  return unless env.userId
   sseSource = new EventSource("/events?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}")
 
 
