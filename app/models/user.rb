@@ -4,55 +4,35 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_reader :availability
-
   has_many :roles
   has_many :skills
   has_many :languages
 
 
-  def set_language(_key)
-    key = _key.to_s
-    check_for_language_validity(key)
-    languages.find_or_create_by(name: key)
-    notify_ahn_about_update(:language)
+  def set_language(key)
+    set_field(:language, key)
   end
 
-  def unset_language(_key)
-    key = _key.to_s
-    check_for_language_validity(key)
-    languages.find_by(name: key).try(:delete)
-    notify_ahn_about_update(:language)
+  def unset_language(key)
+    unset_field(:language, key)
   end
 
 
-  def set_role(_key)
-    key = _key.to_s
-    check_for_role_validity(key)
-    roles.find_or_create_by(name: key)
-    notify_ahn_about_update(:role)
+  def set_role(key)
+    set_field(:role, key)
   end
 
-  def unset_role(_key)
-    key = _key.to_s
-    check_for_role_validity(key)
-    roles.find_by(name: key).try(:delete)
-    notify_ahn_about_update(:role)
+  def unset_role(key)
+    unset_field(:role, key)
   end
 
 
-  def set_skill(_key)
-    key = _key.to_s
-    check_for_skill_validity(key)
-    skills.find_or_create_by(name: key)
-    notify_ahn_about_update(:skill)
+  def set_skill(key)
+    set_field(:skill, key)
   end
 
-  def unset_skill(_key)
-    key = _key.to_s
-    check_for_skill_validity(key)
-    skills.find_by(name: key).try(:delete)
-    notify_ahn_about_update(:skill)
+  def unset_skill(key)
+    unset_field(:skill, key)
   end
 
 
@@ -72,27 +52,31 @@ class User < ActiveRecord::Base
   private
 
 
+  def set_field(field, _key)
+    key = _key.to_s
+    check_for_validity(field, key)
+    self.send("#{field}s").find_or_create_by(name: key)
+    notify_ahn_about_update(field)
+  end
+
+
+  def unset_field(field, _key)
+    key = _key.to_s
+    check_for_validity(field, key)
+    self.send("#{field}s").find_by(name: key).try(:delete)
+    notify_ahn_about_update(field)
+  end
+
+
+  def check_for_validity(field, key)
+    unless WimConfig.send("#{field}s").keys.include?(key)
+      raise "Invalid user #{field}. Use any of #{WimConfig.send("#{field}s").keys.join(',')}"
+    end
+  end
+
+
   def notify_ahn_about_update(key)
     reload
     AmqpManager.ahn_publish user_id: self.id, key => send("#{key}_summary")
-  end
-
-
-  def check_for_language_validity(key)
-    unless WimConfig.languages.keys.include?(key)
-      raise "Invalid user language. Use any of #{WimConfig.languages.keys.join(',')}"
-    end
-  end
-
-  def check_for_role_validity(key)
-    unless WimConfig.roles.keys.include?(key)
-      raise "Invalid user role. Use any of #{WimConfig.roles.keys.join(',')}"
-    end
-  end
-
-  def check_for_skill_validity(key)
-    unless WimConfig.skills.keys.include?(key)
-      raise "Invalid user skill. Use any of #{WimConfig.skills.keys.join(',')}"
-    end
   end
 end
