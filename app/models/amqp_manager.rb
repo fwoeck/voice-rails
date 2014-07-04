@@ -48,6 +48,9 @@ module AmqpManager
         user:     WimConfig['rabbit_user'],
         password: WimConfig['rabbit_pass']
       ).tap { |c| c.start }
+    rescue Bunny::TCPConnectionFailed
+      sleep 1
+      retry
     end
 
 
