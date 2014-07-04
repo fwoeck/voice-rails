@@ -16,7 +16,7 @@ feature 'Checking some basic push notifications', js: true do
         expect(page).to have_content user.email
       end
 
-      PushApi.send_message_to(user.id, {payload: "Hello #{user.email}!"})
+      AmqpManager.push_publish(user_id: user.id, data: {payload: "Hello #{user.email}!"})
     end
     sleep 0.25
 
@@ -38,7 +38,7 @@ feature 'Checking some basic push notifications', js: true do
       end
     end
 
-    PushApi.send_message_to(user1.id, {payload: "Hello #{user1.email}!"})
+    AmqpManager.push_publish(user_id: user1.id, data: {payload: "Hello #{user1.email}!"})
     sleep 0.25
 
     use_browser(:left)
@@ -59,7 +59,7 @@ feature 'Checking some basic push notifications', js: true do
     sign_out
     expect(page).not_to have_css '#logout_link'
 
-    PushApi.send_message_to(user1.id, {payload: "Hello #{user1.email}!"})
+    AmqpManager.push_publish(user_id: user1.id, data: {payload: "Hello #{user1.email}!"})
     sleep 0.25
 
     expect(page.evaluate_script 'pushMessages.length').to eql(0)
@@ -73,9 +73,9 @@ feature 'Checking some basic push notifications', js: true do
       expect(page).to have_content user1.email
     end
 
-    PushApi.send_message_to(user1.id, {payload: '1'})
-    PushApi.send_message_to(user1.id, {payload: '2'})
-    PushApi.send_message_to(user1.id, {payload: '3'})
+    AmqpManager.push_publish(user_id: user1.id, data: {payload: '1'})
+    AmqpManager.push_publish(user_id: user1.id, data: {payload: '2'})
+    AmqpManager.push_publish(user_id: user1.id, data: {payload: '3'})
     sleep 0.25
 
     expect(page.evaluate_script 'pushMessages.length').to eql(3)
@@ -91,7 +91,7 @@ feature 'Checking some basic push notifications', js: true do
     page.execute_script 'env.sessionToken="1nval1d"'
     page.execute_script 'setupSSE()'
 
-    PushApi.send_message_to(user1.id, {payload: 'Hello'})
+    AmqpManager.push_publish(user_id: user1.id, data: {payload: '1'})
     sleep 0.25
 
     expect(page.evaluate_script 'pushMessages.length').to eql(0)
