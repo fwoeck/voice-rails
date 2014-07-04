@@ -1,8 +1,9 @@
-window.setupSSE = ->
-  return unless env.userId
+window.pushMessages = []
 
-  token     = encodeURI ($ 'meta[name="csrf-token"]').attr('content')
-  sseSource = new EventSource("/events?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{token}")
+
+window.setupSSE = ->
+  return unless env.userId.length > 0
+  sseSource = new EventSource("/events?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}")
 
 
   window.onbeforeunload = ->
@@ -22,4 +23,4 @@ window.setupSSE = ->
 
   sseSource.onmessage = (event) ->
     data = JSON.parse(event.data)
-    console.log(new Date, data)
+    window.pushMessages.push(data) unless data.servertime

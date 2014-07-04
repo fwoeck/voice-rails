@@ -18,8 +18,9 @@ html
 
     javascript:
       window.env = {
-        railsEnv: "#{Rails.env}",
-        userId:   "#{current_user.try(:id)}"
+        railsEnv:     "#{Rails.env}",
+        userId:       "#{current_user.try(:id)}",
+        sessionToken: "#{form_authenticity_token}"
       }
 
     = javascript_include_tag 'application'

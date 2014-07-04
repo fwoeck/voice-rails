@@ -5,4 +5,11 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 require_dependency './app/models/amqp_manager'
-AmqpManager.start
+
+if defined?(Spring)
+  Spring.after_fork do
+    AmqpManager.start
+  end
+else
+  AmqpManager.start
+end

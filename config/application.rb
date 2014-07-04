@@ -9,7 +9,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-WimConfig = YAML.load_file('./config/app.yml')[Rails.env]
+WimConfig = YAML.load_file('./config/app.yml')
+WimConfig.keys.each { |key|
+  WimConfig.instance_eval "class << self; define_method(:#{key}) {self['#{key}']}; end"
+}
 
 module Voice
   class Application < Rails::Application
@@ -23,6 +26,10 @@ module Voice
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.default_locale = :en
+
+    config.generators do |g|
+      g.orm :active_record
+    end
   end
 end
