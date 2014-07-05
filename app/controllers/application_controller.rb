@@ -11,5 +11,6 @@ class ApplicationController < ActionController::Base
 
   def catch_404
     # raise ActionController::RoutingError.new(params[:path])
+    render nothing: true
   end
 end
