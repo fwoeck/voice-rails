@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def user_session_token
     CGI::unescape(form_authenticity_token)
   end
+
+  def catch_404
+    # raise ActionController::RoutingError.new(params[:path])
+  end
 end
