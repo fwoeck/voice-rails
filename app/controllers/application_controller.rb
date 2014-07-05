@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+
 
   def index
   end
@@ -10,7 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def catch_404
-    # raise ActionController::RoutingError.new(params[:path])
-    render nothing: true
+    render nothing: true, status: 404
   end
 end
