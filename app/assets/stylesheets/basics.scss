@@ -43,20 +43,58 @@ form#new_user {
 }
 
 #agent_overview {
-  border-top: 1px solid #ddd;
   position: relative;
-  overflow-y: auto;
   height: 200px;
   z-index: 10;
 }
 
-#call_queue {
-  border-top: 1px solid #ddd;
+#agent_overview_toggle {
+  transition: color ease 300ms;
   position: absolute;
+  cursor: pointer;
+  color: #aaa;
+  top: 18px;
+  right: 0;
+}
+
+#agent_overview_toggle:hover {
+  color: #333;
+}
+
+#agent_overview_body {
+  border-top: 1px solid #eee;
+  position: absolute;
+  padding-top: 10px;
   overflow-y: auto;
-  top: 320px;
-  z-index: 1;
   bottom: 0;
+  top: 40px;
+
+}
+
+.bottom-mask {
+  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 30px);
+}
+
+#call_queue {
+  transition: top ease 300ms;
+  background-color: #fff;
+  position: absolute;
+  top: 320px;
+  z-index: 10;
+  bottom: 0;
+}
+
+#call_queue.expanded {
+  top: 141px;
+}
+
+#call_queue_body {
+  border-top: 1px solid #eee;
+  position: absolute;
+  padding-top: 10px;
+  overflow-y: auto;
+  bottom: 0;
+  top: 40px;
 }
 
 #right_column {
@@ -71,10 +109,11 @@ form#new_user {
 }
 
 #team_chat {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #eee;
   position: absolute;
+  padding-top: 10px;
   overflow-y: auto;
-  top: 100px;
+  top: 140px;
   z-index: 1;
   bottom: 0;
 }

@@ -16,3 +16,5 @@ window.Voice = Ember.Application.create()
 jQuery ->
   setupSSE()
   $(document).foundation()
+
+  ($ '#agent_overview_toggle').click -> ($ '#call_queue').toggleClass('expanded')
