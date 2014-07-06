@@ -1,9 +1,5 @@
-#login_header {
-  height: 100px;
-}
-
 #login_body {
-  margin-left: 10%;
+  padding-top: 30px;
 }
 
 #version_tag {
@@ -24,7 +20,84 @@
 }
 
 form#new_user {
+  margin: 0 auto;
   width: 300px;
+}
+
+#main {
+  position: relative;
+  padding-top: 30px;
+  height: 100%;
+}
+
+#center_column {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+
+#my_dashboard {
+  position: relative;
+  height: 100px;
+  z-index: 10;
+}
+
+#agent_overview {
+  border-top: 1px solid #ddd;
+  position: relative;
+  overflow-y: auto;
+  height: 200px;
+  z-index: 10;
+}
+
+#call_queue {
+  border-top: 1px solid #ddd;
+  position: absolute;
+  overflow-y: auto;
+  top: 320px;
+  z-index: 1;
+  bottom: 0;
+}
+
+#right_column {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+
+#chat_header {
+  height: 100px;
+  z-index: 10;
+}
+
+#team_chat {
+  border-top: 1px solid #ddd;
+  position: absolute;
+  overflow-y: auto;
+  top: 100px;
+  z-index: 1;
+  bottom: 0;
+}
+
+i.header {
+  margin-right: 8px;
+  line-height: 32px;
+  font-size: 24px;
+}
+
+::-webkit-scrollbar {
+  background: #fff;
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 1ex;
+  background: #ccc;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff;
 }
 
 .ember-application {

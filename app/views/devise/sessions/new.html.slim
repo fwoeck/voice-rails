@@ -1,30 +1,29 @@
-#login_header
-
-#login_body
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    div
-      label
-        ' Email
-        = f.email_field :email, autofocus: true
-
-    - if flash[:alert].blank?
+#main.row
+  #login_body
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       div
         label
-          ' Password
-          = f.password_field :password, autocomplete: 'off'
-    - else
-      div.error
-        label
-          ' Password
-          = f.password_field :password, autocomplete: 'off'
-        small.error = flash[:alert]
+          ' Email
+          = f.email_field :email, autofocus: true
 
-    - if devise_mapping.rememberable?
+      - if flash[:alert].blank?
+        div
+          label
+            ' Password
+            = f.password_field :password, autocomplete: 'off'
+      - else
+        div.error
+          label
+            ' Password
+            = f.password_field :password, autocomplete: 'off'
+          small.error = flash[:alert]
+
+      - if devise_mapping.rememberable?
+        div
+          label
+            ' Remember me
+            br
+            = f.check_box :remember_me
+
       div
-        label
-          ' Remember me
-          br
-          = f.check_box :remember_me
-
-    div
-      = f.submit 'Log in', class: 'tiny button'
+        = f.submit 'Log in', class: 'tiny button'

@@ -1,3 +1,46 @@
-- if current_user
+#main.row
+
   #logout_link
     = link_to "Logout #{current_user.email}", destroy_user_session_path, method: :delete
+
+  #center_column.large-9.medium-9.left
+
+    #my_dashboard.large-12.medium-12.columns
+      h5
+        i.header.fa.fa-cogs
+        ' My dashboard
+
+    #agent_overview.large-12.medium-12.columns
+      h5
+        i.header.fa.fa-compass
+        ' Agent overview
+
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing mollis consectetur. Etiam pulvinar arcu sapien, at sollicitudin purus imperdiet quis. Praesent in purus odio. Suspendisse vel consequat elit. Phasellus suscipit in mi sit amet ultrices. Aliquam sollicitudin odio ut enim auctor ultrices. Nulla magna sem, ultricies sed diam sit amet, ultricies mattis massa. Nulla quis ipsum justo. Fusce convallis, justo eget blandit vestibulum, tortor enim congue risus, quis luctus arcu sem quis felis. Suspendisse potenti. Nunc venenatis magna ut tellus viverra aliquam. Morbi purus risus, suscipit non tempor in, vehicula sit amet mauris. In non elementum mauris.
+      p Quisque viverra, massa quis bibendum semper, ipsum nibh tincidunt ligula, nec congue nunc justo sed velit. Vivamus convallis rutrum nisi vel venenatis. Cras eget faucibus magna, in convallis nibh. Quisque sed fringilla metus. Duis vel elit tristique, feugiat massa a, condimentum ante. Aliquam euismod nisi scelerisque, fringilla risus sit amet, mollis orci. Mauris ullamcorper metus augue, eu rutrum tellus sagittis eget. Vestibulum ante quam, tempus nec felis sed, vehicula porttitor libero. Morbi nulla augue, eleifend porttitor diam a, ornare pellentesque sapien. Duis dapibus mattis molestie. Etiam in enim non libero pharetra luctus at eget orci. Aenean pretium lacinia luctus. Nullam eget auctor tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+    #call_queue.large-12.medium-12.columns
+      h5
+        i.header.fa.fa-phone-square
+        ' Waiting calls / current call
+
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing mollis consectetur. Etiam pulvinar arcu sapien, at sollicitudin purus imperdiet quis. Praesent in purus odio. Suspendisse vel consequat elit. Phasellus suscipit in mi sit amet ultrices. Aliquam sollicitudin odio ut enim auctor ultrices. Nulla magna sem, ultricies sed diam sit amet, ultricies mattis massa. Nulla quis ipsum justo. Fusce convallis, justo eget blandit vestibulum, tortor enim congue risus, quis luctus arcu sem quis felis. Suspendisse potenti. Nunc venenatis magna ut tellus viverra aliquam. Morbi purus risus, suscipit non tempor in, vehicula sit amet mauris. In non elementum mauris.
+      p Quisque viverra, massa quis bibendum semper, ipsum nibh tincidunt ligula, nec congue nunc justo sed velit. Vivamus convallis rutrum nisi vel venenatis. Cras eget faucibus magna, in convallis nibh. Quisque sed fringilla metus. Duis vel elit tristique, feugiat massa a, condimentum ante. Aliquam euismod nisi scelerisque, fringilla risus sit amet, mollis orci. Mauris ullamcorper metus augue, eu rutrum tellus sagittis eget. Vestibulum ante quam, tempus nec felis sed, vehicula porttitor libero. Morbi nulla augue, eleifend porttitor diam a, ornare pellentesque sapien. Duis dapibus mattis molestie. Etiam in enim non libero pharetra luctus at eget orci. Aenean pretium lacinia luctus. Nullam eget auctor tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      p Vestibulum porttitor malesuada accumsan. Vestibulum aliquet lectus sit amet felis auctor posuere. Proin sed scelerisque erat, vel aliquet dolor. Etiam molestie nibh in pharetra tincidunt. Ut ac diam nec lorem sagittis gravida. Integer at nulla vitae libero condimentum pulvinar. Aliquam euismod quis magna quis bibendum. Duis vehicula, risus sed vehicula tempus, tellus lacus eleifend purus, in volutpat est lectus eu dui. Maecenas lorem risus, dapibus et nunc a, pretium congue elit. Fusce pretium sagittis imperdiet. Nunc eget sollicitudin velit, sit amet pulvinar sem. Aliquam lobortis enim nec mollis placerat. Donec lobortis venenatis nunc ultrices molestie. Integer iaculis ultricies feugiat. Vivamus faucibus ante vitae metus blandit, vitae egestas sapien adipiscing.
+      p Aenean eu hendrerit risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum pretium, neque dignissim volutpat luctus, lectus lorem malesuada quam, molestie eleifend velit ipsum sit amet dui. Ut hendrerit lobortis ornare. Vestibulum iaculis et est vel auctor. Nunc et interdum arcu. Etiam eu dapibus libero, quis ultrices tortor. Nulla facilisi. Integer suscipit sodales aliquet. Suspendisse in mauris eget purus dapibus rutrum eget a nulla.
+      p Praesent nec semper ligula. Nullam vitae sodales massa, ac semper eros. Aliquam convallis turpis eu sapien mollis, eu pellentesque felis cursus. Proin aliquet auctor erat non consequat. Proin tincidunt tincidunt est eget malesuada. Mauris non imperdiet urna, ut mollis quam. Suspendisse aliquam porttitor lacus, a auctor sem posuere sit amet. In adipiscing libero sit amet enim congue, et pretium massa rutrum. Aliquam erat volutpat. Vestibulum tempus porta felis vel blandit. Aliquam iaculis odio sit amet arcu aliquet ullamcorper. Maecenas sit amet enim aliquam arcu mattis faucibus nec eu quam. Etiam blandit semper nulla, vel imperdiet velit congue laoreet. Mauris consequat, libero sit amet cursus sagittis, mi ligula laoreet augue, sit amet pellentesque augue lacus a ipsum.
+
+  #right_column.large-3.medium-3.right.hide-for-small
+
+    #chat_header.large-12.medium-12.columns
+      h5
+        i.header.fa.fa-comments
+        ' Team Chat
+
+      input type='text' placeholder='Enter your message...'
+
+    #team_chat.large-12.medium-12.columns
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing mollis consectetur. Etiam pulvinar arcu sapien, at sollicitudin purus imperdiet quis. Praesent in purus odio. Suspendisse vel consequat elit. Phasellus suscipit in mi sit amet ultrices. Aliquam sollicitudin odio ut enim auctor ultrices. Nulla magna sem, ultricies sed diam sit amet, ultricies mattis massa. Nulla quis ipsum justo. Fusce convallis, justo eget blandit vestibulum, tortor enim congue risus, quis luctus arcu sem quis felis. Suspendisse potenti. Nunc venenatis magna ut tellus viverra aliquam. Morbi purus risus, suscipit non tempor in, vehicula sit amet mauris. In non elementum mauris.
+      p Quisque viverra, massa quis bibendum semper, ipsum nibh tincidunt ligula, nec congue nunc justo sed velit. Vivamus convallis rutrum nisi vel venenatis. Cras eget faucibus magna, in convallis nibh. Quisque sed fringilla metus. Duis vel elit tristique, feugiat massa a, condimentum ante. Aliquam euismod nisi scelerisque, fringilla risus sit amet, mollis orci. Mauris ullamcorper metus augue, eu rutrum tellus sagittis eget. Vestibulum ante quam, tempus nec felis sed, vehicula porttitor libero. Morbi nulla augue, eleifend porttitor diam a, ornare pellentesque sapien. Duis dapibus mattis molestie. Etiam in enim non libero pharetra luctus at eget orci. Aenean pretium lacinia luctus. Nullam eget auctor tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      p Vestibulum porttitor malesuada accumsan. Vestibulum aliquet lectus sit amet felis auctor posuere. Proin sed scelerisque erat, vel aliquet dolor. Etiam molestie nibh in pharetra tincidunt. Ut ac diam nec lorem sagittis gravida. Integer at nulla vitae libero condimentum pulvinar. Aliquam euismod quis magna quis bibendum. Duis vehicula, risus sed vehicula tempus, tellus lacus eleifend purus, in volutpat est lectus eu dui. Maecenas lorem risus, dapibus et nunc a, pretium congue elit. Fusce pretium sagittis imperdiet. Nunc eget sollicitudin velit, sit amet pulvinar sem. Aliquam lobortis enim nec mollis placerat. Donec lobortis venenatis nunc ultrices molestie. Integer iaculis ultricies feugiat. Vivamus faucibus ante vitae metus blandit, vitae egestas sapien adipiscing.
+      p Aenean eu hendrerit risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum pretium, neque dignissim volutpat luctus, lectus lorem malesuada quam, molestie eleifend velit ipsum sit amet dui. Ut hendrerit lobortis ornare. Vestibulum iaculis et est vel auctor. Nunc et interdum arcu. Etiam eu dapibus libero, quis ultrices tortor. Nulla facilisi. Integer suscipit sodales aliquet. Suspendisse in mauris eget purus dapibus rutrum eget a nulla.
+      p Praesent nec semper ligula. Nullam vitae sodales massa, ac semper eros. Aliquam convallis turpis eu sapien mollis, eu pellentesque felis cursus. Proin aliquet auctor erat non consequat. Proin tincidunt tincidunt est eget malesuada. Mauris non imperdiet urna, ut mollis quam. Suspendisse aliquam porttitor lacus, a auctor sem posuere sit amet. In adipiscing libero sit amet enim congue, et pretium massa rutrum. Aliquam erat volutpat. Vestibulum tempus porta felis vel blandit. Aliquam iaculis odio sit amet arcu aliquet ullamcorper. Maecenas sit amet enim aliquam arcu mattis faucibus nec eu quam. Etiam blandit semper nulla, vel imperdiet velit congue laoreet. Mauris consequat, libero sit amet cursus sagittis, mi ligula laoreet augue, sit amet pellentesque augue lacus a ipsum.
