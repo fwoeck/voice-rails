@@ -2,10 +2,42 @@
   height: 100px;
 }
 
+#login_body {
+  margin-left: 10%;
+}
+
+#version_tag {
+  position: absolute;
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 5px;
+  left: 0;
+  top: 0;
+}
+
 #logout_link {
   position: absolute;
   font-size: 14px;
   margin: 5px;
   right: 0;
   top: 0;
+}
+
+form#new_user {
+  width: 300px;
+}
+
+.ember-application {
+
+  button.tiny, .button.tiny {
+    padding-bottom: 0.5rem;
+    padding-right: 1.0rem;
+    padding-left: 1.0rem;
+    padding-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .error small.error {
+    padding: 0.375rem 0.5625rem;
+  }
 }

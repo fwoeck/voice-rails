@@ -9,7 +9,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-WimConfig = YAML.load_file('./config/app.yml')
+WimVersion = `git tag | sort | tail -1`.strip
+WimConfig  = YAML.load_file('./config/app.yml')
+
 WimConfig.keys.each { |key|
   WimConfig.instance_eval "class << self; define_method(:#{key}) {self['#{key}']}; end"
 }
