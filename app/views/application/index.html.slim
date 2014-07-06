@@ -10,6 +10,58 @@
         i.header.fa.fa-cogs
         ' My Dashboard
 
+      table#state_table.left
+        tr
+          td: .switch.tiny
+            input#i_am_available type="radio" checked="" name="Availability"
+            label for="i_am_available"
+          td I'm available
+        tr
+          td: .switch.tiny
+            input#i_am_busy type="radio" name="Availability"
+            label for="i_am_busy"
+          td I'm busy
+        tr
+          td: .switch.tiny
+            input#i_am_away type="radio" name="Availability"
+            label for="i_am_away"
+          td I'm away
+
+      table#language_table.left
+        tr
+          td: .switch.tiny
+            input#i_speak_english type="checkbox" checked=""
+            label for="i_speak_english"
+          td I speak english
+        tr
+          td: .switch.tiny
+            input#i_speak_spanish type="checkbox"
+            label for="i_speak_spanish"
+          td Hablo español
+        tr
+          td: .switch.tiny
+            input#i_speak_german type="checkbox" checked=""
+            label for="i_speak_german"
+          td Ich spreche deutsch
+
+      table#skill_table.left
+        tr
+          td: .switch.tiny
+            input#booking_support type="checkbox" checked=""
+            label for="booking_support"
+          td Booking support
+        tr
+          td: .switch.tiny
+            input#host_offers type="checkbox"
+            label for="host_offers"
+          td Host offers
+        tr
+          td: .switch.tiny
+            input#billing_refunds type="checkbox"
+            label for="billing_refunds"
+          td Billing and refunds
+
+
     #agent_overview.large-12.medium-12.columns
       #agent_overview_toggle
         i.fa.fa-caret-square-o-down
