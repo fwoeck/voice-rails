@@ -76,12 +76,31 @@ form#new_user {
 
 #agent_overview_body {
   border-top: 1px solid #eee;
+  overflow-x: hidden;
   position: absolute;
   padding-top: 10px;
   overflow-y: auto;
   bottom: 0;
   top: 40px;
 
+  .agent {
+    background-color: #f6f6f6;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    padding: 6px 8px;
+    width: 354px;
+    float: left;
+
+    img.avatar {
+      display: block;
+      float: left;
+    }
+  }
+
+  .agent:nth-child(even) {
+    margin-left: 10px;
+  }
 }
 
 .bottom-mask {
