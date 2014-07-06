@@ -3,6 +3,7 @@
 #= require jquery.json.js
 #= require jquery.websocket
 #= require foundation/foundation
+#= require foundation/foundation.tab
 #= require sse_connection
 #= require js-phone
 #= require handlebars

@@ -1112,8 +1112,8 @@ $base-font-size: 14px;
 
 // $include-html-tabs-classes: $include-html-classes;
 
-// $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: #efefef  ;
+$tabs-navigation-padding: 4px;
+// $tabs-navigation-bg-color: #efefef;
 // $tabs-navigation-active-bg-color: #fff;
 // $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
 // $tabs-navigation-font-color: #222;

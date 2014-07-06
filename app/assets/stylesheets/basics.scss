@@ -40,6 +40,19 @@ form#new_user {
   position: relative;
   height: 180px;
   z-index: 10;
+
+  li.tab-title.active > a {
+    cursor: default;
+  }
+
+  .tabs.vertical {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+
+  .tabs-content.vertical > .content {
+    margin-top: 10px;
+  }
 }
 
 #agent_overview {
@@ -73,6 +86,10 @@ form#new_user {
 
 .bottom-mask {
   -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 30px);
+}
+
+a {
+  transition: background-color linear 300ms;
 }
 
 #call_queue {
@@ -122,7 +139,7 @@ table#skill_table,
 table#state_table,
 table#language_table {
   border-collapse: collapse;
-  margin: 10px 20px 0 0;
+  margin: 0;
 
   tr, td, label {
     padding: 0;
