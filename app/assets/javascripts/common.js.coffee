@@ -9,6 +9,7 @@ window.setupInterface = ->
     ($ '#call_queue').toggleClass('lifted')
 
   ($ '#call_queue > h5').click ->
+    ($ '#call_queue').addClass('expanded').addClass('lifted')
     ($ '#my_settings').removeClass('expanded')
-    ($ '#call_queue').addClass('expanded')
-    ($ '#call_queue').addClass('lifted')
+
+  ($ document).on 'click', '#state_table label', (el) -> ($ el.target).siblings('input').click()

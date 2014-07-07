@@ -7,32 +7,32 @@
   #my_settings_body
     ul.tabs.vertical data-tab=""
       li.tab-title.active
-        a href="#panel1a" Availability
+        a href="#panel1" Availability
       li.tab-title
-        a href="#panel2a" Languages
+        a href="#panel2" Languages
       li.tab-title
-        a href="#panel3a" Skills
+        a href="#panel3" Skills
 
     .tabs-content.vertical
-      #panel1a.content.active
+      #panel1.content.active
         table#state_table
           tr
             td: .switch.tiny
-              input#i_am_available type="radio" checked="" name="Availability"
+              view Ember.RadioButton name="Availability" selectionBinding="availability" value="idle"
               label for="i_am_available"
             td I'm available
           tr
             td: .switch.tiny
-              input#i_am_busy type="radio" name="Availability"
+              view Ember.RadioButton name="Availability" selectionBinding="availability" value="busy"
               label for="i_am_busy"
             td I'm busy
           tr
             td: .switch.tiny
-              input#i_am_away type="radio" name="Availability"
+              view Ember.RadioButton name="Availability" selectionBinding="availability" value="away"
               label for="i_am_away"
             td I'm away
 
-      #panel2a.content
+      #panel2.content
         table#language_table
           tr
             td: .switch.tiny
@@ -60,7 +60,7 @@
             td
             td
 
-      #panel3a.content
+      #panel3.content
         table#skill_table
           tr
             td: .switch.tiny
