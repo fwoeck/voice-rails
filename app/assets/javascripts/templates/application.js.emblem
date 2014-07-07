@@ -1,1 +1,6 @@
+#main.row
+  #logout_link
+    a data-method="delete" href="/auth/logout" rel="nofollow"
+      | Logout #{Voice.currentUser.email}
+
 = outlet

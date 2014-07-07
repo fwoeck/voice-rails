@@ -1,9 +1,9 @@
 window.pushMessages = []
 
-
 window.setupSSE = ->
-  return unless env.userId.length > 0
-  sseSource = new EventSource("/events?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}")
+  return if env.userId.length == 0
+  params = "?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}"
+  sseSource = new EventSource('/events' + params)
 
 
   window.onbeforeunload = ->
