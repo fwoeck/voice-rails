@@ -41,7 +41,7 @@ describe SessionsController, type: :controller do
 
       expect(token_1).not_to eq(token_2)
 
-      pending "For some reason the second call doesn't really hit create action"
+      pending "The second call doesn't hit the create action"
 
       # FIXME See comment above
       #

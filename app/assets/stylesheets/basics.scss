@@ -1,5 +1,14 @@
-#login_header {
-  height: 100px;
+#login_body {
+  padding-top: 30px;
+}
+
+#version_tag {
+  position: absolute;
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 5px;
+  left: 0;
+  top: 0;
 }
 
 #logout_link {
@@ -8,4 +17,257 @@
   margin: 5px;
   right: 0;
   top: 0;
+}
+
+form#new_user {
+  margin: 0 auto;
+  width: 300px;
+}
+
+#main {
+  position: relative;
+  padding-top: 30px;
+  height: 100%;
+}
+
+#center_column {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+
+#my_dashboard {
+  position: relative;
+  height: 180px;
+  z-index: 10;
+
+  li.tab-title.active > a {
+    cursor: default;
+  }
+
+  .tabs.vertical {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+
+  .tabs-content.vertical > .content {
+    margin-top: 10px;
+  }
+}
+
+#agent_overview {
+  position: relative;
+  height: 200px;
+  z-index: 10;
+}
+
+#agent_overview_toggle {
+  transition: color ease 300ms;
+  position: absolute;
+  cursor: pointer;
+  color: #aaa;
+  top: 18px;
+  right: 0;
+}
+
+#agent_overview_toggle:hover {
+  color: #333;
+}
+
+#agent_overview_body {
+  border-top: 1px solid #eee;
+  overflow-x: hidden;
+  position: absolute;
+  padding-top: 10px;
+  overflow-y: auto;
+  bottom: 0;
+  top: 40px;
+}
+
+.agent {
+  background-color: #f6f6f6;
+  border: 1px solid #ddd;
+  position: relative;
+  margin-bottom: 8px;
+  width: 354px;
+  float: left;
+  padding: 0;
+
+  img.avatar {
+    margin-right: 8px;
+    display: block;
+    float: left;
+  }
+
+  i.fa {
+    transition: color linear 300ms;
+    background-color: #fff;
+    border: 3px solid #ddd;
+    border-radius: 1000px;
+    position: absolute;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    color: #777;
+    right: 18px;
+    top: 16px;
+  }
+
+  i.fa:hover {
+    color: #000;
+  }
+
+  span {
+    font-size: 12px;
+    display: block;
+    margin: 3px 0;
+  }
+
+  span.name {
+    text-decoration: underline;
+    margin: 8px 0 11px 0;
+    cursor: pointer;
+    color: #008CBA;
+  }
+}
+
+.agent:nth-child(even) {
+  margin-left: 10px;
+}
+
+.bottom-mask {
+  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 20px);
+}
+
+a {
+  transition: background-color linear 300ms;
+}
+
+#call_queue {
+  transition: top ease 300ms;
+  background-color: #fff;
+  position: absolute;
+  top: 400px;
+  z-index: 10;
+  bottom: 0;
+}
+
+#call_queue.expanded {
+  top: 221px;
+}
+
+#call_queue_body {
+  border-top: 1px solid #eee;
+  position: absolute;
+  padding-top: 10px;
+  overflow-y: auto;
+  bottom: 0;
+  top: 40px;
+}
+
+#right_column {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+
+#chat_header {
+  height: 100px;
+  z-index: 10;
+}
+
+#team_chat {
+  border-top: 1px solid #ddd;
+  position: absolute;
+  overflow-y: auto;
+  padding-top: 4px;
+  top: 120px;
+  z-index: 1;
+  bottom: 0;
+}
+
+.message {
+  border-bottom: 1px solid #eee;
+  padding: 8px 0 4px 0;
+
+  span.from {
+    margin-left: 4px;
+    color: #008CBA;
+  }
+
+  .body p {
+    text-overflow: ellipsis;
+    margin: 6px 0 6px 0;
+    line-height: 18px;
+    max-height: 70px;
+    overflow: hidden;
+    font-size: 13px;
+    color: #999;
+  }
+}
+
+table#skill_table,
+table#state_table,
+table#language_table {
+  border-collapse: collapse;
+  margin: 0;
+
+  tr, td, label {
+    padding: 0;
+    margin: 0;
+  }
+
+  tr, td {
+    background-color: #f6f6f6;
+  }
+
+  td {
+    padding: 6px 8px;
+  }
+}
+
+i.header {
+  margin-right: 8px;
+  line-height: 32px;
+  font-size: 24px;
+  color: #008CBA;
+}
+
+::-webkit-scrollbar {
+  background: #fff;
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 1ex;
+  background: #ccc;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff;
+}
+
+.ember-application {
+
+  button.tiny, .button.tiny {
+    padding-bottom: 0.5rem;
+    padding-right: 1.0rem;
+    padding-left: 1.0rem;
+    padding-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .error small.error {
+    padding: 0.375rem 0.5625rem;
+  }
+
+  div.switch.tiny label {
+    height: 1.47rem;
+    width: 3rem;
+  }
+
+  h5 {
+    color: #666;
+  }
 }
