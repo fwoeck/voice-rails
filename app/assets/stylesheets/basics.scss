@@ -82,29 +82,61 @@ form#new_user {
   overflow-y: auto;
   bottom: 0;
   top: 40px;
+}
 
-  .agent {
-    background-color: #f6f6f6;
-    border: 1px solid #ccc;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    padding: 6px 8px;
-    width: 354px;
+.agent {
+  background-color: #f6f6f6;
+  border: 1px solid #ddd;
+  position: relative;
+  margin-bottom: 8px;
+  width: 354px;
+  float: left;
+  padding: 0;
+
+  img.avatar {
+    margin-right: 8px;
+    display: block;
     float: left;
-
-    img.avatar {
-      display: block;
-      float: left;
-    }
   }
 
-  .agent:nth-child(even) {
-    margin-left: 10px;
+  i.fa {
+    transition: color linear 300ms;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 1000px;
+    position: absolute;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    color: #777;
+    right: 18px;
+    top: 18px;
+  }
+
+  i.fa:hover {
+    color: #000;
+  }
+
+  span {
+    font-size: 12px;
+    display: block;
+    margin: 3px 0;
+  }
+
+  span.name {
+    text-decoration: underline;
+    margin: 8px 0 11px 0;
+    cursor: pointer;
+    color: #008CBA;
   }
 }
 
+.agent:nth-child(even) {
+  margin-left: 10px;
+}
+
 .bottom-mask {
-  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 30px);
+  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 20px);
 }
 
 a {
@@ -147,11 +179,31 @@ a {
 #team_chat {
   border-top: 1px solid #eee;
   position: absolute;
-  padding-top: 10px;
   overflow-y: auto;
+  padding-top: 4px;
   top: 120px;
   z-index: 1;
   bottom: 0;
+}
+
+.message {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0 4px 0;
+
+  span.from {
+    margin-left: 4px;
+    color: #008CBA;
+  }
+
+  .body p {
+    text-overflow: ellipsis;
+    margin: 6px 0 6px 0;
+    line-height: 18px;
+    max-height: 70px;
+    overflow: hidden;
+    font-size: 13px;
+    color: #999;
+  }
 }
 
 table#skill_table,

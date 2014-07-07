@@ -27,7 +27,7 @@ gem 'font-awesome-rails'
 
 group :test, :development do
   gem 'pry'
-  gem 'ffaker'
+  gem 'faker'
   gem 'listen',                  require: false
   gem 'rb-inotify',              require: false
   gem 'qunit-rails'
