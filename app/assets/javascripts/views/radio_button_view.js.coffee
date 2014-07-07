@@ -6,10 +6,8 @@ Ember.RadioButton = Ember.View.extend({
 
   click: ->
     @set 'selection', @$().val()
-    Voice.get('currentUser').save()
 
   checked: (->
     @get('value') == @get('selection')
   ).property()
-
 })
