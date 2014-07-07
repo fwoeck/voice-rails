@@ -13,11 +13,11 @@
 #= require_self
 #= require voice
 
-window.Voice = Ember.Application.create()
+window.Voice = Ember.Application.create(
+  rootElement: '#ember_main'
+)
+
 if env.userId.length == 0
   Voice.deferReadiness()
-
-jQuery ->
   $(document).foundation()
   setupInterface()
-  setupSSE()
