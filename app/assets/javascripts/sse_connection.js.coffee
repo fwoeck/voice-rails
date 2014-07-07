@@ -23,4 +23,12 @@ window.setupSSE = ->
 
   sseSource.onmessage = (event) ->
     data = JSON.parse(event.data)
-    window.pushMessages.push(data) unless data.servertime
+
+    if data.user
+      Voice.store.pushPayload('user', data)
+    else if data.servertime
+      if env.railsEnv == 'development'
+        console.log(data)
+
+    if env.railsEnv == 'test'
+      window.pushMessages.push(data)

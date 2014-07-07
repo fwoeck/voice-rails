@@ -2,7 +2,7 @@ module AmqpManager
   class << self
 
     def rails_channel
-      Thread.current[:rails_channel] ||= @connection.create_channel
+      Thread.current[:rails_channel] ||= connection.create_channel
     end
 
     def rails_xchange
@@ -15,7 +15,7 @@ module AmqpManager
 
 
     def push_channel
-      Thread.current[:push_channel] ||= @connection.create_channel
+      Thread.current[:push_channel] ||= connection.create_channel
     end
 
     def push_xchange
@@ -29,7 +29,7 @@ module AmqpManager
 
 
     def ahn_channel
-      Thread.current[:ahn_channel] ||= @connection.create_channel
+      Thread.current[:ahn_channel] ||= connection.create_channel
     end
 
     def ahn_xchange
@@ -47,7 +47,13 @@ module AmqpManager
 
 
     def shutdown
-      @connection.close
+      connection.close
+    end
+
+
+    def connection
+      establish_connection unless @connection
+      @connection
     end
 
 

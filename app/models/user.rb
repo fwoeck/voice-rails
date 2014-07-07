@@ -11,6 +11,14 @@ class User < ActiveRecord::Base
   has_many :languages
 
 
+  def update_attributes_from(params)
+    update_availability_from(params)
+    update_languages_from(params)
+    update_skills_from(params)
+    send_update_notification_to_clients
+  end
+
+
   def set_availability(key)
     check_for_validity(:availability, key)
     $redis.set(availability_keyname, key, ex: availability_ttl)
@@ -105,5 +113,41 @@ class User < ActiveRecord::Base
 
   def availability_ttl
     1.day
+  end
+
+
+  def update_availability_from(params)
+    _availability = params[:user].fetch(:availability, availability)
+    if _availability != availability
+      set_availability(_availability)
+    end
+  end
+
+  def update_languages_from(params)
+    old_langs = languages.map(&:name).sort
+    new_langs = params[:user].fetch(:languages).split(',').sort
+
+    if old_langs != new_langs
+      (old_langs - new_langs).each { |l| unset_language(l) }
+      (new_langs - old_langs).each { |l| set_language(l) }
+    end
+  end
+
+  def update_skills_from(params)
+    old_skills = skills.map(&:name).sort
+    new_skills = params[:user].fetch(:skills).split(',').sort
+
+    if old_skills != new_skills
+      (old_skills - new_skills).each { |l| unset_skill(l) }
+      (new_skills - old_skills).each { |l| set_skill(l) }
+    end
+  end
+
+  def send_update_notification_to_clients
+    User.all.each do |user|
+      AmqpManager.push_publish(
+        user_id: user.id, data: UserSerializer.new(self)
+      )
+    end
   end
 end
