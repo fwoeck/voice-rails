@@ -102,7 +102,7 @@ form#new_user {
   i.fa {
     transition: color linear 300ms;
     background-color: #fff;
-    border: 1px solid #bbb;
+    border: 3px solid #ddd;
     border-radius: 1000px;
     position: absolute;
     cursor: pointer;
@@ -110,7 +110,7 @@ form#new_user {
     padding: 5px;
     color: #777;
     right: 18px;
-    top: 18px;
+    top: 16px;
   }
 
   i.fa:hover {
@@ -177,7 +177,7 @@ a {
 }
 
 #team_chat {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd;
   position: absolute;
   overflow-y: auto;
   padding-top: 4px;
@@ -187,7 +187,7 @@ a {
 }
 
 .message {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   padding: 8px 0 4px 0;
 
   span.from {
@@ -218,7 +218,7 @@ table#language_table {
   }
 
   tr, td {
-    background-color: #fff;
+    background-color: #f6f6f6;
   }
 
   td {
