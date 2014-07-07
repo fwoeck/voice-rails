@@ -6,6 +6,7 @@
           - id
           - email
           - name
+          - fullname
           - fullcontact
           - last_sign_in_at
           - updated_at
