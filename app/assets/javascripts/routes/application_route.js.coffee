@@ -5,4 +5,8 @@ Voice.ApplicationRoute = Ember.Route.extend({
     Voice.aR    = @router
     @store.find('user')
 
+
+  activate: ->
+    @controllerFor('users').set 'model', @store.all('user')
+
 })
