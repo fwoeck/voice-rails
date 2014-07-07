@@ -36,10 +36,12 @@ form#new_user {
   z-index: 0;
 }
 
-#my_dashboard {
+#my_settings {
+  transition: height ease 300ms;
   position: relative;
-  height: 180px;
-  z-index: 10;
+  padding-right: 0;
+  height: 43px;
+  z-index: 5;
 
   li.tab-title.active > a {
     cursor: default;
@@ -53,27 +55,24 @@ form#new_user {
   .tabs-content.vertical > .content {
     margin-top: 10px;
   }
+
+  span.stats {
+    padding-right: 15px;
+  }
+}
+
+#my_settings.expanded {
+  height: 180px;
 }
 
 #agent_overview {
+  background-color: #fff;
   position: relative;
-  height: 200px;
+  height: 220px;
   z-index: 10;
 }
 
-#agent_overview_toggle {
-  transition: color ease 300ms;
-  position: absolute;
-  cursor: pointer;
-  color: #aaa;
-  top: 18px;
-  right: 0;
-}
-
-#agent_overview_toggle:hover {
-  color: #333;
-}
-
+#my_settings_body,
 #agent_overview_body {
   border-top: 1px solid #eee;
   overflow-x: hidden;
@@ -82,6 +81,16 @@ form#new_user {
   overflow-y: auto;
   bottom: 0;
   top: 40px;
+}
+
+#agent_overview_body {
+  padding-bottom: 10px;
+}
+
+#my_settings_body {
+  position: initial;
+  width: 100%;
+  padding: 0;
 }
 
 .agent {
@@ -147,13 +156,21 @@ a {
   transition: top ease 300ms;
   background-color: #fff;
   position: absolute;
-  top: 400px;
-  z-index: 10;
+  z-index: 15;
+  top: 420px;
   bottom: 0;
 }
 
+#call_queue.lifted {
+  top: 280px;
+}
+
 #call_queue.expanded {
-  top: 221px;
+  top: 221px; // !
+}
+
+#call_queue.lifted.expanded {
+  top: 84px; // !
 }
 
 #call_queue_body {
@@ -174,14 +191,30 @@ a {
 #chat_header {
   height: 100px;
   z-index: 10;
+
+  h5 {
+    margin-bottom: 12px;
+  }
+}
+
+h5 {
+  transition: color ease 300ms;
+  cursor: pointer;
+
+  span.stats {
+    margin-top: 14px;
+    font-size: 11px;
+    color: orange;
+    float: right;
+  }
 }
 
 #team_chat {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #eee;
   position: absolute;
   overflow-y: auto;
   padding-top: 4px;
-  top: 120px;
+  top: 124px;
   z-index: 1;
   bottom: 0;
 }
@@ -269,5 +302,9 @@ i.header {
 
   h5 {
     color: #666;
+  }
+
+  h5:hover {
+    color: #000;
   }
 }

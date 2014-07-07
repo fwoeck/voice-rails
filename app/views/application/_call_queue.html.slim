@@ -1,0 +1,9 @@
+#call_queue.large-12.medium-12.columns.lifted.expanded
+  h5
+    i.header.fa.fa-phone-square
+    ' Current Calls
+    span.stats 21 customers are currently queued
+
+  #call_queue_body.bottom-mask
+    - 4.times do
+      p = Faker::Lorem.paragraph(10)

@@ -1,0 +1,15 @@
+#agent_overview.large-12.medium-12.columns
+  h5
+    i.header.fa.fa-compass
+    ' Agent Overview
+    span.stats 12 agents are online, 3 of them available
+
+  #agent_overview_body.bottom-mask
+    - 12.times do
+      .agent
+        img.avatar src='http://placehold.it/64x64'
+        i.fa.fa-comments
+
+        span.name title="#{Faker::Internet.email}" = Faker::Name.name
+        span.languages = 'DE, EN, ES, IT'
+        span.skills = 'Billing, Host Offers'

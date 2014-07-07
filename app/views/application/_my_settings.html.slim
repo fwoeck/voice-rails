@@ -1,0 +1,87 @@
+#my_settings.large-12.medium-12.columns
+  h5
+    i.header.fa.fa-cogs
+    ' My Settings
+    span.stats I'm currently talking
+
+  #my_settings_body
+    ul.tabs.vertical data-tab=""
+      li.tab-title.active
+        a href="#panel1a" Availability
+      li.tab-title
+        a href="#panel2a" Languages
+      li.tab-title
+        a href="#panel3a" Skills
+
+    .tabs-content.vertical
+      #panel1a.content.active
+        table#state_table
+          tr
+            td: .switch.tiny
+              input#i_am_available type="radio" checked="" name="Availability"
+              label for="i_am_available"
+            td I'm available
+          tr
+            td: .switch.tiny
+              input#i_am_busy type="radio" name="Availability"
+              label for="i_am_busy"
+            td I'm busy
+          tr
+            td: .switch.tiny
+              input#i_am_away type="radio" name="Availability"
+              label for="i_am_away"
+            td I'm away
+
+      #panel2a.content
+        table#language_table
+          tr
+            td: .switch.tiny
+              input#i_speak_english type="checkbox" checked=""
+              label for="i_speak_english"
+            td I speak english
+            td: .switch.tiny
+              input#i_speak_french type="checkbox"
+              label for="i_speak_french"
+            td Je parle français
+          tr
+            td: .switch.tiny
+              input#i_speak_spanish type="checkbox"
+              label for="i_speak_spanish"
+            td Hablo español
+            td: .switch.tiny
+              input#i_speak_italian type="checkbox"
+              label for="i_speak_italian"
+            td Parlo italiano
+          tr
+            td: .switch.tiny
+              input#i_speak_german type="checkbox" checked=""
+              label for="i_speak_german"
+            td Ich spreche deutsch
+            td
+            td
+
+      #panel3a.content
+        table#skill_table
+          tr
+            td: .switch.tiny
+              input#booking_support type="checkbox" checked=""
+              label for="booking_support"
+            td Booking support
+            td: .switch.tiny
+              input#other_questions type="checkbox" checked=""
+              label for="other_questions"
+            td Other questions
+          tr
+            td: .switch.tiny
+              input#host_offers type="checkbox"
+              label for="host_offers"
+            td Host offers
+            td
+            td
+          tr
+            td: .switch.tiny
+              input#billing_refunds type="checkbox"
+              label for="billing_refunds"
+            td Billing and refunds
+            td
+            td

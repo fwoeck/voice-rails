@@ -18,4 +18,14 @@ jQuery ->
   setupSSE()
   $(document).foundation()
 
-  ($ '#agent_overview_toggle').click -> ($ '#call_queue').toggleClass('expanded')
+  ($ '#agent_overview > h5').click ->
+    ($ '#call_queue').toggleClass('expanded')
+
+  ($ '#my_settings > h5').click ->
+    ($ '#my_settings').toggleClass('expanded')
+    ($ '#call_queue').toggleClass('lifted')
+
+  ($ '#call_queue > h5').click ->
+    ($ '#my_settings').removeClass('expanded')
+    ($ '#call_queue').addClass('expanded')
+    ($ '#call_queue').addClass('lifted')

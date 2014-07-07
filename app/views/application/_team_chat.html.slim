@@ -1,0 +1,15 @@
+#chat_header.large-12.medium-12.columns
+  h5
+    i.header.fa.fa-comments
+    ' Team Chat
+
+  input type='text' placeholder='Enter your message...'
+
+#team_chat.large-12.medium-12.columns.bottom-mask
+  - 10.times do
+    .message
+      .header
+        i.fa.fa-clock-o title="#{Time.now.utc}"
+        span.from = Faker::Name.name
+      .body
+        p = Faker::Lorem.sentence(5)
