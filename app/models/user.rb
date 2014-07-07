@@ -15,7 +15,16 @@ class User < ActiveRecord::Base
     update_availability_from(params)
     update_languages_from(params)
     update_skills_from(params)
-    send_update_notification_to_clients
+    update_fields_from(params)
+  end
+
+
+  def send_update_notification_to_clients
+    User.all.each do |user|
+      AmqpManager.push_publish(
+        user_id: user.id, data: UserSerializer.new(self)
+      )
+    end
   end
 
 
@@ -123,6 +132,7 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def update_languages_from(params)
     old_langs = languages.map(&:name).sort
     new_langs = params[:user].fetch(:languages).split(',').sort
@@ -132,6 +142,7 @@ class User < ActiveRecord::Base
       (new_langs - old_langs).each { |l| set_language(l) }
     end
   end
+
 
   def update_skills_from(params)
     old_skills = skills.map(&:name).sort
@@ -143,11 +154,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def send_update_notification_to_clients
-    User.all.each do |user|
-      AmqpManager.push_publish(
-        user_id: user.id, data: UserSerializer.new(self)
-      )
-    end
+
+  def update_fields_from(params)
+    self.fullname = params[:user].fetch(:fullname, fullname)
+    save!
   end
 end

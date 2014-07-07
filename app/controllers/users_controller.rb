@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   def update
     if (user = User.find params[:id]) == current_user
-      update_user_with(params, user)
+      user.update_attributes_from(params)
+      user.send_update_notification_to_clients
       render json: user
     else
       render nothing: true, status: 403
@@ -17,15 +18,5 @@ class UsersController < ApplicationController
 
   def index
     render json: User.all
-  end
-
-
-  private
-
-
-  def update_user_with(params, user)
-    user.fullname = params[:user].fetch(:fullname, user.fullname)
-    user.update_attributes_from(params)
-    user.save!
   end
 end
