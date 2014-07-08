@@ -4,7 +4,8 @@
 #= require jquery.websocket
 #= require foundation/foundation
 #= require foundation/foundation.tab
-#= require sse_connection
+#= require sse-connection
+#= require common
 #= require js-phone
 #= require handlebars
 #= require ember
@@ -12,20 +13,11 @@
 #= require_self
 #= require voice
 
-window.Voice = Ember.Application.create()
+window.Voice = Ember.Application.create(
+  rootElement: '#ember_main'
+)
 
-jQuery ->
-  setupSSE()
+if env.userId.length == 0
+  Voice.deferReadiness()
   $(document).foundation()
-
-  ($ '#agent_overview > h5').click ->
-    ($ '#call_queue').toggleClass('expanded')
-
-  ($ '#my_settings > h5').click ->
-    ($ '#my_settings').toggleClass('expanded')
-    ($ '#call_queue').toggleClass('lifted')
-
-  ($ '#call_queue > h5').click ->
-    ($ '#my_settings').removeClass('expanded')
-    ($ '#call_queue').addClass('expanded')
-    ($ '#call_queue').addClass('lifted')
+  setupInterface()

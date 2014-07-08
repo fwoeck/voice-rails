@@ -24,6 +24,15 @@ form#new_user {
   width: 300px;
 }
 
+#ember_main {
+  position: relative;
+  height: 100%;
+}
+
+#ember_main > .ember-view {
+  height: 100%;
+}
+
 #main {
   position: relative;
   padding-top: 30px;
@@ -117,9 +126,21 @@ form#new_user {
     cursor: pointer;
     font-size: 18px;
     padding: 5px;
-    color: #777;
     right: 18px;
     top: 16px;
+  }
+
+  i.fa.talking {
+    color: #008CBA;
+  }
+
+  i.fa.registered {
+    color: #777;
+  }
+
+  i.fa.unknown,
+  i.fa.unregistered {
+    color: #bbb;
   }
 
   i.fa:hover {
@@ -138,6 +159,18 @@ form#new_user {
     cursor: pointer;
     color: #008CBA;
   }
+}
+
+.agent.idle i.fa {
+  border-color: #6a6;
+}
+
+.agent.busy i.fa {
+  border-color: #c66;
+}
+
+.agent.away i.fa {
+  border-color: #ddd;
 }
 
 .agent:nth-child(even) {
@@ -281,14 +314,14 @@ i.header {
   background: #fff;
 }
 
-.ember-application {
+#main {
 
   button.tiny, .button.tiny {
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.7rem;
     padding-right: 1.0rem;
     padding-left: 1.0rem;
-    padding-top: 0.5rem;
-    font-size: 0.85rem;
+    padding-top: 0.7rem;
+    font-size: 0.9rem;
   }
 
   .error small.error {

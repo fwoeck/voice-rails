@@ -1,0 +1,11 @@
+#call_queue.large-12.medium-12.columns.lifted.expanded
+  h5
+    i.header.fa.fa-phone-square
+    ' Current Calls
+    span.stats 21 customers are currently queued
+
+  #call_queue_body.bottom-mask
+    p Donec magna dui, iaculis non nisi vel, interdum pulvinar sapien. Fusce imperdiet, purus non suscipit imperdiet, tortor tellus dapibus metus, vel tincidunt mauris leo eu orci. Vestibulum eget aliquet neque. Etiam dignissim ipsum vitae massa vulputate, sit amet consectetur nibh pharetra. Aliquam vestibulum ullamcorper dictum. Nulla ante tortor, aliquet non dolor id, posuere pretium ipsum. Etiam in euismod mauris. Aliquam consequat urna quis aliquam dictum.
+    p Integer facilisis at tellus quis mollis. Proin placerat vel augue vel consectetur. Suspendisse pellentesque, turpis eget condimentum ultricies, ante elit semper elit, et rutrum justo mi at nisi. Sed tristique blandit orci, vel ullamcorper ante. Aliquam sit amet dui sed ipsum tempus cursus. Maecenas ac aliquet ante. Nullam eget nunc sit amet dui laoreet gravida.
+    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius lorem sagittis auctor tincidunt. Nunc malesuada lorem tortor, id semper ligula adipiscing id. Pellentesque consectetur nisi at turpis egestas posuere. Maecenas ut volutpat neque. Aenean quis augue sed risus fermentum euismod. Nunc iaculis felis quis sem laoreet, quis scelerisque nulla lobortis. Ut euismod feugiat mi et egestas. Nulla ac mauris sit amet odio mollis condimentum ut rhoncus ante. Donec sodales ante sit amet libero iaculis volutpat. Vestibulum neque massa, accumsan ut ante vel, bibendum rhoncus mi.
+    p Quisque rutrum, augue at condimentum hendrerit, massa augue posuere elit, aliquam semper justo erat et lectus. Duis auctor risus eu mollis elementum. Donec sed urna neque. Donec a auctor metus. Etiam non feugiat leo, non vehicula tellus. Integer quam leo, tempor ut egestas at, faucibus vitae diam. Donec hendrerit nunc in diam dignissim auctor. Ut et mattis metus. Curabitur justo lorem, lacinia vitae convallis in, semper non erat. Vestibulum pellentesque congue tellus vitae tempor. Nunc varius hendrerit volutpat. Cras ut urna ac tortor sagittis commodo. Pellentesque eget quam in neque vehicula commodo.

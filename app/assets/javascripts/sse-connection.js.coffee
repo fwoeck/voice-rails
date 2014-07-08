@@ -1,9 +1,9 @@
 window.pushMessages = []
 
-
 window.setupSSE = ->
-  return unless env.userId.length > 0
-  sseSource = new EventSource("/events?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}")
+  return if env.userId.length == 0
+  params = "?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}"
+  sseSource = new EventSource('/events' + params)
 
 
   window.onbeforeunload = ->
@@ -23,4 +23,12 @@ window.setupSSE = ->
 
   sseSource.onmessage = (event) ->
     data = JSON.parse(event.data)
-    window.pushMessages.push(data) unless data.servertime
+
+    if data.user
+      Voice.store.pushPayload('user', data)
+    else if data.servertime
+      if env.railsEnv == 'development'
+        console.log(data)
+
+    if env.railsEnv == 'test'
+      window.pushMessages.push(data)
