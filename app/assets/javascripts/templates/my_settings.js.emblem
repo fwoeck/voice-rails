@@ -64,23 +64,23 @@
         table#skill_table
           tr
             td: .switch.tiny
-              input#booking_support type="checkbox" checked=""
+              Ember.CheckMark selection=skillBOOKING
               label for="booking_support"
             td Booking support
             td: .switch.tiny
-              input#other_questions type="checkbox" checked=""
+              Ember.CheckMark selection=skillOTHER
               label for="other_questions"
             td Other questions
           tr
             td: .switch.tiny
-              input#host_offers type="checkbox"
+              Ember.CheckMark selection=skillOFFERS
               label for="host_offers"
             td Host offers
             td
             td
           tr
             td: .switch.tiny
-              input#billing_refunds type="checkbox"
+              Ember.CheckMark selection=skillBILLING
               label for="billing_refunds"
             td Billing and refunds
             td

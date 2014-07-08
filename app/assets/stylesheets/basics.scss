@@ -140,6 +140,18 @@ form#new_user {
   }
 }
 
+.agent.idle i.fa {
+  border-color: #6a6;
+}
+
+.agent.busy i.fa {
+  border-color: #c66;
+}
+
+.agent.away i.fa {
+  border-color: #ddd;
+}
+
 .agent:nth-child(even) {
   margin-left: 10px;
 }

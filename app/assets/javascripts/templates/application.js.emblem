@@ -6,7 +6,7 @@
 
   #center_column.large-9.medium-9.left
     = render 'my_settings'
-    / = render 'agent_overview'
+    = render 'agent_overview'
     / = render 'call_queue'
 
   #right_column.large-3.medium-3.right.hide-for-small

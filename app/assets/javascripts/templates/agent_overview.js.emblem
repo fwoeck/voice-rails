@@ -5,11 +5,12 @@
     span.stats 12 agents are online, 3 of them available
 
   #agent_overview_body.bottom-mask
-    - 12.times do
-      .agent
+    each content
+      .agent class=availability
         img.avatar src='http://placehold.it/64x64'
         i.fa.fa-comments
 
-        span.name title="#{Faker::Internet.email}" = Faker::Name.name
-        span.languages = 'DE, EN, ES, IT'
-        span.skills = 'Billing, Host Offers'
+        span.name title=email
+          | #{fullname}
+        span.languages Languages: #{languages}
+        span.skills Skills: #{skills}
