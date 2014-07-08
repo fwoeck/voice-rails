@@ -7,9 +7,9 @@
   #center_column.large-9.medium-9.left
     = render 'my_settings'
     = render 'agent_overview'
-    / = render 'call_queue'
+    = render 'call_queue'
 
   #right_column.large-3.medium-3.right.hide-for-small
-    / = render 'team_chat'
+    = render 'team_chat'
 
 = outlet
