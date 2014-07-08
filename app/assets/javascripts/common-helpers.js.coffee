@@ -4,8 +4,6 @@ window.app = {
     env.userId.length == 0
 
   setupInterface: ->
-    return if app.noLogin()
-
     ($ '#agent_overview > h5').click ->
       ($ '#call_queue').toggleClass('expanded')
 
