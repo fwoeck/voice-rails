@@ -13,4 +13,9 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
     @splitLanguages()
     @splitSkills()
 
+
+  displayname: (->
+    @get('fullname') || @get('email')
+  ).property('fullname')
+
 })

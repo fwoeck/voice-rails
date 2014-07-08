@@ -11,6 +11,6 @@
         i class={callstate :fa :fa-comments}
 
         span.name title=email
-          | #{fullname}
+          | #{displayname}
         span.languages Languages: #{languages}
         span.skills Skills: #{skills}
