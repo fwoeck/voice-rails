@@ -4,14 +4,9 @@ module UpdateFields
 
   def set_availability(key)
     check_for_validity(:availability, key)
-    $redis.set(availability_keyname, key, ex: availability_ttl)
+    $redis.set(availability_keyname, key, ex: 1.day)
     notify_ahn_about_update(:availability)
   end
-
-  def availability
-    $redis.get(availability_keyname) || 'unknown'
-  end
-  alias :availability_summary :availability
 
 
   def set_language(key)
@@ -71,8 +66,8 @@ module UpdateFields
     "#{Rails.env}.availability.#{self.id}"
   end
 
-  def availability_ttl
-    1.day
+  def callstate_keyname
+    "#{Rails.env}.callstate.#{self.id}"
   end
 
 

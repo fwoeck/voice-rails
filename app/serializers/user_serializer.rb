@@ -1,6 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
 
-  attributes :id, :email, :fullname, :roles, :skills, :languages, :availability
+  attributes :id, :email, :fullname, :roles, :skills,
+             :languages, :availability, :callstate
 
   def roles
     object.role_summary

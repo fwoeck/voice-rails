@@ -29,6 +29,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def availability
+    $redis.get(availability_keyname) || 'unknown'
+  end
+  alias :availability_summary :availability
+
+
+  def callstate
+    $redis.get(callstate_keyname) || 'unknown'
+  end
+
 
   def role_summary
     roles.map(&:name).sort.join(',')

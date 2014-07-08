@@ -6,7 +6,7 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
   saveOnUpdate: (->
     Ember.run.later(@, @saveCurrentUser, 50)
-  ).observes('content.{availability,skills,languages}')
+  ).observes('content.{availability,skills,languages,callstate}')
 
 
   saveCurrentUser: ->
