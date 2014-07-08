@@ -4,8 +4,7 @@
 #= require jquery.websocket
 #= require foundation/foundation
 #= require foundation/foundation.tab
-#= require common-helpers
-#= require sse-connection
+#= require common
 #= require js-phone
 #= require handlebars
 #= require ember
