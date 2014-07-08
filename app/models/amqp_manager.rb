@@ -75,7 +75,15 @@ module AmqpManager
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
-        AmqpManager.push_publish user_id: 131, data: JSON.parse(payload)
+        data = JSON.parse(payload)
+
+        # FIXME refactor this urgently:
+        #
+        if data['name'] == 'PeerStatus'
+          peer = data['headers']['Peer'][/SIP.(.+)$/, 1]
+          user = User.where(name: peer).first
+          user.send_update_notification_to_clients if user
+        end
       end
     end
   end
