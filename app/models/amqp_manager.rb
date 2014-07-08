@@ -69,21 +69,22 @@ module AmqpManager
     end
 
 
+    def handle_incoming_message(data)
+      if data['name'] == 'PeerStatus'
+        peer = data['headers']['Peer'][/SIP.(.+)$/, 1]
+        user = User.where(name: peer).first
+        user.send_update_notification_to_clients if user
+      end
+    end
+
+
     def start
       establish_connection
       return if Rails.env.test?
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
-        data = JSON.parse(payload)
-
-        # FIXME refactor this urgently:
-        #
-        if data['name'] == 'PeerStatus'
-          peer = data['headers']['Peer'][/SIP.(.+)$/, 1]
-          user = User.where(name: peer).first
-          user.send_update_notification_to_clients if user
-        end
+        handle_incoming_message JSON.parse(payload)
       end
     end
   end
