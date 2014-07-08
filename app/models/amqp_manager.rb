@@ -69,12 +69,23 @@ module AmqpManager
     end
 
 
-    def handle_incoming_message(data)
+    # VA is responsible for changing the agent callstates.
+    # We listen to AHNs signals to re-send the user object
+    # after the external update here:
+    #
+    def handle_status_message(data)
       if data['name'] == 'PeerStatus'
         peer = data['headers']['Peer'][/SIP.(.+)$/, 1]
-        user = User.where(name: peer).first
-        user.send_update_notification_to_clients if user
+      elsif data['name'] == 'Newstate' && data['headers']['ChannelState'] == '6' # 6 => Up
+        peer = data['headers']['CallerIDNum'][/\d+/]
+      elsif data['name'] == 'Hangup'
+        peer = data['headers']['CallerIDNum'][/\d+/]
+      else
+        return
       end
+
+      user = User.where(name: peer).first
+      user.send_update_notification_to_clients if user
     end
 
 
@@ -84,7 +95,7 @@ module AmqpManager
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
-        handle_incoming_message JSON.parse(payload)
+        handle_status_message JSON.parse(payload)
       end
     end
   end
