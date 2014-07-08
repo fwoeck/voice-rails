@@ -20,6 +20,7 @@ html
 
     javascript:
       window.env = {
+        messages:      [],
         railsEnv:     "#{Rails.env}",
         userId:       "#{current_user.try(:id)}",
         sessionToken: "#{form_authenticity_token}",
@@ -27,7 +28,8 @@ html
         callstates:    #{WimConfig.callstates.to_json.html_safe},
         languages:     #{WimConfig.languages.to_json.html_safe},
         skills:        #{WimConfig.skills.to_json.html_safe},
-        roles:         #{WimConfig.roles.to_json.html_safe}
+        roles:         #{WimConfig.roles.to_json.html_safe},
+        debug:         false
       }
 
     = javascript_include_tag 'application'

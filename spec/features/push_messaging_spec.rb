@@ -22,8 +22,8 @@ feature 'Checking some basic push notifications', js: true do
 
     [user1, user2, user3]. each do |user|
       use_browser(user)
-      expect(page.evaluate_script 'env.pushMessages.length').to eql(1)
-      expect(page.evaluate_script 'env.pushMessages[0].payload').to eql("Hello #{user.email}!")
+      expect(page.evaluate_script 'env.messages.length').to eql(1)
+      expect(page.evaluate_script 'env.messages[0].payload').to eql("Hello #{user.email}!")
     end
   end
 
@@ -42,11 +42,11 @@ feature 'Checking some basic push notifications', js: true do
     sleep 0.25
 
     use_browser(:left)
-    expect(page.evaluate_script 'env.pushMessages.length').to eql(0)
+    expect(page.evaluate_script 'env.messages.length').to eql(0)
 
     use_browser(:right)
-    expect(page.evaluate_script 'env.pushMessages.length').to eql(1)
-    expect(page.evaluate_script 'env.pushMessages[0].payload').to eql("Hello #{user1.email}!")
+    expect(page.evaluate_script 'env.messages.length').to eql(1)
+    expect(page.evaluate_script 'env.messages[0].payload').to eql("Hello #{user1.email}!")
   end
 
 
@@ -62,7 +62,7 @@ feature 'Checking some basic push notifications', js: true do
     AmqpManager.push_publish(user_id: user1.id, data: {payload: "Hello #{user1.email}!"})
     sleep 0.25
 
-    expect(page.evaluate_script 'env.pushMessages.length').to eql(0)
+    expect(page.evaluate_script 'env.messages.length').to eql(0)
   end
 
 
@@ -78,10 +78,10 @@ feature 'Checking some basic push notifications', js: true do
     AmqpManager.push_publish(user_id: user1.id, data: {payload: '3'})
     sleep 0.25
 
-    expect(page.evaluate_script 'env.pushMessages.length').to eql(3)
-    expect(page.evaluate_script 'env.pushMessages[0].payload').to eql('1')
-    expect(page.evaluate_script 'env.pushMessages[1].payload').to eql('2')
-    expect(page.evaluate_script 'env.pushMessages[2].payload').to eql('3')
+    expect(page.evaluate_script 'env.messages.length').to eql(3)
+    expect(page.evaluate_script 'env.messages[0].payload').to eql('1')
+    expect(page.evaluate_script 'env.messages[1].payload').to eql('2')
+    expect(page.evaluate_script 'env.messages[2].payload').to eql('3')
   end
 
 
@@ -94,6 +94,6 @@ feature 'Checking some basic push notifications', js: true do
     AmqpManager.push_publish(user_id: user1.id, data: {payload: '1'})
     sleep 0.25
 
-    expect(page.evaluate_script 'env.pushMessages.length').to eql(0)
+    expect(page.evaluate_script 'env.messages.length').to eql(0)
   end
 end

@@ -1,5 +1,3 @@
-env.pushMessages = []
-
 app.setupSSE = ->
   params = "?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}"
   sseSource = new EventSource('/events' + params)
@@ -22,12 +20,10 @@ app.setupSSE = ->
 
   sseSource.onmessage = (event) ->
     data = JSON.parse(event.data)
+    console.log(data) if env.debug
 
     if data.user
       Voice.store.pushPayload('user', data)
-    else if data.servertime
-      if env.railsEnv == 'development'
-        console.log(data)
 
     if env.railsEnv == 'test'
-      env.pushMessages.push(data)
+      env.messages.push(data)
