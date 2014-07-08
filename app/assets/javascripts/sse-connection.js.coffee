@@ -1,7 +1,6 @@
-window.pushMessages = []
+env.pushMessages = []
 
-window.setupSSE = ->
-  return if env.userId.length == 0
+app.setupSSE = ->
   params = "?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}"
   sseSource = new EventSource('/events' + params)
 
@@ -17,7 +16,7 @@ window.setupSSE = ->
 
   sseSource.onerror = (event) ->
     console.log(new Date, 'SSE connection error', event)
-    window.setTimeout window.setupSSE, 1000
+    window.setTimeout app.setupSSE, 1000
     sseSource.close()
 
 
@@ -31,4 +30,4 @@ window.setupSSE = ->
         console.log(data)
 
     if env.railsEnv == 'test'
-      window.pushMessages.push(data)
+      env.pushMessages.push(data)
