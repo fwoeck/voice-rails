@@ -12,4 +12,4 @@ window.setupInterface = ->
     ($ '#call_queue').addClass('expanded').addClass('lifted')
     ($ '#my_settings').removeClass('expanded')
 
-  ($ document).on 'click', '#state_table label', (el) -> ($ el.target).siblings('input').click()
+  ($ document).on 'click', '#my_settings label', (el) -> ($ el.target).siblings('input').click()

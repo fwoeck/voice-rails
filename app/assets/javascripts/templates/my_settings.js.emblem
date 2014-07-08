@@ -36,25 +36,25 @@
         table#language_table
           tr
             td: .switch.tiny
-              input#i_speak_english type="checkbox" checked=languageEN
+              Ember.CheckMark selection=languageEN
               label for="i_speak_english"
             td I speak english
             td: .switch.tiny
-              input#i_speak_french type="checkbox" checked=languageFR
+              Ember.CheckMark selection=languageFR
               label for="i_speak_french"
             td Je parle français
           tr
             td: .switch.tiny
-              input#i_speak_spanish type="checkbox" checked=languageES
+              Ember.CheckMark selection=languageES
               label for="i_speak_spanish"
             td Hablo español
             td: .switch.tiny
-              input#i_speak_italian type="checkbox" checked=languageIT
+              Ember.CheckMark selection=languageIT
               label for="i_speak_italian"
             td Parlo italiano
           tr
             td: .switch.tiny
-              input#i_speak_german type="checkbox" checked=languageDE
+              Ember.CheckMark selection=languageDE
               label for="i_speak_german"
             td Ich spreche deutsch
             td
