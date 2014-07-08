@@ -126,9 +126,21 @@ form#new_user {
     cursor: pointer;
     font-size: 18px;
     padding: 5px;
-    color: #777;
     right: 18px;
     top: 16px;
+  }
+
+  i.fa.talking {
+    color: #008CBA;
+  }
+
+  i.fa.registered {
+    color: #777;
+  }
+
+  i.fa.unknown,
+  i.fa.unregistered {
+    color: #bbb;
   }
 
   i.fa:hover {
