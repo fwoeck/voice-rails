@@ -40,19 +40,6 @@ module UpdateFields
     unset_field(:skill, key)
   end
 
-
-  def role_summary
-    roles.map(&:name).join(',')
-  end
-
-  def skill_summary
-    skills.map(&:name).join(',')
-  end
-
-  def language_summary
-    languages.map(&:name).join(',')
-  end
-
   private
 
 

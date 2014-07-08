@@ -29,11 +29,26 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def role_summary
+    roles.map(&:name).sort.join(',')
+  end
+
+  def skill_summary
+    skills.map(&:name).sort.join(',')
+  end
+
+  def language_summary
+    languages.map(&:name).sort.join(',')
+  end
+
   private
 
 
   def notify_ahn_about_update(key)
     self.reload
+    return if Rails.env.test?
+
     AmqpManager.ahn_publish({
       user_id: self.id,
       key   => send("#{key}_summary")

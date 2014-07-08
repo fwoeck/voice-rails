@@ -18,17 +18,17 @@
         table#state_table
           tr
             td: .switch.tiny
-              view Ember.RadioButton name="Availability" selectionBinding="availability" value="idle"
+              Ember.RadioButton name="Availability" selection=availability value="idle"
               label for="i_am_available"
             td I'm available
           tr
             td: .switch.tiny
-              view Ember.RadioButton name="Availability" selectionBinding="availability" value="busy"
+              Ember.RadioButton name="Availability" selection=availability value="busy"
               label for="i_am_busy"
             td I'm busy
           tr
             td: .switch.tiny
-              view Ember.RadioButton name="Availability" selectionBinding="availability" value="away"
+              Ember.RadioButton name="Availability" selection=availability value="away"
               label for="i_am_away"
             td I'm away
 
@@ -36,25 +36,25 @@
         table#language_table
           tr
             td: .switch.tiny
-              input#i_speak_english type="checkbox" checked=""
+              input#i_speak_english type="checkbox" checked=languageEN
               label for="i_speak_english"
             td I speak english
             td: .switch.tiny
-              input#i_speak_french type="checkbox"
+              input#i_speak_french type="checkbox" checked=languageFR
               label for="i_speak_french"
             td Je parle français
           tr
             td: .switch.tiny
-              input#i_speak_spanish type="checkbox"
+              input#i_speak_spanish type="checkbox" checked=languageES
               label for="i_speak_spanish"
             td Hablo español
             td: .switch.tiny
-              input#i_speak_italian type="checkbox"
+              input#i_speak_italian type="checkbox" checked=languageIT
               label for="i_speak_italian"
             td Parlo italiano
           tr
             td: .switch.tiny
-              input#i_speak_german type="checkbox" checked=""
+              input#i_speak_german type="checkbox" checked=languageDE
               label for="i_speak_german"
             td Ich spreche deutsch
             td
