@@ -18,9 +18,9 @@
         table#state_table
           tr
             td: .switch.tiny
-              Ember.RadioButton name="Availability" selection=availability value="idle"
-              label for="i_am_available"
-            td I'm available
+              Ember.RadioButton name="Availability" selection=availability value="ready"
+              label for="i_am_ready"
+            td I'm ready
           tr
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="busy"
