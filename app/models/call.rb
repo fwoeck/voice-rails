@@ -31,6 +31,16 @@ class Call
   end
 
 
+  def self.all
+    # FIXME This becomes very expensive for high call numbers:
+    #
+    $redis.keys("#{Rails.env}.call.*").map { |key|
+      call = find(key[/[^.]+$/])
+      !call.hungup ? call : nil
+    }.compact
+  end
+
+
   def self.find(tcid)
     return unless tcid
     entry  = $redis.get(Call.key_name tcid) || new.headers.to_json

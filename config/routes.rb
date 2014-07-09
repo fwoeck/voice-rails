@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
+  get 'calls'     => 'calls#index'
   get 'users'     => 'users#index'
   get 'users/:id' => 'users#show'
   put 'users/:id' => 'users#update'

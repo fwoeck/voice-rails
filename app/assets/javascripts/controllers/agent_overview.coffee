@@ -1,6 +1,6 @@
 Voice.AgentOverviewController = Ember.ArrayController.extend({
 
-  needs:          ['users']
-  contentBinding:  'controllers.users.content'
+  needs: ['calls', 'users']
+  contentBinding: 'controllers.users.content'
 
 })
