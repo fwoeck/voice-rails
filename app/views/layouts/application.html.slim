@@ -11,23 +11,25 @@ html
     = csrf_meta_tags
 
   body
-    #ember_main
     #version_tag = WimVersion
     video#localVideo  autoplay='' style='display: none'
     video#remoteVideo autoplay='' style='display: none'
 
-    = yield
+    #ember_main
+      = yield
 
     javascript:
       window.env = {
+        messages:      [],
         railsEnv:     "#{Rails.env}",
         userId:       "#{current_user.try(:id)}",
         sessionToken: "#{form_authenticity_token}",
         availability:  #{WimConfig.availability.to_json.html_safe},
-        callstates:    #{WimConfig.callstates.to_json.html_safe},
+        agentStates:   #{WimConfig.agent_states.to_json.html_safe},
         languages:     #{WimConfig.languages.to_json.html_safe},
         skills:        #{WimConfig.skills.to_json.html_safe},
-        roles:         #{WimConfig.roles.to_json.html_safe}
+        roles:         #{WimConfig.roles.to_json.html_safe},
+        debug:         false
       }
 
     = javascript_include_tag 'application'

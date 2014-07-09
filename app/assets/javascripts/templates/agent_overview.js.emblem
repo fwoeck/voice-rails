@@ -8,9 +8,8 @@
     each content
       .agent class=availability
         img.avatar src='http://placehold.it/64x64'
-        i class={callstate :fa :fa-comments}
+        i class={agentState :fa :fa-comments}
 
-        span.name title=email
-          | #{fullname}
+        span.name title=email #{displayname}
         span.languages Languages: #{languages}
         span.skills Skills: #{skills}

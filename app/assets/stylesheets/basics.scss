@@ -131,7 +131,12 @@ form#new_user {
   }
 
   i.fa.talking {
-    color: #008CBA;
+    cursor: default;
+    color: #ffa500;
+  }
+
+  i.fa.talking:hover {
+    color: #ffa500;
   }
 
   i.fa.registered {
@@ -140,11 +145,17 @@ form#new_user {
 
   i.fa.unknown,
   i.fa.unregistered {
+    cursor: default;
     color: #bbb;
   }
 
   i.fa:hover {
     color: #000;
+  }
+
+  i.fa.unknown:hover,
+  i.fa.unregistered:hover {
+    color: #bbb;
   }
 
   span {
@@ -154,14 +165,12 @@ form#new_user {
   }
 
   span.name {
-    text-decoration: underline;
     margin: 8px 0 11px 0;
-    cursor: pointer;
-    color: #008CBA;
+    color: #008cba;
   }
 }
 
-.agent.idle i.fa {
+.agent.ready i.fa {
   border-color: #6a6;
 }
 
@@ -235,8 +244,8 @@ h5 {
   cursor: pointer;
 
   span.stats {
-    margin-top: 14px;
-    font-size: 11px;
+    margin-top: 10px;
+    font-size: 14px;
     color: orange;
     float: right;
   }

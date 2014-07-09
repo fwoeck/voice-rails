@@ -4,7 +4,6 @@
 #= require jquery.websocket
 #= require foundation/foundation
 #= require foundation/foundation.tab
-#= require sse-connection
 #= require common
 #= require js-phone
 #= require handlebars
@@ -17,7 +16,7 @@ window.Voice = Ember.Application.create(
   rootElement: '#ember_main'
 )
 
-if env.userId.length == 0
+if app.noLogin()
   Voice.deferReadiness()
   $(document).foundation()
-  setupInterface()
+  app.setupInterface()
