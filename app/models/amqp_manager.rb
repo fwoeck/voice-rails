@@ -1,4 +1,7 @@
 module AmqpManager
+
+  ChannelRegex = /^SIP.(\d+)/
+
   class << self
 
     def rails_channel
@@ -75,11 +78,11 @@ module AmqpManager
     #
     def handle_status_message(data)
       if data['name'] == 'PeerStatus'
-        peer = data['headers']['Peer'][/^SIP.(\d+)/, 1]
+        peer = data['headers']['Peer'][ChannelRegex, 1]
       elsif data['name'] == 'Newstate' && data['headers']['ChannelState'] == '6' # 6 => Up
-        peer = data['headers']['Channel'][/^SIP.(\d+)/, 1]
+        peer = data['headers']['Channel'][ChannelRegex, 1]
       elsif data['name'] == 'Hangup'
-        peer = data['headers']['Channel'][/^SIP.(\d+)/, 1]
+        peer = data['headers']['Channel'][ChannelRegex, 1]
       else
         return
       end
