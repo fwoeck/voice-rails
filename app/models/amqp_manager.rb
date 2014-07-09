@@ -75,11 +75,11 @@ module AmqpManager
     #
     def handle_status_message(data)
       if data['name'] == 'PeerStatus'
-        peer = data['headers']['Peer'][/SIP.(.+)$/, 1]
+        peer = data['headers']['Peer'][/^SIP.(\d+)/, 1]
       elsif data['name'] == 'Newstate' && data['headers']['ChannelState'] == '6' # 6 => Up
-        peer = data['headers']['CallerIDNum'][/\d+/]
+        peer = data['headers']['Channel'][/^SIP.(\d+)/, 1]
       elsif data['name'] == 'Hangup'
-        peer = data['headers']['CallerIDNum'][/\d+/]
+        peer = data['headers']['Channel'][/^SIP.(\d+)/, 1]
       else
         return
       end
