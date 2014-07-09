@@ -30,13 +30,13 @@ class User < ActiveRecord::Base
   end
 
   def availability
-    $redis.get(availability_keyname) || 'unknown'
+    @memo_availability ||= ($redis.get(availability_keyname) || 'unknown')
   end
   alias :availability_summary :availability
 
 
   def agent_state
-    $redis.get(agent_state_keyname) || 'unknown'
+    @memo_agent_state ||= ($redis.get(agent_state_keyname) || 'unknown')
   end
 
 
