@@ -40,18 +40,18 @@ class AmiEvent
     tcid = false
 
     tcid = if data['name'] == 'CallUpdate'
-      # data['headers']['Hungup']
-      # or:
-      # data['headers']['Channel1']
-      # data['headers']['Channel2']
-      # data['headers']['Language']
-      # data['headers']['Skill']
+      channel1 = data['headers']['Channel1']
+      channel2 = data['headers']['Channel2']
+      language = data['headers']['Language']
+      hungup   = data['headers']['Hungup']
+      skill    = data['headers']['Skill']
+
       data['target_call_id']
     end
 
     if tcid
-      # call = Call.find(tcid)
-      # call.send_update_notification_to_clients if call
+      call = Call.find(tcid)
+      call.send_update_notification_to_clients if call
     end
     tcid
   end
