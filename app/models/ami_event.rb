@@ -5,4 +5,54 @@ class AmiEvent
   field :timestamp,      type: String
   field :name,           type: String
   field :headers,        type: Hash
+
+
+  ChannelRegex = /^SIP.(\d+)/
+
+  # TODO The "data" is not an AmiEvent, but plain JSON.
+  #      Should we convert it?
+  #
+  def self.handle_update(data)
+    handle_agent_update(data) || handle_call_update(data)
+  end
+
+
+  def self.handle_agent_update(data)
+    peer = false
+
+    peer = if data['name'] == 'PeerStatus'
+      data['headers']['Peer'][ChannelRegex, 1]
+    elsif data['name'] == 'Newstate' && data['headers']['ChannelState'] == '6' # 6 => Up
+      data['headers']['Channel'][ChannelRegex, 1]
+    elsif data['name'] == 'Hangup'
+      data['headers']['Channel'][ChannelRegex, 1]
+    end
+
+    if peer
+      user = User.where(name: peer).first
+      user.send_update_notification_to_clients if user
+    end
+    peer
+  end
+
+
+  def self.handle_call_update(data)
+    tcid = false
+
+    tcid = if data['name'] == 'CallUpdate'
+      # data['headers']['Hungup']
+      # or:
+      # data['headers']['Channel1']
+      # data['headers']['Channel2']
+      # data['headers']['Language']
+      # data['headers']['Skill']
+      data['target_call_id']
+    end
+
+    if tcid
+      # call = Call.find(tcid)
+      # call.send_update_notification_to_clients if call
+    end
+    tcid
+  end
 end
