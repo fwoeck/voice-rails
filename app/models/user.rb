@@ -35,8 +35,8 @@ class User < ActiveRecord::Base
   alias :availability_summary :availability
 
 
-  def callstate
-    $redis.get(callstate_keyname) || 'unknown'
+  def agent_state
+    $redis.get(agent_state_keyname) || 'unknown'
   end
 
 

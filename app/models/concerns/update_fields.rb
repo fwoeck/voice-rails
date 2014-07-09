@@ -66,8 +66,8 @@ module UpdateFields
     "#{Rails.env}.availability.#{self.id}"
   end
 
-  def callstate_keyname
-    "#{Rails.env}.callstate.#{self.id}"
+  def agent_state_keyname
+    "#{Rails.env}.agent_state.#{self.id}"
   end
 
 

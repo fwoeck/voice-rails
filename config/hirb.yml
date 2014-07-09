@@ -14,4 +14,4 @@
           - skill_summary
           - language_summary
           - availability
-          - callstate
+          - agent_state

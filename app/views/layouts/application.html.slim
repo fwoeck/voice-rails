@@ -25,7 +25,7 @@ html
         userId:       "#{current_user.try(:id)}",
         sessionToken: "#{form_authenticity_token}",
         availability:  #{WimConfig.availability.to_json.html_safe},
-        callstates:    #{WimConfig.callstates.to_json.html_safe},
+        agentStates:   #{WimConfig.agent_states.to_json.html_safe},
         languages:     #{WimConfig.languages.to_json.html_safe},
         skills:        #{WimConfig.skills.to_json.html_safe},
         roles:         #{WimConfig.roles.to_json.html_safe},

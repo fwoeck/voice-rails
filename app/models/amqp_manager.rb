@@ -72,7 +72,7 @@ module AmqpManager
     end
 
 
-    # VA is responsible for changing the agent callstates.
+    # VA is responsible for changing the agentStates.
     # We listen to AHNs signals to re-send the user object
     # after the external update here:
     #
