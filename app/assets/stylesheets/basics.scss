@@ -208,11 +208,11 @@ a {
 }
 
 #call_queue.expanded {
-  top: 221px; // !
+  top: 221px;
 }
 
 #call_queue.lifted.expanded {
-  top: 84px; // !
+  top: 84px;
 }
 
 #call_queue_body {
@@ -220,6 +220,7 @@ a {
   position: absolute;
   padding-top: 10px;
   overflow-y: auto;
+  width: 720px; // Can we avoid setting this directly?
   bottom: 0;
   top: 40px;
 }

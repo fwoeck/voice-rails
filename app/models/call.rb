@@ -36,7 +36,7 @@ class Call
     #
     $redis.keys("#{Rails.env}.call.*").map { |key|
       call = find(key[/[^.]+$/])
-      # !call.hungup ? call : nil
+      !call.hungup ? call : nil
     }.compact
   end
 

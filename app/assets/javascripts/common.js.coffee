@@ -42,6 +42,9 @@ window.app = {
       if data.user
         Voice.store.pushPayload('user', data)
 
+      if data.call
+        Voice.store.pushPayload('call', data)
+
       if env.railsEnv == 'test'
         env.messages.push(data)
 }
