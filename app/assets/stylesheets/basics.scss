@@ -131,6 +131,11 @@ form#new_user {
   }
 
   i.fa.talking {
+    cursor: default;
+    color: #ffa500;
+  }
+
+  i.fa.talking:hover {
     color: #ffa500;
   }
 
@@ -140,11 +145,17 @@ form#new_user {
 
   i.fa.unknown,
   i.fa.unregistered {
+    cursor: default;
     color: #bbb;
   }
 
   i.fa:hover {
     color: #000;
+  }
+
+  i.fa.unknown:hover,
+  i.fa.unregistered:hover {
+    color: #bbb;
   }
 
   span {
@@ -154,9 +165,7 @@ form#new_user {
   }
 
   span.name {
-    text-decoration: underline;
     margin: 8px 0 11px 0;
-    cursor: pointer;
     color: #008cba;
   }
 }
