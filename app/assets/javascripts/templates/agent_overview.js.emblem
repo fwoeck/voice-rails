@@ -10,6 +10,6 @@
         img.avatar src='http://placehold.it/64x64'
         i class={agentState :fa :fa-comments}
 
-        span.name title=email #{displayname}
-        span.languages Languages: #{languages}
-        span.skills Skills: #{skills}
+        span.name title=email #{displayName}
+        span.languages Languages: #{displayLangs}
+        span.skills Skills: #{displaySkills}

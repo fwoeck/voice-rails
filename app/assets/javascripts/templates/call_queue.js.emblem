@@ -36,7 +36,7 @@
                   td = upcase call.language
                 tr
                   td Skill Request
-                  td = upcase call.skill
+                  td = capitalize call.skill
             td
               if call.bridge
                 table.callstats_table
