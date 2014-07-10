@@ -55,8 +55,8 @@ RSpec.describe User, type: :model do
 
     it 'allows to reset the user availability' do
       user.set_availability('busy')
-      user.set_availability('offline')
-      expect(user.availability).to eq 'offline'
+      user.set_availability('away')
+      expect(user.availability).to eq 'away'
     end
 
     it 'shows an unknown state if unset' do
