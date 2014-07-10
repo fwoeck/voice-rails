@@ -302,6 +302,28 @@ table#language_table {
   }
 }
 
+table#callstats_table {
+  width: 100%;
+}
+
+table.callstats_table {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+
+  tr {
+    padding: 0;
+    margin: 0;
+  }
+
+  td {
+    font-size: 11px;
+    padding: 0 4px;
+    margin: 0;
+  }
+}
+
 i.header {
   margin-right: 8px;
   line-height: 32px;

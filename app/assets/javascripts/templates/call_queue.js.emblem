@@ -5,7 +5,7 @@
     span.stats 21 customers are currently queued
 
   #call_queue_body.bottom-mask
-    table style='width: 100%'
+    table#callstats_table
       thead
         td width='50%' style='font-size: 12px;'
           | Inbound calls
@@ -15,22 +15,46 @@
         each call in inboundCalls
           tr
             td
-              ul style='font-size: 10px; margin-bottom: 0'
-                li Call ID: #{call.id}
-                li Channel: #{call.channel1}
-                li Up since: #{call.calledAt}
-                li Caller ID: #{call.callerId}
-                li Queued at: #{call.queuedAt}
-                li Preferred language: #{call.language}
-                li Reqested skill: #{call.skill}
+              table.callstats_table
+                tr
+                  td Call ID
+                  td = call.id
+                tr
+                  td Channel
+                  td = call.channel1
+                tr
+                  td Called at
+                  td = call.calledAt
+                tr
+                  td Caller ID
+                  td = call.callerId
+                tr
+                  td Queued at
+                  td = call.queuedAt
+                tr
+                  td Lang. choice
+                  td = upcase call.language
+                tr
+                  td Skill request
+                  td = upcase call.skill
             td
               if call.bridge
-                ul style='font-size: 10px; margin-bottom: 0'
-                  li Call ID: #{call.bridge.id}
-                  li Channel: #{call.bridge.channel1}
-                  li Up since: #{call.bridge.calledAt}
-                  li Agent: #{call.bridge.agent.fullname}
-                  li Agent email: #{call.bridge.agent.email}
+                table.callstats_table
+                  tr
+                    td Call ID
+                    td = call.bridge.id
+                  tr
+                    td Channel
+                    td = call.bridge.channel1
+                  tr
+                    td Answered at
+                    td = call.bridge.calledAt
+                  tr
+                    td Agent name
+                    td = call.bridge.agent.fullname
+                  tr
+                    td Agent email
+                    td = call.bridge.agent.email
               else
                 | &nbsp;
         else
