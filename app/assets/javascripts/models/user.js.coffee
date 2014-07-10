@@ -1,5 +1,6 @@
 Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
+  name:          DS.attr 'string'
   email:         DS.attr 'string'
   roles:         DS.attr 'string'
   skills:        DS.attr 'string'

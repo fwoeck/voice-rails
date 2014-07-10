@@ -14,7 +14,8 @@ Voice.ApplicationRoute = Ember.Route.extend({
     @controllerFor('calls').set 'model', @store.all('call')
     @controllerFor('users').set 'model', @store.all('user')
 
-    Voice.set 'currentUser', @store.getById('user', env.userId)
     Voice.set 'allCalls',    @store.all('call')
+    Voice.set 'allUsers',    @store.all('user')
+    Voice.set 'currentUser', @store.getById('user', env.userId)
 
 })

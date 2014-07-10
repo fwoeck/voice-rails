@@ -10,6 +10,8 @@ Voice.CompCall = Ember.Mixin.create({
 Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
   allCallsBinding: 'Voice.allCalls'
+  allUsersBinding: 'Voice.allUsers'
+
 
   calledAt:     DS.attr 'date'
   callerId:     DS.attr 'string'
@@ -22,6 +24,15 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   language:     DS.attr 'string'
   queuedAt:     DS.attr 'date'
   skill:        DS.attr 'string'
+
+
+  agent: ( ->
+    users = @get('allUsers')
+    return false unless users
+
+    users.find (user) =>
+      @get('channel1').match user.get('name')
+  ).property('allUsers.@each.name', 'channel1')
 
 
   bridge: (->

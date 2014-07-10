@@ -10,7 +10,7 @@
         td width='50%' style='font-size: 12px;'
           | Inbound calls
         td width='50%' style='font-size: 12px;'
-          | Bridged agents
+          | Connected agents
       tbody
         each call in inboundCalls
           tr
@@ -29,6 +29,8 @@
                   li Call ID: #{call.bridge.id}
                   li Channel: #{call.bridge.channel1}
                   li Up since: #{call.bridge.calledAt}
+                  li Agent: #{call.bridge.agent.fullname}
+                  li Agent email: #{call.bridge.agent.email}
               else
                 | &nbsp;
         else
