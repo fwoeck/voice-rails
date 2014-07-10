@@ -322,9 +322,23 @@ table.callstats_table {
   }
 
   td {
-    font-size: 11px;
+    font-size: 12px;
     padding: 0 4px;
     margin: 0;
+  }
+
+  span.has-tip {
+    transition: color linear 300ms;
+    margin-left: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    float: right;
+    color: #777;
+  }
+
+  i.fa:hover {
+    color: #000;
   }
 }
 

@@ -17,43 +17,32 @@
             td
               table.callstats_table
                 tr
-                  td Call ID
-                  td = call.id
-                tr
-                  td Channel
-                  td = call.channel1
-                tr
-                  td Called At
-                  td = call.calledAt
-                tr
                   td Caller ID
-                  td = call.callerId
+                  td
+                    = call.callerId
+                    span.has-tip.radius data-tooltip="" title="#{moment call.calledAt} call in<br />#{moment call.queuedAt} queued"
+                      i.fa.fa-clock-o.timestamps
+                    span.has-tip.radius data-tooltip="" title="#{call.id}<br />Channel: #{call.channel1}"
+                      i.fa.fa-info-circle.metadata
                 tr
-                  td Queued At
-                  td = call.queuedAt
-                tr
-                  td Lang. Choice
+                  td Language choice
                   td = upcase call.language
                 tr
-                  td Skill Request
+                  td Requested skill
                   td = capitalize call.skill
             td
               if call.bridge
                 table.callstats_table
                   tr
-                    td Call ID
-                    td = call.bridge.id
+                    td Agent name
+                    td
+                      = call.bridge.agent.fullname
+                      span.has-tip.radius data-tooltip="" title="#{moment call.bridge.calledAt} answered"
+                        i.fa.fa-clock-o.timestamps
+                      span.has-tip.radius data-tooltip="" title="#{call.bridge.id}<br />Channel: #{call.bridge.channel1}"
+                        i.fa.fa-info-circle.metadata
                   tr
-                    td Channel
-                    td = call.bridge.channel1
-                  tr
-                    td Answered At
-                    td = call.bridge.calledAt
-                  tr
-                    td Agent Name
-                    td = call.bridge.agent.fullname
-                  tr
-                    td Agent Email
+                    td Agent email
                     td = call.bridge.agent.email
               else
                 | &nbsp;

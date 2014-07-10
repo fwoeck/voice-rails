@@ -9,3 +9,7 @@ Ember.Handlebars.helper('downcase', (value, options) ->
 Ember.Handlebars.helper('capitalize', (value, options) ->
   value.capitalize() if value
 )
+
+Ember.Handlebars.helper('moment', (value, options) ->
+  moment(value).format() if value
+)

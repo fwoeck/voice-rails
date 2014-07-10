@@ -4,6 +4,8 @@
 #= require jquery.websocket
 #= require foundation/foundation
 #= require foundation/foundation.tab
+#= require foundation/foundation.tooltip
+#= require moment
 #= require common
 #= require js-phone
 #= require handlebars
