@@ -8,9 +8,9 @@
     table#callstats_table
       thead
         td width='50%' style='font-size: 12px;'
-          | Inbound calls
+          | Inbound Calls
         td width='50%' style='font-size: 12px;'
-          | Connected agents
+          | Connected Agents
       tbody
         each call in inboundCalls
           tr
@@ -23,19 +23,19 @@
                   td Channel
                   td = call.channel1
                 tr
-                  td Called at
+                  td Called At
                   td = call.calledAt
                 tr
                   td Caller ID
                   td = call.callerId
                 tr
-                  td Queued at
+                  td Queued At
                   td = call.queuedAt
                 tr
-                  td Lang. choice
+                  td Lang. Choice
                   td = upcase call.language
                 tr
-                  td Skill request
+                  td Skill Request
                   td = upcase call.skill
             td
               if call.bridge
@@ -47,13 +47,13 @@
                     td Channel
                     td = call.bridge.channel1
                   tr
-                    td Answered at
+                    td Answered At
                     td = call.bridge.calledAt
                   tr
-                    td Agent name
+                    td Agent Name
                     td = call.bridge.agent.fullname
                   tr
-                    td Agent email
+                    td Agent Email
                     td = call.bridge.agent.email
               else
                 | &nbsp;

@@ -304,6 +304,10 @@ table#language_table {
 
 table#callstats_table {
   width: 100%;
+
+  tr {
+    vertical-align: top;
+  }
 }
 
 table.callstats_table {
