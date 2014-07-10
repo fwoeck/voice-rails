@@ -14,9 +14,9 @@
       tbody
         each call in inboundCalls
           tr
-            td = render 'inbound_call'
+            td = render 'inbound_call' call
             if call.bridge
-              td = render 'agent_bridge'
+              td = render 'agent_bridge' call.bridge
             else
               td &nbsp;
         else
