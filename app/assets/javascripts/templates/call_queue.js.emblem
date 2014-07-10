@@ -7,48 +7,19 @@
   #call_queue_body.bottom-mask
     table#callstats_table
       thead
-        td width='50%' style='font-size: 12px;'
+        td width='50%'
           | Inbound Calls
-        td width='50%' style='font-size: 12px;'
+        td width='50%'
           | Connected Agents
       tbody
         each call in inboundCalls
           tr
-            td
-              table.callstats_table
-                tr
-                  td Caller ID
-                  td
-                    = call.callerId
-                    span.has-tip.radius data-tooltip="" title="#{moment call.calledAt} call in<br />#{moment call.queuedAt} queued"
-                      i.fa.fa-clock-o.timestamps
-                    span.has-tip.radius data-tooltip="" title="#{call.id}<br />Channel: #{call.channel1}"
-                      i.fa.fa-info-circle.metadata
-                tr
-                  td Language choice
-                  td = upcase call.language
-                tr
-                  td Requested skill
-                  td = capitalize call.skill
-            td
-              if call.bridge
-                table.callstats_table
-                  tr
-                    td Agent name
-                    td
-                      = call.bridge.agent.fullname
-                      span.has-tip.radius data-tooltip="" title="#{moment call.bridge.calledAt} answered"
-                        i.fa.fa-clock-o.timestamps
-                      span.has-tip.radius data-tooltip="" title="#{call.bridge.id}<br />Channel: #{call.bridge.channel1}"
-                        i.fa.fa-info-circle.metadata
-                  tr
-                    td Agent email
-                    td = call.bridge.agent.email
-              else
-                | &nbsp;
+            td = render 'inbound_call'
+            if call.bridge
+              td = render 'agent_bridge'
+            else
+              td &nbsp;
         else
           tr
-            td
-              | The call queue is currently empty.
-            td
-              | &nbsp;
+            td The call queue is currently empty.
+            td &nbsp;

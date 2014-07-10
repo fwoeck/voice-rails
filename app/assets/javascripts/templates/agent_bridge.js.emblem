@@ -1,0 +1,12 @@
+table.callstats_table
+  tr
+    td Agent name
+    td
+      = call.bridge.agent.fullname
+      span.has-tip.radius data-tooltip="" title="#{unbound moment call.bridge.calledAt} answered"
+        i.fa.fa-clock-o.timestamps
+      span.has-tip.radius data-tooltip="" title="#{unbound call.bridge.id}<br />Channel: #{unbound call.bridge.channel1}"
+        i.fa.fa-info-circle.metadata
+  tr
+    td Agent email
+    td = call.bridge.agent.email

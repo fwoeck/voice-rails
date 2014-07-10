@@ -1,0 +1,15 @@
+table.callstats_table
+  tr
+    td Caller ID
+    td
+      = call.callerId
+      span.has-tip.radius data-tooltip="" title="#{unbound moment call.calledAt} call in<br />#{unbound moment call.queuedAt} queued"
+        i.fa.fa-clock-o.timestamps
+      span.has-tip.radius data-tooltip="" title="#{unbound call.id}<br />Channel: #{unbound call.channel1}"
+        i.fa.fa-info-circle.metadata
+  tr
+    td Language choice
+    td = upcase call.language
+  tr
+    td Requested skill
+    td = capitalize call.skill

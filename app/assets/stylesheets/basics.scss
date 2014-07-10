@@ -308,6 +308,10 @@ table#callstats_table {
   tr {
     vertical-align: top;
   }
+
+  thead td {
+    font-size: 12px;
+  }
 }
 
 table.callstats_table {
