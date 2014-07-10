@@ -1,7 +1,7 @@
 #chat_header.large-12.medium-12.columns
   h5
     i.header.fa.fa-comments
-    ' Team Chat
+    | Team Chat
 
   input type='text' placeholder='Type here...'
 

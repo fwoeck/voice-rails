@@ -3,9 +3,12 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   needs: ['calls', 'users']
   contentBinding: 'controllers.calls.content'
 
+  callSorting: ['calledAt']
 
-  activeCalls: Ember.computed.filter('content',
-    (call) -> !call.get('hungup')
-  ).property('content.@each.hungup')
+  inboundCalls: Ember.computed.sort 'activeCalls', 'callSorting'
+
+  activeCalls: Ember.computed.filter('activeCalls',
+    (call) -> !call.get('hungup') && call.get('initiator')
+  ).property('content.@each.{hungup,initiator}')
 
 })

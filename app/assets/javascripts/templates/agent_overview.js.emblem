@@ -1,7 +1,7 @@
 #agent_overview.large-12.medium-12.columns
   h5
     i.header.fa.fa-compass
-    ' Agent Overview
+    | Agent Overview
     span.stats 12 agents are online, 3 of them available
 
   #agent_overview_body.bottom-mask

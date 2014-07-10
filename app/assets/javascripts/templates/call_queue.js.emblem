@@ -1,22 +1,39 @@
 #call_queue.large-12.medium-12.columns.lifted.expanded
   h5
     i.header.fa.fa-phone-square
-    ' Current Calls
+    | Current Calls
     span.stats 21 customers are currently queued
 
   #call_queue_body.bottom-mask
-    each activeCalls
-      ul style='font-size: 10px; float: left; margin: 10px 20px;'
-        li Id: #{id}
-        li Called at: #{calledAt}
-        li CallerId: #{callerId}
-        li Channel1: #{channel1}
-        li Channel2: #{channel2}
-        li Dispatched at: #{dispatchedAt}
-        li Hungup at: #{hungupAt}
-        li Initiator: #{initiator}
-        li Language: #{language}
-        li Queued at: #{queuedAt}
-        li Skill: #{skill}
-    else
-      ' The call queue is currently empty.
+    table style='width: 100%'
+      thead
+        td width='50%' style='font-size: 12px;'
+          | Inbound calls
+        td width='50%' style='font-size: 12px;'
+          | Bridged agents
+      tbody
+        each call in inboundCalls
+          tr
+            td
+              ul style='font-size: 10px; margin-bottom: 0'
+                li Call ID: #{call.id}
+                li Channel: #{call.channel1}
+                li Up since: #{call.calledAt}
+                li Caller ID: #{call.callerId}
+                li Queued at: #{call.queuedAt}
+                li Preferred language: #{call.language}
+                li Reqested skill: #{call.skill}
+            td
+              if call.bridge
+                ul style='font-size: 10px; margin-bottom: 0'
+                  li Call ID: #{call.bridge.id}
+                  li Channel: #{call.bridge.channel1}
+                  li Up since: #{call.bridge.calledAt}
+              else
+                | &nbsp;
+        else
+          tr
+            td
+              | The call queue is currently empty.
+            td
+              | &nbsp;

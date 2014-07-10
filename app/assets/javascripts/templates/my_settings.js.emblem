@@ -1,7 +1,7 @@
 #my_settings.large-12.medium-12.columns
   h5
     i.header.fa.fa-cogs
-    ' My Settings
+    | My Settings
     span.stats I'm currently talking
 
   #my_settings_body

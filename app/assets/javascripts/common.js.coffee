@@ -5,6 +5,7 @@ window.app = {
 
 
   setupInterface: ->
+
     ($ '#agent_overview > h5').click ->
       ($ '#call_queue').toggleClass('expanded')
 
@@ -19,7 +20,32 @@ window.app = {
     ($ document).on 'click', '#my_settings label', (el) -> ($ el.target).siblings('input').click()
 
 
+  updateUserFrom: (data) ->
+    @updateRecordFrom(data, 'user', Voice.User)
+
+
+  updateCallFrom: (data) ->
+    @updateRecordFrom(data, 'call', Voice.Call)
+
+
+  updateRecordFrom: (data, name, klass) ->
+    obj = Voice.store.getById(name, data[name].id)
+    if obj
+      Voice.aS.normalizeAttributes(klass, data[name])
+      Ember.keys(data[name]).forEach (key) ->
+        val = data[name][key]
+        val = new Date(val) if val && key.match(/At$/)
+
+        # Caution! We never update fields to falsy values:
+        #
+        if key != 'id' && val && Ember.compare(obj.get(key), val)
+          obj.set(key, val)
+    else
+      Voice.store.pushPayload(name, data)
+
+
   setupSSE: ->
+
     params = "?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}"
     sseSource = new EventSource('/events' + params)
 
@@ -40,10 +66,9 @@ window.app = {
       console.log(data) if env.debug
 
       if data.user
-        Voice.store.pushPayload('user', data)
-
-      if data.call
-        Voice.store.pushPayload('call', data)
+        app.updateUserFrom(data)
+      else if data.call
+        app.updateCallFrom(data)
 
       if env.railsEnv == 'test' && !data.servertime
         env.messages.push(data)
