@@ -22,7 +22,7 @@ class AmiEvent
 
     peer = if data['name'] == 'PeerStatus'
       data['headers']['Peer'][ChannelRegex, 1]
-    elsif data['name'] == 'Newstate' && data['headers']['ChannelState'] == '6' # 6 => Up
+    elsif data['name'] == 'Newstate' && ['5', '6'].include?(data['headers']['ChannelState'])
       data['headers']['Channel'][ChannelRegex, 1]
     elsif data['name'] == 'Hangup'
       data['headers']['Channel'][ChannelRegex, 1]
