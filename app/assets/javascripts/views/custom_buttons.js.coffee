@@ -28,3 +28,22 @@ Ember.CheckMark = Ember.View.extend({
   ).property('selection')
 
 })
+
+
+Ember.FromNow = Ember.View.extend({
+
+  tagName:  'span'
+  template:  Ember.Handlebars.compile("{{unbound fromNow call.queuedAt}}")
+
+
+  didInsertElement: ->
+    self = @
+    @interval = window.setInterval (->
+      self.rerender()
+    ), 5000
+
+
+  willClearRender: ->
+    window.clearInterval @interval
+
+})
