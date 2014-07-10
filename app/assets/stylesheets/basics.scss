@@ -217,10 +217,10 @@ a {
 
 #call_queue_body {
   border-top: 1px solid #eee;
+  padding: 10px 8px 0 0;
   position: absolute;
-  padding-top: 10px;
-  overflow-y: auto;
-  width: 720px; // Can we avoid setting this directly?
+  overflow-y: scroll;
+  width: 735px; // Can we avoid setting this directly?
   bottom: 0;
   top: 40px;
 }
