@@ -45,6 +45,6 @@ window.app = {
       if data.call
         Voice.store.pushPayload('call', data)
 
-      if env.railsEnv == 'test'
+      if env.railsEnv == 'test' && !data.servertime
         env.messages.push(data)
 }

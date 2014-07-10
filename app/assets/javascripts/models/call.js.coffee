@@ -9,11 +9,16 @@ Voice.CompCall = Ember.Mixin.create({
 
 Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
-  channel1:  DS.attr 'string'
-  channel2:  DS.attr 'string'
-  language:  DS.attr 'string'
-  callerId:  DS.attr 'string'
-  hungup:    DS.attr 'boolean'
-  skill:     DS.attr 'string'
+  calledAt:     DS.attr 'date'
+  callerId:     DS.attr 'string'
+  channel1:     DS.attr 'string'
+  channel2:     DS.attr 'string'
+  dispatchedAt: DS.attr 'date'
+  hungupAt:     DS.attr 'date'
+  hungup:       DS.attr 'boolean'
+  initiator:    DS.attr 'boolean'
+  language:     DS.attr 'string'
+  queuedAt:     DS.attr 'date'
+  skill:        DS.attr 'string'
 
 })
