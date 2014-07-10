@@ -8,10 +8,15 @@
     each activeCalls
       ul style='font-size: 10px; float: left; margin: 10px 20px;'
         li Id: #{id}
+        li Called at: #{calledAt}
         li CallerId: #{callerId}
         li Channel1: #{channel1}
         li Channel2: #{channel2}
+        li Dispatched at: #{dispatchedAt}
+        li Hungup at: #{hungupAt}
+        li Initiator: #{initiator}
         li Language: #{language}
+        li Queued at: #{queuedAt}
         li Skill: #{skill}
     else
       ' The call queue is currently empty.
