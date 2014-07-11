@@ -36,7 +36,7 @@ class Call
 
 
   def send_update_notification_to_clients
-    User.all.each do |user|
+    User.all_online.each do |user|
       AmqpManager.push_publish(
         user_id: user.id, data: CallSerializer.new(self)
       )

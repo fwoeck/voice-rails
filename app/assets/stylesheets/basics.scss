@@ -1,3 +1,18 @@
+::-webkit-scrollbar {
+  background: #fff;
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 1ex;
+  background: #ccc;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff;
+}
+
 #login_body {
   padding-top: 30px;
 }
@@ -24,6 +39,18 @@ form#new_user {
   width: 300px;
 }
 
+#center_column {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+
+#right_column {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+
 #ember_main {
   position: relative;
   height: 100%;
@@ -37,357 +64,6 @@ form#new_user {
   position: relative;
   padding-top: 30px;
   height: 100%;
-}
-
-#center_column {
-  position: relative;
-  height: 100%;
-  z-index: 0;
-}
-
-#my_settings {
-  transition: height ease 300ms;
-  position: relative;
-  padding-right: 0;
-  height: 43px;
-  z-index: 5;
-
-  li.tab-title.active > a {
-    cursor: default;
-  }
-
-  .tabs.vertical {
-    border: 1px solid #ddd;
-    margin-top: 10px;
-  }
-
-  .tabs-content.vertical > .content {
-    margin-top: 10px;
-  }
-
-  span.stats {
-    padding-right: 15px;
-  }
-}
-
-#my_settings.expanded {
-  height: 180px;
-}
-
-#agent_overview {
-  background-color: #fff;
-  position: relative;
-  height: 220px;
-  z-index: 10;
-}
-
-#my_settings_body,
-#agent_overview_body {
-  border-top: 1px solid #eee;
-  overflow-x: hidden;
-  position: absolute;
-  padding-top: 10px;
-  overflow-y: auto;
-  bottom: 0;
-  top: 40px;
-}
-
-#agent_overview_body {
-  padding-bottom: 10px;
-}
-
-#my_settings_body {
-  position: initial;
-  width: 100%;
-  padding: 0;
-}
-
-.agent {
-  background-color: #f6f6f6;
-  border: 1px solid #ddd;
-  position: relative;
-  margin-bottom: 8px;
-  width: 354px;
-  float: left;
-  padding: 0;
-
-  img.avatar {
-    margin-right: 8px;
-    display: block;
-    float: left;
-  }
-
-  i.fa {
-    transition: color linear 300ms;
-    background-color: #fff;
-    border: 3px solid #ddd;
-    border-radius: 1000px;
-    position: absolute;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 5px;
-    right: 18px;
-    top: 16px;
-  }
-
-  i.fa.talking {
-    cursor: default;
-    color: #ffa500;
-  }
-
-  i.fa.talking:hover {
-    color: #ffa500;
-  }
-
-  i.fa.registered {
-    color: #777;
-  }
-
-  i.fa.unknown,
-  i.fa.unregistered {
-    cursor: default;
-    color: #bbb;
-  }
-
-  i.fa:hover {
-    color: #000;
-  }
-
-  i.fa.unknown:hover,
-  i.fa.unregistered:hover {
-    color: #bbb;
-  }
-
-  span {
-    font-size: 12px;
-    display: block;
-    margin: 3px 0;
-  }
-
-  span.name {
-    margin: 8px 0 11px 0;
-    color: #008cba;
-  }
-}
-
-.agent.ready i.fa {
-  border-color: #6a6;
-}
-
-.agent.busy i.fa {
-  border-color: #c66;
-}
-
-.agent.away i.fa {
-  border-color: #ddd;
-}
-
-.agent:nth-child(even) {
-  margin-left: 10px;
-}
-
-.bottom-mask {
-  -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 20px);
-}
-
-a {
-  transition: background-color linear 300ms;
-}
-
-#call_queue {
-  transition: top ease 300ms;
-  background-color: #fff;
-  position: absolute;
-  z-index: 15;
-  top: 420px;
-  bottom: 0;
-}
-
-#call_queue.lifted {
-  top: 280px;
-}
-
-#call_queue.expanded {
-  top: 221px;
-}
-
-#call_queue.lifted.expanded {
-  top: 84px;
-}
-
-#call_queue_body {
-  border-top: 1px solid #eee;
-  padding: 10px 8px 0 0;
-  position: absolute;
-  overflow-y: scroll;
-  width: 735px; // Can we avoid setting this directly?
-  bottom: 0;
-  top: 40px;
-}
-
-#right_column {
-  position: relative;
-  height: 100%;
-  z-index: 0;
-}
-
-#chat_header {
-  height: 100px;
-  z-index: 10;
-
-  h5 {
-    margin-bottom: 12px;
-  }
-}
-
-h5 {
-  transition: color ease 300ms;
-  cursor: pointer;
-
-  span.stats {
-    margin-top: 10px;
-    font-size: 14px;
-    color: orange;
-    float: right;
-  }
-}
-
-#team_chat {
-  border-top: 1px solid #eee;
-  position: absolute;
-  overflow-y: auto;
-  padding-top: 4px;
-  top: 124px;
-  z-index: 1;
-  bottom: 0;
-}
-
-.message {
-  border-bottom: 1px solid #eee;
-  padding: 8px 0 4px 0;
-
-  span.from {
-    margin-left: 4px;
-    color: #008CBA;
-  }
-
-  .body p {
-    text-overflow: ellipsis;
-    margin: 6px 0 6px 0;
-    line-height: 18px;
-    max-height: 70px;
-    overflow: hidden;
-    font-size: 13px;
-    color: #999;
-  }
-}
-
-table#skill_table,
-table#state_table,
-table#language_table {
-  border-collapse: collapse;
-  margin: 0;
-
-  tr, td, label {
-    padding: 0;
-    margin: 0;
-  }
-
-  tr, td {
-    background-color: #f6f6f6;
-  }
-
-  td {
-    padding: 6px 8px;
-  }
-}
-
-table#callstats_table {
-  width: 100%;
-
-  tr {
-    background-color: #faebd7;
-    vertical-align: top;
-  }
-
-  thead tr {
-    background-color: #ddd;
-    font-size: 12px;
-  }
-}
-
-table.callstats_table {
-  -webkit-border-horizontal-spacing: 0;
-  -webkit-border-vertical-spacing: 0;
-  position: relative;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  border: 0;
-
-  tr {
-    padding: 0;
-    margin: 0;
-  }
-
-  td {
-    font-size: 12px;
-    padding: 0 4px;
-    margin: 0;
-  }
-
-  span.has-tip {
-    margin-left: 6px;
-    cursor: pointer;
-    border: none;
-    float: right;
-  }
-
-  i.fa {
-    transition: color linear 300ms;
-    font-size: 14px;
-    color: #008cba;
-  }
-
-  i.fa:hover {
-    color: #000;
-  }
-
-  i.fa.connection {
-    background-color: #fff;
-    border: 3px solid #999;
-    border-radius: 1000px;
-    position: absolute;
-    font-size: 24px;
-    padding: 4px;
-    left: -30px;
-    top: 18px;
-  }
-}
-
-i.header {
-  margin-right: 8px;
-  line-height: 32px;
-  font-size: 24px;
-  color: #008CBA;
-}
-
-::-webkit-scrollbar {
-  background: #fff;
-  height: 8px;
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 1ex;
-  background: #ccc;
-}
-
-::-webkit-scrollbar-corner {
-  background: #fff;
-}
-
-#main {
 
   button.tiny, .button.tiny {
     padding-bottom: 0.7rem;
@@ -407,10 +83,34 @@ i.header {
   }
 
   h5 {
+    transition: color ease 300ms;
+    cursor: pointer;
     color: #666;
+
+    span.stats {
+      margin-top: 10px;
+      font-size: 14px;
+      color: orange;
+      float: right;
+    }
   }
 
   h5:hover {
     color: #000;
+  }
+
+  a {
+    transition: background-color linear 300ms;
+  }
+
+  .bottom-mask {
+    -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 20px);
+  }
+
+  i.header {
+    margin-right: 8px;
+    line-height: 32px;
+    font-size: 24px;
+    color: #008CBA;
   }
 }

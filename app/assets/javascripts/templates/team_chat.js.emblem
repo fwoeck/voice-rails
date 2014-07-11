@@ -3,36 +3,17 @@
     i.header.fa.fa-comments
     | Team Chat
 
-  input type='text' placeholder='Type here...'
+  = view Ember.ChatInput
 
 #team_chat.large-12.medium-12.columns.bottom-mask
-  .message
-    .header
-      i.fa.fa-clock-o title="01.01.1970 00:00:00"
-      span.from The sender's name
-    .body
-      p The sender's message.
-  .message
-    .header
-      i.fa.fa-clock-o title="01.01.1970 00:00:00"
-      span.from The sender's name
-    .body
-      p The sender's message.
-  .message
-    .header
-      i.fa.fa-clock-o title="01.01.1970 00:00:00"
-      span.from The sender's name
-    .body
-      p The sender's message.
-  .message
-    .header
-      i.fa.fa-clock-o title="01.01.1970 00:00:00"
-      span.from The sender's name
-    .body
-      p The sender's message.
-  .message
-    .header
-      i.fa.fa-clock-o title="01.01.1970 00:00:00"
-      span.from The sender's name
-    .body
-      p The sender's message.
+  each cm in content
+    .message
+      .header
+        i.fa.fa-clock-o title="#{unbound moment cm.createdAt}"
+        span.from #{unbound cm.fromName}
+      .body
+        p = unbound cm.content
+  else
+    .message
+      .body
+        p There are no recent messages in the team chat until now &mdash; be the first one to write one!

@@ -1,5 +1,5 @@
 Voice.ApplicationController = Ember.Controller.extend({
 
-  needs: ['calls', 'users']
+  needs: ['calls', 'users', 'chatMessages']
 
 })

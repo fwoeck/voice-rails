@@ -32,9 +32,7 @@ Ember.CheckMark = Ember.View.extend({
 
 Ember.FromNow = Ember.View.extend({
 
-  tagName:  'span'
-  template:  Ember.Handlebars.compile("{{unbound fromNow call.queuedAt}}")
-
+  tagName: 'span'
 
   didInsertElement: ->
     self = @
@@ -42,8 +40,45 @@ Ember.FromNow = Ember.View.extend({
       self.rerender()
     ), 5000
 
-
   willClearRender: ->
     window.clearInterval @interval
+
+})
+
+
+Ember.AnsweredAt = Ember.FromNow.extend({
+  template: Ember.Handlebars.compile("{{fromNow bridge.calledAt}}")
+})
+
+
+Ember.QueuedAt = Ember.FromNow.extend({
+  template: Ember.Handlebars.compile("{{fromNow queuedAt}}")
+})
+
+
+Ember.CalledAt = Ember.FromNow.extend({
+  template: Ember.Handlebars.compile("{{fromNow calledAt}}")
+})
+
+
+Ember.ChatInput = Ember.TextField.extend({
+
+  placeholder: 'Type here...'
+  maxlength:   '150'
+
+  keyUp: (evt) ->
+    switch evt.which
+      when 13 then @sendMessage()
+      when 27 then @clearInput()
+    return true
+
+  sendMessage: ->
+    message = @get('value')
+    if message
+      Voice.ChatMessage.send(message)
+      @set('value', '')
+
+  clearInput: ->
+    @set('value', '')
 
 })

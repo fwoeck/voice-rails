@@ -22,12 +22,13 @@ class User < ActiveRecord::Base
 
 
   def send_update_notification_to_clients
-    User.all.each do |user|
+    User.all_online.each do |user|
       AmqpManager.push_publish(
         user_id: user.id, data: UserSerializer.new(self)
       )
     end
   end
+
 
   def availability
     @memo_availability ||= ($redis.get(availability_keyname) || 'unknown')
@@ -50,6 +51,13 @@ class User < ActiveRecord::Base
 
   def language_summary
     languages.map(&:name).sort.join(',')
+  end
+
+
+  # TODO We need to capture FE-online state for this.
+  #
+  def self.all_online
+    all
   end
 
   private

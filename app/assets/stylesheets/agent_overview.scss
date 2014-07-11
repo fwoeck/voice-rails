@@ -1,0 +1,107 @@
+#agent_overview {
+  background-color: #fff;
+  position: relative;
+  height: 220px;
+  z-index: 10;
+}
+
+#agent_overview_body {
+  border-top: 1px solid #eee;
+  padding-bottom: 10px;
+  overflow-x: hidden;
+  position: absolute;
+  padding-top: 10px;
+  overflow-y: auto;
+  bottom: 0;
+  top: 40px;
+}
+
+.agent.ready i.fa {
+  border-color: #6a6;
+}
+
+.agent.busy i.fa {
+  border-color: #c66;
+}
+
+.agent.away i.fa {
+  border-color: #ddd;
+}
+
+.agent:nth-child(even) {
+  margin-left: 10px;
+}
+
+.agent {
+  background-color: #f6f6f6;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 8px;
+  width: 354px;
+  float: left;
+  padding: 0;
+
+  img.avatar {
+    margin-right: 8px;
+    display: block;
+    float: left;
+  }
+
+  i.fa {
+    transition: color linear 300ms;
+    background-color: #fff;
+    border: 3px solid #ddd;
+    border-radius: 1000px;
+    position: absolute;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    right: 18px;
+    top: 16px;
+  }
+
+  i.fa.talking {
+    cursor: default;
+    color: #ffa500;
+  }
+
+  i.fa.talking:hover {
+    color: #ffa500;
+  }
+
+  i.fa.registered {
+    color: #777;
+  }
+
+  i.fa.unknown,
+  i.fa.unregistered {
+    cursor: default;
+    color: #bbb;
+  }
+
+  i.fa:hover {
+    color: #000;
+  }
+
+  i.fa.unknown:hover,
+  i.fa.unregistered:hover {
+    color: #bbb;
+  }
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+    display: block;
+    margin: 3px 0;
+    width: 270px;
+    float: left;
+  }
+
+  span.name {
+    border-bottom: none;
+    margin: 8px 0 5px 0;
+    color: #008cba;
+  }
+}

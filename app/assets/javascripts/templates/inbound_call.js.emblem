@@ -4,17 +4,25 @@ table.callstats_table
     td
       = callerId
 
-      span.has-tip.radius data-tooltip="" title="Called in at #{unbound moment calledAt}"
+      span.has-tip.radius data-tooltip="" title="Called at #{unbound moment calledAt}"
         i.fa.fa-clock-o.timestamps
 
       span.has-tip.radius data-tooltip="" title="ID: #{unbound id}<br />Channel: #{unbound channel1}"
         i.fa.fa-info-circle.metadata
   tr
-    td Queued at
-    td = view Ember.FromNow time=queuedAt
-  tr
-    td Requested skill
-    td = capitalize skill
+    if bridge.calledAt
+      td Answered at
+      td = view Ember.AnsweredAt
+    else
+      if queuedAt
+        td Queued at
+        td = view Ember.QueuedAt
+      else
+        td Called at
+        td = view Ember.CalledAt
   tr
     td Language choice
     td = upcase language
+  tr
+    td Requested skill
+    td = capitalize skill

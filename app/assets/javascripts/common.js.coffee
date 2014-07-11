@@ -5,7 +5,6 @@ window.app = {
 
 
   setupInterface: ->
-
     ($ '#agent_overview > h5').click ->
       ($ '#call_queue').toggleClass('expanded')
 
@@ -28,6 +27,10 @@ window.app = {
     @updateRecordFrom(data, 'call', Voice.Call)
 
 
+  createMessageFrom: (data) ->
+    @updateRecordFrom(data, 'chat_message', Voice.ChatMessage)
+
+
   updateRecordFrom: (data, name, klass) ->
     obj = Voice.store.getById(name, data[name].id)
     if obj
@@ -45,7 +48,6 @@ window.app = {
 
 
   setupSSE: ->
-
     params = "?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}"
     sseSource = new EventSource('/events' + params)
 
@@ -69,6 +71,8 @@ window.app = {
         app.updateUserFrom(data)
       else if data.call
         app.updateCallFrom(data)
+      else if data.chat_message
+        app.createMessageFrom(data)
 
       if env.railsEnv == 'test' && !data.servertime
         env.messages.push(data)

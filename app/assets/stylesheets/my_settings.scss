@@ -1,0 +1,59 @@
+#my_settings {
+  transition: height ease 300ms;
+  position: relative;
+  padding-right: 0;
+  height: 43px;
+  z-index: 5;
+
+  li.tab-title.active > a {
+    cursor: default;
+  }
+
+  .tabs.vertical {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+
+  .tabs-content.vertical > .content {
+    margin-top: 10px;
+  }
+
+  span.stats {
+    padding-right: 15px;
+  }
+}
+
+#my_settings.expanded {
+  height: 180px;
+}
+
+#my_settings_body {
+  border-top: 1px solid #eee;
+  overflow-x: hidden;
+  position: initial;
+  overflow-y: auto;
+  width: 100%;
+  padding: 0;
+  bottom: 0;
+  top: 40px;
+}
+
+table#skill_table,
+table#state_table,
+table#language_table {
+  border-collapse: collapse;
+  margin: 0;
+
+  tr, td, label {
+    padding: 0;
+    margin: 0;
+  }
+
+  tr, td {
+    background-color: #f6f6f6;
+  }
+
+  td {
+    padding: 6px 8px;
+  }
+}
