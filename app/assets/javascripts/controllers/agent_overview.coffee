@@ -8,8 +8,9 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
     available  = @get('content.availableAgents')
     registered = @get('content.registeredAgents')
     agents     = if registered == 1 then 'agent is' else 'agents are'
+    are        = if available == 1 then 'is' else 'are'
 
-    "#{registered} #{agents} currently online — with #{available} available."
+    "#{registered} #{agents} online — #{available} #{are} available."
   ).property('content.{availableAgents,registeredAgents}')
 
 })

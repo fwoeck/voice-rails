@@ -2,7 +2,7 @@ table.callstats_table
   tr
     td
       | Connected agent
-      i.fa.fa-comments.connection
+      i.fa.fa-phone.connection
     td
       | #{agent.name} / #{agent.fullname}
 
