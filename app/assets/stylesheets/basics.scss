@@ -13,6 +13,12 @@
   background: #fff;
 }
 
+div, img {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
 #login_body {
   padding-top: 30px;
 }

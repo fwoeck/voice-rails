@@ -37,7 +37,8 @@
   }
 
   .body p {
-    text-overflow: ellipsis;
+    -webkit-user-select: text;
+    -moz-user-select: text;
     margin: 6px 0 6px 0;
     line-height: 18px;
     overflow: hidden;
