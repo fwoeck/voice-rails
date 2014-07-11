@@ -40,6 +40,11 @@ Ember.FromNow = Ember.View.extend({
 })
 
 
+Ember.CreatedAt = Ember.FromNow.extend({
+  template: Ember.Handlebars.compile("{{fromNow cm.createdAt}}")
+})
+
+
 Ember.AnsweredAt = Ember.FromNow.extend({
   template: Ember.Handlebars.compile("{{fromNow bridge.calledAt}}")
 })

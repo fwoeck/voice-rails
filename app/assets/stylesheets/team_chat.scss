@@ -28,8 +28,12 @@
   padding: 8px 0 4px 0;
 
   span.from {
-    margin-left: 4px;
     color: #008CBA;
+  }
+
+  span.created-at {
+    font-size: 11px;
+    color: #999;
   }
 
   .body p {
@@ -38,7 +42,7 @@
     line-height: 18px;
     overflow: hidden;
     font-size: 13px;
-    color: #999;
+    color: #777;
   }
 }
 
