@@ -13,4 +13,13 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     cu = Voice.get('currentUser')
     cu.save() if cu.get('currentState.stateName') != 'root.loaded.saved'
 
+
+  currentStatusLine: (->
+    avail = @get('content.availability')
+    state = @get('content.agentState')
+    name  = (if state == 'talking' then state else avail)
+
+    "I'm currently #{name}."
+  ).property('content.{availability,agentState}')
+
 })

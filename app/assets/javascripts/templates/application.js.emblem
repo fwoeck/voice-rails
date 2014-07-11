@@ -1,8 +1,8 @@
 #main.row
 
   #logout_link
-    a data-method="delete" href="/auth/logout" rel="nofollow"
-      | Logout #{Voice.currentUser.email}
+    ' #{Voice.currentUser.name} / #{Voice.currentUser.fullname} &mdash;
+    a data-method="delete" href="/auth/logout" rel="nofollow" Logout 
 
   #center_column.large-9.medium-9.left
     = render 'my_settings' content

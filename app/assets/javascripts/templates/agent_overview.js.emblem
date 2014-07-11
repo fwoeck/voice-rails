@@ -2,7 +2,7 @@
   h5
     i.header.fa.fa-compass
     | Agent Overview
-    span.stats 12 agents are online, 3 of them available
+    span.stats = currentStatusLine
 
   #agent_overview_body.bottom-mask
     each content
