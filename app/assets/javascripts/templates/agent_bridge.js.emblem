@@ -1,14 +1,13 @@
 table.callstats_table
   tr
-    td Agent name
     td
-      = agent.fullname
+      | Connected agent
+      i.fa.fa-comments.connection
+    td
+      | #{agent.name} / #{agent.fullname}
 
       span.has-tip.radius data-tooltip="" title="Answered at #{unbound moment calledAt}"
         i.fa.fa-clock-o.timestamps
 
       span.has-tip.radius data-tooltip="" title="ID: #{unbound id}<br />Channel: #{unbound channel1}"
         i.fa.fa-info-circle.metadata
-  tr
-    td Agent email
-    td = agent.email

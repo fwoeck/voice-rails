@@ -306,15 +306,20 @@ table#callstats_table {
   width: 100%;
 
   tr {
+    background-color: #faebd7;
     vertical-align: top;
   }
 
-  thead td {
+  thead tr {
+    background-color: #ddd;
     font-size: 12px;
   }
 }
 
 table.callstats_table {
+  -webkit-border-horizontal-spacing: 0;
+  -webkit-border-vertical-spacing: 0;
+  position: relative;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -332,17 +337,31 @@ table.callstats_table {
   }
 
   span.has-tip {
-    transition: color linear 300ms;
     margin-left: 6px;
-    font-size: 14px;
     cursor: pointer;
     border: none;
     float: right;
-    color: #777;
+  }
+
+  i.fa {
+    transition: color linear 300ms;
+    font-size: 14px;
+    color: #008cba;
   }
 
   i.fa:hover {
     color: #000;
+  }
+
+  i.fa.connection {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 1000px;
+    position: absolute;
+    font-size: 24px;
+    padding: 4px;
+    left: -30px;
+    top: 18px;
   }
 }
 
