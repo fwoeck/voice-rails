@@ -1,7 +1,7 @@
 #main.row
 
   #logout_link
-    ' #{Voice.currentUser.name} / #{Voice.currentUser.fullname} &mdash;
+    ' #{Voice.currentUser.name} / #{Voice.currentUser.displayName} &mdash;
     a data-method="delete" href="/auth/logout" rel="nofollow" Logout 
 
   #center_column.large-9.medium-9.left
