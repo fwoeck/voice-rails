@@ -4,6 +4,7 @@ Voice.ChatMessage = DS.Model.extend({
   from:       DS.attr 'string'
   content:    DS.attr 'string'
   createdAt:  DS.attr 'date'
+  newest:     true
 
 
   fromName: (->

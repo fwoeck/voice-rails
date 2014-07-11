@@ -1,18 +1,24 @@
 #chat_header {
-  height: 100px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  height: 125px;
   z-index: 10;
 
   h5 {
-    margin-bottom: 12px;
+    margin-bottom: 7px;
+  }
+
+  input {
+    height: 42px;
+    width: 230px;
   }
 }
 
 #team_chat {
-  border-top: 1px solid #eee;
   position: absolute;
   overflow-y: auto;
   padding-top: 4px;
-  top: 124px;
+  top: 125px; // ! This must match tcTop in ChatMessageView
   z-index: 1;
   bottom: 0;
 }
@@ -30,9 +36,13 @@
     text-overflow: ellipsis;
     margin: 6px 0 6px 0;
     line-height: 18px;
-    max-height: 70px;
     overflow: hidden;
     font-size: 13px;
     color: #999;
   }
+}
+
+.message.newest {
+  position: absolute;
+  top: -1000px;
 }

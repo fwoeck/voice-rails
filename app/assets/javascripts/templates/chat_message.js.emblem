@@ -1,0 +1,6 @@
+div class={cm.newest:newest :message}
+  .header
+    i.fa.fa-clock-o title="#{unbound moment cm.createdAt}"
+    span.from #{unbound cm.fromName}
+  .body
+    p = unbound cm.content

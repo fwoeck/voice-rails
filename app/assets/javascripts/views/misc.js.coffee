@@ -1,5 +1,4 @@
 Ember.RadioButton = Ember.View.extend({
-
   attributeBindings: ['name', 'type', 'value', 'checked:checked:']
   tagName:            'input'
   type:               'radio'
@@ -10,12 +9,10 @@ Ember.RadioButton = Ember.View.extend({
   checked: (->
     @get('value') == @get('selection')
   ).property('selection')
-
 })
 
 
 Ember.CheckMark = Ember.View.extend({
-
   attributeBindings: ['name', 'type', 'value', 'checked:checked:']
   tagName:            'input'
   type:               'checkbox'
@@ -26,12 +23,10 @@ Ember.CheckMark = Ember.View.extend({
   checked: (->
     @get('selection')
   ).property('selection')
-
 })
 
 
 Ember.FromNow = Ember.View.extend({
-
   tagName: 'span'
 
   didInsertElement: ->
@@ -42,7 +37,6 @@ Ember.FromNow = Ember.View.extend({
 
   willClearRender: ->
     window.clearInterval @interval
-
 })
 
 
@@ -62,7 +56,6 @@ Ember.CalledAt = Ember.FromNow.extend({
 
 
 Ember.ChatInput = Ember.TextField.extend({
-
   placeholder: 'Type here...'
   maxlength:   '150'
 
@@ -80,5 +73,4 @@ Ember.ChatInput = Ember.TextField.extend({
 
   clearInput: ->
     @set('value', '')
-
 })
