@@ -1,5 +1,10 @@
 window.app = {
 
+  logout: ->
+    $.post('/auth/logout', {'_method': 'DELETE'}). then (->
+      window.location.reload()
+    )
+
   noLogin: ->
     env.userId.length == 0
 
@@ -86,12 +91,20 @@ window.app = {
     env.sseSource = new EventSource('/events' + params)
 
     env.sseSource.onopen = (event) ->
+      env.sseErrors = 0
       console.log(new Date, 'Opened SSE connection.') if env.debug
 
     env.sseSource.onerror = (event) ->
       console.log(new Date, 'SSE connection error', event)
-      window.setTimeout app.setupSSE, 1000
+      env.sseErrors += 1
       env.sseSource.close()
+
+      if env.sseErrors < 4
+        window.setTimeout app.setupSSE, 1000
+      else
+        app.dialog('Sorry, we lost the connection to the server &mdash;<br />please check your network and try to re-login.', 'error').then (->
+          app.logout()
+        )
 
     env.sseSource.onmessage = (event) ->
       data = JSON.parse(event.data)

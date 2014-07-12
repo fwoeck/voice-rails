@@ -22,6 +22,7 @@ html
       window.env = {
         debug:         false,
         messages:      [],
+        sseErrors:     0,
         sslEnabled:    false,
         railsEnv:     "#{Rails.env}",
         sipAgent:     "#{current_user.try(:name)}",
