@@ -7,6 +7,7 @@
 #= require foundation/foundation.tooltip
 #= require moment
 #= require common
+#= require connections
 #= require js-phone
 #= require handlebars
 #= require ember
