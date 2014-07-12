@@ -1,0 +1,89 @@
+#dialog_wrapper {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 40;
+
+  input[type="text"] {
+    width: 300px;
+  }
+
+  p.message {
+    word-break: break-word;
+    position: relative;
+    font-size: 14px;
+    display: table;
+    width: 300px;
+  }
+
+  .panel {
+    border: 2px solid #888;
+    background-color: #fff;
+    border-radius: 4px;
+    position: absolute;
+    visibility: hidden;
+    left: 50%;
+    top: 46%;
+  }
+
+  .panel.error {
+    border: 3px solid #e66;
+  }
+
+  form[data-abide] {
+    height: 64px;
+  }
+
+  form.error {
+    border: 0;
+  }
+
+  .button {
+    margin-right: 10px;
+    margin-bottom: 0;
+    min-width: 100px;
+    font-size: 13px;
+    padding: 5px;
+  }
+
+  .button.last {
+    margin-right: 0;
+  }
+
+  i.fa.icon {
+    display: table-cell;
+    vertical-align: top;
+    padding-right: 20px;
+    position: relative;
+    font-size: 24px;
+    color: #666;
+    width: 30px;
+  }
+
+  i.fa:after {
+    border: 2px solid #f0f0f0;
+    border-radius: 1000px;
+    position: absolute;
+    display: block;
+    height: 34px;
+    width: 34px;
+    content: '';
+    left: -6px;
+    top: -3px;
+  }
+
+  i.fa.has-tip {
+    vertical-align: inherit;
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 16px;
+    color: #bbb;
+    padding: 0;
+    border: 0;
+  }
+
+  i.fa.has-tip:after {
+    content: none;
+  }
+}

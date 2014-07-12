@@ -26,6 +26,11 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   skill:        DS.attr 'string'
 
 
+  myCall: ( ->
+    @get('agent.name') == env.sipAgent
+  ).property('agent.name')
+
+
   agent: ( ->
     users = @get('allUsers')
     return false unless users

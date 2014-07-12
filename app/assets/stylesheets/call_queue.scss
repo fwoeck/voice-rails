@@ -30,6 +30,7 @@
 }
 
 table#callstats_table {
+  border-radius: 4px;
   width: 100%;
 
   tr {
@@ -58,6 +59,8 @@ table.callstats_table {
   }
 
   td {
+    -webkit-user-select: text;
+    -moz-user-select: text;
     font-size: 12px;
     padding: 0 4px;
     margin: 0;
@@ -84,9 +87,25 @@ table.callstats_table {
     border: 3px solid #999;
     border-radius: 1000px;
     position: absolute;
+    padding: 4px 5px;
     font-size: 24px;
-    padding: 4px;
-    left: -30px;
-    top: 26px;
+    height: 35px;
+    left: -28px;
+    width: 35px;
+    color: #ccc;
+    top: 29px;
+  }
+
+  i.fa.connection:hover {
+    color: #ccc;
+  }
+
+  i.fa.connection.my-call {
+    cursor: pointer;
+    color: #008cba;
+  }
+
+  i.fa.connection.my-call:hover {
+    color: #000;
   }
 }

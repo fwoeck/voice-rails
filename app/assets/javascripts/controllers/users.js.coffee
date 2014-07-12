@@ -9,9 +9,10 @@ Voice.UsersController = Ember.ArrayController.extend({
   ).property('content.@each.{agentState,availability}')
 
 
-  registeredAgents: (->
+  onlineAgents: (->
     @get('content').filter( (a) ->
-      a.get('agentState') == 'registered'
+      state = a.get('agentState')
+      state == 'registered' || state == 'talking'
     ).length
   ).property('content.@each.agentState')
 

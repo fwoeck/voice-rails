@@ -5,6 +5,11 @@ Voice.ApplicationView = Ember.View.extend({
   didInsertElement: ->
     $(document).foundation()
     app.setupInterface()
+    app.setupPhone()
     app.setupSSE()
+
+    window.onbeforeunload = ->
+      env.sseSource.close()
+      phone.app.logoff()
 
 })

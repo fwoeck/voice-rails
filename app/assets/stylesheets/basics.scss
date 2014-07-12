@@ -13,6 +13,16 @@
   background: #fff;
 }
 
+div, img {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+#hidden_tabindex {
+  display: none;
+}
+
 #login_body {
   padding-top: 30px;
 }
@@ -113,4 +123,9 @@ form#new_user {
     font-size: 24px;
     color: #008CBA;
   }
+}
+
+.blurred {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
 }

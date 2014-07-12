@@ -7,12 +7,7 @@
 
 #team_chat.large-12.medium-12.columns.bottom-mask
   each cm in content
-    .message
-      .header
-        i.fa.fa-clock-o title="#{unbound moment cm.createdAt}"
-        span.from #{unbound cm.fromName}
-      .body
-        p = unbound cm.content
+    = view Voice.ChatMessageView cm=cm
   else
     .message
       .body

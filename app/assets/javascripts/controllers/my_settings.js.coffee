@@ -18,8 +18,12 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     avail = @get('content.availability')
     state = @get('content.agentState')
     name  = (if state == 'talking' then state else avail)
+    if name == 'ready'
+      name = 'ready to take calls'
+    else
+      name = "currently #{name}"
 
-    "I'm currently #{name}."
+    "I'm #{name}."
   ).property('content.{availability,agentState}')
 
 })

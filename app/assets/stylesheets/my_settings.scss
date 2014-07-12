@@ -10,7 +10,6 @@
   }
 
   .tabs.vertical {
-    border: 1px solid #ddd;
     margin-top: 10px;
   }
 
@@ -36,12 +35,20 @@
   padding: 0;
   bottom: 0;
   top: 40px;
+
+  > ul {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+  }
 }
 
 table#skill_table,
 table#state_table,
 table#language_table {
   border-collapse: collapse;
+  border-radius: 4px;
+  overflow: hidden;
   margin: 0;
 
   tr, td, label {

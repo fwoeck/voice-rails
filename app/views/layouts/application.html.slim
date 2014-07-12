@@ -20,16 +20,20 @@ html
 
     javascript:
       window.env = {
+        debug:         false,
         messages:      [],
+        sslEnabled:    false,
         railsEnv:     "#{Rails.env}",
+        sipAgent:     "#{current_user.try(:name)}",
+        sipSecret:    "#{current_user.try(:secret)}",
+        sipHost:      "#{WimConfig.sip_host}",
         userId:       "#{current_user.try(:id)}",
         sessionToken: "#{form_authenticity_token}",
         availability:  #{WimConfig.availability.to_json.html_safe},
         agentState:    #{WimConfig.agent_state.to_json.html_safe},
         languages:     #{WimConfig.languages.to_json.html_safe},
         skills:        #{WimConfig.skills.to_json.html_safe},
-        roles:         #{WimConfig.roles.to_json.html_safe},
-        debug:         false
+        roles:         #{WimConfig.roles.to_json.html_safe}
       }
 
     = javascript_include_tag 'application'

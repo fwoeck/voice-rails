@@ -23,7 +23,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
     waiting   = @get('waitingCalls.length')
     customers = if waiting == 1 then 'customer is' else 'customers are'
 
-    "#{waiting} #{customers} currently queued."
+    "#{waiting} #{customers} queued."
   ).property('waitingCalls.length')
 
 })

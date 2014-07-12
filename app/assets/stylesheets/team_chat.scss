@@ -1,38 +1,53 @@
 #chat_header {
-  height: 100px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  height: 125px;
   z-index: 10;
 
   h5 {
-    margin-bottom: 12px;
+    margin-bottom: 7px;
+  }
+
+  input {
+    height: 42px;
+    width: 230px;
   }
 }
 
 #team_chat {
-  border-top: 1px solid #eee;
   position: absolute;
   overflow-y: auto;
   padding-top: 4px;
-  top: 124px;
+  top: 125px; // ! This must match tcTop in ChatMessageView
   z-index: 1;
   bottom: 0;
-}
 
-.message {
-  border-bottom: 1px solid #eee;
-  padding: 8px 0 4px 0;
+  .message {
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 4px 0;
 
-  span.from {
-    margin-left: 4px;
-    color: #008CBA;
+    span.from {
+      color: #008CBA;
+    }
+
+    span.created-at {
+      font-size: 11px;
+      color: #999;
+    }
+
+    .body p {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      margin: 6px 0 6px 0;
+      line-height: 18px;
+      overflow: hidden;
+      font-size: 13px;
+      color: #777;
+    }
   }
 
-  .body p {
-    text-overflow: ellipsis;
-    margin: 6px 0 6px 0;
-    line-height: 18px;
-    max-height: 70px;
-    overflow: hidden;
-    font-size: 13px;
-    color: #999;
+  .message.newest {
+    position: absolute;
+    top: -1000px;
   }
 }
