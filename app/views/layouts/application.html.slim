@@ -24,6 +24,8 @@ html
         messages:      [],
         sslEnabled:    false,
         railsEnv:     "#{Rails.env}",
+        sipAgent:     "#{current_user.try(:name)}",
+        sipSecret:    "#{current_user.try(:secret)}",
         sipHost:      "#{WimConfig.sip_host}",
         userId:       "#{current_user.try(:id)}",
         sessionToken: "#{form_authenticity_token}",

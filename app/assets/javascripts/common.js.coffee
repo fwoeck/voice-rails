@@ -6,8 +6,8 @@ window.app = {
 
   setupPhone: ->
     data =
-      login: Voice.get('currentUser.name')
-      password: '0000'
+      login:    env.sipAgent
+      password: env.sipSecret
 
     phone.notify = (call) ->
       console.log('SIP notify call:', call) if env.debug
@@ -86,7 +86,7 @@ window.app = {
     env.sseSource = new EventSource('/events' + params)
 
     env.sseSource.onopen = (event) ->
-      console.log(new Date, 'Opened SSE connection.')
+      console.log(new Date, 'Opened SSE connection.') if env.debug
 
     env.sseSource.onerror = (event) ->
       console.log(new Date, 'SSE connection error', event)
