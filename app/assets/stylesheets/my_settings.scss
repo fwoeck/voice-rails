@@ -40,6 +40,7 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     overflow: hidden;
+    height: 101px;
   }
 }
 
@@ -49,6 +50,9 @@ table#language_table {
   border-collapse: collapse;
   border-radius: 4px;
   overflow: hidden;
+  display: block;
+  height: 101px;
+  float: left;
   margin: 0;
 
   tr, td, label {
@@ -62,6 +66,6 @@ table#language_table {
 
   td {
     padding: 6px 8px;
-    height: 34px;
+    height: 33px;
   }
 }

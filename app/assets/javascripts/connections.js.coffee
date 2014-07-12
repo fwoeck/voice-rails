@@ -1,5 +1,5 @@
 app.setupPhone = ->
-  return if Modernizr.touch
+  return unless phone.isWebRTCAvailable
 
   data =
     login:    env.sipAgent
