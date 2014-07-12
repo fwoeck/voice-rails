@@ -102,7 +102,7 @@ window.app = {
       if env.sseErrors < 4
         window.setTimeout app.setupSSE, 1000
       else
-        app.dialog('Sorry, we lost the connection to the server &mdash;<br />please check your network and try to re-login.', 'error').then (->
+        app.dialog('Sorry, we lost our connection to the server &mdash;<br />please check your network and try to re-login.', 'error').then (->
           app.logout()
         )
 
