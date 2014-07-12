@@ -21,33 +21,33 @@
   top: 125px; // ! This must match tcTop in ChatMessageView
   z-index: 1;
   bottom: 0;
-}
 
-.message {
-  border-bottom: 1px solid #eee;
-  padding: 8px 0 4px 0;
+  .message {
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 4px 0;
 
-  span.from {
-    color: #008CBA;
+    span.from {
+      color: #008CBA;
+    }
+
+    span.created-at {
+      font-size: 11px;
+      color: #999;
+    }
+
+    .body p {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      margin: 6px 0 6px 0;
+      line-height: 18px;
+      overflow: hidden;
+      font-size: 13px;
+      color: #777;
+    }
   }
 
-  span.created-at {
-    font-size: 11px;
-    color: #999;
+  .message.newest {
+    position: absolute;
+    top: -1000px;
   }
-
-  .body p {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    margin: 6px 0 6px 0;
-    line-height: 18px;
-    overflow: hidden;
-    font-size: 13px;
-    color: #777;
-  }
-}
-
-.message.newest {
-  position: absolute;
-  top: -1000px;
 }

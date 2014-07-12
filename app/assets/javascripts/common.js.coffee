@@ -76,4 +76,46 @@ window.app = {
 
       if env.railsEnv == 'test' && !data.servertime
         env.messages.push(data)
+
+
+  focusDefaultTabindex: ->
+    ($ '#hidden_tabindex input').focus()
+
+
+  hideTooltips: ->
+    new Ember.RSVP.Promise (resolve, reject) ->
+      ($ 'body > span.tooltip').trigger('touchstart.fndtn.tooltip')
+      ($ ':animated').promise().done -> resolve()
+
+
+  strippedEmail: (email) ->
+    email.match(env.abideOptions.patterns.email)?[0].toLowerCase()
+
+
+  resetAbide: ->
+    ($ 'form[data-abide]').parent().unbind().foundation()
+
+
+  showDefaultError: (message) ->
+    app.dialog(message, 'error').then (->), (->)
+
+
+  showDefaultMessage: (message) ->
+    app.dialog(message, 'message').then (->), (->)
+
+
+  dialog: (message, type='question', textYes='Ok', textNo='Cancel', text, format) ->
+    new Ember.RSVP.Promise (resolve, reject) ->
+      dialog = Ember.Object.create
+        message: message
+        textYes: textYes
+        resolve: resolve
+        reject:  reject
+        textNo:  textNo
+        format:  format
+        text:    text
+        type:    type
+
+      Voice.set 'dialogContent', dialog
+
 }
