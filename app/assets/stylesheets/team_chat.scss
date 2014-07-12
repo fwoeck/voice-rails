@@ -44,6 +44,10 @@
       font-size: 13px;
       color: #777;
     }
+
+    .body.empty p {
+      height: 58px;
+    }
   }
 
   .message.newest {

@@ -827,11 +827,11 @@ DefaultListener.prototype = {
 
 var PhoneAppLoader = function () {
   this.app = null;
+  this.wsPort = '80';
   this.useDTLS = true;
   this.xcapUrl = null;
   this.stunServer = ''
-  this.wsPort = '8080';
-  this.wssPort = '8443';
+  this.wssPort = '443';
   this.useWebRTC = true;
   this.urlServer = null;
   this.videoWidth = 352;

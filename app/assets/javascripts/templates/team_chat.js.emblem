@@ -10,5 +10,5 @@
     = view Voice.ChatMessageView cm=cm
   else
     .message
-      .body
+      .body.empty
         p There are no recent messages in the team chat until now &mdash; be the first one to write one!
