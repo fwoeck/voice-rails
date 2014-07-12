@@ -4,6 +4,40 @@ window.app = {
     env.userId.length == 0
 
 
+  setupPhone: ->
+    data =
+      login: Voice.get('currentUser.name')
+      password: '0000'
+
+    phone.notify = (call) ->
+      console.log('SIP notify call:', call) if env.debug
+
+    phone.notifyAddCall = (call) ->
+      console.log('SIP add call:', call) if env.debug
+      env.callDialogActive = true
+
+      app.dialog("You have an incoming call from<br />#{call.visibleNameCaller}", 'question', 'Answer', 'Requeue').then ( ->
+        env.callDialogActive = false
+        phone.app.answer(call.id, false)
+      ), ( ->
+        env.callDialogActive = false
+        phone.app.hangup(call.id)
+      )
+
+    phone.notifyRemoveCall = (call) ->
+      console.log('SIP remove call:', call) if env.debug
+      if env.callDialogActive
+        env.callDialogActive = false
+        Voice.dialogController.clear()
+
+    phone.notifyRegistered = (session) ->
+      console.log('SIP registered:', session) if env.debug
+
+    phone.app.login(data)
+    unless phone.app.hasAccessToAudio()
+      phone.app.getAccessToAudio()
+
+
   setupInterface: ->
     ($ '#agent_overview > h5').click ->
       ($ '#call_queue').toggleClass('expanded')
@@ -49,23 +83,19 @@ window.app = {
 
   setupSSE: ->
     params = "?user_id=#{env.userId}&rails_env=#{env.railsEnv}&token=#{env.sessionToken}"
-    sseSource = new EventSource('/events' + params)
+    env.sseSource = new EventSource('/events' + params)
 
-    window.onbeforeunload = ->
-      sseSource.close()
-      console.log(new Date, 'Closed SSE connection.')
-
-    sseSource.onopen = (event) ->
+    env.sseSource.onopen = (event) ->
       console.log(new Date, 'Opened SSE connection.')
 
-    sseSource.onerror = (event) ->
+    env.sseSource.onerror = (event) ->
       console.log(new Date, 'SSE connection error', event)
       window.setTimeout app.setupSSE, 1000
-      sseSource.close()
+      env.sseSource.close()
 
-    sseSource.onmessage = (event) ->
+    env.sseSource.onmessage = (event) ->
       data = JSON.parse(event.data)
-      console.log(data) if env.debug
+      console.log('SSE message:', data) if env.debug
 
       if data.user
         app.updateUserFrom(data)
