@@ -28,10 +28,22 @@ class Call
 
   def headers
     {
-      'Channel1' => channel1, 'Channel2' => channel2, 'Language' => language, 'Skill' => skill,
-      'CallerId' => caller_id, 'Hungup' => hungup, 'Initiator' => initiator, 'CalledAt' => called_at,
+      'Channel1' => channel1,  'Channel2' => channel2,  'Language'     => language,  'Skill'    => skill,
+      'CallerId' => caller_id, 'Hungup'   => hungup,    'Initiator'    => initiator, 'CalledAt' => called_at,
       'QueuedAt' => queued_at, 'HungupAt' => hungup_at, 'DispatchedAt' => dispatched_at
     }
+  end
+
+
+  def is_owned_by?(user)
+    # TODO We have to restrict access here:
+    #
+    true
+  end
+
+
+  def hangup
+    AmqpManager.ahn_publish(call_id: target_id, command: :hangup)
   end
 
 

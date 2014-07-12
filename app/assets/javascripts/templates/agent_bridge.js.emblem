@@ -2,7 +2,7 @@ table.callstats_table
   tr
     td
       | Connected agent
-      i class={myCall :fa :fa-phone :connection}
+      i class={myCall :fa :fa-phone :connection} click=hangupCall
     td
       | #{agent.name} / #{agent.fullname}
 
