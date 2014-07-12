@@ -1,5 +1,14 @@
 window.app = {
 
+  resetServerTimer: ->
+    window.clearTimeout(env.serverTimeout) if env.serverTimeout
+    env.serverTimeout = window.setTimeout (->
+      app.dialog('Sorry, we stopped receiving messages &mdash;<br />please open just one app window at a time.', 'error').then (->
+        app.logout()
+      )
+    ), 12000
+
+
   logout: ->
     phone.app.logoff()
     $.post('/auth/logout', {'_method': 'DELETE'}). then (->

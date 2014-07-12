@@ -65,6 +65,8 @@ app.setupSSE = ->
       app.updateCallFrom(data)
     else if data.chat_message
       app.createMessageFrom(data)
+    else if data.servertime
+      app.resetServerTimer()
 
     if env.railsEnv == 'test' && !data.servertime
       env.messages.push(data)
