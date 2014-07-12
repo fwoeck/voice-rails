@@ -1,5 +1,6 @@
 #= require jquery
 #= require rails
+#= require fastclick
 #= require jquery.json.js
 #= require jquery.websocket
 #= require foundation/foundation

@@ -47,6 +47,7 @@ table#callstats_table {
 table.callstats_table {
   -webkit-border-horizontal-spacing: 0;
   -webkit-border-vertical-spacing: 0;
+  border-collapse: collapse;
   position: relative;
   width: 100%;
   padding: 0;
@@ -107,5 +108,13 @@ table.callstats_table {
 
   i.fa.connection.my-call:hover {
     color: #000;
+  }
+}
+
+html.touch {
+  table.callstats_table {
+    i.fa.connection {
+      padding: 3px 5px;
+    }
   }
 }

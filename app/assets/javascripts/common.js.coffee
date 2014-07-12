@@ -10,7 +10,7 @@ window.app = {
 
 
   logout: ->
-    phone.app.logoff()
+    phone.app.logoff() unless Modernizr.touch
     $.post('/auth/logout', {'_method': 'DELETE'}). then (->
       window.location.reload()
     )

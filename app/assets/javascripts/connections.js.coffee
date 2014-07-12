@@ -1,4 +1,5 @@
 app.setupPhone = ->
+  return if Modernizr.touch
 
   data =
     login:    env.sipAgent
