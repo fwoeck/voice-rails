@@ -7,23 +7,15 @@ if isActive
       if requiresInput
         form.text data-abide="" novalidate="" submit='noop'
 
-          if validatesEmail
-            type-ahead type='text' name='dialog' required='' autocorrect='off' autocapitalize='off' maxlength='32' tabindex='2' value=text placeholder='Type an email..' data=lookupData selection=selection
-            small.error = t 'validation.must_be_email'
+        if validatesMessage
+          Ember.TextField type='text' name='dialog' required='' maxlength='140' tabindex='2' value=text placeholder='Type a message..' pattern='message'
+          small.error = t 'validation.must_be_message'
+        else
+          if inputIsOptional
+            Ember.TextField type='text' name='dialog' maxlength='256' tabindex='2' value=text placeholder='Enter optional text..'
           else
-            if validatesSubject
-              Ember.TextField type='text' name='dialog' required='' maxlength='64' tabindex='2' value=text placeholder='Type a subject..' pattern='subject'
-              small.error = t 'validation.must_be_subject'
-            else
-              if validatesMessage
-                Ember.TextField type='text' name='dialog' required='' maxlength='140' tabindex='2' value=text placeholder='Type a message..' pattern='message'
-                small.error = t 'validation.must_be_message'
-              else
-                if inputIsOptional
-                  Ember.TextField type='text' name='dialog' maxlength='256' tabindex='2' value=text placeholder='Enter optional text..'
-                else
-                  Ember.TextField type='text' name='dialog' required='' maxlength='256' tabindex='2' value=text placeholder='Type here..'
-                  small.error = t 'validation.must_be_text'
+            Ember.TextField type='text' name='dialog' required='' maxlength='256' tabindex='2' value=text placeholder='Type here..'
+            small.error = t 'validation.must_be_text'
 
       if requiresDecision
         #dialog_no.tiny.button.radius.last.right click='cancelDialog'

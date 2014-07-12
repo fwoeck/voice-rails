@@ -125,7 +125,7 @@ form#new_user {
   }
 }
 
-#main.blurred {
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
+.blurred {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
 }

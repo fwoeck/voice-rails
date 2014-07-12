@@ -18,9 +18,9 @@
   }
 
   .panel {
+    border: 2px solid #888;
     background-color: #fff;
     border-radius: 4px;
-    border-color: #777;
     position: absolute;
     visibility: hidden;
     left: 50%;
@@ -85,54 +85,5 @@
 
   i.fa.has-tip:after {
     content: none;
-  }
-
-  .icon.fa-info-circle:before,
-  .icon.fa-exclamation-circle:before {
-    margin: 0 -3px 0 3px;
-    line-height: 29px;
-    font-size: 19px;
-  }
-
-  .icon.fa-copy:before,
-  .icon.fa-warning:before,
-  .icon.fa-envelope-o:before {
-    margin: 0 -1px 0 1px;
-    font-size: 20px;
-  }
-
-  .icon.fa-comments:before {
-    margin: 0 -1px 0 1px;
-    line-height: 27px;
-    font-size: 20px;
-  }
-}
-
-span.twitter-typeahead {
-  width: 300px;
-
-  span.tt-dropdown-menu {
-    border: 1px solid #bbb;
-    background-color: #fff;
-    margin-top: -16px;
-    padding: 8px;
-    width: 100%;
-
-    p {
-      margin-bottom: 10px;
-      color: #bbb;
-    }
-
-    div.tt-cursor p {
-      color: #333;
-    }
-  }
-
-  input.tt-hint {
-    color: #bbb;
-  }
-
-  div.tt-suggestion:last-child p {
-    margin: 0;
   }
 }

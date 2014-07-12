@@ -94,23 +94,8 @@ Voice.DialogController = Ember.ObjectController.extend {
   ).property('model.format')
 
 
-  validatesEmail: ( ->
-    @get('model.format') == 'email'
-  ).property('model.format')
-
-
   validatesMessage: ( ->
     @get('model.format') == 'message'
   ).property('model.format')
-
-
-  validatesSubject: ( ->
-    @get('model.format') == 'subject'
-  ).property('model.format')
-
-
-  autocomplete: ( ->
-    @get('validatesEmail')
-  ).property('validatesEmail')
 
 }
