@@ -25,7 +25,7 @@ Voice.SkillSettings = Ember.Mixin.create({
   observeSkills: ( ->
     Ember.run.scheduleOnce 'actions', @, @joinSkills
   ).observes(
-    'skillOFFERS', 'skillBILLING', 'skillBOOKING',
+    'skillNEW_BOOKING', 'skillEXT_BOOKING', 'skillPAYMENT',
     'skillOTHER'
   )
 })

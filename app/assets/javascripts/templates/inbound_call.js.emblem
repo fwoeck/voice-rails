@@ -25,4 +25,4 @@ table.callstats_table
     td = upcase language
   tr
     td Requested skill
-    td = capitalize skill
+    td = skillName
