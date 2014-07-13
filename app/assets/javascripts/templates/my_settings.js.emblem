@@ -75,7 +75,7 @@
             td: .switch.tiny
               Ember.CheckMark selection=skillEXT_BOOKING
               label for="ext_booking"
-            td.space Exist. bookings
+            td.space Existing bookings
             td
             td.space
           tr
