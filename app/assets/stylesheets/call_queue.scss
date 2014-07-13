@@ -30,6 +30,7 @@
 }
 
 table#callstats_table {
+  border-collapse: separate;
   border-radius: 4px;
   width: 100%;
 
@@ -38,15 +39,18 @@ table#callstats_table {
     vertical-align: top;
   }
 
-  thead tr {
+  tr.thead td {
     background-color: #ddd;
-    font-size: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
   }
 }
 
 table.callstats_table {
   -webkit-border-horizontal-spacing: 0;
   -webkit-border-vertical-spacing: 0;
+  border-collapse: collapse;
   position: relative;
   width: 100%;
   padding: 0;
@@ -87,7 +91,8 @@ table.callstats_table {
     border: 3px solid #999;
     border-radius: 1000px;
     position: absolute;
-    padding: 4px 5px;
+    line-height: 24px;
+    padding: 3px 5px;
     font-size: 24px;
     height: 35px;
     left: -28px;
@@ -107,5 +112,13 @@ table.callstats_table {
 
   i.fa.connection.my-call:hover {
     color: #000;
+  }
+}
+
+html.touch {
+  table.callstats_table {
+    i.fa.connection {
+      padding: 3px 5px;
+    }
   }
 }

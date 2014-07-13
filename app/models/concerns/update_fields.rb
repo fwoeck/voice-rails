@@ -59,7 +59,7 @@ module UpdateFields
   def check_for_validity(field, key)
     keys = WimConfig.send("#{field}#{field[/y\z/] ? '' : 's'}").keys
     unless keys.include?(key)
-      raise "Invalid user #{field} - use any of #{keys.join(',')}"
+      raise "Invalid user #{field} #{key} - use any of #{keys.join(',')}"
     end
   end
 

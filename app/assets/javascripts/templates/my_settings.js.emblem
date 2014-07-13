@@ -20,17 +20,17 @@
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="ready"
               label for="i_am_ready"
-            td I'm ready
+            td.space I'm ready
           tr
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="busy"
               label for="i_am_busy"
-            td I'm busy
+            td.space I'm busy
           tr
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="away"
               label for="i_am_away"
-            td I'm away
+            td.space I'm away
 
       #panel2.content
         table#language_table
@@ -38,50 +38,50 @@
             td: .switch.tiny
               Ember.CheckMark selection=languageEN
               label for="i_speak_english"
-            td I speak english
+            td.space I speak english
             td: .switch.tiny
               Ember.CheckMark selection=languageFR
               label for="i_speak_french"
-            td Je parle français
+            td.space Je parle français
           tr
             td: .switch.tiny
               Ember.CheckMark selection=languageES
               label for="i_speak_spanish"
-            td Hablo español
+            td.space Hablo español
             td: .switch.tiny
               Ember.CheckMark selection=languageIT
               label for="i_speak_italian"
-            td Parlo italiano
+            td.space Parlo italiano
           tr
             td: .switch.tiny
               Ember.CheckMark selection=languageDE
               label for="i_speak_german"
-            td Ich spreche deutsch
+            td.space Ich spreche deutsch
             td
-            td
+            td.label
 
       #panel3.content
         table#skill_table
           tr
             td: .switch.tiny
-              Ember.CheckMark selection=skillBOOKING
-              label for="booking_support"
-            td Booking support
+              Ember.CheckMark selection=skillNEW_BOOKING
+              label for="new_booking"
+            td.space New bookings
             td: .switch.tiny
               Ember.CheckMark selection=skillOTHER
-              label for="other_questions"
-            td Other questions
+              label for="other"
+            td.space General inquiries
           tr
             td: .switch.tiny
-              Ember.CheckMark selection=skillOFFERS
-              label for="host_offers"
-            td Host offers
+              Ember.CheckMark selection=skillEXT_BOOKING
+              label for="ext_booking"
+            td.space Existing bookings
             td
-            td
+            td.space
           tr
             td: .switch.tiny
-              Ember.CheckMark selection=skillBILLING
-              label for="billing_refunds"
-            td Billing and refunds
+              Ember.CheckMark selection=skillPAYMENT
+              label for="payment"
+            td.space Invoices & payment
             td
-            td
+            td.label

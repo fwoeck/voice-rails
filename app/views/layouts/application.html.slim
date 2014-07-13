@@ -3,8 +3,13 @@ html
   head
     title Voice
 
-    meta charset='utf-8'
-    meta name='viewport' content='width=device-width, initial-scale=1.0'
+    meta charset='utf-8' /
+    meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' /
+    meta name='apple-mobile-web-app-status-bar-style' content='black' /
+    meta name='apple-mobile-web-app-capable' content='yes' /
+    meta name='apple-touch-fullscreen' content='yes' /
+
+    / link rel='apple-touch-icon' href='/images/dokmatic-logo.png' /
 
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'vendor/modernizr'
@@ -22,6 +27,7 @@ html
       window.env = {
         debug:         false,
         messages:      [],
+        sseErrors:     0,
         sslEnabled:    false,
         railsEnv:     "#{Rails.env}",
         sipAgent:     "#{current_user.try(:name)}",

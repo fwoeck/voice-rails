@@ -1,7 +1,7 @@
 table.callstats_table
   tr
-    td Caller ID
-    td
+    td width="40%" Caller ID
+    td width="60%"
       = callerId
 
       span.has-tip.radius data-tooltip="" title="Called at #{unbound moment calledAt}"
@@ -25,4 +25,4 @@ table.callstats_table
     td = upcase language
   tr
     td Requested skill
-    td = capitalize skill
+    td = skillName

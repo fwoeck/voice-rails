@@ -26,6 +26,12 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   skill:        DS.attr 'string'
 
 
+  skillName: ( ->
+    skill = @get('skill')
+    skill.replace(/_booking/, ' booking').capitalize() if skill
+  ).property('skill')
+
+
   myCall: ( ->
     @get('agent.name') == env.sipAgent
   ).property('agent.name')

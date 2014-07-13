@@ -18,7 +18,7 @@
             = f.password_field :password, autocomplete: 'off'
           small.error = flash[:alert]
 
-      - if devise_mapping.rememberable?
+      - if false && devise_mapping.rememberable?
         div
           label
             ' Remember me
@@ -26,4 +26,5 @@
             = f.check_box :remember_me
 
       div
-        = f.submit 'Log in', class: 'tiny button'
+        br
+        = f.submit 'Log in', class: 'tiny button radius'

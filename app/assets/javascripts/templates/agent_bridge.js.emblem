@@ -1,9 +1,9 @@
 table.callstats_table
   tr
-    td
+    td width="40%"
       | Connected agent
       i class={myCall :fa :fa-phone :connection} click=hangupCall
-    td
+    td width="60%"
       | #{agent.name} / #{agent.fullname}
 
       span.has-tip.radius data-tooltip="" title="Answered at #{unbound moment calledAt}"

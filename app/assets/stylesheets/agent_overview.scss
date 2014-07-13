@@ -77,7 +77,7 @@
   i.fa.unknown,
   i.fa.unregistered {
     cursor: default;
-    color: #bbb;
+    color: #e8e8e8;
   }
 
   i.fa:hover {
@@ -86,17 +86,19 @@
 
   i.fa.unknown:hover,
   i.fa.unregistered:hover {
-    color: #bbb;
+    color: #e8e8e8;
   }
 
   span {
     white-space: nowrap;
-    overflow: hidden;
     font-size: 12px;
     display: block;
     margin: 3px 0;
-    width: 270px;
     float: left;
+  }
+
+  span.skills, span.languages {
+    width: 270px;
   }
 
   span.name {
