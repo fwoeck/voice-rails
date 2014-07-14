@@ -3,12 +3,8 @@ table.callstats_table
     td width="40%" Caller ID
     td width="60%"
       = callerId
-
-      span.has-tip.radius data-tooltip="" title="Called at #{unbound moment calledAt}"
-        i.fa.fa-clock-o.timestamps
-
-      span.has-tip.radius data-tooltip="" title="ID: #{unbound id}<br />Channel: #{unbound channel1}"
-        i.fa.fa-info-circle.metadata
+      span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Called at: #{unbound moment calledAt}"
+        i.fa.fa-info-circle
   tr
     if bridge.calledAt
       td Answered at
