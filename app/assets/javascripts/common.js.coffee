@@ -49,18 +49,26 @@ window.app = {
 
   updateRecordFrom: (data, name, klass) ->
     obj = Voice.store.getById(name, data[name].id)
+
     if obj
       Voice.aS.normalizeAttributes(klass, data[name])
-      Ember.keys(data[name]).forEach (key) ->
-        val = data[name][key]
-        val = new Date(val) if val && key.match(/At$/)
-
-        # Caution! We never update fields to falsy values:
-        #
-        if key != 'id' && val && Ember.compare(obj.get(key), val)
-          obj.set(key, val)
+      if name == 'call' && data[name].hungup
+        obj.deleteRecord()
+      else
+        @updateKeysFromData(obj, name, data)
     else
       Voice.store.pushPayload(name, data)
+
+
+  updateKeysFromData: (obj, name, data) ->
+    Ember.keys(data[name]).forEach (key) ->
+      val = data[name][key]
+      val = new Date(val) if val && key.match(/At$/)
+
+      # Caution! We never update fields to falsy values:
+      #
+      if key != 'id' && val && Ember.compare(obj.get(key), val)
+        obj.set(key, val)
 
 
   focusDefaultTabindex: ->
