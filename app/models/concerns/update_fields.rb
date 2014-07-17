@@ -4,7 +4,7 @@ module UpdateFields
 
   def set_availability(key)
     check_for_validity(:availability, key)
-    $redis.set(availability_keyname, key, ex: 1.day)
+    $redis.set(availability_keyname, key)
 
     @memo_availability = nil
     notify_ahn_about_update(:availability)
