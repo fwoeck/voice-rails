@@ -37,6 +37,16 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   ).property('agent.name')
 
 
+  hangup: ->
+    callId = @get('id')
+    $.post("/calls/#{callId}", {'_method': 'DELETE'})
+
+
+  transfer: (to) ->
+    callId = @get('id')
+    $.post("/calls/#{callId}/transfer", {'to': to})
+
+
   agent: ( ->
     users = @get('allUsers')
     return false unless users

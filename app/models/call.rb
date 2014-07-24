@@ -47,6 +47,11 @@ class Call
   end
 
 
+  def transfer_to(to)
+    AmqpManager.ahn_publish(call_id: target_id, to: to, command: :transfer)
+  end
+
+
   def send_update_notification_to_clients
     User.all_online.each do |user|
       AmqpManager.push_publish(

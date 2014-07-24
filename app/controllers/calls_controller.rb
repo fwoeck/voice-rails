@@ -12,4 +12,14 @@ class CallsController < ApplicationController
 
     render nothing: true
   end
+
+
+  def transfer
+    call = Call.find(params[:id])
+    if call && call.is_owned_by?(current_user)
+      call.transfer_to(params[:to])
+    end
+
+    render nothing: true
+  end
 end
