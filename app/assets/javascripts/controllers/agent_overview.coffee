@@ -6,15 +6,34 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
 
   actions:
     dialTo: (agent) ->
-      return false if Voice.currentUser == agent ||
-        agent.get('agentState') != 'registered'
+      state = agent.get('agentState')
 
-      app.dialog(
-        "Do you want to call #{agent.get 'displayName'}?", 'question'
-      ).then ( ->
-        agent.call()
-      ), (->)
+      if Voice.get('currentUser') == agent
+        @hangupCall() if state == 'talking'
+      else
+        @call(agent) if state == 'registered'
+
       false
+
+
+  # FIXME This works on calls made over WebRTC only.
+  #       We have to route all calls via Ahn to be
+  #       able to control them with call.hangup():
+  #
+  hangupCall: ->
+    app.dialog(
+      'Do you want to hangup the current call?', 'question'
+    ).then ( ->
+      phone.app.hangup(phone.app.calls[0]?.id)
+    ), (->)
+
+
+  call: (agent) ->
+    app.dialog(
+      "Do you want to call #{agent.get 'displayName'}?", 'question'
+    ).then ( ->
+      agent.call()
+    ), (->)
 
 
   currentStatusLine: (->
