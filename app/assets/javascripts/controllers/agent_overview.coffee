@@ -4,6 +4,12 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
   contentBinding: 'controllers.users'
 
 
+  actions:
+    dialTo: (agent) ->
+      agent.call()
+      false
+
+
   currentStatusLine: (->
     available = @get('content.availableAgents')
     online    = @get('content.onlineAgents')

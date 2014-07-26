@@ -15,6 +15,11 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
     @splitSkills()
 
 
+  call: ->
+    if Voice.currentUser != @ && @get('agentState') == 'registered'
+      phone.app.call(@get 'name')
+
+
   displayName: (->
     @get('fullname') || @get('email')
   ).property('fullname')

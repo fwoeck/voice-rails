@@ -10,15 +10,20 @@ app.setupPhone = ->
 
   phone.notifyAddCall = (call) ->
     console.log('SIP add call:', call) if env.debug
-    env.callDialogActive = true
 
-    app.dialog("You have an incoming call from<br />#{call.visibleNameCaller}", 'question', 'Answer', 'Requeue').then ( ->
-      env.callDialogActive = false
-      phone.app.answer(call.id, false)
-    ), ( ->
-      env.callDialogActive = false
-      phone.app.hangup(call.id)
-    )
+    if call.incoming
+      env.callDialogActive = true
+
+      app.dialog(
+        "You have an incoming call from<br />#{call.visibleNameCaller}",
+        'question', 'Answer', 'I\'m busy'
+      ).then ( ->
+        env.callDialogActive = false
+        phone.app.answer(call.id, false)
+      ), ( ->
+        env.callDialogActive = false
+        phone.app.hangup(call.id)
+      )
 
   phone.notifyRemoveCall = (call) ->
     console.log('SIP remove call:', call) if env.debug
