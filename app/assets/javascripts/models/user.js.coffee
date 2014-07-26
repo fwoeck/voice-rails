@@ -16,8 +16,7 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
 
   call: ->
-    if Voice.currentUser != @ && @get('agentState') == 'registered'
-      phone.app.call(@get 'name')
+    phone.app.call(@get 'name')
 
 
   displayName: (->

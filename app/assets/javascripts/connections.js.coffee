@@ -15,7 +15,7 @@ app.setupPhone = ->
       env.callDialogActive = true
 
       app.dialog(
-        "You have an incoming call from<br />#{call.visibleNameCaller}",
+        "You have an incoming call from<br /><strong>#{call.visibleNameCaller}</strong>",
         'question', 'Answer', 'I\'m busy'
       ).then ( ->
         env.callDialogActive = false

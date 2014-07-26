@@ -6,7 +6,14 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
 
   actions:
     dialTo: (agent) ->
-      agent.call()
+      return false if Voice.currentUser == agent ||
+        agent.get('agentState') != 'registered'
+
+      app.dialog(
+        "Do you want to call #{agent.get 'displayName'}?", 'question'
+      ).then ( ->
+        agent.call()
+      ), (->)
       false
 
 
