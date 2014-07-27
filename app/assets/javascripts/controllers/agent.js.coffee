@@ -1,17 +1,20 @@
 Voice.AgentController = Ember.ObjectController.extend({
 
   actions:
-    dialTo: (agent) ->
-      state = agent.get('agentState')
-      cu    = Voice.get('currentUser')
+    callAction: (agent) ->
+      state   = agent.get('agentState')
+      cu      = Voice.get('currentUser')
+      cuState = cu.get('agentState')
 
-      if state == 'talking'
-        @hangupCall()
-      else if state == 'registered' && cu != agent &&
-              cu.get('agentState') == 'registered'
-        @call(agent)
-
+      @handleCallAction(agent, state, cu, cuState)
       false
+
+
+  handleCallAction: (agent, state, cu, cuState) ->
+    if state == cuState == 'talking'
+      @hangupCall()
+    else if cu != agent && state == cuState == 'registered'
+      @call(agent)
 
 
   # FIXME This works on calls made over WebRTC only.
