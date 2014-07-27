@@ -17,7 +17,9 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
   # FIXME This establishes a direct call via WebRTC.
   #       These calls are not routed via Ahn and are
-  #       thus not controllable by it:
+  #       thus not controllable by it.
+  #       See:
+  #       Adhearsion::OutboundCall.originate 'SIP/103', from: 'SIP/102', controller: DirectContext
   #
   call: ->
     phone.app.call(@get 'name')

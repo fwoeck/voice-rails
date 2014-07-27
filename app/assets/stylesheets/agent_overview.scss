@@ -14,6 +14,14 @@
   overflow-y: auto;
   bottom: 0;
   top: 40px;
+
+  > .ember-view {
+    float: left;
+  }
+
+  > .ember-view:nth-child(even) {
+    margin-left: 10px;
+  }
 }
 
 .agent.ready i.fa {
@@ -26,10 +34,6 @@
 
 .agent.away i.fa {
   border-color: #ddd;
-}
-
-.agent:nth-child(even) {
-  margin-left: 10px;
 }
 
 .agent {
