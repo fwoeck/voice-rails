@@ -48,20 +48,20 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
   agent: ( ->
     users = @get('allUsers')
-    return false unless users
+    chan1 = @get('channel1')
+    return false unless users && chan1
 
-    users.find (user) =>
-      @get('channel1').match user.get('name')
+    users.find (user) -> chan1.match(user.get 'name')
   ).property('allUsers.@each.name', 'channel1')
 
 
   origin: ( ->
     calls = @get('allCalls')
-    return false unless calls
+    chan2 = @get('channel2')
+    return false unless calls && chan2
 
-    calls.find (call) =>
-      call.get('initiator') &&
-      call.get('channel1') == @get('channel2')
+    calls.find (call) ->
+      call.get('initiator') && call.get('channel1') == chan2
   ).property('allCalls.@each.{initiator,channel2}', 'channel1')
 
 
