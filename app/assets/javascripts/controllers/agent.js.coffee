@@ -17,23 +17,17 @@ Voice.AgentController = Ember.ObjectController.extend({
       @call(agent)
 
 
-  # FIXME This works on calls made over WebRTC only.
-  #       We have to route all calls via Ahn to be
-  #       able to control them with call.hangup().
-  #       See:
-  #       Adhearsion::OutboundCall.originate 'SIP/103', from: 'SIP/102', controller: DirectContext
-  #
   hangupCall: ->
     app.dialog(
       'Do you want to hangup your current call?', 'question'
     ).then ( ->
-      phone.app.hangup(phone.app.calls[0]?.id)
+      Voice.get('currentCall')?.hangup()
     ), (->)
 
 
   call: (agent) ->
     app.dialog(
-      "Do you want to call<br /><strong>#{agent.get 'displayName'}</strong>?", 'question'
+      "Do you want to call<br /><strong>#{agent.get 'displayName'} / #{agent.get 'name'}</strong>?", 'question'
     ).then ( ->
       agent.call()
     ), (->)

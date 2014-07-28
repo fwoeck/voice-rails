@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'application#index'
 
   get    'calls'              => 'calls#index'
+  post   'calls'              => 'calls#originate'
   delete 'calls/:id'          => 'calls#hangup'
   post   'calls/:id/transfer' => 'calls#transfer'
 

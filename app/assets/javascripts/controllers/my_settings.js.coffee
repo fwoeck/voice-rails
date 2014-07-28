@@ -25,5 +25,4 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
     "I'm #{name}."
   ).property('content.{availability,agentState}')
-
 })

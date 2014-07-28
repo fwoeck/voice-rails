@@ -1,6 +1,5 @@
 Voice.AgentView = Ember.View.extend(DragNDrop.Droppable, {
 
-
   dragStopCallback: (e, el='null.null') ->
     @oe               = e.originalEvent
     [@elId, @elClass] = el.split('.')

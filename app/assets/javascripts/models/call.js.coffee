@@ -3,7 +3,6 @@ Voice.CompCall = Ember.Mixin.create({
   compare: (x, y) ->
     return 0 if x.get('channel1') == y.get('channel1')
     return 1
-
 })
 
 
@@ -74,5 +73,4 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
       !call.get('initiator') &&
        call.get('channel2') == @get('channel1')
   ).property('allCalls.@each.{initiator,channel2}', 'channel1')
-
 })

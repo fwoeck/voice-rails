@@ -16,7 +16,7 @@ app.setupPhone = ->
 
       app.dialog(
         "You have an incoming call from<br /><strong>#{call.visibleNameCaller}</strong>.",
-        'question', 'Answer', 'I\'m busy'
+        'question', 'Take call', 'I\'m busy'
       ).then ( ->
         env.callDialogActive = false
         phone.app.answer(call.id, false)
