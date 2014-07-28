@@ -25,5 +25,4 @@ Voice.CallQueueController = Ember.ArrayController.extend({
 
     "#{waiting} #{customers} queued."
   ).property('waitingCalls.length')
-
 })

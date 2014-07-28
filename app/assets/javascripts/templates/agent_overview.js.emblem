@@ -6,10 +6,4 @@
 
   #agent_overview_body.bottom-mask
     each content
-      .agent class=availability
-        img.avatar src='http://placehold.it/64x64'
-        i class={agentState :fa :fa-comments}
-
-        span.name.has-tip.radius data-tooltip="" title="Email: #{unbound email}<br />SIP extension: #{unbound name}" #{displayName}
-        span.languages Languages: #{displayLangs}
-        span.skills Skills: #{displaySkills}
+      = render 'agent' this

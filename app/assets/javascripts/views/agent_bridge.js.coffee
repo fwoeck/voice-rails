@@ -1,4 +1,4 @@
-Voice.AgentBridgeView = Ember.View.extend({
+Voice.AgentBridgeView = Ember.View.extend(DragNDrop.Dragable, {
 
   didInsertElement: ->
     @$().foundation()
@@ -12,5 +12,14 @@ Voice.AgentBridgeView = Ember.View.extend({
   willDestroyElement: ->
     tooltip = @$('span.has-tip').attr('data-selector')
     ($ "span.tooltip[data-selector='#{tooltip}']").remove()
+
+
+  elId: ->
+    @get('controller.model.origin.id')
+
+
+  dragStartCallback: (e) ->
+    return false unless @get('controller.myCall')
+    return true
 
 })

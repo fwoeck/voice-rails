@@ -1,6 +1,5 @@
 Voice.UsersController = Ember.ArrayController.extend({
 
-
   availableAgents: (->
     @get('content').filter( (a) ->
       a.get('availability') == 'ready' &&
@@ -15,5 +14,4 @@ Voice.UsersController = Ember.ArrayController.extend({
       state == 'registered' || state == 'talking'
     ).length
   ).property('content.@each.agentState')
-
 })

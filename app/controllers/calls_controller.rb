@@ -6,9 +6,25 @@ class CallsController < ApplicationController
   end
 
 
+  def originate
+    Call.originate(from: current_user.name, to: params['to'])
+    render nothing: true
+  end
+
+
   def hangup
     call = Call.find(params[:id])
     call.hangup if call && call.is_owned_by?(current_user)
+
+    render nothing: true
+  end
+
+
+  def transfer
+    call = Call.find(params[:id])
+    if call && call.is_owned_by?(current_user)
+      call.transfer_to(params[:to])
+    end
 
     render nothing: true
   end

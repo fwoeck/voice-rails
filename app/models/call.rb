@@ -47,6 +47,11 @@ class Call
   end
 
 
+  def transfer_to(to)
+    AmqpManager.ahn_publish(call_id: target_id, to: to, command: :transfer)
+  end
+
+
   def send_update_notification_to_clients
     User.all_online.each do |user|
       AmqpManager.push_publish(
@@ -56,7 +61,7 @@ class Call
   end
 
 
-  # FIXME This may become expensive for high call numbers:
+  # FIXME This may become expensive for high call counts:
   #
   def self.all
     $redis.keys("#{Rails.env}.call.*").map { |key|
@@ -66,24 +71,31 @@ class Call
   end
 
 
+  def self.originate(params)
+    AmqpManager.ahn_publish(
+      from: params[:from], to: params[:to], command: :originate
+    )
+  end
+
+
   def self.find(tcid)
     return unless tcid
     entry  = $redis.get(Call.key_name tcid) || new.headers.to_json
     fields = JSON.parse entry
 
     par = {
-      called_at:     fields['CalledAt'],
-      caller_id:     fields['CallerId'],
+      target_id:     tcid,
+      skill:         fields['Skill'],
+      hungup:        fields['Hungup'],
       channel1:      fields['Channel1'],
       channel2:      fields['Channel2'],
-      dispatched_at: fields['DispatchedAt'],
-      hungup:        fields['Hungup'],
-      hungup_at:     fields['HungupAt'],
-      initiator:     fields['Initiator'],
       language:      fields['Language'],
+      called_at:     fields['CalledAt'],
+      caller_id:     fields['CallerId'],
+      hungup_at:     fields['HungupAt'],
       queued_at:     fields['QueuedAt'],
-      skill:         fields['Skill'],
-      target_id:     tcid
+      initiator:     fields['Initiator'],
+      dispatched_at: fields['DispatchedAt']
     }
 
     new(par)

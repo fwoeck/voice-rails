@@ -15,6 +15,10 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
     @splitSkills()
 
 
+  call: ->
+    $.post '/calls', to: @get('name')
+
+
   displayName: (->
     @get('fullname') || @get('email')
   ).property('fullname')

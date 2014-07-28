@@ -12,5 +12,4 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
 
     "#{online} #{agents} online — #{available} #{are} available."
   ).property('content.{availableAgents,onlineAgents}')
-
 })
