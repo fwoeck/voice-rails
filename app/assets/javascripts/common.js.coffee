@@ -61,14 +61,15 @@ window.app = {
 
 
   updateKeysFromData: (obj, name, data) ->
-    Ember.keys(data[name]).forEach (key) ->
+    Ember.keys(data[name]).forEach (key) =>
       val = data[name][key]
       val = new Date(val) if val && key.match(/At$/)
+      obj.set(key, val) if @valueNeedsUpdate(obj, key, val)
 
-      # Caution! We never update fields to falsy values:
-      #
-      if key != 'id' && val && Ember.compare(obj.get(key), val)
-        obj.set(key, val)
+
+  valueNeedsUpdate: (obj, key, val) ->
+    key != 'id' && (val || typeof val == 'string') &&
+      Ember.compare(obj.get(key), val)
 
 
   focusDefaultTabindex: ->
