@@ -1,11 +1,11 @@
-app.getAgentFrom = (call) ->
-  matches = call.visibleNameCaller.match(/^SIP.(\d+)$/)
+app.getAgentFrom = (callerId) ->
+  matches = callerId.match(/^SIP.(\d+)$/)
   name    = if matches then matches[1] else ""
   agent   = Voice.store.all('user').find (u) -> u.get('name') == name
   if agent
    "#{agent.get 'name'} / #{agent.get 'displayName'}"
   else
-    call.visibleNameCaller
+    callerId
 
 
 app.takeIncoming = (call, name) ->
@@ -36,7 +36,7 @@ app.setupPhone = ->
 
     if call.incoming
       env.callDialogActive = true
-      name = app.getAgentFrom(call)
+      name = app.getAgentFrom(call.visibleNameCaller)
       app.takeIncoming(call, name)
 
   phone.notifyRemoveCall = (call) ->

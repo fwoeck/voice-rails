@@ -3,7 +3,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   needs: ['calls', 'users']
   contentBinding: 'controllers.calls'
 
-  showMatchesOnly: true
+  showMatchesOnly: false
   callSorting: ['calledAt']
 
   inboundCalls: Ember.computed.sort 'activeCalls', 'callSorting'

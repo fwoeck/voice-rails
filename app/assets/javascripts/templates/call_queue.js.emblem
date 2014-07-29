@@ -18,7 +18,7 @@
             td.split
               = Voice.currentUser.displayName
           tr
-            td.split = render 'inbound_call' Voice.currentCall.origin
+            td.split = render 'inbound_call' Voice.currentCall.bridge
             td.split = render 'agent_bridge' Voice.currentCall
     else
       table#callstats_table
