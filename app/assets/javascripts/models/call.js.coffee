@@ -61,8 +61,8 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
     return false unless calls && chan2
 
     calls.find (call) ->
-      call.get('initiator') && call.get('channel1') == chan2
-  ).property('allCalls.@each.{initiator,channel2}', 'channel1')
+      call.get('channel1') == chan2
+  ).property('allCalls.@each.channel1', 'channel2')
 
 
   bridge: (->
@@ -70,7 +70,6 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
     return false unless calls
 
     calls.find (call) =>
-      !call.get('initiator') &&
-       call.get('channel2') == @get('channel1')
-  ).property('allCalls.@each.{initiator,channel2}', 'channel1')
+      call.get('channel2') == @get('channel1')
+  ).property('allCalls.@each.channel2', 'channel1')
 })

@@ -129,17 +129,23 @@ form#new_user {
       margin: 10px;
     }
 
-    span.search {
+    span.search,
+    span.matches {
       margin-right: 2px;
       float: right;
+    }
 
-      input {
-        line-height: 14px;
-        margin: 5px 0 0 0;
-        padding: 4px 6px;
-        font-size: 11px;
-        height: 24px;
-      }
+    span.matches label {
+      line-height: 35px;
+      font-size: 12px;
+    }
+
+    span.search input {
+      line-height: 14px;
+      margin: 5px 0 0 0;
+      padding: 4px 6px;
+      font-size: 11px;
+      height: 24px;
     }
   }
 
