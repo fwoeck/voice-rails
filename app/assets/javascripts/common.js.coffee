@@ -22,20 +22,24 @@ window.app = {
 
   setupInterface: ->
     ($ '#agent_overview > h5').click ->
+      app.hideTooltips()
       if ($ 'input[name=agent_search]').is(':focus')
         ($ '#call_queue').removeClass('expanded')
       else
         ($ '#call_queue').toggleClass('expanded')
 
     ($ '#my_settings > h5').click ->
+      app.hideTooltips()
       ($ '#my_settings').toggleClass('expanded')
       ($ '#call_queue').toggleClass('lifted')
 
     ($ '#call_queue > h5').click ->
+      app.hideTooltips()
       ($ '#call_queue').addClass('expanded').addClass('lifted')
       ($ '#my_settings').removeClass('expanded')
 
-    ($ document).on 'click', '#my_settings label', (el) -> ($ el.target).siblings('input').click()
+    ($ document).on 'click', '#my_settings label', (el) ->
+      ($ el.target).siblings('input').click()
 
 
   updateUserFrom: (data) ->
