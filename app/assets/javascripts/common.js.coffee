@@ -21,6 +21,13 @@ window.app = {
 
 
   setupInterface: ->
+    @agentOverviewToggle()
+    @mySettingsToggle()
+    @callQueueToggle()
+    @setupLabelInputs()
+
+
+  agentOverviewToggle: ->
     ($ '#agent_overview > h5').click ->
       app.hideTooltips()
       if ($ 'input[name=agent_search]').is(':focus')
@@ -28,16 +35,22 @@ window.app = {
       else
         ($ '#call_queue').toggleClass('expanded')
 
+
+  mySettingsToggle: ->
     ($ '#my_settings > h5').click ->
       app.hideTooltips()
       ($ '#my_settings').toggleClass('expanded')
       ($ '#call_queue').toggleClass('lifted')
 
+
+  callQueueToggle: ->
     ($ '#call_queue > h5').click ->
       app.hideTooltips()
       ($ '#call_queue').addClass('expanded').addClass('lifted')
       ($ '#my_settings').removeClass('expanded')
 
+
+  setupLabelInputs: ->
     ($ document).on 'click', '#my_settings label', (el) ->
       ($ el.target).siblings('input').click()
 
@@ -118,5 +131,4 @@ window.app = {
         type:    type
 
       Voice.set 'dialogContent', dialog
-
 }

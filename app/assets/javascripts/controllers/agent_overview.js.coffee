@@ -13,8 +13,11 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
     return agents unless pattern
 
     agents.filter (agent) ->
-      agent.get('displayName').toLowerCase().match(pattern) ||
-      agent.get('name').match(pattern)
+      try
+        agent.get('displayName').toLowerCase().match(pattern) ||
+        agent.get('name').match(pattern)
+      catch
+        false
   ).property('pattern', 'content.@each.fullname')
 
 
