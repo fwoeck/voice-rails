@@ -81,7 +81,7 @@ window.app = {
 
   hideTooltips: ->
     new Ember.RSVP.Promise (resolve, reject) ->
-      ($ 'body > span.tooltip').trigger('touchstart.fndtn.tooltip')
+      ($ '.has-tip').trigger('mouseout')
       ($ ':animated').promise().done -> resolve()
 
 
