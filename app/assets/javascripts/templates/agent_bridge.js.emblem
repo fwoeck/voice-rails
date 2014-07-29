@@ -1,9 +1,10 @@
 table.callstats_table
-  tr
-    td width="40%"
-      | Connected agent
-      i draggable="true" class={myCall :fa :fa-phone :connection} click=hangupCall
-    td width="60%"
-      | #{agent.name} / #{agent.fullname}
-      span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Answered at: #{unbound moment calledAt}"
-        i.fa.fa-info-circle
+  tbody
+    tr
+      td width="40%"
+        | Connected agent
+        i draggable="true" class={myCall :fa :fa-phone :connection} click=hangupCall
+      td width="60%"
+        | #{agent.name} / #{agent.fullname}
+        span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Answered at: #{unbound moment calledAt}"
+          i.fa.fa-info-circle

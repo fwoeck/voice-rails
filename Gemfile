@@ -11,6 +11,7 @@ gem 'devise'
 gem 'wirble',                    require: false
 gem 'mongoid'
 gem 'slim-rails'
+gem 'zendesk_api'
 gem 'redis-rails'
 gem 'connection_pool'
 gem 'rubygems-bundler',          require: false

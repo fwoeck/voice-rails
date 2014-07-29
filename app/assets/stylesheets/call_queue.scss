@@ -45,6 +45,11 @@ table#callstats_table {
     font-size: 14px;
     color: #333;
   }
+
+  td.split {
+    padding: 9px 10px;
+    width: 355px;
+  }
 }
 
 table.callstats_table {

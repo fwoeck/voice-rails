@@ -6,19 +6,20 @@
 
   #call_queue_body.bottom-mask
     table#callstats_table
-      tr.thead
-        td width='50%'
-          | Inbound Calls
-        td width='50%'
-          | Connected Agents
-      each call in inboundCalls
-        tr
-          td = render 'inbound_call' call
-          if call.bridge
-            td = render 'agent_bridge' call.bridge
-          else
-            td &nbsp;
-      else
-        tr
-          td The call queue is empty right now.
-          td &nbsp;
+      tbody
+        tr.thead
+          td.split
+            | Inbound Calls
+          td.split
+            | Connected Agents
+        each call in inboundCalls
+          tr
+            td.split = render 'inbound_call' call
+            if call.bridge
+              td.split = render 'agent_bridge' call.bridge
+            else
+              td.split &nbsp;
+        else
+          tr
+            td.split The call queue is empty right now.
+            td.split &nbsp;
