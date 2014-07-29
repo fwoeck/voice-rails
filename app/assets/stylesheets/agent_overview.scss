@@ -12,8 +12,9 @@
   position: absolute;
   padding-top: 10px;
   overflow-y: auto;
-  bottom: 0;
+  width: 735px;
   top: 40px;
+  bottom: 0;
 
   > .ember-view {
     float: left;

@@ -22,7 +22,10 @@ window.app = {
 
   setupInterface: ->
     ($ '#agent_overview > h5').click ->
-      ($ '#call_queue').toggleClass('expanded')
+      if ($ 'input[name=agent_search]').is(':focus')
+        ($ '#call_queue').removeClass('expanded')
+      else
+        ($ '#call_queue').toggleClass('expanded')
 
     ($ '#my_settings > h5').click ->
       ($ '#my_settings').toggleClass('expanded')

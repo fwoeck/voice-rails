@@ -1,15 +1,27 @@
 Voice.AgentOverviewController = Ember.ArrayController.extend({
 
+  pattern: ''
   needs: ['calls', 'users']
   contentBinding: 'controllers.users'
 
 
+  matchingAgents: (->
+    pattern = @get('pattern').toLowerCase()
+    agents  = @get('content')
+
+    return [] unless agents
+    return agents unless pattern
+
+    agents.filter (agent) ->
+      agent.get('displayName').toLowerCase().match(pattern) ||
+      agent.get('name').match(pattern)
+  ).property('pattern', 'content.@each.fullname')
+
+
   currentStatusLine: (->
     available = @get('content.availableAgents')
-    online    = @get('content.onlineAgents')
-    agents    = if online == 1 then 'agent is' else 'agents are'
-    are       = if available == 1 then 'is' else 'are'
+    are       = if available == 1 then 'agent is' else 'agents are'
 
-    "#{online} #{agents} online — #{available} #{are} available."
-  ).property('content.{availableAgents,onlineAgents}')
+    "#{available} #{are} available."
+  ).property('content.availableAgents')
 })
