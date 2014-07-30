@@ -51,6 +51,11 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
     $.post("/calls/#{callId}/transfer", {'to': to})
 
 
+  callerName: ( ->
+    app.getAgentFrom(@get 'callerId')
+  ).property('callerId')
+
+
   agent: ( ->
     users = @get('allUsers')
     chan  = @get('channel1')

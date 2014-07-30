@@ -11,7 +11,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
 
   activeCalls: Ember.computed.filter('content',
     (call) -> !call.get('hungup') && !call.get('connLine') &&
-              !call.get('callerId').match(/^SIP.\d\d\d$/)
+              !call.get('callerId').match(/^SIP.\d+$/)
   ).property('content.@each.{hungup,connLine}')
 
 
