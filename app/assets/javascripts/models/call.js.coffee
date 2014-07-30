@@ -12,17 +12,17 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   allUsersBinding: 'Voice.allUsers'
 
 
+  skill:        DS.attr 'string'
+  hungup:       DS.attr 'boolean'
   calledAt:     DS.attr 'date'
   callerId:     DS.attr 'string'
   channel1:     DS.attr 'string'
   channel2:     DS.attr 'string'
-  dispatchedAt: DS.attr 'date'
+  connLine:     DS.attr 'string'
   hungupAt:     DS.attr 'date'
-  hungup:       DS.attr 'boolean'
-  initiator:    DS.attr 'boolean'
   language:     DS.attr 'string'
   queuedAt:     DS.attr 'date'
-  skill:        DS.attr 'string'
+  dispatchedAt: DS.attr 'date'
 
 
   skillName: ( ->
@@ -32,8 +32,13 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
 
   myCall: ( ->
-    @get('agent.name') == env.sipAgent
-  ).property('agent.name')
+    chan1 = @get('channel1')
+    chan2 = @get('channel2')
+    name  = Voice.get('currentUser.name')
+    regex = "^SIP.#{name}-"
+
+    chan1?.match(regex) || chan2?.match(regex)
+  ).property('channel1', 'channel2')
 
 
   hangup: ->
@@ -48,19 +53,27 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
   agent: ( ->
     users = @get('allUsers')
-    chan1 = @get('channel1')
-    return false unless users && chan1
+    chan  = @get('channel1')
+    return false unless users && chan
 
-    users.find (user) -> chan1.match(user.get 'name')
+    users.find (user) -> chan.match(user.get 'name')
   ).property('allUsers.@each.name', 'channel1')
+
+
+  origin: (->
+    calls = @get('allCalls')
+    chan  = @get('channel2')
+    return false unless calls && chan
+
+    calls.find (call) -> call.get('channel2') == chan && !call.get('connLine')
+  ).property('allCalls.@each.{channel2,connLine}')
 
 
   bridge: (->
     calls = @get('allCalls')
-    chan1 = @get('channel1')
-    return false unless calls
+    chan  = @get('channel2')
+    return false unless calls && chan
 
-    calls.find (call) ->
-      call.get('channel2') == chan1
-  ).property('allCalls.@each.channel2', 'channel1')
+    calls.find (call) -> call.get('channel2') == chan && !!call.get('connLine')
+  ).property('allCalls.@each.{channel2,connLine}')
 })

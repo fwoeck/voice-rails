@@ -9,7 +9,7 @@
         = input type='checkbox' checked=showMatchesOnly
 
   #call_queue_body.bottom-mask
-    if Voice.currentCall
+    if Voice.currentCall.bridge
       table#callstats_table
         tbody
           tr.thead
@@ -18,8 +18,8 @@
             td.split
               = Voice.currentUser.displayName
           tr
-            td.split = render 'inbound_call' Voice.currentCall.bridge
-            td.split = render 'agent_bridge' Voice.currentCall
+            td.split = render 'inbound_call' Voice.currentCall
+            td.split = render 'agent_bridge' Voice.currentCall.bridge
     else
       table#callstats_table
         tbody
