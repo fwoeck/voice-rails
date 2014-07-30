@@ -3,7 +3,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   needs: ['calls', 'users']
   contentBinding: 'controllers.calls'
 
-  showMatchesOnly: true
+  hideForeignCalls: true
   callSorting: ['calledAt']
 
   inboundCalls: Ember.computed.sort 'activeCalls', 'callSorting'
@@ -11,7 +11,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
 
   activeCalls: Ember.computed.filter('content',
     (call) ->
-      if @get 'showMatchesOnly'
+      if @get 'hideForeignCalls'
         @callMatchesAgent(call)
       else
         @callIsInbound(call)
@@ -19,7 +19,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
     'content.@each.{hungup,connLine,language,skill}',
     'Voice.currentUser.languages',
     'Voice.currentUser.skills',
-    'showMatchesOnly'
+    'hideForeignCalls'
   )
 
 

@@ -3,10 +3,11 @@
     i.header.fa.fa-phone-square
     | Current Calls
     span.stats = currentStatusLine
-    span.matches
-      label
-        ' show matches only
-        = input type='checkbox' checked=showMatchesOnly
+
+  span.matches
+    label
+      ' Hide foreign calls
+      = input type='checkbox' checked=hideForeignCalls
 
   #call_queue_body.bottom-mask
     if Voice.currentCall.bridge

@@ -129,15 +129,9 @@ form#new_user {
       margin: 10px;
     }
 
-    span.search,
-    span.matches {
+    span.search {
       margin-right: 2px;
       float: right;
-    }
-
-    span.matches label {
-      line-height: 35px;
-      font-size: 12px;
     }
 
     span.search input {
@@ -147,6 +141,17 @@ form#new_user {
       font-size: 11px;
       height: 24px;
     }
+  }
+
+  span.matches {
+    position: absolute;
+    right: 17px;
+    top: 5px;
+  }
+
+  span.matches label {
+    line-height: 35px;
+    font-size: 12px;
   }
 
   h5:hover {
