@@ -8,7 +8,7 @@ app.getAgentFrom = (callerId) ->
     callerId
 
 
-app.takeIncoming = (call, name) ->
+app.takeIncomingCall = (call, name) ->
   app.dialog(
     "You have an incoming call from<br /><strong>#{name}</strong>",
     'question', 'Take call', 'I\'m busy'
@@ -37,7 +37,7 @@ app.setupPhone = ->
     if call.incoming
       env.callDialogActive = true
       name = app.getAgentFrom(call.visibleNameCaller)
-      app.takeIncoming(call, name)
+      app.takeIncomingCall(call, name)
 
   phone.notifyRemoveCall = (call) ->
     console.log('SIP remove call:', call) if env.debug
@@ -79,14 +79,18 @@ app.setupSSE = ->
     data = JSON.parse(event.data)
     console.log('SSE message:', data) if env.debug
 
-    if data.user
-      app.updateUserFrom(data)
-    else if data.call
-      app.updateCallFrom(data)
-    else if data.chat_message
-      app.createMessageFrom(data)
-    else if data.servertime
-      app.resetServerTimer()
-
+    app.parseIncomingData(data)
     if env.railsEnv == 'test' && !data.servertime
       env.messages.push(data)
+
+
+app.parseIncomingData = (data) ->
+
+  if data.user
+    app.updateUserFrom(data)
+  else if data.call
+    app.updateCallFrom(data)
+  else if data.chat_message
+    app.createMessageFrom(data)
+  else if data.servertime
+    app.resetServerTimer()
