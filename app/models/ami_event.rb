@@ -1,4 +1,5 @@
 class AmiEvent
+
   include Mongoid::Document
 
   field :target_call_id, type: String

@@ -1,6 +1,7 @@
 require 'json'
 
 class Call
+
   include ActiveModel::Serialization
 
   attr_accessor :channel1, :channel2, :target_id, :language,

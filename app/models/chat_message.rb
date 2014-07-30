@@ -1,4 +1,5 @@
 class ChatMessage
+
   include Mongoid::Document
 
   field :to,         type: String
