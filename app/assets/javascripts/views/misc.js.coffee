@@ -83,3 +83,15 @@ Ember.ChatInput = Ember.TextField.extend({
   clearInput: ->
     @set('value', '')
 })
+
+
+Voice.TextField = Ember.TextField.extend({
+
+  keyUp: (evt) ->
+    switch evt.which
+      when 27 then @clearInput()
+    return true
+
+  clearInput: ->
+    @set('value', '')
+})
