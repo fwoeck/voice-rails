@@ -17,8 +17,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
         @callIsInbound(call)
   ).property(
     'content.@each.{hungup,connLine,language,skill}',
-    'Voice.currentUser.languages',
-    'Voice.currentUser.skills',
+    'Voice.currentUser.{languages,skills}',
     'hideForeignCalls'
   )
 
