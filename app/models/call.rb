@@ -5,31 +5,31 @@ class Call
 
   attr_accessor :channel1, :channel2, :target_id, :language,
                 :called_at, :queued_at, :hungup_at, :dispatched_at,
-                :skill, :hungup, :caller_id, :initiator
+                :skill, :hungup, :caller_id, :conn_line
 
 
   def initialize(par=nil)
     if par
-      @called_at     = par.fetch(:called_at, nil)
-      @caller_id     = par.fetch(:caller_id, nil)
+      @target_id     = par.fetch(:target_id)
+      @skill         = par.fetch(:skill, nil)
+      @hungup        = par.fetch(:hungup, nil)
       @channel1      = par.fetch(:channel1, nil)
       @channel2      = par.fetch(:channel2, nil)
-      @dispatched_at = par.fetch(:dispatched_at, nil)
-      @hungup        = par.fetch(:hungup, nil)
-      @hungup_at     = par.fetch(:hungup_at, nil)
-      @initiator     = par.fetch(:initiator, nil)
       @language      = par.fetch(:language, nil)
+      @conn_line     = par.fetch(:conn_line, nil)
+      @called_at     = par.fetch(:called_at, nil)
+      @caller_id     = par.fetch(:caller_id, nil)
+      @hungup_at     = par.fetch(:hungup_at, nil)
       @queued_at     = par.fetch(:queued_at, nil)
-      @skill         = par.fetch(:skill, nil)
-      @target_id     = par.fetch(:target_id)
+      @dispatched_at = par.fetch(:dispatched_at, nil)
     end
   end
 
 
   def headers
     {
-      'Channel1' => channel1,  'Channel2' => channel2,  'Language'     => language,  'Skill'    => skill,
-      'CallerId' => caller_id, 'Hungup'   => hungup,    'Initiator'    => initiator, 'CalledAt' => called_at,
+      'Channel1' => channel1,  'Channel2' => channel2,  'Language'     => language,     'Skill'    => skill,
+      'CallerId' => caller_id, 'Hungup'   => hungup,    'CalledAt'     => called_at,    'ConnLine' => conn_line,
       'QueuedAt' => queued_at, 'HungupAt' => hungup_at, 'DispatchedAt' => dispatched_at
     }
   end
@@ -91,10 +91,10 @@ class Call
       channel2:      fields['Channel2'],
       language:      fields['Language'],
       called_at:     fields['CalledAt'],
+      conn_line:     fields['ConnLine'],
       caller_id:     fields['CallerId'],
       hungup_at:     fields['HungupAt'],
       queued_at:     fields['QueuedAt'],
-      initiator:     fields['Initiator'],
       dispatched_at: fields['DispatchedAt']
     }
 

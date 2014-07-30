@@ -3,22 +3,39 @@
     i.header.fa.fa-phone-square
     | Current Calls
     span.stats = currentStatusLine
+    span.matches
+      label
+        ' show matches only
+        = input type='checkbox' checked=showMatchesOnly
 
   #call_queue_body.bottom-mask
-    table#callstats_table
-      tr.thead
-        td width='50%'
-          | Inbound Calls
-        td width='50%'
-          | Connected Agents
-      each call in inboundCalls
-        tr
-          td = render 'inbound_call' call
-          if call.bridge
-            td = render 'agent_bridge' call.bridge
+    if Voice.currentCall.bridge
+      table#callstats_table
+        tbody
+          tr.thead
+            td.split
+              = Voice.currentCall.callerName
+            td.split
+              = Voice.currentUser.displayName
+          tr
+            td.split = render 'inbound_call' Voice.currentCall
+            td.split = render 'agent_bridge' Voice.currentCall.bridge
+    else
+      table#callstats_table
+        tbody
+          tr.thead
+            td.split
+              | Inbound Calls
+            td.split
+              | Connected Agents
+          each call in inboundCalls
+            tr
+              td.split = render 'inbound_call' call
+              if call.bridge
+                td.split = render 'agent_bridge' call.bridge
+              else
+                td.split &nbsp;
           else
-            td &nbsp;
-      else
-        tr
-          td The call queue is empty right now.
-          td &nbsp;
+            tr
+              td.split The call queue is empty right now.
+              td.split &nbsp;

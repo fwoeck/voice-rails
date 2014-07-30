@@ -21,18 +21,38 @@ window.app = {
 
 
   setupInterface: ->
-    ($ '#agent_overview > h5').click ->
-      ($ '#call_queue').toggleClass('expanded')
+    @agentOverviewToggle()
+    @mySettingsToggle()
+    @callQueueToggle()
+    @setupLabelInputs()
 
+
+  agentOverviewToggle: ->
+    ($ '#agent_overview > h5').click ->
+      app.hideTooltips()
+      if ($ 'input[name=agent_search]').is(':focus')
+        ($ '#call_queue').removeClass('expanded')
+      else
+        ($ '#call_queue').toggleClass('expanded')
+
+
+  mySettingsToggle: ->
     ($ '#my_settings > h5').click ->
+      app.hideTooltips()
       ($ '#my_settings').toggleClass('expanded')
       ($ '#call_queue').toggleClass('lifted')
 
+
+  callQueueToggle: ->
     ($ '#call_queue > h5').click ->
+      app.hideTooltips()
       ($ '#call_queue').addClass('expanded').addClass('lifted')
       ($ '#my_settings').removeClass('expanded')
 
-    ($ document).on 'click', '#my_settings label', (el) -> ($ el.target).siblings('input').click()
+
+  setupLabelInputs: ->
+    ($ document).on 'click', '#my_settings label', (el) ->
+      ($ el.target).siblings('input').click()
 
 
   updateUserFrom: (data) ->
@@ -61,14 +81,15 @@ window.app = {
 
 
   updateKeysFromData: (obj, name, data) ->
-    Ember.keys(data[name]).forEach (key) ->
+    Ember.keys(data[name]).forEach (key) =>
       val = data[name][key]
       val = new Date(val) if val && key.match(/At$/)
+      obj.set(key, val) if @valueNeedsUpdate(obj, key, val)
 
-      # Caution! We never update fields to falsy values:
-      #
-      if key != 'id' && val && Ember.compare(obj.get(key), val)
-        obj.set(key, val)
+
+  valueNeedsUpdate: (obj, key, val) ->
+    key != 'id' && (val || typeof val == 'string') &&
+      Ember.compare(obj.get(key), val)
 
 
   focusDefaultTabindex: ->
@@ -77,7 +98,7 @@ window.app = {
 
   hideTooltips: ->
     new Ember.RSVP.Promise (resolve, reject) ->
-      ($ 'body > span.tooltip').trigger('touchstart.fndtn.tooltip')
+      ($ '.has-tip').trigger('mouseout')
       ($ ':animated').promise().done -> resolve()
 
 
@@ -110,5 +131,4 @@ window.app = {
         type:    type
 
       Voice.set 'dialogContent', dialog
-
 }

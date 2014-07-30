@@ -27,7 +27,7 @@ Voice.AgentController = Ember.ObjectController.extend({
 
   call: (agent) ->
     app.dialog(
-      "Do you want to call<br /><strong>#{agent.get 'displayName'} / #{agent.get 'name'}</strong>?", 'question'
+      "Do you want to call<br /><strong>#{agent.get 'name'} / #{agent.get 'displayName'}</strong>?", 'question'
     ).then ( ->
       agent.call()
     ), (->)

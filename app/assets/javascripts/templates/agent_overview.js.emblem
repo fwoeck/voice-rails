@@ -3,7 +3,9 @@
     i.header.fa.fa-compass
     | Agent Overview
     span.stats = currentStatusLine
+    span.search
+      Ember.TextField type='text' name='agent_search' maxlength='32' value=pattern placeholder='Find a name..'
 
   #agent_overview_body.bottom-mask
-    each content
+    each matchingAgents
       = render 'agent' this

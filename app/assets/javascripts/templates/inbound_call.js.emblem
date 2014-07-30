@@ -2,7 +2,7 @@ table.callstats_table
   tr
     td width="40%" Caller ID
     td width="60%"
-      = callerId
+      = callerName
       span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Called at: #{unbound moment calledAt}"
         i.fa.fa-info-circle
   tr

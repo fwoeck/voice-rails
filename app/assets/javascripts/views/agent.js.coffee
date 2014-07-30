@@ -1,5 +1,14 @@
 Voice.AgentView = Ember.View.extend(DragNDrop.Droppable, {
 
+  didInsertElement: ->
+    @$().foundation()
+
+
+  willDestroyElement: ->
+    tooltip = @$('span.has-tip').attr('data-selector')
+    ($ "span.tooltip[data-selector='#{tooltip}']").remove()
+
+
   dragStopCallback: (e, el='null.null') ->
     @oe               = e.originalEvent
     [@elId, @elClass] = el.split('.')
