@@ -15,7 +15,12 @@ Voice.CallQueueController = Ember.ArrayController.extend({
         @callMatchesAgent(call)
       else
         @callIsInbound(call)
-  ).property('content.@each.{hungup,connLine,language,skill}', 'showMatchesOnly')
+  ).property(
+    'content.@each.{hungup,connLine,language,skill}',
+    'Voice.currentUser.languages',
+    'Voice.currentUser.skills',
+    'showMatchesOnly'
+  )
 
 
   callMatchesAgent: (call) ->
