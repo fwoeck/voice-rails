@@ -1,7 +1,7 @@
 #call_queue.large-12.medium-12.columns.lifted.expanded
   h5
     i class={talking :header :fa :fa-phone-square} click=hangupCall
-    | Current Calls
+    span.header Current Calls
     span.stats = currentStatusLine
 
   span.matches

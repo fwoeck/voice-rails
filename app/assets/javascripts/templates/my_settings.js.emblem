@@ -1,7 +1,7 @@
 #my_settings.large-12.medium-12.columns
   h5
     i.header.fa.fa-cogs
-    | My Settings
+    span.header My Settings
     span.stats = currentStatusLine
 
   #my_settings_body
