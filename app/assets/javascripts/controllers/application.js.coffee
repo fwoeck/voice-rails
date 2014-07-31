@@ -4,6 +4,11 @@ Voice.ApplicationController = Ember.Controller.extend({
   allCallsBinding: 'Voice.allCalls'
 
 
+  init: ->
+    @_super()
+    @setCurrentCall()
+
+
   getMyCall: ->
     calls = @get('allCalls')
     return false unless calls

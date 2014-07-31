@@ -17,7 +17,8 @@ Voice.Customer = DS.Model.extend({
 
   historyEntries: DS.hasMany 'historyEntry'
 
-  fullname:       DS.attr 'string'
   email:          DS.attr 'string'
+  fullname:       DS.attr 'string'
+  zendeskId:      DS.attr 'number'
   callerIds:      DS.attr 'array'
 })

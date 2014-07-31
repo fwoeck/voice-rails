@@ -1,0 +1,32 @@
+table.history_table,
+table.customer_table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0;
+  border: 0;
+
+  td.space {
+    padding: 4px;
+    width: 25%;
+  }
+}
+
+table.history_table {
+  tr {
+    border-bottom: 1px solid #fff;
+  }
+
+  td {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
+
+table#callstats_table {
+  .button.store {
+    padding: 10px 14px;
+    font-size: 14px;
+    display: block;
+    height: 36px;
+  }
+}

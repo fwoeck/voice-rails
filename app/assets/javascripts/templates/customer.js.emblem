@@ -1,6 +1,32 @@
-ul
-  li = fullname
-  li = email
-ul
-  each entry in historyEntries
-    li = entry.remarks
+table.customer_table
+  tbody
+    tr
+      td.space
+        label
+          ' Full Name
+          = input type='text' value=fullname placeholder='Enter the full name..'
+      td.space
+        label
+          ' E-Mail
+          = input type='text' value=email placeholder='Enter an e-mail address..'
+      td.space
+        label
+          ' Zendesk ID
+          = input type='text' value=zendeskId placeholder='Enter a Zendesk ID..'
+      td.space
+        label
+          ' &nbsp;
+          .button.tiny.store Store Record
+
+table.history_table
+  thead
+    tr
+      td width="10%" Called At
+      td width="10%" Agent
+      td width="80%" Remarks
+  tbody
+    each entry in historyEntries
+      tr
+        td = moment entry.createdAt
+        td = entry.agentId
+        td colspan="2" = entry.remarks
