@@ -59,7 +59,6 @@
     border: 3px solid #ddd;
     border-radius: 1000px;
     position: absolute;
-    cursor: pointer;
     font-size: 18px;
     padding: 5px;
     right: 18px;
@@ -75,6 +74,7 @@
   }
 
   i.fa.registered {
+    cursor: pointer;
     color: #777;
   }
 

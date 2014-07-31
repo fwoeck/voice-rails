@@ -44,7 +44,9 @@ window.app = {
 
 
   callQueueToggle: ->
-    ($ '#call_queue > h5').click ->
+    ($ '#call_queue > h5').click (evt) ->
+      return if evt.target.className.match('talking')
+
       app.hideTooltips()
       ($ '#call_queue').addClass('expanded').addClass('lifted')
       ($ '#my_settings').removeClass('expanded')
