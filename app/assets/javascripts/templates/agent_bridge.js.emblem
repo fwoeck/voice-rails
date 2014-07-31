@@ -8,3 +8,6 @@ table.callstats_table
         | #{agent.name} / #{agent.fullname}
         span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Answered at: #{unbound moment calledAt}"
           i.fa.fa-info-circle
+    tr
+      td Answered at
+      td = view Ember.CalledAt
