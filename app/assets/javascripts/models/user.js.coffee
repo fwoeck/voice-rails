@@ -33,5 +33,4 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
     @get('skills').split(',').map((l) -> l.capitalize())
                   .join(', ').replace(/_booking/g, 'Book')
   ).property('skills')
-
 })

@@ -10,7 +10,7 @@ class AmiEvent
   index(timestamp: 1)
   default_scope -> { asc(:timestamp) }
 
-  ChannelRegex = /^SIP\/(\d+)-/
+  ChannelRegex = /^SIP\/(\d+)/
 
 
   # TODO The "data" is not an AmiEvent, but plain JSON.

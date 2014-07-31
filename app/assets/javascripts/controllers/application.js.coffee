@@ -4,14 +4,18 @@ Voice.ApplicationController = Ember.Controller.extend({
   allCallsBinding: 'Voice.allCalls'
 
 
-  setCurrentCall: ( ->
+  getMyCall: ->
     calls = @get('allCalls')
     return false unless calls
 
-    cc = calls.find (call) -> call.get('myCall')
-    newCall = cc?.get('origin')
+    calls.find (call) -> call.get('myCallLeg')
+
+
+  setCurrentCall: ( ->
+    myCall  = @getMyCall()
+    newCall = myCall?.get('bridge')
 
     if newCall != Voice.get('currentCall')
       Voice.set('currentCall', newCall)
-  ).observes('allCalls.@each.{myCall,origin}')
+  ).observes('allCalls.@each.{myCallLeg,bridge}')
 })
