@@ -8,5 +8,4 @@ Voice.AgentBridgeController = Ember.ObjectController.extend({
         @get('model').hangup()
       ), (->)
       false
-
 })

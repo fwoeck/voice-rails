@@ -11,6 +11,6 @@
 
   #call_queue_body.bottom-mask
     if Voice.currentCall.origin
-      = partial 'current_call'
+      = render 'current_call' Voice.currentCall
     else
       = partial 'calls_table'

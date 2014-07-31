@@ -1,0 +1,6 @@
+ul
+  li = fullname
+  li = email
+ul
+  each entry in historyEntries
+    li = entry.remarks
