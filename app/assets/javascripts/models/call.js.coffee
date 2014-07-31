@@ -23,7 +23,6 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   language:      DS.attr 'string'
   queuedAt:      DS.attr 'date'
   dispatchedAt:  DS.attr 'date'
-  matchesFilter: true
 
 
   init: ->
@@ -114,8 +113,8 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
   matchesCU: ->
     cu = Voice.get('currentUser')
-    cu.get('languages').match(@get 'language') &&
-      cu.get('skills').match(@get 'skill')
+    !!cu.get('languages').match(@get 'language') &&
+      !!cu.get('skills').match(@get 'skill')
 
 
   isInbound: ->

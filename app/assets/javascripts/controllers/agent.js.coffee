@@ -14,7 +14,7 @@ Voice.AgentController = Ember.ObjectController.extend({
     if state == cuState == 'talking'
       @hangupCall()
     else if cu != agent && state == cuState == 'registered'
-      @call(agent)
+      agent.call()
 
 
   hangupCall: ->
@@ -23,13 +23,4 @@ Voice.AgentController = Ember.ObjectController.extend({
     ).then ( ->
       Voice.get('currentCall')?.hangup()
     ), (->)
-
-
-  call: (agent) ->
-    app.dialog(
-      "Do you want to call<br /><strong>#{agent.get 'name'} / #{agent.get 'displayName'}</strong>?", 'question'
-    ).then ( ->
-      agent.call()
-    ), (->)
-
 })

@@ -10,7 +10,7 @@
       = input type='checkbox' checked=hideForeignCalls
 
   #call_queue_body.bottom-mask
-    if Voice.currentCall
+    if Voice.currentCall.origin
       = partial 'current_call'
     else
       = partial 'calls_table'

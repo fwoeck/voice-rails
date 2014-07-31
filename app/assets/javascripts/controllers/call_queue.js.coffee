@@ -10,9 +10,9 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   sortedCalls:   Ember.computed.sort 'filteredCalls', 'callSorting'
 
 
-  waitingCalls: Ember.computed.filter('activeCalls',
+  waitingCalls: Ember.computed.filter('filteredCalls',
     (call) -> !call.get('bridge')
-  ).property('activeCalls.@each.bridge')
+  ).property('filteredCalls.@each.bridge')
 
 
   currentStatusLine: (->

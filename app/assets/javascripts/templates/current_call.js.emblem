@@ -2,8 +2,8 @@ table#callstats_table
   tbody
     tr.thead
       td.split
-        = Voice.currentCall.callerName
+        = Voice.currentCall.origin.callerName
       td.split &nbsp;
     tr
-      td.split = render 'inbound_call' Voice.currentCall
-      td.split = render 'agent_bridge' Voice.currentCall.bridge
+      td.split = render 'inbound_call' Voice.currentCall.origin
+      td.split = render 'agent_bridge' Voice.currentCall
