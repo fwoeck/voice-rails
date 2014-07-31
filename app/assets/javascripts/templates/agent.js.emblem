@@ -3,5 +3,5 @@
   i class={agentState :fa :fa-comments} click="callAction this"
 
   span.name.has-tip.radius data-tooltip="" title="Email: #{unbound email}<br />SIP extension: #{unbound name}" #{displayName}
-  span.languages Languages: #{displayLangs}
-  span.skills Skills: #{displaySkills}
+  span.languages = displayLangs
+  span.skills = displaySkills

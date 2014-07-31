@@ -7,7 +7,11 @@
   bottom: 0;
 
   i.header.talking {
-    color: #e44;
+    color: #C66;
+  }
+
+  i.header.talking:hover {
+    color: #666;
   }
 }
 
@@ -34,9 +38,10 @@
 }
 
 table#callstats_table {
+  box-shadow: #888 2px 2px 3px;
   border-collapse: separate;
-  border-radius: 4px;
   width: 100%;
+  border: 0;
 
   tr {
     background-color: #faebd7;

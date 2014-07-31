@@ -6,6 +6,11 @@
 
   h5 {
     margin-bottom: 7px;
+    cursor: default;
+
+    i.header:hover {
+      color: #008CBA;
+    }
   }
 
   input {

@@ -167,10 +167,15 @@ form#new_user {
   }
 
   i.header {
+    transition: color linear 300ms;
     margin-right: 8px;
     line-height: 32px;
     font-size: 24px;
     color: #008CBA;
+  }
+
+  i.header:hover {
+    color: #000;
   }
 }
 
