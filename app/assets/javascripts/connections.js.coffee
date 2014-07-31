@@ -1,6 +1,8 @@
+app.agentRegex = /^(SIP\/)?(\d\d\d\d?)$/
+
 app.getAgentFrom = (callerId) ->
-  matches = callerId.match(/^SIP.(\d+)$/)
-  name    = if matches then matches[1] else ""
+  matches = callerId.match(app.agentRegex)
+  name    = if matches then matches[2] else ""
   agent   = Voice.store.all('user').find (u) -> u.get('name') == name
   if agent
    "#{agent.get 'name'} / #{agent.get 'displayName'}"

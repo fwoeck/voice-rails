@@ -25,6 +25,11 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   dispatchedAt: DS.attr 'date'
 
 
+  init: ->
+    @_super()
+    @updateMatchesFilter()
+
+
   skillName: ( ->
     skill = @get('skill')
     skill.replace(/_booking/, ' booking').capitalize() if skill
@@ -35,7 +40,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
     chan1 = @get('channel1')
     chan2 = @get('channel2')
     name  = Voice.get('currentUser.name')
-    regex = "^SIP.#{name}-"
+    regex = "^SIP\/#{name}-"
 
     chan1?.match(regex) || chan2?.match(regex)
   ).property('channel1', 'channel2')
@@ -81,4 +86,29 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
     calls.find (call) -> call.get('channel2') == chan && !!call.get('connLine')
   ).property('allCalls.@each.{channel2,connLine}')
+
+
+  updateMatchesFilter: (->
+    result = if Voice.get('hideForeignCalls')
+      @isInbound() && @matchesCU()
+    else
+      @isInbound()
+
+    if @get('matchesFilter') != result
+       @set 'matchesFilter', result
+  ).observes(
+    'hungup', 'connLine', 'language' ,'skill'
+    'Voice.currentUser.{languages,skills}',
+    'Voice.hideForeignCalls'
+  )
+
+
+  matchesCU: ->
+    cu = Voice.get('currentUser')
+    cu.get('languages').match(@get 'language') &&
+      cu.get('skills').match(@get 'skill')
+
+
+  isInbound: ->
+    !@get('hungup') && !@get('connLine')
 })

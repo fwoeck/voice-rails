@@ -9,6 +9,9 @@ Voice.ApplicationController = Ember.Controller.extend({
     return false unless calls
 
     cc = calls.find (call) -> call.get('myCall')
-    Voice.set 'currentCall', cc?.get('origin')
+    newCall = cc?.get('origin')
+
+    if newCall != Voice.get('currentCall')
+      Voice.set('currentCall', newCall)
   ).observes('allCalls.@each.{myCall,origin}')
 })

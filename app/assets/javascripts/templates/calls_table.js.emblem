@@ -5,7 +5,7 @@ table#callstats_table
         | Inbound Calls
       td.split
         | Connected Agents
-    each call in inboundCalls
+    each call in sortedCalls
       tr
         td.split = render 'inbound_call' call
         if call.bridge
