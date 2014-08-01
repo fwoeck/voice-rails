@@ -2,6 +2,7 @@ Voice.ApplicationView = Ember.View.extend({
 
   templateName: 'application'
 
+
   didInsertElement: ->
     Ember.run.later app, app.setupPhone, 1500
     $(document).foundation()
@@ -11,5 +12,4 @@ Voice.ApplicationView = Ember.View.extend({
     window.onbeforeunload = ->
       env.sseSource.close()
       phone.app.logoff()
-
 })

@@ -49,6 +49,7 @@
   img.avatar {
     margin-right: 8px;
     display: block;
+    opacity: 0.6;
     float: left;
   }
 
@@ -99,6 +100,13 @@
     margin: 1px 0;
     color: #777;
     float: left;
+  }
+
+  span.avatar {
+    background-color: #ddd;
+    margin: 0 8px 0 0;
+    height: 64px;
+    width: 64px;
   }
 
   span.skills, span.languages {

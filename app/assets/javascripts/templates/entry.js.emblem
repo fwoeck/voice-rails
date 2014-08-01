@@ -1,0 +1,5 @@
+tr
+  td = fromNow createdAt
+  td = agentName agentId
+  td = callId
+  td = remarks

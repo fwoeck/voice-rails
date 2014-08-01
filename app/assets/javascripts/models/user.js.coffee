@@ -10,6 +10,13 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   availability:  DS.attr 'string'
 
 
+  gravatarUrl: (->
+    email = @get 'email'
+    return unless email
+    gravatar(email, size: 64)
+  ).property('email')
+
+
   didLoad: ->
     @splitLanguages()
     @splitSkills()

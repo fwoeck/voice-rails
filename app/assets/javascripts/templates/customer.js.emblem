@@ -21,12 +21,10 @@ table.customer_table
 table.history_table
   thead
     tr
-      td width="10%" Called At
-      td width="10%" Agent
-      td width="80%" Remarks
+      td Called At
+      td Agent
+      td Call ID
+      td Remarks
   tbody
     each entry in historyEntries
-      tr
-        td = moment entry.createdAt
-        td = entry.agentId
-        td colspan="2" = entry.remarks
+      = render 'entry' entry

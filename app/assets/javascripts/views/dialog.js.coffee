@@ -45,5 +45,4 @@ Voice.DialogView = Ember.View.extend({
 
   focusOut: ->
     return false
-
 })

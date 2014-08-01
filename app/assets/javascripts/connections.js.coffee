@@ -1,29 +1,5 @@
-app.agentRegex = /^(SIP\/)?(\d\d\d\d?)$/
-
-app.getAgentFrom = (callerId) ->
-  matches = callerId.match(app.agentRegex)
-  name    = if matches then matches[2] else ""
-  agent   = Voice.store.all('user').find (u) -> u.get('name') == name
-  if agent
-   "#{agent.get 'name'} / #{agent.get 'displayName'}"
-  else
-    callerId
-
-
-app.takeIncomingCall = (call, name) ->
-  app.dialog(
-    "You have an incoming call from<br /><strong>#{name}</strong>",
-    'question', 'Take call', 'I\'m busy'
-  ).then ( ->
-    env.callDialogActive = false
-    phone.app.answer(call.id, false)
-  ), ( ->
-    env.callDialogActive = false
-    phone.app.hangup(call.id)
-  )
-
-
 app.setupPhone = ->
+
   return unless phone.isWebRTCAvailable
 
   data =
@@ -84,15 +60,3 @@ app.setupSSE = ->
     app.parseIncomingData(data)
     if env.railsEnv == 'test' && !data.servertime
       env.messages.push(data)
-
-
-app.parseIncomingData = (data) ->
-
-  if data.user
-    app.updateUserFrom(data)
-  else if data.call
-    app.updateCallFrom(data)
-  else if data.chat_message
-    app.createMessageFrom(data)
-  else if data.servertime
-    app.resetServerTimer()

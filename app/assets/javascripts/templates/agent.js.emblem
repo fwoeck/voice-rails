@@ -1,5 +1,9 @@
 .agent class=availability
-  img.avatar src='http://placehold.it/64x64'
+  if gravatarUrl
+    img.avatar src=gravatarUrl
+  else
+    span.avatar
+
   i class={agentState :fa :fa-comments} click="callAction this"
 
   span.name.has-tip.radius data-tooltip="" title="Email: #{unbound email}<br />SIP extension: #{unbound name}" #{displayName}
