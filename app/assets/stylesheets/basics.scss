@@ -184,3 +184,7 @@ form#new_user {
   -webkit-filter: blur(3px);
   -moz-filter: blur(3px);
 }
+
+tr.dirty input, input.dirty {
+  background-color: #ffd890 !important;
+}

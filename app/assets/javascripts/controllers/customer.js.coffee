@@ -7,4 +7,9 @@ Voice.CustomerController = Ember.ObjectController.extend({
     storeRecord: ->
       @get('content')?.save()
       false
+
+
+  dirty: (->
+    @get('content.currentState.stateName') != 'root.loaded.saved'
+  ).property('content.currentState.stateName')
 })

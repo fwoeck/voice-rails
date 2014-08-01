@@ -6,12 +6,11 @@
   top: 420px;
   bottom: 0;
 
-  i.header.talking {
-    color: #C66;
-  }
-
-  i.header.talking:hover {
-    color: #000;
+  i.header.talking:before {
+    background-color: #ffa500;
+    border-radius: 1000px;
+    margin: 0 4px 0 -4px;
+    padding: 3px 5px;
   }
 }
 

@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   put    'history_entries/:id' => 'customers#update_history'
 
   get    '*path',             to: 'application#catch_404'
+  post   '*path',             to: 'application#catch_404'
 end

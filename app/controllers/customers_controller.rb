@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
       entry.save
       stat = 200
     end
-    render nothing: true, status: stat
+    render json: {}, status: stat
   end
 
 

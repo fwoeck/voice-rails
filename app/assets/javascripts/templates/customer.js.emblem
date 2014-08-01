@@ -1,6 +1,6 @@
 table.customer_table
   tbody
-    tr
+    tr class=dirty
       td.space
         label
           ' Full Name

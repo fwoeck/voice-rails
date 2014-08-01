@@ -82,9 +82,15 @@ Ember.ChatInput = Ember.TextField.extend({
 
 Ember.RemarksInput = Ember.TextField.extend({
 
-  placeholder:  'Enter remarks for this call..'
-  entryBinding: 'controller.content'
-  maxlength:    '250'
+  classNameBindings: ['dirty']
+  placeholder:        'Enter remarks for this call..'
+  entryBinding:       'controller.content'
+  maxlength:          '250'
+
+
+  dirty: (->
+    @get('entry.currentState.stateName') != 'root.loaded.saved'
+  ).property('entry.currentState.stateName')
 
 
   focusIn: ->
