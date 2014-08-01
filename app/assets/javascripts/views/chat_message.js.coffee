@@ -1,7 +1,5 @@
 Voice.ChatMessageView = Ember.View.extend({
 
-  templateName: 'chat_message'
-
   didInsertElement: ->
     height = @$('.message').height() + 16 # 16 == 2 * 8px padding
     tcTop  = 125 # ! This must match the css #team_chat top rule
@@ -12,6 +10,5 @@ Voice.ChatMessageView = Ember.View.extend({
     Ember.run.next @, ->
       ($ '#team_chat').css(transition: 'top ease 300ms')
                       .css(top: "#{tcTop}px")
-      @set('cm.newest', false)
-
+      @$('.message').removeClass('newest')
 })

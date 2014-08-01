@@ -22,8 +22,8 @@ table.customer_table
 table.history_table
   thead
     tr
-      td width="20%" Called At
-      td width="25%" Agent
+      td width="17%" Called At
+      td width="28%" Agent
       td width="55%" Remarks
   tbody
     each entry in orderedEntries

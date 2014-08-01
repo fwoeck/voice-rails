@@ -1,7 +1,7 @@
 tr
-  td = fromNow createdAt
+  td = view Ember.CreatedAt
   td = agentFor agentExt
   if callIsCurrent
-    td.remarks = input type='text' value=remarks placeholder='Type your remarks..' maxlength='256'
+    td.remarks = view Ember.RemarksInput value=remarks
   else
     td = remarks

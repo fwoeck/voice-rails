@@ -11,6 +11,20 @@ class CustomersController < ApplicationController
   end
 
 
+  def update_history
+    par  = params[:history_entry]
+    cust = Customer.find(par[:customer_id])
+    stat = 404
+
+    if cust && (entry = cust.history_entries.find params[:id])
+      entry.remarks = (par[:remarks] || "").strip
+      entry.save
+      stat = 200
+    end
+    render nothing: true, status: stat
+  end
+
+
   def update
     par  = params[:customer]
     cust = Customer.find(params[:id])

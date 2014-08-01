@@ -6,21 +6,22 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
-  get    'calls'              => 'calls#index'
-  post   'calls'              => 'calls#originate'
-  delete 'calls/:id'          => 'calls#hangup'
-  post   'calls/:id/transfer' => 'calls#transfer'
+  get    'calls'               => 'calls#index'
+  post   'calls'               => 'calls#originate'
+  delete 'calls/:id'           => 'calls#hangup'
+  post   'calls/:id/transfer'  => 'calls#transfer'
 
-  post   'chat_messages'      => 'chat_messages#create'
-  get    'chat_messages'      => 'chat_messages#index'
+  post   'chat_messages'       => 'chat_messages#create'
+  get    'chat_messages'       => 'chat_messages#index'
 
-  get    'users'              => 'users#index'
-  get    'users/:id'          => 'users#show'
-  put    'users/:id'          => 'users#update'
+  get    'users'               => 'users#index'
+  get    'users/:id'           => 'users#show'
+  put    'users/:id'           => 'users#update'
 
-  get    'customers'          => 'customers#index'
-  put    'customers/:id'      => 'customers#update'
-  get    'customers/:id'      => 'customers#show'
+  get    'customers'           => 'customers#index'
+  put    'customers/:id'       => 'customers#update'
+  get    'customers/:id'       => 'customers#show'
+  put    'history_entries/:id' => 'customers#update_history'
 
-  get    '*path',            to: 'application#catch_404'
+  get    '*path',             to: 'application#catch_404'
 end

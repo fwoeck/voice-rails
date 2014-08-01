@@ -7,7 +7,7 @@
 
 #team_chat.large-12.medium-12.columns.bottom-mask
   each cm in content
-    = view Voice.ChatMessageView cm=cm
+    = render 'chat_message' cm
   else
     .message
       .body.empty
