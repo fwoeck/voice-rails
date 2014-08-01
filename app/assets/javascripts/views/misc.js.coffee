@@ -44,12 +44,7 @@ Ember.FromNow = Ember.View.extend({
 
 
 Ember.CreatedAt = Ember.FromNow.extend({
-  template: Ember.Handlebars.compile("{{fromNow cm.createdAt}}")
-})
-
-
-Ember.AnsweredAt = Ember.FromNow.extend({
-  template: Ember.Handlebars.compile("{{fromNow bridge.calledAt}}")
+  template: Ember.Handlebars.compile("{{fromNow createdAt}}")
 })
 
 
@@ -79,6 +74,52 @@ Ember.ChatInput = Ember.TextField.extend({
     if message
       Voice.ChatMessage.send(message)
       @set('value', '')
+
+  clearInput: ->
+    @set('value', '')
+})
+
+
+Ember.RemarksInput = Ember.TextField.extend({
+
+  placeholder:  'Enter remarks for this call..'
+  entryBinding: 'controller.content'
+  maxlength:    '250'
+
+
+  focusIn: ->
+    @oldValue = @get 'value'
+
+  focusOut: ->
+    @saveRemark()
+    false
+
+  keyUp: (evt) ->
+    switch evt.which
+      when 13 then @leaveField()
+      when 27 then @clearInput()
+    return true
+
+  leaveField: ->
+    @$().blur()
+
+  saveRemark: ->
+    remarks = @get 'value'
+    return false if remarks == @oldValue
+    @get('entry').save()
+    false
+
+  clearInput: ->
+    @set('value', @oldValue)
+})
+
+
+Voice.TextField = Ember.TextField.extend({
+
+  keyUp: (evt) ->
+    switch evt.which
+      when 27 then @clearInput()
+    return true
 
   clearInput: ->
     @set('value', '')

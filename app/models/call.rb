@@ -1,6 +1,7 @@
 require 'json'
 
 class Call
+
   include ActiveModel::Serialization
 
   attr_accessor :channel1, :channel2, :target_id, :language,
@@ -58,6 +59,18 @@ class Call
         user_id: user.id, data: CallSerializer.new(self)
       )
     end
+  end
+
+
+  def create_customer_history_entry(agent)
+    cust = Customer.where(caller_ids: caller_id).last ||
+           Customer.create(caller_ids: [caller_id])
+
+    cust.history_entries.create(
+      call_id:   target_id,
+      caller_id: caller_id,
+      agent_ext: agent
+    )
   end
 
 

@@ -37,8 +37,8 @@
   top: 40px;
 
   > ul {
+    box-shadow: #888 2px 2px 3px;
     border: 1px solid #ddd;
-    border-radius: 4px;
     overflow: hidden;
     height: 101px;
   }
@@ -47,8 +47,8 @@
 table#skill_table,
 table#state_table,
 table#language_table {
+  box-shadow: #888 2px 2px 3px;
   border-collapse: collapse;
-  border-radius: 4px;
   overflow: hidden;
   display: block;
   height: 101px;
@@ -71,5 +71,6 @@ table#language_table {
 
   td.space {
     padding: 6px 12px 6px 8px;
+    width: 148px;
   }
 }

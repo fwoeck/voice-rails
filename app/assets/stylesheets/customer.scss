@@ -1,0 +1,49 @@
+table.history_table,
+table.customer_table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0;
+  border: 0;
+
+  td.space {
+    padding: 4px;
+    width: 25%;
+  }
+}
+
+table.history_table {
+  tr {
+    border-bottom: 1px solid #fff;
+  }
+
+  tr.call-is-current td {
+    padding: 0 0 0 4px;
+    line-height: 26px;
+    color: #000;
+  }
+
+  td {
+    font-size: 12px;
+    padding: 4px;
+    color: #666;
+  }
+
+  td.remarks input {
+    width: calc(100% + 6px);
+    margin: 0 0 0 -6px;
+    line-height: 26px;
+    padding: 2px 5px;
+    display: inline;
+    font-size: 12px;
+    height: 26px;
+  }
+}
+
+table#callstats_table {
+  .button.store {
+    padding: 10px 14px;
+    font-size: 14px;
+    display: block;
+    height: 36px;
+  }
+}

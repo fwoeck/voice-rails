@@ -1,0 +1,7 @@
+tr class=callIsCurrent
+  td = view Ember.CreatedAt
+  td = agentFor agentExt
+  if callIsCurrent
+    td.remarks = view Ember.RemarksInput value=remarks
+  else
+    td = remarks

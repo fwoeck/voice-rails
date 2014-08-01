@@ -5,6 +5,14 @@
   z-index: 15;
   top: 420px;
   bottom: 0;
+
+  i.header.talking {
+    color: #C66;
+  }
+
+  i.header.talking:hover {
+    color: #000;
+  }
 }
 
 #call_queue.lifted {
@@ -30,13 +38,14 @@
 }
 
 table#callstats_table {
+  box-shadow: #888 2px 2px 3px;
   border-collapse: separate;
-  border-radius: 4px;
   width: 100%;
+  border: 0;
 
   tr {
     background-color: #faebd7;
-    vertical-align: top;
+    vertical-align: baseline;
   }
 
   tr.thead td {
@@ -110,12 +119,12 @@ table.callstats_table {
     color: #ccc;
   }
 
-  i.fa.connection.my-call {
+  i.fa.connection.my-call-leg {
     cursor: pointer;
     color: #008cba;
   }
 
-  i.fa.connection.my-call:hover {
+  i.fa.connection.my-call-leg:hover {
     color: #000;
   }
 }

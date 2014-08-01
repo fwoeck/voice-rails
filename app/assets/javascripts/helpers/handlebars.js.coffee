@@ -17,3 +17,7 @@ Ember.Handlebars.helper('moment', (value, options) ->
 Ember.Handlebars.helper('fromNow', (value, options) ->
   moment(value).fromNow() if value
 )
+
+Ember.Handlebars.helper('agentFor', (value, options) ->
+  app.getAgentFrom(value) if value
+)

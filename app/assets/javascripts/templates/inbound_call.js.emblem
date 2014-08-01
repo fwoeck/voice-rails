@@ -1,24 +1,21 @@
 table.callstats_table
-  tr
-    td width="40%" Caller ID
-    td width="60%"
-      = callerName
-      span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Called at: #{unbound moment calledAt}"
-        i.fa.fa-info-circle
-  tr
-    if bridge.calledAt
-      td Answered at
-      td = view Ember.AnsweredAt
-    else
+  tbody
+    tr
+      td width="40%" Caller ID
+      td width="60%"
+        = callerName
+        span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Called at: #{unbound moment calledAt}"
+          i.fa.fa-info-circle
+    tr
       if queuedAt
         td Queued at
         td = view Ember.QueuedAt
       else
         td Called at
         td = view Ember.CalledAt
-  tr
-    td Language choice
-    td = upcase language
-  tr
-    td Requested skill
-    td = skillName
+    tr
+      td Language choice
+      td = upcase language
+    tr
+      td Requested skill
+      td = skillName

@@ -1,28 +1,7 @@
-app.getAgentFrom = (callerId) ->
-  matches = callerId.match(/^SIP.(\d+)$/)
-  name    = if matches then matches[1] else ""
-  agent   = Voice.store.all('user').find (u) -> u.get('name') == name
-  if agent
-   "#{agent.get 'name'} / #{agent.get 'displayName'}"
-  else
-    callerId
-
-
-app.takeIncoming = (call, name) ->
-  app.dialog(
-    "You have an incoming call from<br /><strong>#{name}</strong>",
-    'question', 'Take call', 'I\'m busy'
-  ).then ( ->
-    env.callDialogActive = false
-    phone.app.answer(call.id, false)
-  ), ( ->
-    env.callDialogActive = false
-    phone.app.hangup(call.id)
-  )
-
-
 app.setupPhone = ->
+
   return unless phone.isWebRTCAvailable
+  return unless app.loadLocalKey('useWebRtc')
 
   data =
     login:    env.sipAgent
@@ -37,7 +16,7 @@ app.setupPhone = ->
     if call.incoming
       env.callDialogActive = true
       name = app.getAgentFrom(call.visibleNameCaller)
-      app.takeIncoming(call, name)
+      app.takeIncomingCall(call, name)
 
   phone.notifyRemoveCall = (call) ->
     console.log('SIP remove call:', call) if env.debug
@@ -79,14 +58,6 @@ app.setupSSE = ->
     data = JSON.parse(event.data)
     console.log('SSE message:', data) if env.debug
 
-    if data.user
-      app.updateUserFrom(data)
-    else if data.call
-      app.updateCallFrom(data)
-    else if data.chat_message
-      app.createMessageFrom(data)
-    else if data.servertime
-      app.resetServerTimer()
-
+    app.parseIncomingData(data)
     if env.railsEnv == 'test' && !data.servertime
       env.messages.push(data)

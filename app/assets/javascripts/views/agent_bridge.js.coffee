@@ -19,7 +19,7 @@ Voice.AgentBridgeView = Ember.View.extend(DragNDrop.Dragable, {
 
 
   dragStartCallback: (e) ->
-    return false unless @get('controller.myCall')
+    return false unless @get('controller.myCallLeg')
     return true
 
 })

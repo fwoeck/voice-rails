@@ -6,6 +6,7 @@
 #= require foundation/foundation
 #= require foundation/foundation.tab
 #= require foundation/foundation.tooltip
+#= require gravatar
 #= require moment
 #= require common
 #= require connections

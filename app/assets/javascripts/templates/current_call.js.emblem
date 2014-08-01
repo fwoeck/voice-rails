@@ -1,0 +1,12 @@
+table#callstats_table
+  tbody
+    tr.thead
+      td.split colspan="2"
+        ' You are talking to
+        = origin.callerName
+    tr
+      td.split = render 'inbound_call' origin
+      td.split = render 'agent_bridge' model
+    tr
+      td.split colspan="2"
+        = render 'customer'

@@ -4,7 +4,6 @@ Voice.ChatMessage = DS.Model.extend({
   from:       DS.attr 'string'
   content:    DS.attr 'string'
   createdAt:  DS.attr 'date'
-  newest:     true
 
 
   fromName: (->
@@ -12,7 +11,6 @@ Voice.ChatMessage = DS.Model.extend({
     user = @store.all('user').find (u) -> u.get('email') == from
     if user then user.get('displayName') else from
   ).property('from')
-
 })
 
 
@@ -26,5 +24,4 @@ Voice.ChatMessage.reopenClass({
       to:        to
     })
     cm.save()
-
 })

@@ -1,7 +1,7 @@
 #my_settings.large-12.medium-12.columns
   h5
     i.header.fa.fa-cogs
-    | My Settings
+    span.header My Settings
     span.stats = currentStatusLine
 
   #my_settings_body
@@ -20,17 +20,25 @@
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="ready"
               label for="i_am_ready"
-            td.space I'm ready
+            td.space I'm ready for calls
+            td: .switch.tiny
+              Ember.CheckMark selection=useWebRtc
+              label for="use_web_rtc"
+            td.space Use the web-phone
           tr
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="busy"
               label for="i_am_busy"
-            td.space I'm busy
+            td.space I'm currently busy
+            td
+            td.label
           tr
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="away"
               label for="i_am_away"
-            td.space I'm away
+            td.space I'm away from desk
+            td
+            td.label
 
       #panel2.content
         table#language_table

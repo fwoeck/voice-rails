@@ -1,0 +1,30 @@
+table.customer_table
+  tbody
+    tr
+      td.space
+        label
+          ' Full Name
+          = input type='text' value=fullname placeholder='Enter the full name..'
+      td.space
+        label
+          ' E-Mail
+          = input type='text' value=email placeholder='Enter an e-mail address..'
+      td.space
+        label
+          ' Zendesk ID
+          = input type='text' value=zendeskId placeholder='Enter a Zendesk ID..'
+      td.space
+        label
+          ' &nbsp;
+          .button.tiny.store click=storeRecord
+            | Store Record
+
+table.history_table
+  thead
+    tr
+      td width="18%" Called At
+      td width="24%" Agent
+      td width="58%" Remarks
+  tbody
+    each entry in orderedEntries
+      = render 'entry' entry

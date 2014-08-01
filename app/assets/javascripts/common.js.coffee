@@ -1,5 +1,21 @@
 window.app = {
 
+  agentRegex: /^(SIP\/)?(\d\d\d\d?)$/
+
+
+  getAgentFrom: (callerId) ->
+    return "" unless callerId
+
+    matches = "#{callerId}".match(app.agentRegex)
+    name    = if matches then matches[2] else ""
+    agent   = Voice.store.all('user').find (u) -> u.get('name') == name
+
+    if agent
+     "#{agent.get 'name'} / #{agent.get 'displayName'}"
+    else
+      callerId
+
+
   resetServerTimer: ->
     window.clearTimeout(env.serverTimeout) if env.serverTimeout
     env.serverTimeout = window.setTimeout (->
@@ -44,7 +60,9 @@ window.app = {
 
 
   callQueueToggle: ->
-    ($ '#call_queue > h5').click ->
+    ($ '#call_queue > h5').click (evt) ->
+      return if evt.target.className.match('talking')
+
       app.hideTooltips()
       ($ '#call_queue').addClass('expanded').addClass('lifted')
       ($ '#my_settings').removeClass('expanded')
@@ -131,4 +149,28 @@ window.app = {
         type:    type
 
       Voice.set 'dialogContent', dialog
+
+
+  parseIncomingData: (data) ->
+    if data.user
+      app.updateUserFrom(data)
+    else if data.call
+      app.updateCallFrom(data)
+    else if data.chat_message
+      app.createMessageFrom(data)
+    else if data.servertime
+      app.resetServerTimer()
+
+
+  takeIncomingCall: (call, name) ->
+    app.dialog(
+      "You have an incoming call from<br /><strong>#{name}</strong>",
+      'question', 'Take call', 'I\'m busy'
+    ).then ( ->
+      env.callDialogActive = false
+      phone.app.answer(call.id, false)
+    ), ( ->
+      env.callDialogActive = false
+      phone.app.hangup(call.id)
+    )
 }

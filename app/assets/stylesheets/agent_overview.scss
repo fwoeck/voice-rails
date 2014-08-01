@@ -38,9 +38,8 @@
 }
 
 .agent {
+  box-shadow: #888 2px 2px 3px;
   background-color: #f6f6f6;
-  border: 1px solid #ddd;
-  border-radius: 4px;
   position: relative;
   margin-bottom: 8px;
   width: 354px;
@@ -50,6 +49,7 @@
   img.avatar {
     margin-right: 8px;
     display: block;
+    opacity: 0.6;
     float: left;
   }
 
@@ -59,7 +59,6 @@
     border: 3px solid #ddd;
     border-radius: 1000px;
     position: absolute;
-    cursor: pointer;
     font-size: 18px;
     padding: 5px;
     right: 18px;
@@ -67,14 +66,15 @@
   }
 
   i.fa.talking {
-    color: #ffa500;
+    color: #c66;
   }
 
   i.fa.talking:hover {
-    color: #ffa500;
+    color: #c66;
   }
 
   i.fa.registered {
+    cursor: pointer;
     color: #777;
   }
 
@@ -95,10 +95,18 @@
 
   span {
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 13px;
     display: block;
-    margin: 3px 0;
+    margin: 1px 0;
+    color: #777;
     float: left;
+  }
+
+  span.avatar {
+    background-color: #ddd;
+    margin: 0 8px 0 0;
+    height: 64px;
+    width: 64px;
   }
 
   span.skills, span.languages {

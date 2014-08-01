@@ -10,6 +10,13 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   availability:  DS.attr 'string'
 
 
+  gravatarUrl: (->
+    email = @get 'email'
+    return unless email
+    gravatar(email, size: 64)
+  ).property('email')
+
+
   didLoad: ->
     @splitLanguages()
     @splitSkills()
@@ -33,5 +40,4 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
     @get('skills').split(',').map((l) -> l.capitalize())
                   .join(', ').replace(/_booking/g, 'Book')
   ).property('skills')
-
 })

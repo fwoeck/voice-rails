@@ -1,43 +1,36 @@
 Voice.CallQueueController = Ember.ArrayController.extend({
 
   needs: ['calls', 'users']
-  contentBinding: 'controllers.calls'
-
-  showMatchesOnly: true
   callSorting: ['calledAt']
-
-  inboundCalls: Ember.computed.sort 'activeCalls', 'callSorting'
-
-
-  activeCalls: Ember.computed.filter('content',
-    (call) ->
-      if @get 'showMatchesOnly'
-        @callMatchesAgent(call)
-      else
-        @callIsInbound(call)
-  ).property(
-    'content.@each.{hungup,connLine,language,skill}',
-    'Voice.currentUser.languages',
-    'Voice.currentUser.skills',
-    'showMatchesOnly'
-  )
+  contentBinding: 'controllers.calls'
+  hideForeignCallsBinding: 'Voice.hideForeignCalls'
 
 
-  callMatchesAgent: (call) ->
-    cu = Voice.get('currentUser')
-    @callIsInbound(call) &&
-      cu.get('languages').match(call.get 'language') &&
-      cu.get('skills').match(call.get 'skill')
+  actions:
+    hangupCall: ->
+      cc = Voice.get('currentCall')
+      return unless cc
+
+      app.dialog(
+        'Do you want to hangup your current call?', 'question'
+      ).then ( ->
+        cc.hangup()
+      ), (->)
+      return false
 
 
-  callIsInbound: (call) ->
-    !call.get('hungup') && !call.get('connLine') &&
-      !call.get('callerId').match(/^SIP.\d+$/)
+  filteredCalls: Ember.computed.filterBy 'content', 'matchesFilter', true
+  sortedCalls:   Ember.computed.sort 'filteredCalls', 'callSorting'
 
 
-  waitingCalls: Ember.computed.filter('activeCalls',
+  talking: ( ->
+    !!Voice.get('currentCall')
+  ).property('Voice.currentCall')
+
+
+  waitingCalls: Ember.computed.filter('filteredCalls',
     (call) -> !call.get('bridge')
-  ).property('activeCalls.@each.bridge')
+  ).property('filteredCalls.@each.bridge')
 
 
   currentStatusLine: (->
