@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   put    'users/:id'          => 'users#update'
 
   get    'customers'          => 'customers#index'
+  put    'customers/:id'      => 'customers#update'
   get    'customers/:id'      => 'customers#show'
 
   get    '*path',            to: 'application#catch_404'

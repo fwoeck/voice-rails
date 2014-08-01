@@ -16,7 +16,8 @@ table.customer_table
       td.space
         label
           ' &nbsp;
-          .button.tiny.store Store Record
+          .button.tiny.store click=storeRecord
+            | Store Record
 
 table.history_table
   thead
