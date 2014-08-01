@@ -1,10 +1,11 @@
 app.defaultUserPrefs =
-  useWebRtc: true
+  autoLogout: 60
+  useWebRtc:  true
 
 
 app.getUserPrefs = (uid) ->
   json = window.localStorage[uid] || JSON.stringify(app.defaultUserPrefs)
-  JSON.parse(json)
+  $.extend app.defaultUserPrefs, JSON.parse(json)
 
 
 app.putUserPrefs = (uid, obj) ->

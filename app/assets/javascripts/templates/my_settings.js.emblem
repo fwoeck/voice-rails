@@ -24,7 +24,7 @@
             td: .switch.tiny
               Ember.CheckMark selection=useWebRtc
               label for="use_web_rtc"
-            td.space Activate web-phone
+            td.space Use the web-phone
           tr
             td: .switch.tiny
               Ember.RadioButton name="Availability" selection=availability value="busy"

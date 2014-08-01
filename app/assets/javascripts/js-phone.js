@@ -604,6 +604,7 @@ WebSocketManager.prototype = {
   },
 
   logoff: function () {
+    if (!this.webSocket) return;
     this.webSocket.close();
   },
 
