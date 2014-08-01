@@ -1,4 +1,4 @@
-tr
+tr class=callIsCurrent
   td = view Ember.CreatedAt
   td = agentFor agentExt
   if callIsCurrent
