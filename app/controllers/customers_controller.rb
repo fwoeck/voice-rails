@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
 
     if par && cust
       update_customer_with(par, cust)
-      render json: cust
+      render json: cust, serializer: FlatCustomerSerializer, root: :customer
     else
       render nothing: true, status: 404
     end
