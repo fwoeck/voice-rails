@@ -1,7 +1,3 @@
-Voice.EntryController = Ember.ObjectController.extend({
-})
-
-
 Voice.CallsController = Ember.ArrayController.extend({
 })
 

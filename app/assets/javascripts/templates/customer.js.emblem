@@ -22,10 +22,9 @@ table.customer_table
 table.history_table
   thead
     tr
-      td Called At
-      td Agent
-      td Call ID
-      td Remarks
+      td width="20%" Called At
+      td width="25%" Agent
+      td width="55%" Remarks
   tbody
     each entry in orderedEntries
       = render 'entry' entry

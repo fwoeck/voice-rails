@@ -20,6 +20,15 @@ table.history_table {
     font-size: 12px;
     padding: 4px;
   }
+
+  td.remarks input {
+    font-size: 11px;
+    display: inline;
+    height: auto;
+    padding: 4px;
+    width: 100%;
+    margin: 0;
+  }
 }
 
 table#callstats_table {

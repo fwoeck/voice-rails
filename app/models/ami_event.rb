@@ -24,17 +24,21 @@ class AmiEvent
 
 
     def channel_is_active?(data)
-      data['name'] == 'Newstate' && ['4', '5', '6'].include?(data['headers']['ChannelState'])
+      data['name'] == 'Newstate' && ['4', '5'].include?(
+        data['headers']['ChannelState']
+      )
     end
 
 
     def get_peer_from(data)
+      hdr = data['headers']
+
       if data['name'] == 'PeerStatus'
-        data['headers']['Peer'][ChannelRegex, 1]
+        hdr['Peer'][ChannelRegex, 1]
       elsif channel_is_active?(data)
-        data['headers']['Channel'][ChannelRegex, 1]
+        hdr['Channel'][ChannelRegex, 1]
       elsif data['name'] == 'Hangup'
-        data['headers']['Channel'][ChannelRegex, 1]
+        hdr['Channel'][ChannelRegex, 1]
       end
     end
 
@@ -49,7 +53,9 @@ class AmiEvent
 
 
     def agent_takes_call?(data)
-      data['name'] == 'BridgeExec' && data['headers']['Response'] == 'Success'
+      hdr = data['headers']
+      data['name'] == 'Newstate' && hdr['ChannelState'] == '6' &&
+        !hdr['ConnectedLineNum'].blank?
     end
 
 
@@ -62,9 +68,8 @@ class AmiEvent
 
     def create_history_for(data)
       yield_to_call(data) do |call|
-        call.create_customer_history_entry(
-          data['headers']['Channel1'][ChannelRegex, 1]
-        )
+        agent = data['headers']['Channel'][ChannelRegex, 1]
+        call.create_customer_history_entry(agent)
       end
     end
 

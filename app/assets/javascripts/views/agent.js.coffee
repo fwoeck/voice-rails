@@ -32,5 +32,4 @@ Voice.AgentView = Ember.View.extend(DragNDrop.Droppable, {
       ), (->)
     else
       return true
-
 })

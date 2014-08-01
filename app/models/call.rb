@@ -63,7 +63,14 @@ class Call
 
 
   def create_customer_history_entry(agent)
-    # TODO
+    cust = Customer.where(caller_ids: caller_id).last ||
+           Customer.create(caller_ids: [caller_id])
+
+    cust.history_entries.create(
+      call_id:   target_id,
+      caller_id: caller_id,
+      agent_ext: agent
+    )
   end
 
 

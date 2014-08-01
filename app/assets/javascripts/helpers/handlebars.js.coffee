@@ -18,6 +18,6 @@ Ember.Handlebars.helper('fromNow', (value, options) ->
   moment(value).fromNow() if value
 )
 
-Ember.Handlebars.helper('agentName', (value, options) ->
-  Voice.store.getById('user', value)?.get('displayName') if value
+Ember.Handlebars.helper('agentFor', (value, options) ->
+  app.getAgentFrom(value) if value
 )

@@ -1,5 +1,7 @@
 tr
   td = fromNow createdAt
-  td = agentName agentId
-  td = callId
-  td = remarks
+  td = agentFor agentExt
+  if callIsCurrent
+    td.remarks = input type='text' value=remarks placeholder='Type your remarks..' maxlength='256'
+  else
+    td = remarks

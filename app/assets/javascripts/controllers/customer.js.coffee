@@ -5,6 +5,6 @@ Voice.CustomerController = Ember.ObjectController.extend({
 
   actions:
     storeRecord: ->
-      @get('content').save()
+      @get('content')?.save()
       false
 })
