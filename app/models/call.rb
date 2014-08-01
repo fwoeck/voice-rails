@@ -62,6 +62,11 @@ class Call
   end
 
 
+  def create_customer_history_entry(agent)
+    # TODO
+  end
+
+
   # FIXME This may become expensive for high call counts:
   #
   def self.all

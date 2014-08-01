@@ -27,5 +27,5 @@ table.history_table
       td Call ID
       td Remarks
   tbody
-    each entry in historyEntries
+    each entry in orderedEntries
       = render 'entry' entry

@@ -9,5 +9,6 @@ class Customer
   field :created_at, type: DateTime, default: -> { Time.now.utc }
 
   embeds_many :history_entries
-  # index(created_at: -1)
+
+  index(caller_ids: 1)
 end
