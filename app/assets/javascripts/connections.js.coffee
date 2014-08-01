@@ -1,6 +1,7 @@
 app.setupPhone = ->
 
   return unless phone.isWebRTCAvailable
+  return unless app.loadLocalKey('useWebRtc')
 
   data =
     login:    env.sipAgent
