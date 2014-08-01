@@ -18,8 +18,7 @@ class CustomersController < ApplicationController
 
     if cust && (entry = cust.history_entries.find params[:id])
       entry.remarks = (par[:remarks] || "").strip
-      entry.save
-      stat = 200
+      entry.save && stat = 200
     end
     render json: {}, status: stat
   end
@@ -42,9 +41,10 @@ class CustomersController < ApplicationController
 
   def update_customer_with(par, cust)
     cust.tap { |c|
-      c.fullname     = (par[:fullname] || "").strip
-      c.email        = (par[:email] || "").strip.downcase
-      c.zendesk_id ||=  par[:zendesk_id]
+      c.fullname   = (par[:fullname] || "").strip
+      c.email      = (par[:email] || "").strip.downcase
+
+      c.zendesk_id = par[:zendesk_id] if c.zendesk_id.blank?
       c.save
     }
   end

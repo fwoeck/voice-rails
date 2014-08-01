@@ -3,19 +3,19 @@ table.customer_table
     tr class=dirty
       td.space
         label
-          ' Full Name
+          | Full Name
           = input type='text' value=fullname placeholder='Enter the full name..'
       td.space
         label
-          ' E-Mail
+          | E-Mail
           = input type='text' value=email placeholder='Enter an e-mail address..'
       td.space
         label
-          ' Zendesk ID
+          | Zendesk ID
           = input type='text' value=zendeskId placeholder='Enter a Zendesk ID..'
       td.space
         label
-          ' &nbsp;
+          | &nbsp;
           .button.tiny.store click=storeRecord
             | Store Record
 

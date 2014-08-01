@@ -126,6 +126,20 @@ table.callstats_table {
   i.fa.connection.my-call-leg:hover {
     color: #000;
   }
+
+  td.strong {
+    line-height: 12px;
+    font-size: 15px;
+  }
+
+  img.avatar {
+    border: 2px solid #aaa;
+    position: absolute;
+    margin: 16px 70px;
+    opacity: 0.7;
+    height: 48px;
+    width: 48px;
+  }
 }
 
 html.touch {
