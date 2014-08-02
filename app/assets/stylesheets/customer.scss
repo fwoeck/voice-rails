@@ -37,6 +37,19 @@ table.history_table {
     font-size: 12px;
     height: 26px;
   }
+
+  span.jp-duration, span.jp-current-time {
+    display: inline-block;
+    margin-right: 10px;
+    color: #999;
+    width: 32px;
+  }
+
+  span.jp-play, span.jp-stop, span.jp-pause {
+    display: inline-block;
+    color: #aaa;
+    width: 24px;
+  }
 }
 
 table#callstats_table {

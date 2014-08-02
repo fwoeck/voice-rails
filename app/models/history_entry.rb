@@ -3,6 +3,7 @@ class HistoryEntry
   include Mongoid::Document
 
   field :remarks,    type: String,   default: ""
+  field :mailbox,    type: String
   field :call_id,    type: String
   field :agent_ext,  type: Integer
   field :caller_id,  type: String
