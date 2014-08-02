@@ -43,58 +43,8 @@ class CustomersController < ApplicationController
     cust.tap { |c|
       c.fullname = (par[:fullname] || "").strip
       c.email    = (par[:email] || "").strip.downcase
-      manage_zendesk_user(par, c)
+      c.manage_zendesk_account(par[:zendesk_id])
       c.save
     }
-  end
-
-
-  # TODO This stuff should go to a class:
-  #
-  def manage_zendesk_user(par, c)
-    if par[:zendesk_id] == 'requested..'
-      request_zendesk_id_for(c)
-    elsif c.zendesk_id.blank? && !par[:zendesk_id].blank?
-      c.zendesk_id = par[:zendesk_id]
-      fetch_zendesk_user_fo(c)
-    elsif !c.zendesk_id.blank?
-      update_zendesk_record(c)
-    end
-  end
-
-
-  # TODO This stuff should go to a class:
-  #
-  def fetch_zendesk_user_fo(c)
-    if (user = $zendesk.users.find id: c.zendesk_id)
-      c.fullname = user.name
-      c.email    = user.email
-    end
-  end
-
-
-  # TODO This stuff should go to a class:
-  #
-  def update_zendesk_record(c)
-    Thread.new {
-      if (user = $zendesk.users.find id: c.zendesk_id)
-        user.name  = c.fullname
-        user.email = c.email
-        user.save
-      end
-    }
-  end
-
-
-  # TODO This stuff should go to a class:
-  #
-  def request_zendesk_id_for(c)
-    unless c.fullname.blank?
-      opts         = {name: c.fullname}
-      opts[:email] = c.email unless c.email.blank?
-
-      user = $zendesk.users.create(opts)
-      c.zendesk_id = user.id.to_s if user
-    end
   end
 end
