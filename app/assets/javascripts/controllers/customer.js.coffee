@@ -4,6 +4,13 @@ Voice.CustomerController = Ember.ObjectController.extend({
 
 
   actions:
+    syncZendesk: ->
+      cust = @get('content')
+      if cust
+        cust.set('zendeskId', 'requested..')
+        cust.save()
+      false
+
     storeRecord: ->
       @get('content')?.save()
       false

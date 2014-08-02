@@ -5,9 +5,25 @@ table.customer_table {
   margin: 0;
   border: 0;
 
-  td.space {
+  td.space25 {
     padding: 4px;
     width: 25%;
+  }
+
+  td.space15 {
+    padding: 4px;
+    width: 15%;
+  }
+
+  i.zendesk {
+    transition: color linear 300ms;
+    vertical-align: super;
+    font-size: 12px;
+    color: #444;
+  }
+
+  i.zendesk:hover {
+    color: #aaa;
   }
 }
 

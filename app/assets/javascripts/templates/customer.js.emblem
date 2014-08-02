@@ -1,19 +1,22 @@
 table.customer_table
   tbody
     tr class=dirty
-      td.space
+      td.space25
         label
           | Full Name
           = input type='text' value=fullname placeholder='The full name..'
-      td.space
+      td.space25
         label
           | E-Mail
           = input type='text' value=email placeholder='An e-mail address..'
-      td.space
+      td.space15
         label
-          | Zendesk ID
-          = input type='text' value=zendeskId placeholder='A Zendesk ID..'
-      td.space
+          ' Zendesk Id
+          '
+          unless zendeskId
+            i.fa.fa-plus-circle.zendesk click=syncZendesk
+          = input type='text' value=zendeskId placeholder="The user's Id.."
+      td.space15
         label
           | &nbsp;
           .button.tiny.store click=storeRecord
