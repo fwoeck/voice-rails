@@ -16,14 +16,14 @@ Voice.EntryView = Ember.View.extend({
     ($ "##{player}").jPlayer({
       volume: 1.0
       muted: false
-      supplied: 'wav'
+      supplied: 'mp3'
       solution: 'html'
       errorAlerts: false
       preload: 'metadata'
       warningAlerts: false
       cssSelectorAncestor: "##{container}"
       ready: ->
-        ($ @).jPlayer('setMedia', wav: "/record/#{mailbox}.wav")
+        ($ @).jPlayer('setMedia', mp3: "/record/#{mailbox}.mp3")
     })
 
 
