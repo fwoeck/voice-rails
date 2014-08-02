@@ -23,6 +23,7 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
 
   call: ->
+    Voice.callIsOriginate = true
     $.post '/calls', to: @get('name')
 
 

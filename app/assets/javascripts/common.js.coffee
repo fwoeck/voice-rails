@@ -173,14 +173,29 @@ window.app = {
 
 
   takeIncomingCall: (call, name) ->
+    par = if Voice.callIsOriginate
+      message: "Do you want to call<br /><strong>#{name}</strong>?"
+      textYes: 'Yes, dial'
+      textNo:  'Cancel'
+      call:     call
+    else
+      message:  "You have an incoming call from<br /><strong>#{name}</strong>"
+      textYes:  'Take call'
+      textNo:   'I\'m busy'
+      call:     call
+
+    Voice.callIsOriginate = false
+    @showDialDialog(par)
+
+
+  showDialDialog: (par) ->
     app.dialog(
-      "You have an incoming call from<br /><strong>#{name}</strong>",
-      'question', 'Take call', 'I\'m busy'
+      par.message, 'question', par.textYes, par.textNo
     ).then ( ->
       env.callDialogActive = false
-      phone.app.answer(call.id, false)
+      phone.app.answer(par.call.id, false)
     ), ( ->
       env.callDialogActive = false
-      phone.app.hangup(call.id)
+      phone.app.hangup(par.call.id)
     )
 }
