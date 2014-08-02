@@ -128,19 +128,6 @@ form#new_user {
       color: orange;
       margin: 10px;
     }
-
-    span.search {
-      margin-right: 2px;
-      float: right;
-    }
-
-    span.search input {
-      padding: 2px 5px 0px 5px;
-      line-height: 14px;
-      margin: 6px 0 0 0;
-      font-size: 12px;
-      height: 24px;
-    }
   }
 
   span.matches {
@@ -183,4 +170,8 @@ form#new_user {
 .blurred {
   -webkit-filter: blur(3px);
   -moz-filter: blur(3px);
+}
+
+tr.dirty input, input.dirty {
+  background-color: #ffd890 !important;
 }

@@ -14,6 +14,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
   skill:         DS.attr 'string'
   hungup:        DS.attr 'boolean'
+  mailbox:       DS.attr 'string'
   calledAt:      DS.attr 'date'
   callerId:      DS.attr 'string'
   channel1:      DS.attr 'string'

@@ -43,29 +43,39 @@ window.app = {
     @setupLabelInputs()
 
 
+  showAgentOverview: ->
+    ($ '#call_queue').removeClass('expanded')
+
+
+  toggleAgentOverview: ->
+    app.hideTooltips()
+    ($ '#call_queue').toggleClass('expanded')
+
+
   agentOverviewToggle: ->
-    ($ '#agent_overview > h5').click ->
-      app.hideTooltips()
-      if ($ 'input[name=agent_search]').is(':focus')
-        ($ '#call_queue').removeClass('expanded')
-      else
-        ($ '#call_queue').toggleClass('expanded')
+    ($ '#agent_overview > h5').click -> app.toggleAgentOverview()
 
 
-  mySettingsToggle: ->
-    ($ '#my_settings > h5').click ->
+  toggleSettings: ->
       app.hideTooltips()
       ($ '#my_settings').toggleClass('expanded')
       ($ '#call_queue').toggleClass('lifted')
 
 
+  mySettingsToggle: ->
+    ($ '#my_settings > h5').click -> app.toggleSettings()
+
+
+  toggleCallQueue: ->
+    app.hideTooltips()
+    ($ '#call_queue').addClass('expanded').addClass('lifted')
+    ($ '#my_settings').removeClass('expanded')
+
+
   callQueueToggle: ->
     ($ '#call_queue > h5').click (evt) ->
       return if evt.target.className.match('talking')
-
-      app.hideTooltips()
-      ($ '#call_queue').addClass('expanded').addClass('lifted')
-      ($ '#my_settings').removeClass('expanded')
+      app.toggleCallQueue()
 
 
   setupLabelInputs: ->
@@ -163,14 +173,29 @@ window.app = {
 
 
   takeIncomingCall: (call, name) ->
+    par = if Voice.callIsOriginate
+      message: "Do you want to call<br /><strong>#{name}</strong>?"
+      textYes: 'Yes, dial'
+      textNo:  'Cancel'
+      call:     call
+    else
+      message:  "You have an incoming call from<br /><strong>#{name}</strong>"
+      textYes:  'Take call'
+      textNo:   'I\'m busy'
+      call:     call
+
+    Voice.callIsOriginate = false
+    @showDialDialog(par)
+
+
+  showDialDialog: (par) ->
     app.dialog(
-      "You have an incoming call from<br /><strong>#{name}</strong>",
-      'question', 'Take call', 'I\'m busy'
+      par.message, 'question', par.textYes, par.textNo
     ).then ( ->
       env.callDialogActive = false
-      phone.app.answer(call.id, false)
+      phone.app.answer(par.call.id, false)
     ), ( ->
       env.callDialogActive = false
-      phone.app.hangup(call.id)
+      phone.app.hangup(par.call.id)
     )
 }

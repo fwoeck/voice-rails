@@ -3,6 +3,20 @@
   position: relative;
   height: 220px;
   z-index: 10;
+
+  span.search {
+    position: absolute;
+    right: 16px;
+    top: 2px;
+  }
+
+  span.search input {
+    padding: 2px 5px 0px 5px;
+    line-height: 14px;
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    height: 24px;
+  }
 }
 
 #agent_overview_body {

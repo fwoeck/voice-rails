@@ -30,12 +30,37 @@ table.history_table {
 
   td.remarks input {
     width: calc(100% + 6px);
+    padding: 2px 5px 1px;
     margin: 0 0 0 -6px;
-    line-height: 26px;
-    padding: 2px 5px;
+    line-height: 14px;
     display: inline;
     font-size: 12px;
     height: 26px;
+  }
+
+  span.jp-duration {
+    margin-right: 4px;
+  }
+
+  span.jp-duration, span.jp-current-time {
+    display: inline-block;
+    color: #999;
+    width: 36px;
+  }
+
+  span.jp-play, span.jp-stop, span.jp-pause {
+    display: inline-block;
+    width: 24px;
+
+    i {
+      transition: color linear 300ms;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    i:hover {
+      color: #000;
+    }
   }
 }
 

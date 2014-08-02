@@ -3,8 +3,8 @@
     i.header.fa.fa-compass
     span.header Agent Overview
     span.stats = currentStatusLine
-    span.search
-      Voice.TextField type='text' name='agent_search' maxlength='16' value=pattern placeholder='Find a name..'
+  span.search
+    Voice.AgentSearch value=pattern
 
   #agent_overview_body.bottom-mask
     each matchingAgents

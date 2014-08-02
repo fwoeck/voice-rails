@@ -61,6 +61,7 @@ class AmiEvent
 
     def send_updates_for_call(data)
       yield_to_call(data) do |call|
+        call.create_history_entry_for_mailbox
         call.send_update_notification_to_clients
       end
     end

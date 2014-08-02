@@ -6,7 +6,12 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
   init: ->
     @_super()
-    @set 'useWebRtc', app.loadLocalKey('useWebRtc')
+    @restoreWebRtcSetting()
+
+
+  restoreWebRtcSetting: ->
+    Ember.run.next =>
+      @set 'useWebRtc', app.loadLocalKey('useWebRtc')
 
 
   storePrefs: (->

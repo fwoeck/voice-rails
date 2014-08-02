@@ -1,21 +1,21 @@
 table.customer_table
   tbody
-    tr
+    tr class=dirty
       td.space
         label
-          ' Full Name
-          = input type='text' value=fullname placeholder='Enter the full name..'
+          | Full Name
+          = input type='text' value=fullname placeholder='The full name..'
       td.space
         label
-          ' E-Mail
-          = input type='text' value=email placeholder='Enter an e-mail address..'
+          | E-Mail
+          = input type='text' value=email placeholder='An e-mail address..'
       td.space
         label
-          ' Zendesk ID
-          = input type='text' value=zendeskId placeholder='Enter a Zendesk ID..'
+          | Zendesk ID
+          = input type='text' value=zendeskId placeholder='A Zendesk ID..'
       td.space
         label
-          ' &nbsp;
+          | &nbsp;
           .button.tiny.store click=storeRecord
             | Store Record
 

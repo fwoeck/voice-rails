@@ -8,4 +8,5 @@
 /.rbx
 /Guardfile
 /public/assets
+/public/record
 ._*

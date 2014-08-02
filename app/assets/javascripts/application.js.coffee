@@ -2,6 +2,7 @@
 #= require rails
 #= require fastclick
 #= require jquery.json.js
+#= require jquery.jplayer
 #= require jquery.websocket
 #= require foundation/foundation
 #= require foundation/foundation.tab
@@ -14,6 +15,7 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-shortcuts
 #= require_self
 #= require voice
 

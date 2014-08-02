@@ -6,6 +6,6 @@ Voice.Customer = DS.Model.extend({
 
   email:          DS.attr 'string'
   fullname:       DS.attr 'string'
-  zendeskId:      DS.attr 'number'
+  zendeskId:      DS.attr 'string'
   callerIds:      DS.attr 'array'
 })
