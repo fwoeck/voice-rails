@@ -11,4 +11,4 @@
   else
     .message
       .body.empty
-        p There are no recent messages in the team chat until now &mdash; be the first one to write one!
+        p There are no recent messages in the team chat until now &mdash; be the first to write one!

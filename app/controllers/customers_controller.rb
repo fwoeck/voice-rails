@@ -54,8 +54,21 @@ class CustomersController < ApplicationController
   def manage_zendesk_user(par, c)
     if par[:zendesk_id] == 'requested..'
       request_zendesk_id_for(c)
+    elsif c.zendesk_id.blank? && !par[:zendesk_id].blank?
+      c.zendesk_id = par[:zendesk_id]
+      fetch_zendesk_user_fo(c)
     elsif !c.zendesk_id.blank?
       update_zendesk_record(c)
+    end
+  end
+
+
+  # TODO This stuff should go to a class:
+  #
+  def fetch_zendesk_user_fo(c)
+    if (user = $zendesk.users.find id: c.zendesk_id)
+      c.fullname = user.name
+      c.email    = user.email
     end
   end
 

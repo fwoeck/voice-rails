@@ -19,4 +19,10 @@ Voice.CustomerController = Ember.ObjectController.extend({
   dirty: (->
     @get('content.currentState.stateName') != 'root.loaded.saved'
   ).property('content.currentState.stateName')
+
+
+  zendeskUserUrl: (->
+    uid = @get('content.zendeskId')
+    "https://dokmatic.zendesk.com/agent/#/users/#{uid}/requested_tickets"
+  ).property('content.zendeskId')
 })

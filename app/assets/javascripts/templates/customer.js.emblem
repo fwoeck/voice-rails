@@ -11,9 +11,9 @@ table.customer_table
           = input type='text' value=email placeholder='An e-mail address..'
       td.space15
         label
-          ' Zendesk Id
-          '
+          | Zendesk Id
           unless zendeskId
+            ' &nbsp;
             i.fa.fa-plus-circle.zendesk click=syncZendesk
           = input type='text' value=zendeskId placeholder="The user's Id.."
       td.space15
@@ -31,3 +31,13 @@ table.history_table
   tbody
     each entry in orderedEntries
       = render 'entry' entry
+
+if zendeskId
+  table.history_table
+    thead
+      tr
+        td: a href=zendeskUserUrl target='_blank'
+          | Recent tickets at Zendesk
+    tbody
+      tr
+        td 123...
