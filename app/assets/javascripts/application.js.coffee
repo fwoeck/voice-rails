@@ -14,6 +14,7 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-shortcuts
 #= require_self
 #= require voice
 

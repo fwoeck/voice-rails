@@ -20,4 +20,49 @@ Voice.ApplicationRoute = Ember.Route.extend({
     Voice.set 'allUsers',    @store.all('user')
     Voice.set 'currentUser', @store.getById('user', env.userId)
 
+
+  shortcuts:
+    'ctrl+c': 'showCallQueue'
+    'ctrl+s': 'toggleSettings'
+    'ctrl+o': 'toggleAgentOverview'
+    'ctrl+h': 'toggleForeignCalls'
+    'ctrl+a': 'cycleAvailability'
+    'ctrl+f': 'activateSearch'
+    'ctrl+t': 'activateChat'
+
+
+  actions:
+    showCallQueue: ->
+      app.toggleCallQueue()
+      false
+
+    toggleSettings: ->
+      app.toggleSettings()
+      false
+
+    toggleAgentOverview: ->
+      app.toggleAgentOverview()
+      false
+
+    cycleAvailability: ->
+      cu    = Voice.get('currentUser')
+      avail = switch cu.get('availability')
+                when 'ready' then 'busy'
+                when 'busy'  then 'away'
+                when 'away'  then 'ready'
+
+      cu.set('availability', avail)
+      false
+
+    toggleForeignCalls: ->
+      Voice.toggleProperty('hideForeignCalls')
+      false
+
+    activateSearch: ->
+      Ember.run.next -> ($ 'input[name=agent_search]').focus()
+      false
+
+    activateChat: ->
+      Ember.run.next -> ($ 'input[name=chat_message]').focus()
+      false
 })

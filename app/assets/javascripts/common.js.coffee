@@ -43,29 +43,39 @@ window.app = {
     @setupLabelInputs()
 
 
+  showAgentOverview: ->
+    ($ '#call_queue').removeClass('expanded')
+
+
+  toggleAgentOverview: ->
+    app.hideTooltips()
+    ($ '#call_queue').toggleClass('expanded')
+
+
   agentOverviewToggle: ->
-    ($ '#agent_overview > h5').click ->
-      app.hideTooltips()
-      if ($ 'input[name=agent_search]').is(':focus')
-        ($ '#call_queue').removeClass('expanded')
-      else
-        ($ '#call_queue').toggleClass('expanded')
+    ($ '#agent_overview > h5').click -> app.toggleAgentOverview()
 
 
-  mySettingsToggle: ->
-    ($ '#my_settings > h5').click ->
+  toggleSettings: ->
       app.hideTooltips()
       ($ '#my_settings').toggleClass('expanded')
       ($ '#call_queue').toggleClass('lifted')
 
 
+  mySettingsToggle: ->
+    ($ '#my_settings > h5').click -> app.toggleSettings()
+
+
+  toggleCallQueue: ->
+    app.hideTooltips()
+    ($ '#call_queue').addClass('expanded').addClass('lifted')
+    ($ '#my_settings').removeClass('expanded')
+
+
   callQueueToggle: ->
     ($ '#call_queue > h5').click (evt) ->
       return if evt.target.className.match('talking')
-
-      app.hideTooltips()
-      ($ '#call_queue').addClass('expanded').addClass('lifted')
-      ($ '#my_settings').removeClass('expanded')
+      app.toggleCallQueue()
 
 
   setupLabelInputs: ->

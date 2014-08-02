@@ -1,6 +1,7 @@
 app.defaultUserPrefs =
-  autoLogout: 60
-  useWebRtc:  true
+  useWebRtc:        true
+  autoLogout:       60
+  hideForeignCalls: false
 
 
 app.getUserPrefs = (uid) ->

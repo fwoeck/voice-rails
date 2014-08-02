@@ -23,6 +23,21 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   sortedCalls:   Ember.computed.sort 'filteredCalls', 'callSorting'
 
 
+  init: ->
+    @_super()
+    @restoreHideForeignCalls()
+
+
+  restoreHideForeignCalls: ->
+    Ember.run.next =>
+      @set 'hideForeignCalls', app.loadLocalKey('hideForeignCalls')
+
+
+  persistHideForeignCalls: (->
+    app.storeLocalKey('hideForeignCalls', @get 'hideForeignCalls')
+  ).observes('hideForeignCalls')
+
+
   talking: ( ->
     !!Voice.get('currentCall')
   ).property('Voice.currentCall')
