@@ -38,17 +38,29 @@ table.history_table {
     height: 26px;
   }
 
+  span.jp-duration {
+    margin-right: 4px;
+  }
+
   span.jp-duration, span.jp-current-time {
     display: inline-block;
-    margin-right: 10px;
     color: #999;
-    width: 32px;
+    width: 36px;
   }
 
   span.jp-play, span.jp-stop, span.jp-pause {
     display: inline-block;
-    color: #aaa;
     width: 24px;
+
+    i {
+      transition: color linear 300ms;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    i:hover {
+      color: #000;
+    }
   }
 }
 
