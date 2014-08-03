@@ -6,4 +6,5 @@ $zendesk = ZendeskAPI::Client.new do |config|
 
   require 'logger'
   config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger::WARN if Rails.env.production?
 end
