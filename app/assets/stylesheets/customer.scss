@@ -48,10 +48,11 @@ table.history_table {
   i.to-zendesk {
     transition: color linear 300ms;
     position: absolute;
+    font-size: 15px;
     cursor: pointer;
-    color: #444;
-    right: 8px;
-    top: 8px;
+    color: #666;
+    right: 7px;
+    top: 6px;
   }
 
   i.to-zendesk:hover {
