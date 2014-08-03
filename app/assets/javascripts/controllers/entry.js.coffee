@@ -6,12 +6,17 @@ Voice.EntryController = Ember.ObjectController.extend({
 
   actions:
     toZendekTicket: ->
-      @store.createRecord('zendeskTicket',
-        requesterId: @get 'customer.zendeskId'
-        subject:     @get 'remarks'
-        description: @getDescription()
-      ).save()
+      @createZendeskTicket()
       false
+
+
+  createZendeskTicket: ->
+    @store.createRecord('zendeskTicket',
+      requesterId: @get 'customer.zendeskId'
+      subject:     @get 'remarks'
+      description: @getDescription()
+    ).save().then ->
+      Voice.get('currentCustomer').fetchZendeskTickets()
 
 
   getDescription: ->
@@ -22,10 +27,10 @@ Voice.EntryController = Ember.ObjectController.extend({
 
   zendeskIsActive: (->
     !!Voice.get('currentUser.zendeskId') &&
-      !!@get('customer.zendeskId')
+      !!@get('customer.zendeskId') && !!@get('remarks')
   ).property(
-    'Voice.currentUser.zendeskId',
-    'customer.zendeskId'
+    'customer.zendeskId', 'remarks',
+    'Voice.currentUser.zendeskId'
   )
 
 

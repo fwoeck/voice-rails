@@ -11,6 +11,15 @@ class CustomersController < ApplicationController
   end
 
 
+  def get_zendesk_tickets
+    if (tickets = ZendeskTicket.fetch params[:requester_id])
+      render json: tickets, each_serializer: ZendeskTicketSerializer, root: :zendesk_tickets
+    else
+      render nothing: true, status: 404
+    end
+  end
+
+
   def create_zendesk_ticket
     if (ticket = ZendeskTicket.create current_user.zendesk_id, params[:zendesk_ticket])
       render json: ticket, serializer: ZendeskTicketSerializer

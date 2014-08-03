@@ -5,8 +5,7 @@ Voice.CustomerController = Ember.ObjectController.extend({
 
   actions:
     syncZendesk: ->
-      cust = @get('content')
-      if cust
+      if (cust = @get 'content')
         cust.set('zendeskId', 'requested..')
         cust.save()
       false
@@ -15,14 +14,12 @@ Voice.CustomerController = Ember.ObjectController.extend({
       @get('content')?.save()
       false
 
+    fetchZendeskTickets: ->
+      Voice.get('currentCustomer').fetchZendeskTickets()
+      false
+
 
   dirty: (->
     @get('content.currentState.stateName') != 'root.loaded.saved'
   ).property('content.currentState.stateName')
-
-
-  zendeskUserUrl: (->
-    uid = @get('content.zendeskId')
-    "https://dokmatic.zendesk.com/agent/#/users/#{uid}/requested_tickets"
-  ).property('content.zendeskId')
 })

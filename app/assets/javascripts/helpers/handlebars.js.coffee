@@ -18,6 +18,10 @@ Ember.Handlebars.helper('fromNow', (value, options) ->
   moment(value).fromNow() if value
 )
 
+Ember.Handlebars.helper('zendeskUser', (value, options) ->
+  app.getZendeskUserFrom(value) if value
+)
+
 Ember.Handlebars.helper('agentFor', (value, options) ->
   app.getAgentFrom(value) if value
 )

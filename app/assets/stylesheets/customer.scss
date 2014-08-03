@@ -1,3 +1,4 @@
+table.tickets_table,
 table.history_table,
 table.customer_table {
   border-collapse: collapse;
@@ -27,7 +28,12 @@ table.customer_table {
   }
 }
 
+table.tickets_table,
 table.history_table {
+  thead td {
+    font-size: 14px;
+  }
+
   tr {
     border-bottom: 1px solid #fff;
   }
@@ -91,6 +97,21 @@ table.history_table {
     i:hover {
       color: #000;
     }
+  }
+}
+
+table.tickets_table {
+  margin-top: 18px;
+
+  i.fa-refresh {
+    transition: color linear 300ms;
+    margin-left: 8px;
+    cursor: pointer;
+    color: #aaa;
+  }
+
+  i.fa-refresh:hover {
+    color: #000;
   }
 }
 

@@ -8,7 +8,7 @@ if callIsCurrent
   td.remarks
     = view Ember.RemarksInput value=remarks
     if zendeskIsActive
-      i.fa.fa-plus-circle.to-zendesk click=toZendekTicket
+      i.fa.fa-plus-circle.to-zendesk title="Create a Zendesk ticket from this call" click=toZendekTicket
 else
   if mailbox
     td.mailbox

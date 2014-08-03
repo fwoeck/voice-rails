@@ -3,12 +3,22 @@ window.app = {
   agentRegex: /^(SIP\/)?(\d\d\d\d?)$/
 
 
+  getZendeskUserFrom: (zendeskId) ->
+    return "" unless zendeskId
+    agent = Voice.get('allUsers').find (u) -> u.get('zendeskId') == zendeskId
+
+    if agent
+     "#{agent.get 'name'} / #{agent.get 'displayName'}"
+    else
+      zendeskId
+
+
   getAgentFrom: (callerId) ->
     return "" unless callerId
 
     matches = "#{callerId}".match(app.agentRegex)
     name    = if matches then matches[2] else ""
-    agent   = Voice.store.all('user').find (u) -> u.get('name') == name
+    agent   = Voice.get('allUsers').find (u) -> u.get('name') == name
 
     if agent
      "#{agent.get 'name'} / #{agent.get 'displayName'}"

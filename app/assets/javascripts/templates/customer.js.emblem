@@ -14,30 +14,31 @@ table.customer_table
           | Zendesk Id
           unless zendeskId
             ' &nbsp;
-            i.fa.fa-plus-circle.zendesk click=syncZendesk
+            i.fa.fa-plus-circle.zendesk title='Request a new Zendesk user for this customer' click=syncZendesk
           = input type='text' value=zendeskId placeholder="The user's Id.."
       td.space15
         label
           | &nbsp;
           .button.tiny.store click=storeRecord
-            | Store Record
+            | Save Record
 
 table.history_table
   thead
     tr
       td width="18%" Called At
       td width="24%" Agent
-      td width="58%" Remarks
+      td Remarks
   tbody
     each entry in orderedEntries
       = render 'entry' entry
 
-if zendeskId
-  table.history_table
-    thead
-      tr
-        td: a href=zendeskUserUrl target='_blank'
-          | Recent tickets at Zendesk
-    tbody
-      tr
-        td 123...
+table.tickets_table
+  thead
+    tr: td colspan="3"
+      | Recent tickets at Zendesk
+      i.fa.fa-refresh title="Refresh this customer's Zendesk tickets" click=fetchZendeskTickets
+  tbody
+    each ticket in orderedTickets
+      = render 'ticket' ticket
+    else
+      tr: td colspan="3"
