@@ -25,9 +25,10 @@ html
 
     javascript:
       window.env = {
-        debug:         false,
         messages:      [],
         sseErrors:     0,
+        chromeVersion: 36,
+        debug:         false,
         sslEnabled:    false,
         railsEnv:     "#{Rails.env}",
         sipAgent:     "#{current_user.try(:name)}",

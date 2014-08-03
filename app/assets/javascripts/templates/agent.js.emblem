@@ -1,6 +1,6 @@
 .agent class=availability
   if gravatarUrl
-    img.avatar src=gravatarUrl
+    img.avatar width="48px" height="48px" src=gravatarUrl
   else
     span.avatar
 

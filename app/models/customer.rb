@@ -37,13 +37,22 @@ class Customer
 
   def update_zendesk_record
     Thread.new {
-      if (user = $zendesk.users.find id: zendesk_id)
+      user = $zendesk.users.find(id: zendesk_id)
+
+      if zendesk_needs_update?(user)
         user.name    = fullname
         user.phone ||= caller_ids.first
         user.email   = email
         user.save
       end
     }
+  end
+
+
+  def zendesk_needs_update?(user)
+    return unless user
+    user.name != fullname || user.email != email ||
+      user.phone != caller_ids.first
   end
 
 

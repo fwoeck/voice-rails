@@ -1,5 +1,5 @@
 tr
-  td width="18%" = fromNow createdAt
+  td width="18%" = view Ember.CreatedAt
   td width="24%" = zendeskUser submitterId
   td
     span data-tooltip="" title="#{unbound description}"

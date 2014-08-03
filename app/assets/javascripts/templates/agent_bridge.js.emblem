@@ -4,7 +4,7 @@ table.callstats_table
       td width="40%"
         ' &nbsp;
         i draggable="true" class={myCallLeg :fa :fa-phone :connection} click=hangupCall
-        img.avatar src=agent.gravatarUrl
+        img.avatar width="48px" height="48px" src=agent.gravatarUrl
       td width="60%"
         ' &nbsp;
         span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Answered at: #{unbound moment calledAt}"

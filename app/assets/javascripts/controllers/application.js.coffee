@@ -7,6 +7,7 @@ Voice.ApplicationController = Ember.Controller.extend({
   init: ->
     @_super()
     @setCurrentCall()
+    Ember.run.next @, @displayBrowserWarning
 
 
   getMyCall: ->
@@ -14,6 +15,11 @@ Voice.ApplicationController = Ember.Controller.extend({
     return false unless calls
 
     calls.find (call) -> call.get('myCallLeg')
+
+
+  displayBrowserWarning: ->
+    unless navigator.userAgent.match(/Chrome\/(3.)/)?[1] >= env.chromeVersion
+      app.showDefaultError("For now, Chrome #{env.chromeVersion}+ is the only supported browser. Use this platform at own risk.")
 
 
   setCurrentCall: ( ->

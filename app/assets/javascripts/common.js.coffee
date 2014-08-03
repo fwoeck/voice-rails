@@ -3,6 +3,14 @@ window.app = {
   agentRegex: /^(SIP\/)?(\d\d\d\d?)$/
 
 
+  ticketSpinnerOn: ->
+    ($ '.tickets_table .fa-refresh').addClass('fa-spin')
+
+  ticketSpinnerOff: ->
+    ($ '.tickets_table .fa-refresh').removeClass('fa-spin')
+
+
+
   getZendeskUserFrom: (zendeskId) ->
     return "" unless zendeskId
     agent = Voice.get('allUsers').find (u) -> u.get('zendeskId') == zendeskId
