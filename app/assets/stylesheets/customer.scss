@@ -33,9 +33,23 @@ table.history_table {
   }
 
   tr.call-is-current td {
+    position: relative;
     padding: 0 0 0 4px;
     line-height: 26px;
     color: #000;
+  }
+
+  i.to-zendesk {
+    transition: color linear 300ms;
+    position: absolute;
+    cursor: pointer;
+    color: #444;
+    right: 8px;
+    top: 8px;
+  }
+
+  i.to-zendesk:hover {
+    color: #aaa;
   }
 
   td {

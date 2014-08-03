@@ -11,6 +11,15 @@ class CustomersController < ApplicationController
   end
 
 
+  def create_zendesk_ticket
+    if (ticket = ZendeskTicket.create current_user.zendesk_id, params[:zendesk_ticket])
+      render json: ticket, serializer: ZendeskTicketSerializer
+    else
+      render nothing: true, status: 404
+    end
+  end
+
+
   def update_history
     par  = params[:history_entry]
     cust = Customer.find(par[:customer_id])

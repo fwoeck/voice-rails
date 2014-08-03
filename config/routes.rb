@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   put    'customers/:id'       => 'customers#update'
   get    'customers/:id'       => 'customers#show'
   put    'history_entries/:id' => 'customers#update_history'
+  post   'zendesk_tickets'     => 'customers#create_zendesk_ticket'
 
   get    '*path',             to: 'application#catch_404'
   post   '*path',             to: 'application#catch_404'

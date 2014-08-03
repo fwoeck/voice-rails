@@ -38,8 +38,9 @@ class Customer
   def update_zendesk_record
     Thread.new {
       if (user = $zendesk.users.find id: zendesk_id)
-        user.name  = fullname
-        user.email = email
+        user.name    = fullname
+        user.phone ||= caller_ids.first
+        user.email   = email
         user.save
       end
     }
@@ -50,6 +51,7 @@ class Customer
     unless fullname.blank?
       opts         = {name: fullname}
       opts[:email] = email unless email.blank?
+      opts[:phone] = caller_ids.first
 
       user = $zendesk.users.create(opts)
       self.zendesk_id = user.id.to_s if user

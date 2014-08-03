@@ -4,4 +4,6 @@ $zendesk = ZendeskAPI::Client.new do |config|
   config.username = '***REMOVED***'
   config.password = '***REMOVED***'
 
+  require 'logger'
+  config.logger = Logger.new(STDOUT)
 end
