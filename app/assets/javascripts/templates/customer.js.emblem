@@ -41,4 +41,4 @@ table.tickets_table
     each ticket in orderedTickets
       = render 'ticket' ticket
     else
-      tr: td colspan="3"
+      tr: td colspan="3" &mdash;

@@ -19,6 +19,9 @@ Voice.Customer = DS.Model.extend({
 
   zendeskTickets: (->
     return [] unless (zid = @get 'zendeskId')
-    @store.findQuery 'zendeskTicket', requester_id: zid
+    app.ticketSpinnerOn()
+    tickets = @store.findQuery('zendeskTicket', requester_id: zid)
+    tickets.then -> app.ticketSpinnerOff()
+    tickets
   ).property('zendeskId')
 })
