@@ -1,7 +1,7 @@
 table.callstats_table
   tbody
     tr
-      td width="40%" Caller ID
+      td width="40%" Caller Id
       td width="60%"
         = callerName
         span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Channel Id: #{unbound channel1}<br />Called at: #{unbound moment calledAt}"

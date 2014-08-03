@@ -1,3 +1,4 @@
+table.tickets_table,
 table.history_table,
 table.customer_table {
   border-collapse: collapse;
@@ -5,21 +6,56 @@ table.customer_table {
   margin: 0;
   border: 0;
 
-  td.space {
+  td.space25 {
     padding: 4px;
     width: 25%;
   }
+
+  td.space15 {
+    padding: 4px;
+    width: 15%;
+  }
+
+  i.zendesk {
+    transition: color linear 300ms;
+    vertical-align: super;
+    font-size: 12px;
+    color: #444;
+  }
+
+  i.zendesk:hover {
+    color: #aaa;
+  }
 }
 
+table.tickets_table,
 table.history_table {
+  thead td {
+    font-size: 14px;
+  }
+
   tr {
     border-bottom: 1px solid #fff;
   }
 
   tr.call-is-current td {
+    position: relative;
     padding: 0 0 0 4px;
     line-height: 26px;
     color: #000;
+  }
+
+  i.to-zendesk {
+    transition: color linear 300ms;
+    position: absolute;
+    cursor: pointer;
+    color: #444;
+    right: 8px;
+    top: 8px;
+  }
+
+  i.to-zendesk:hover {
+    color: #aaa;
   }
 
   td {
@@ -61,6 +97,21 @@ table.history_table {
     i:hover {
       color: #000;
     }
+  }
+}
+
+table.tickets_table {
+  margin-top: 18px;
+
+  i.fa-refresh {
+    transition: color linear 300ms;
+    margin-left: 8px;
+    cursor: pointer;
+    color: #aaa;
+  }
+
+  i.fa-refresh:hover {
+    color: #000;
   }
 }
 

@@ -1,7 +1,6 @@
 #hidden_tabindex: input tabindex='3'
 = render 'dialog'
 
-
 #main.row
 
   #logout_link

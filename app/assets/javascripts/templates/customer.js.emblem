@@ -1,30 +1,44 @@
 table.customer_table
   tbody
     tr class=dirty
-      td.space
+      td.space25
         label
           | Full Name
           = input type='text' value=fullname placeholder='The full name..'
-      td.space
+      td.space25
         label
           | E-Mail
           = input type='text' value=email placeholder='An e-mail address..'
-      td.space
+      td.space15
         label
-          | Zendesk ID
-          = input type='text' value=zendeskId placeholder='A Zendesk ID..'
-      td.space
+          | Zendesk Id
+          unless zendeskId
+            ' &nbsp;
+            i.fa.fa-plus-circle.zendesk title='Request a new Zendesk user for this customer' click=syncZendesk
+          = input type='text' value=zendeskId placeholder="The user's Id.."
+      td.space15
         label
           | &nbsp;
           .button.tiny.store click=storeRecord
-            | Store Record
+            | Save Record
 
 table.history_table
   thead
     tr
       td width="18%" Called At
       td width="24%" Agent
-      td width="58%" Remarks
+      td Remarks
   tbody
     each entry in orderedEntries
       = render 'entry' entry
+
+table.tickets_table
+  thead
+    tr: td colspan="3"
+      | Recent tickets at Zendesk
+      i.fa.fa-refresh title="Refresh this customer's Zendesk tickets" click=fetchZendeskTickets
+  tbody
+    each ticket in orderedTickets
+      = render 'ticket' ticket
+    else
+      tr: td colspan="3"

@@ -16,9 +16,11 @@ Voice.ApplicationRoute = Ember.Route.extend({
     @controllerFor('calls').set 'model', @store.all('call')
     @controllerFor('chatMessages').set 'model', @store.all('chatMessage')
 
-    Voice.set 'allCalls',    @store.all('call')
-    Voice.set 'allUsers',    @store.all('user')
-    Voice.set 'currentUser', @store.getById('user', env.userId)
+    Voice.set 'allCalls',     @store.all('call')
+    Voice.set 'allUsers',     @store.all('user')
+    Voice.set 'allTickets',   @store.all('zendeskTicket')
+    Voice.set 'allCustomers', @store.all('customer')
+    Voice.set 'currentUser',  @store.getById('user', env.userId)
 
 
   shortcuts:

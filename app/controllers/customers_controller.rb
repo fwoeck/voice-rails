@@ -11,6 +11,24 @@ class CustomersController < ApplicationController
   end
 
 
+  def get_zendesk_tickets
+    if (tickets = ZendeskTicket.fetch params[:requester_id])
+      render json: tickets, each_serializer: ZendeskTicketSerializer, root: :zendesk_tickets
+    else
+      render nothing: true, status: 404
+    end
+  end
+
+
+  def create_zendesk_ticket
+    if (ticket = ZendeskTicket.create current_user.zendesk_id, params[:zendesk_ticket])
+      render json: ticket, serializer: ZendeskTicketSerializer
+    else
+      render nothing: true, status: 404
+    end
+  end
+
+
   def update_history
     par  = params[:history_entry]
     cust = Customer.find(par[:customer_id])
@@ -41,10 +59,9 @@ class CustomersController < ApplicationController
 
   def update_customer_with(par, cust)
     cust.tap { |c|
-      c.fullname   = (par[:fullname] || "").strip
-      c.email      = (par[:email] || "").strip.downcase
-
-      c.zendesk_id = par[:zendesk_id] if c.zendesk_id.blank?
+      c.fullname = (par[:fullname] || "").strip
+      c.email    = (par[:email] || "").strip.downcase
+      c.manage_zendesk_account(par[:zendesk_id])
       c.save
     }
   end

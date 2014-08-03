@@ -1,0 +1,6 @@
+tr
+  td width="18%" = fromNow createdAt
+  td width="24%" = zendeskUser submitterId
+  td
+    span data-tooltip="" title="#{unbound description}"
+      a target="_blank" href="#{unbound url}" = subject
