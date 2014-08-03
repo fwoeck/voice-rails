@@ -4,12 +4,11 @@
       :options:
         :fields:
           - id
-          - email
           - name
+          - email
           - fullname
+          - zendesk_id
           - fullcontact
-          - last_sign_in_at
-          - updated_at
           - role_summary
           - skill_summary
           - language_summary
