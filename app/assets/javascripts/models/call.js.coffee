@@ -1,7 +1,7 @@
 Voice.CompCall = Ember.Mixin.create({
 
   compare: (x, y) ->
-    return 0 if x.get('channel1') == y.get('channel1')
+    return 0 if x.get('id') == y.get('id')
     return 1
 })
 
@@ -33,7 +33,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
   skillName: ( ->
     skill = @get('skill')
-    skill.replace(/_booking/, ' booking').capitalize() if skill
+    skill.replace(/_/, ' ').capitalize() if skill
   ).property('skill')
 
 
