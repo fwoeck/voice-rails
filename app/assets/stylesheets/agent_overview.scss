@@ -109,6 +109,7 @@
 
   span {
     white-space: nowrap;
+    line-height: 14px;
     font-size: 13px;
     display: block;
     margin: 1px 0;
@@ -129,7 +130,7 @@
 
   span.name {
     border-bottom: none;
-    margin: 8px 0 7px 0;
     color: #008cba;
+    margin: 7px 0;
   }
 }
