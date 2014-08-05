@@ -15,7 +15,10 @@ class ZendeskTicket
 
     def fetch(requester_id)
       if (user = $zendesk.users.find id: requester_id)
-        user.requested_tickets.map { |t| build_from t }
+        user.requested_tickets.map { |t|
+          # TODO Can we avoid fetching closed tickets at all?
+          build_from(t) unless ['solved', 'closed'].include?(t.status)
+        }.compact
       else
         []
       end
