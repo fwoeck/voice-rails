@@ -4,9 +4,9 @@ class Call
 
   include ActiveModel::Serialization
 
-  attr_accessor :channel1, :channel2, :target_id, :language,
+  attr_accessor :call_tag, :target_id, :language, :extension,
                 :called_at, :queued_at, :hungup_at, :dispatched_at,
-                :skill, :hungup, :caller_id, :conn_line, :mailbox
+                :skill, :hungup, :caller_id, :mailbox
 
 
   def initialize(par=nil)
@@ -15,14 +15,13 @@ class Call
       @skill         = par.fetch(:skill, nil)
       @hungup        = par.fetch(:hungup, nil)
       @mailbox       = par.fetch(:mailbox, nil)
-      @channel1      = par.fetch(:channel1, nil)
-      @channel2      = par.fetch(:channel2, nil)
+      @call_tag      = par.fetch(:call_tag, nil)
       @language      = par.fetch(:language, nil)
-      @conn_line     = par.fetch(:conn_line, nil)
       @called_at     = par.fetch(:called_at, nil)
       @caller_id     = par.fetch(:caller_id, nil)
       @hungup_at     = par.fetch(:hungup_at, nil)
       @queued_at     = par.fetch(:queued_at, nil)
+      @extension     = par.fetch(:extension, nil)
       @dispatched_at = par.fetch(:dispatched_at, nil)
     end
   end
@@ -30,9 +29,9 @@ class Call
 
   def headers
     {
-      'Channel1' => channel1,  'Channel2' => channel2,  'Language'     => language,      'Skill'    => skill,
-      'CallerId' => caller_id, 'Hungup'   => hungup,    'CalledAt'     => called_at,     'ConnLine' => conn_line,
-      'QueuedAt' => queued_at, 'HungupAt' => hungup_at, 'DispatchedAt' => dispatched_at, 'Mailbox'  => mailbox
+      'CallTag'  => call_tag,  'Language' => language,  'Skill'        => skill,     'Extension' => extension,
+      'CallerId' => caller_id, 'Hungup'   => hungup,    'CalledAt'     => called_at, 'Mailbox'   => mailbox,
+      'QueuedAt' => queued_at, 'HungupAt' => hungup_at, 'DispatchedAt' => dispatched_at
     }
   end
 
@@ -114,14 +113,13 @@ class Call
       skill:         fields['Skill'],
       hungup:        fields['Hungup'],
       mailbox:       fields['Mailbox'],
-      channel1:      fields['Channel1'],
-      channel2:      fields['Channel2'],
+      call_tag:      fields['CallTag'],
       language:      fields['Language'],
       called_at:     fields['CalledAt'],
-      conn_line:     fields['ConnLine'],
       caller_id:     fields['CallerId'],
       hungup_at:     fields['HungupAt'],
       queued_at:     fields['QueuedAt'],
+      extension:     fields['Extension'],
       dispatched_at: fields['DispatchedAt']
     }
 
