@@ -24,9 +24,7 @@ class AmiEvent
 
 
     def channel_is_active?(data)
-      data['name'] == 'Newstate' && ['4', '5'].include?(
-        data['headers']['ChannelState']
-      )
+      data['name'] == 'Newstate' && data['headers']['ChannelState'] == '5'
     end
 
 
@@ -86,7 +84,7 @@ class AmiEvent
 
 
     def handle_call_update(data)
-      if data['name'] == 'CallUpdate'
+      if data['name'] == 'CallState'
         send_updates_for_call(data)
       elsif agent_takes_call?(data)
         create_history_for(data)
