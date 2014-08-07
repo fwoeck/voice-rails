@@ -31,6 +31,8 @@ class AmiEvent
     def handle_agent_update(data)
       if (agent = get_agent_from data)
         if user = User.where(name: agent).first
+          # TODO This is misleading, because it is semantically an update for the call:
+          #
           create_history_for(data, agent)
           user.send_update_notification_to_clients
         end
