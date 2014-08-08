@@ -5,6 +5,7 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   roles:         DS.attr 'string'
   skills:        DS.attr 'string'
   fullname:      DS.attr 'string'
+  agentReg:      DS.attr 'string'
   languages:     DS.attr 'string'
   zendeskId:     DS.attr 'string'
   agentState:    DS.attr 'string'
@@ -42,4 +43,9 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
     @get('skills').split(',').map((l) -> l.capitalize())
                   .join(', ').replace(/_booking/g, 'Book')
   ).property('skills')
+
+
+  isCallable: (->
+    @get('agentState') == 'silent' && @get('agentReg') == 'registered'
+  ).property('agentState', 'agentReg')
 })
