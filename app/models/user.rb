@@ -37,7 +37,12 @@ class User < ActiveRecord::Base
 
 
   def agent_state
-    @memo_agent_state ||= ($redis.get(agent_state_keyname) || 'unknown')
+    @memo_agent_state ||= ($redis.get(agent_state_keyname) || 'silent')
+  end
+
+
+  def agent_reg
+    @memo_agent_reg ||= ($redis.get(agent_reg_keyname) || 'unknown')
   end
 
 

@@ -72,6 +72,10 @@ module UpdateFields
     "#{Rails.env}.agent_state.#{self.id}"
   end
 
+  def agent_reg_keyname
+    "#{Rails.env}.agent_reg.#{self.id}"
+  end
+
 
   def update_availability_from(params)
     _availability = params[:user].fetch(:availability, availability)

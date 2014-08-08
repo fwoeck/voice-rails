@@ -10,8 +10,6 @@ class AmiEvent
   index(timestamp: 1)
   default_scope -> { asc(:timestamp) }
 
-  ChannelRegex = /^SIP\/(\d+)/
-
 
   class << self
 
@@ -23,39 +21,30 @@ class AmiEvent
     end
 
 
-    def channel_is_active?(data)
-      data['name'] == 'Newstate' && ['4', '5'].include?(
-        data['headers']['ChannelState']
-      )
-    end
-
-
-    def get_peer_from(data)
-      hdr = data['headers']
-
-      if data['name'] == 'PeerStatus'
-        hdr['Peer'][ChannelRegex, 1]
-      elsif channel_is_active?(data)
-        hdr['Channel'][ChannelRegex, 1]
-      elsif data['name'] == 'Hangup'
-        hdr['Channel'][ChannelRegex, 1]
+    def get_agent_from(data)
+      if data['name'] == 'AgentEvent'
+        data['headers']['Extension']
       end
     end
 
 
     def handle_agent_update(data)
-      if (peer = get_peer_from data)
-        user = User.where(name: peer).first
-        user.send_update_notification_to_clients if user
+      if (agent = get_agent_from data)
+        if user = User.where(name: agent).first
+          # TODO This is misleading, because it is semantically an update for the call:
+          #
+          create_history_for(data, agent)
+          user.send_update_notification_to_clients
+        end
+
         return true
       end
     end
 
 
     def agent_takes_call?(data)
-      hdr = data['headers']
-      data['name'] == 'Newstate' && hdr['ChannelState'] == '6' &&
-        !hdr['ConnectedLineNum'].blank?
+      data['headers']['AgentState'] == 'talking' &&
+        data['headers']['Extension'] != '100' # Use ext. 100 to make test calls.
     end
 
 
@@ -67,10 +56,11 @@ class AmiEvent
     end
 
 
-    def create_history_for(data)
-      yield_to_call(data) do |call|
-        agent = data['headers']['Channel'][ChannelRegex, 1]
-        call.create_customer_history_entry(agent)
+    def create_history_for(data, agent)
+      if agent_takes_call?(data)
+        yield_to_call(data) do |call|
+          call.create_customer_history_entry(agent)
+        end
       end
     end
 
@@ -86,10 +76,8 @@ class AmiEvent
 
 
     def handle_call_update(data)
-      if data['name'] == 'CallUpdate'
+      if data['name'] == 'CallState'
         send_updates_for_call(data)
-      elsif agent_takes_call?(data)
-        create_history_for(data)
       end
     end
   end

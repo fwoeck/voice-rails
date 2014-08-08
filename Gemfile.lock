@@ -379,7 +379,7 @@ GEM
     rubysl-csv (2.0.2)
       rubysl-english (~> 2.0)
     rubysl-curses (2.0.1)
-    rubysl-date (2.0.6)
+    rubysl-date (2.0.8)
     rubysl-delegate (2.0.1)
     rubysl-digest (2.0.3)
     rubysl-drb (2.0.1)
