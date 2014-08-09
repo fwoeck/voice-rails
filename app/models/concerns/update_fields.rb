@@ -68,12 +68,12 @@ module UpdateFields
     "#{Rails.env}.availability.#{self.id}"
   end
 
-  def agent_state_keyname
-    "#{Rails.env}.agent_state.#{self.id}"
+  def activity_keyname
+    "#{Rails.env}.activity.#{self.id}"
   end
 
-  def agent_reg_keyname
-    "#{Rails.env}.agent_reg.#{self.id}"
+  def visibility_keyname
+    "#{Rails.env}.visibility.#{self.id}"
   end
 
 

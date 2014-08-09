@@ -36,13 +36,13 @@ class User < ActiveRecord::Base
   alias :availability_summary :availability
 
 
-  def agent_state
-    @memo_agent_state ||= ($redis.get(agent_state_keyname) || 'silent')
+  def activity
+    @memo_activity ||= ($redis.get(activity_keyname) || 'silent')
   end
 
 
-  def agent_reg
-    @memo_agent_reg ||= ($redis.get(agent_reg_keyname) || 'unknown')
+  def visibility
+    @memo_visibility ||= ($redis.get(visibility_keyname) || 'offline')
   end
 
 
@@ -72,9 +72,9 @@ class User < ActiveRecord::Base
     self.reload
     return if Rails.env.test?
 
-    AmqpManager.ahn_publish({
+    AmqpManager.ahn_publish(
       user_id: self.id,
       key   => send("#{key}_summary")
-    })
+    )
   end
 end

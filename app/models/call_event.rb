@@ -1,10 +1,9 @@
-class AmiEvent
+class CallEvent
 
   include Mongoid::Document
 
   field :target_call_id, type: String
   field :timestamp,      type: String
-  field :name,           type: String
   field :headers,        type: Hash
 
   index(timestamp: 1)
@@ -13,7 +12,7 @@ class AmiEvent
 
   class << self
 
-    # TODO The "data" is not an AmiEvent, but plain JSON.
+    # TODO The "data" is not an CallEvent, but plain JSON.
     #      Should we convert it?
     #
     def handle_update(data)
@@ -43,7 +42,7 @@ class AmiEvent
 
 
     def agent_takes_call?(data)
-      data['headers']['AgentState'] == 'talking' &&
+      data['headers']['Activity'] == 'talking' &&
         data['headers']['Extension'] != '100' # Use ext. 100 to make test calls.
     end
 

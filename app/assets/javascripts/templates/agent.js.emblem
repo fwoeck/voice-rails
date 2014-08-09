@@ -1,10 +1,10 @@
-.agent class=availability
+.agent class={visibility availability}
   if gravatarUrl
     img.avatar width="48px" height="48px" src=gravatarUrl
   else
     span.avatar
 
-  i class={agentState :fa :fa-comments} click="callAction this"
+  i class={activity :fa :fa-comments} click="callAction this"
 
   span.name.has-tip.radius data-tooltip="" title="Email: #{unbound email}<br />SIP extension: #{unbound name}" #{displayName}
   span.languages = displayLangs
