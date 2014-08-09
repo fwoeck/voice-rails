@@ -42,7 +42,7 @@ class CallEvent
 
 
     def agent_takes_call?(data)
-      data['headers']['AgentState'] == 'talking' &&
+      data['headers']['Activity'] == 'talking' &&
         data['headers']['Extension'] != '100' # Use ext. 100 to make test calls.
     end
 

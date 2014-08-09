@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
   alias :availability_summary :availability
 
 
-  def agent_state
-    @memo_agent_state ||= ($redis.get(agent_state_keyname) || 'silent')
+  def activity
+    @memo_activity ||= ($redis.get(activity_keyname) || 'silent')
   end
 
 

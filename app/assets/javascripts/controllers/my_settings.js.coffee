@@ -35,9 +35,9 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
   currentStatusLine: (->
     cont  = @get('content')
+    act   = cont.get('activity')
     avail = cont.get('availability')
-    state = cont.get('agentState')
-    name  = (if cont.get('isCallable') then avail else state)
+    name  = (if cont.get('isCallable') then avail else act)
 
     if name == 'ready'
       name = 'ready to take calls'

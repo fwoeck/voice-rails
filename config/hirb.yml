@@ -13,5 +13,5 @@
           - skill_summary
           - language_summary
           - availability
-          - agent_state
           - visibility
+          - activity
