@@ -88,13 +88,13 @@
   }
 
   i.fa.silent,
-  i.fa.registered {
+  i.fa.online {
     cursor: pointer;
     color: #777;
   }
 
   i.fa.unknown,
-  i.fa.unregistered {
+  i.fa.offline {
     cursor: default;
     color: #e8e8e8;
   }
@@ -104,7 +104,7 @@
   }
 
   i.fa.unknown:hover,
-  i.fa.unregistered:hover {
+  i.fa.offline:hover {
     color: #e8e8e8;
   }
 

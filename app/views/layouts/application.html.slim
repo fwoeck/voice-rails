@@ -38,8 +38,8 @@ html
         sessionToken: "#{form_authenticity_token}",
         availability:  #{WimConfig.availability.to_json.html_safe},
         agentState:    #{WimConfig.agent_state.to_json.html_safe},
+        visibility:    #{WimConfig.visibility.to_json.html_safe},
         languages:     #{WimConfig.languages.to_json.html_safe},
-        agentReg:      #{WimConfig.agent_reg.to_json.html_safe},
         skills:        #{WimConfig.skills.to_json.html_safe},
         roles:         #{WimConfig.roles.to_json.html_safe}
       }

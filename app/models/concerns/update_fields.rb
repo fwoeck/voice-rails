@@ -72,8 +72,8 @@ module UpdateFields
     "#{Rails.env}.agent_state.#{self.id}"
   end
 
-  def agent_reg_keyname
-    "#{Rails.env}.agent_reg.#{self.id}"
+  def visibility_keyname
+    "#{Rails.env}.visibility.#{self.id}"
   end
 
 

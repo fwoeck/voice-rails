@@ -5,9 +5,9 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   roles:         DS.attr 'string'
   skills:        DS.attr 'string'
   fullname:      DS.attr 'string'
-  agentReg:      DS.attr 'string'
   languages:     DS.attr 'string'
   zendeskId:     DS.attr 'string'
+  visibility:    DS.attr 'string'
   agentState:    DS.attr 'string'
   availability:  DS.attr 'string'
 
@@ -46,6 +46,6 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
 
   isCallable: (->
-    @get('agentState') == 'silent' && @get('agentReg') == 'registered'
-  ).property('agentState', 'agentReg')
+    @get('agentState') == 'silent' && @get('visibility') == 'online'
+  ).property('agentState', 'visibility')
 })
