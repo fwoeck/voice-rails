@@ -19,6 +19,10 @@
 #= require_self
 #= require voice
 
+app.compileSkillPartials()
+app.compileLanguagePartials()
+app.compileAvailabilityPartials()
+
 window.Voice = Ember.Application.create(
   rootElement: '#ember_main'
 )
