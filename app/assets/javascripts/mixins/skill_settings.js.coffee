@@ -22,10 +22,9 @@ Voice.SkillSettings = Ember.Mixin.create({
     @set('skills', newVal) if newVal != @get('skills')
 
 
-  observeSkills: ( ->
-    Ember.run.scheduleOnce 'actions', @, @joinSkills
-  ).observes(
-    'skillNEW_BOOKING', 'skillEXT_BOOKING', 'skillPAYMENT',
-    'skillOTHER'
-  )
+  observeSkills: ->
+    self = @
+    Ember.keys(env.skills).forEach (skill) =>
+      key = "skill#{skill.toUpperCase()}"
+      @addObserver(key, -> Ember.run.scheduleOnce 'actions', self, self.joinSkills)
 })

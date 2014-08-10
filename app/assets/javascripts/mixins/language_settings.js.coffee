@@ -22,10 +22,9 @@ Voice.LanguageSettings = Ember.Mixin.create({
     @set('languages', newVal) if newVal != @get('languages')
 
 
-  observeLanguages: ( ->
-    Ember.run.scheduleOnce 'actions', @, @joinLanguages
-  ).observes(
-    'languageDE', 'languageEN', 'languageES',
-    'languageFR', 'languageIT'
-  )
+  observeLanguages: ->
+    self = @
+    Ember.keys(env.languages).forEach (lang) =>
+      key = "language#{lang.toUpperCase()}"
+      @addObserver(key, -> Ember.run.scheduleOnce 'actions', self, self.joinLanguages)
 })
