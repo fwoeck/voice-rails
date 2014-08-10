@@ -9,6 +9,21 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     @restoreWebRtcSetting()
 
 
+  skillPartials: (->
+    Ember.keys(env.skills).map (skill) -> "skills/#{skill}"
+  ).property()
+
+
+  languagePartials: (->
+    Ember.keys(env.languages).map (lang) -> "languages/#{lang}"
+  ).property()
+
+
+  availabilityPartials: (->
+    Ember.keys(env.availability).map (avail) -> "availability/#{avail}"
+  ).property()
+
+
   restoreWebRtcSetting: ->
     Ember.run.next =>
       @set 'useWebRtc', app.loadLocalKey('useWebRtc')

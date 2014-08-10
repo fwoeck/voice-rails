@@ -15,12 +15,9 @@ class ChatMessage
   # TODO implement personal messages with :to
   #
   def send_update_notification_to_clients
-    User.all_online.each do |user|
-      next if user.email == from
-      AmqpManager.push_publish(
-        user_id: user.id, data: ChatMessageSerializer.new(self)
-      )
-    end
+    AmqpManager.push_publish(
+      user_ids: User.all_online_ids, data: ChatMessageSerializer.new(self)
+    )
   end
 
 

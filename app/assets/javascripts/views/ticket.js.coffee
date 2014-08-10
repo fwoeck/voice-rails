@@ -5,7 +5,7 @@ Voice.TicketView = Ember.View.extend({
 
   didInsertElement: ->
     # FIXME this doesn't work:
-    # @$().foundation()
+    # app.initFoundation()
 
 
   willDestroyElement: ->

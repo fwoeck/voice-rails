@@ -1,7 +1,7 @@
 Voice.InboundCallView = Ember.View.extend({
 
   didInsertElement: ->
-    @$().foundation()
+    app.initFoundation()
 
 
   willDestroyElement: ->

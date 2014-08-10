@@ -23,6 +23,9 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
     @splitLanguages()
     @splitSkills()
 
+    @observeLanguages()
+    @observeSkills()
+
 
   call: ->
     Voice.callIsOriginate = true

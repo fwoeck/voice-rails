@@ -1,5 +1,48 @@
 window.app = {
 
+  compileAvailabilityPartials: ->
+    Ember.keys(env.availability).forEach (avail, index) ->
+      Ember.TEMPLATES["availability/#{avail}"] = Ember.Handlebars.compile(
+        "<div class='td'>" +
+        "  <div class='switch tiny'>" +
+        "    {{view Ember.RadioButton name='Availability' selection=availability value='#{avail}'}}" +
+        "    <label for='#{avail}'></label>" +
+        "  </div>" +
+        "</div>" +
+        "<div class='td space'>#{env.availability[avail]}</div>"
+      )
+
+
+  compileSkillPartials: ->
+    Ember.keys(env.skills).forEach (skill, index) ->
+      Ember.TEMPLATES["skills/#{skill}"] = Ember.Handlebars.compile(
+        "<div class='td'>" +
+        "  <div class='switch tiny'>" +
+        "    {{view Ember.CheckMark selection=skill#{skill.toUpperCase()}}}" +
+        "    <label for='#{skill}'></label>" +
+        "  </div>" +
+        "</div>" +
+        "<div class='td space'>#{env.skills[skill]}</div>"
+      )
+
+
+  compileLanguagePartials: ->
+    Ember.keys(env.languages).forEach (lang, index) ->
+      Ember.TEMPLATES["languages/#{lang}"] = Ember.Handlebars.compile(
+        "<div class='td'>" +
+        "  <div class='switch tiny'>" +
+        "    {{view Ember.CheckMark selection=language#{lang.toUpperCase()}}}" +
+        "    <label for='#{lang}'></label>" +
+        "  </div>" +
+        "</div>" +
+        "<div class='td space'>#{env.languages[lang]}</div>"
+      )
+
+
+  initFoundation: ->
+    ($ document).foundation()
+
+
   agentRegex: /^(SIP\/)?(\d\d\d\d?)$/
 
 
@@ -110,6 +153,7 @@ window.app = {
 
 
   createMessageFrom: (data) ->
+    return if data.chat_message.from == Voice.get('currentUser.email')
     @updateRecordFrom(data, 'chat_message', Voice.ChatMessage)
 
 

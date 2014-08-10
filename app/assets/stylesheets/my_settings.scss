@@ -44,33 +44,31 @@
   }
 }
 
-table#skill_table,
-table#state_table,
-table#language_table {
+#skill_table,
+#state_table,
+#language_table {
   box-shadow: #888 2px 2px 3px;
-  border-collapse: collapse;
+  background-color: #f6f6f6;
+  border: 1px solid #ddd;
   overflow: hidden;
-  display: block;
   height: 101px;
+  width: 438px;
   float: left;
   margin: 0;
 
-  tr, td, label {
+  .td, label {
     padding: 0;
     margin: 0;
   }
 
-  tr, td {
-    background-color: #f6f6f6;
-  }
-
-  td {
+  .td {
     padding: 6px 8px;
     height: 33px;
+    float: left;
   }
 
-  td.space {
+  .td.space {
     padding: 6px 12px 6px 8px;
-    width: 148px;
+    width: 160px;
   }
 }
