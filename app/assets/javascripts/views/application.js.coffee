@@ -5,7 +5,7 @@ Voice.ApplicationView = Ember.View.extend({
 
   didInsertElement: ->
     Ember.run.later app, app.setupPhone, 1500
-    $(document).foundation()
+    app.initFoundation()
     app.setupInterface()
     app.setupSSE()
 

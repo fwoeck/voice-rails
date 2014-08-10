@@ -1,5 +1,9 @@
 window.app = {
 
+  initFoundation: ->
+    ($ document).foundation()
+
+
   agentRegex: /^(SIP\/)?(\d\d\d\d?)$/
 
 

@@ -1,7 +1,7 @@
 Voice.AgentView = Ember.View.extend(DragNDrop.Droppable, {
 
   didInsertElement: ->
-    @$().foundation()
+    app.initFoundation()
 
 
   willDestroyElement: ->
