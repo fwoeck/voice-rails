@@ -22,11 +22,9 @@ class User < ActiveRecord::Base
 
 
   def send_update_notification_to_clients
-    User.all_online.each do |user|
-      AmqpManager.push_publish(
-        user_id: user.id, data: UserSerializer.new(self)
-      )
-    end
+    AmqpManager.push_publish(
+      user_ids: User.all_online_ids, data: UserSerializer.new(self)
+    )
   end
 
 
@@ -59,16 +57,15 @@ class User < ActiveRecord::Base
   end
 
 
-  # TODO This requires too many redis- and mysql-requests.
+  # TODO This requires too many redis-requests.
   #      We should cache this information from the incoming
   #      amqp-messages:
   #
-  def self.all_online
+  def self.all_online_ids
     $redis.keys(Rails.env + '.visibility.*')
           .map { |key| [key[/\d+$/], $redis.get(key)] }
           .select { |s| s[1] == 'online' }
-          .map { |s| User.find(s[0]) }
-          .compact
+          .map { |s| s[0].to_i }
   end
 
   private

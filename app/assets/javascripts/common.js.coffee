@@ -110,6 +110,7 @@ window.app = {
 
 
   createMessageFrom: (data) ->
+    return if data.chat_message.from == Voice.get('currentUser.email')
     @updateRecordFrom(data, 'chat_message', Voice.ChatMessage)
 
 
