@@ -59,10 +59,16 @@ class User < ActiveRecord::Base
   end
 
 
-  # TODO We need to capture FE-online state for this.
+  # TODO This requires too many redis- and mysql-requests.
+  #      We should cache this information from the incoming
+  #      amqp-messages:
   #
   def self.all_online
-    all
+    $redis.keys(Rails.env + '.visibility.*')
+          .map { |key| [key[/\d+$/], $redis.get(key)] }
+          .select { |s| s[1] == 'online' }
+          .map { |s| User.find(s[0]) }
+          .compact
   end
 
   private
