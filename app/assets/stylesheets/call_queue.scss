@@ -49,6 +49,7 @@ table#callstats_table {
 
   tr.thead td {
     background-color: #ddd;
+    position: relative;
     font-weight: bold;
     font-size: 14px;
     color: #333;
@@ -57,6 +58,17 @@ table#callstats_table {
   td.split {
     padding: 9px 10px;
     width: 355px;
+  }
+
+  span.matches {
+    position: absolute;
+    right: 8px;
+    top: 1px;
+  }
+
+  span.matches label {
+    line-height: 35px;
+    font-size: 12px;
   }
 }
 

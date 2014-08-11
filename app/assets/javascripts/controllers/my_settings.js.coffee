@@ -33,6 +33,9 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     value = @get 'useWebRtc'
     if value != app.loadLocalKey('useWebRtc')
       app.storeLocalKey 'useWebRtc', value
+      app.dialog('We need to reload the browser window to activate this setting.', 'question', 'Reload', 'Cancel').then (->
+        window.location.reload()
+      ), (->)
   ).observes('useWebRtc')
 
 
