@@ -24,6 +24,7 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
 
   shortcuts:
+    'ctrl+d': 'dialNumber'
     'ctrl+c': 'showCallQueue'
     'ctrl+s': 'toggleSettings'
     'ctrl+o': 'toggleAgentOverview'
@@ -34,6 +35,10 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
 
   actions:
+    dialNumber: ->
+      app.originateCall()
+      false
+
     showCallQueue: ->
       app.toggleCallQueue()
       false

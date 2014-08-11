@@ -94,8 +94,8 @@ Voice.DialogController = Ember.ObjectController.extend {
   ).property('model.format')
 
 
-  validatesMessage: ( ->
-    @get('model.format') == 'message'
+  validatesNumber: ( ->
+    @get('model.format') == 'number'
   ).property('model.format')
 
 }

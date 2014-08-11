@@ -43,6 +43,14 @@ window.app = {
     ($ document).foundation()
 
 
+  originateCall: ->
+    app.dialog('Enter a number to dial to:',
+      'dialog', 'Dial now', 'Cancel', '', 'number'
+    ).then (num) ->
+      Voice.Call.originate(num)
+    , (->)
+
+
   agentRegex: /^(SIP\/)?(\d\d\d\d?)$/
 
 

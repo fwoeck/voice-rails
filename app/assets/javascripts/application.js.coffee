@@ -6,6 +6,7 @@
 #= require jquery.websocket
 #= require foundation/foundation
 #= require foundation/foundation.tab
+#= require foundation/foundation.abide
 #= require foundation/foundation.tooltip
 #= require gravatar
 #= require moment

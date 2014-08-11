@@ -113,3 +113,10 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
   isInbound: ->
     !@get('hungup') && !@get('agentsCallLeg')
 })
+
+
+Voice.Call.reopenClass({
+
+  originate: (to) ->
+    $.post '/calls', to: to
+})
