@@ -8,7 +8,7 @@ if isActive
         form.text data-abide="" novalidate="" submit='noop'
 
           if validatesNumber
-            label: Ember.TextField type='text' name='dialog' required='' maxlength='32' tabindex='2' value=text placeholder='Type a number..' pattern='number'
+            label: Ember.TextField type='text' name='dialog' maxlength='32' tabindex='2' value=text placeholder='Type a number..' pattern='number'
             small.error German numbers: 030..., intl. numbers: 0049...
           else
             if inputIsOptional
