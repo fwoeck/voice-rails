@@ -7,7 +7,7 @@ class CallsController < ApplicationController
 
 
   def originate
-    Call.originate(from: current_user.name, to: params['to'])
+    Call.originate(from: current_user.name, to: sanitized_to)
     render nothing: true
   end
 
@@ -27,5 +27,12 @@ class CallsController < ApplicationController
     end
 
     render nothing: true
+  end
+
+
+  private
+
+  def sanitized_to
+    (params['to'] || "").strip.sub(/^\+/,'00').gsub(/[^0-9]/, '')
   end
 end
