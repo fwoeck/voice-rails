@@ -5,9 +5,6 @@
     span.stats = currentStatusLine
 
   span.matches
-    label
-      ' Hide foreign calls
-      = input type='checkbox' checked=hideForeignCalls
 
   #call_queue_body.bottom-mask
     if Voice.currentCall.origin

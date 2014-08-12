@@ -3,6 +3,10 @@ table#callstats_table
     tr.thead
       td.split
         | Inbound Calls
+        span.matches
+          label
+            ' Hide foreign calls
+            = input type='checkbox' checked=hideForeignCalls
       td.split
         | Connected Agents
     each call in sortedCalls
