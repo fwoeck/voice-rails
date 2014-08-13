@@ -1,0 +1,16 @@
+.gauge {
+  margin: 0 20px 0 -20px;
+  height: 160px;
+  width: 200px;
+  float: left;
+}
+
+#stats_table {
+  border-top: 1px solid #eee;
+  padding: 20px 0 0 0;
+  position: initial;
+  overflow: hidden;
+  width: 100%;
+  bottom: 0;
+  top: 40px;
+}

@@ -1,5 +1,8 @@
 Voice.Dataset = DS.Model.extend({
 
-  activeCallCount: DS.attr 'number'
+  activeCallCount:     DS.attr 'number'
+  queuedCallCount:     DS.attr 'number'
+  preQueuedCallCount:  DS.attr 'number'
+  dispatchedCallCount: DS.attr 'number'
 
 })

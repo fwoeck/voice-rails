@@ -8,5 +8,12 @@
     a data-method="delete" href="/auth/logout" rel="nofollow" Logout 
 
   #center_column.large-12.medium-12.columns
-    h4 Statistics
-    = ember-gauge gid="calls" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"
+    h5
+      i.header.fa.fa-dashboard
+      span.header Call center dashboard
+
+    #stats_table
+      = ember-gauge gid="calls1" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"
+      = ember-gauge gid="calls2" value=data.preQueuedCallCount min=0 max=100 title="Incoming calls" label="call count"
+      = ember-gauge gid="calls3" value=data.queuedCallCount min=0 max=100 title="Queued calls" label="call count"
+      = ember-gauge gid="calls4" value=data.dispatchedCallCount min=0 max=100 title="Dispatched calls" label="call count"
