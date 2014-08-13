@@ -49,12 +49,11 @@ class Dataset
   end
 
 
-  # TODO This doesn't work right when an agent takes an incoming call:
-  #
   def self.incoming_calls
     raw_calls.select { |c|
-      !c['CallTag'] && !c['Hungup'] &&
-        !(c['CallerId'] || "")[/^SIP\/(\d){3,4}$/]
+      !c['CallTag'] && !c['Hungup'] && (
+        c['Extension'].blank? || c['Extension'] == '100'
+      )
     }
   end
 
