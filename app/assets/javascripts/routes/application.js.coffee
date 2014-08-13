@@ -25,8 +25,8 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
   shortcuts:
     'ctrl+d': 'dialNumber'
-    'ctrl+c': 'showCallQueue'
-    'ctrl+s': 'toggleSettings'
+    'ctrl+s': 'toggleStats'
+    'ctrl+q': 'showCallQueue'
     'ctrl+o': 'toggleAgentOverview'
     'ctrl+h': 'toggleForeignCalls'
     'ctrl+a': 'cycleAvailability'
@@ -43,8 +43,8 @@ Voice.ApplicationRoute = Ember.Route.extend({
       app.toggleCallQueue()
       false
 
-    toggleSettings: ->
-      app.toggleSettings()
+    toggleStats: ->
+      app.toggleStatsView()
       false
 
     toggleAgentOverview: ->
@@ -52,13 +52,7 @@ Voice.ApplicationRoute = Ember.Route.extend({
       false
 
     cycleAvailability: ->
-      cu    = Voice.get('currentUser')
-      avail = switch cu.get('availability')
-                when 'ready' then 'busy'
-                when 'busy'  then 'away'
-                when 'away'  then 'ready'
-
-      cu.set('availability', avail)
+      app.cycleAvailability()
       false
 
     toggleForeignCalls: ->

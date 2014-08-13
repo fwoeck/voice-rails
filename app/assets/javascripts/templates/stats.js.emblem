@@ -1,0 +1,12 @@
+#hidden_tabindex: input tabindex='3'
+= render 'dialog'
+
+#main.row
+
+  #logout_link
+    ' #{Voice.currentUser.name} / #{Voice.currentUser.displayName} &mdash;
+    a data-method="delete" href="/auth/logout" rel="nofollow" Logout 
+
+  #center_column.large-12.medium-12.columns
+    h4 Statistics
+    = ember-gauge gid="calls" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"

@@ -135,6 +135,23 @@ window.app = {
     ($ '#my_settings > h5').click -> app.toggleSettings()
 
 
+  toggleStatsView: ->
+    if Voice.get('currentPath') == 'stats'
+      Voice.aR.transitionTo('/')
+    else
+      Voice.aR.transitionTo('/stats')
+
+
+  cycleAvailability: ->
+    cu    = Voice.get('currentUser')
+    avail = switch cu.get('availability')
+              when 'ready' then 'busy'
+              when 'busy'  then 'away'
+              when 'away'  then 'ready'
+
+    cu.set('availability', avail)
+
+
   toggleCallQueue: ->
     app.hideTooltips()
     ($ '#call_queue').addClass('expanded').addClass('lifted')

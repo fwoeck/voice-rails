@@ -1,12 +1,11 @@
 Voice.ApplicationView = Ember.View.extend({
 
   templateName: 'application'
+  classNameBindings: [':application']
 
 
   didInsertElement: ->
     Ember.run.later app, app.setupPhone, 1500
-    app.initFoundation()
-    app.setupInterface()
     app.setupSSE()
 
     window.onbeforeunload = ->

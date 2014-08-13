@@ -9,6 +9,8 @@
 #= require foundation/foundation.abide
 #= require foundation/foundation.tooltip
 #= require gravatar
+#= require raphael
+#= require justgage
 #= require moment
 #= require common
 #= require connections
