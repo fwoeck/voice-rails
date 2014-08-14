@@ -17,3 +17,5 @@
       = ember-gauge gid="calls2" value=data.preQueuedCallCount min=0 max=100 title="Incoming calls" label="call count"
       = ember-gauge gid="calls3" value=data.queuedCallCount min=0 max=100 title="Queued calls" label="call count"
       = ember-gauge gid="calls4" value=data.dispatchedCallCount min=0 max=100 title="Dispatched calls" label="call count"
+      = ember-gauge gid="calls5" value=data.queuedCallsDelayMax min=0 max=100 title="Max. queue delay" label="seconds"
+      = ember-gauge gid="calls6" value=data.queuedCallsDelayAvg min=0 max=100 title="Avg. queue delay" label="seconds"

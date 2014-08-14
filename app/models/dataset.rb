@@ -33,6 +33,16 @@ class Dataset
   end
 
 
+  def queued_calls_delay_max
+    dataset.fetch('queued_calls_delay_max', 0)
+  end
+
+
+  def queued_calls_delay_avg
+    dataset.fetch('queued_calls_delay_avg', 0)
+  end
+
+
   private
 
   def get_dataset
