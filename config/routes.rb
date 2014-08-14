@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     sign_in: 'login', sign_out: 'logout'
   }, controllers: { sessions: 'sessions' }
 
-  root 'application#index'
+  root   'application#index'
+  get    'stats'               => 'application#index'
+  get    'datasets'            => 'stats#index'
 
   get    'calls'               => 'calls#index'
   post   'calls'               => 'calls#originate'
@@ -25,6 +27,6 @@ Rails.application.routes.draw do
   get    'zendesk_tickets'     => 'customers#get_zendesk_tickets'
   post   'zendesk_tickets'     => 'customers#create_zendesk_ticket'
 
-  get    '*path',             to: 'application#catch_404'
-  post   '*path',             to: 'application#catch_404'
+  get    '*path'               => 'application#catch_404'
+  post   '*path'               => 'application#catch_404'
 end

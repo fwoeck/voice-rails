@@ -22,11 +22,16 @@ Voice.ApplicationController = Ember.Controller.extend({
       app.showDefaultError("For now, Chrome #{env.chromeVersion}+ is the only supported browser. Use this platform at own risk.")
 
 
-  setCurrentCall: ( ->
+  setCurrentCall: (->
     myCall  = @getMyCall()
     newCall = myCall?.get('bridge')
 
     if newCall != Voice.get('currentCall')
       Voice.set('currentCall', newCall)
   ).observes('allCalls.@each.{myCallLeg,bridge}')
+
+
+  setCurrentPath: (->
+    Voice.set 'currentPath', @get('currentPath')
+  ).observes('currentPath')
 })

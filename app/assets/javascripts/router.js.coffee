@@ -1,5 +1,5 @@
 Voice.Router.map ()->
-  # @resource('posts')
+  @resource('stats')
 
 Voice.Router.reopen
   location: 'history'
