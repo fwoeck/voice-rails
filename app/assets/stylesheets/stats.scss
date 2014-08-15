@@ -1,8 +1,12 @@
 .gauge {
-  margin: 0 20px 0 -20px;
+  margin: 0 23px 0 -15px;
   height: 160px;
-  width: 200px;
+  width: 160px;
   float: left;
+}
+
+#calls6.gauge {
+  margin: 0 -23px 0 -15px;
 }
 
 #stats_table {
