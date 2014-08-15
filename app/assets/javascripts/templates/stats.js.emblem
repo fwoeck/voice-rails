@@ -12,10 +12,108 @@
       i.header.fa.fa-dashboard
       span.header Call center dashboard
 
-    #stats_table
+    #gauge_table
       = ember-gauge gid="calls1" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"
       = ember-gauge gid="calls2" value=data.preQueuedCallCount min=0 max=100 title="Incoming calls" label="call count"
       = ember-gauge gid="calls3" value=data.queuedCallCount min=0 max=100 title="Queued calls" label="call count"
       = ember-gauge gid="calls4" value=data.dispatchedCallCount min=0 max=100 title="Dispatched calls" label="call count"
       = ember-gauge gid="calls5" value=data.queuedCallsDelayMax min=0 max=100 title="Max. queue delay" label="seconds"
       = ember-gauge gid="calls6" value=data.queuedCallsDelayAvg min=0 max=100 title="Avg. queue delay" label="seconds"
+
+    h5
+      span.header DE
+
+    table#stat_details
+      thead
+        tr
+          td width='25%' New Bookings
+          td width='25%' Ext Bookings
+          td width='25%' Payment
+          td width='25%' Other
+      tbody
+        tr
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
+
+    h5
+      span.header EN
+
+    table#stat_details
+      thead
+        tr
+          td width='25%' New Bookings
+          td width='25%' Ext Bookings
+          td width='25%' Payment
+          td width='25%' Other
+      tbody
+        tr
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
+          td
+            table.stat_detail
+              tbody
+                tr
+                  td.qc width='50%' 17
+                  td.dc width='50%' 8
+                tr
+                  td.md width='50%' 13
+                  td.ad width='50%' 9
