@@ -1,12 +1,8 @@
 Voice.StatsView = Ember.View.extend({
 
-  dataBinding:  'controller.content.firstObject'
-  currentLang:   null
-
-
-  staticLang: (->
-    'en' # TODO Make this selectable
-  ).property()
+  dataBinding:      'controller.content.firstObject'
+  rrdSourceBinding: 'controller.rrdSource'
+  currentLang:       null
 
 
   didInsertElement: ->
@@ -14,30 +10,34 @@ Voice.StatsView = Ember.View.extend({
     data = @get('data')
 
     @setDisplayProperties()
+
     @refreshTimer = window.setInterval (->
       Voice.store.find('dataset').then ->
         data.triggerStatsUpdate()
         self.cycleLangs()
     ), 3000
 
+    @rrdTimer = window.setInterval (->
+      self.set 'rrdSource', "/queue-stats.png?#{new Date().getTime()}"
+    ), 60000
+
 
   setDisplayProperties: ->
-    @$(".language_details.#{@get 'staticLang'}").addClass('first')
     @cycleLangs()
 
 
   cycleLangs: ->
-    sl    = @get 'staticLang'
-    cl    = @get 'currentLang'
-    langs = Ember.keys(env.languages).removeObject(sl)
-    index = (langs.indexOf(cl) + 1) % langs.length
+    lang  = @get 'currentLang'
+    langs = Ember.keys(env.languages)
+    index = (langs.indexOf(lang) + 1) % langs.length
     lang  = langs[index]
 
     @set 'currentLang', lang
-    @$('.language_details').removeClass('second')
-    @$(".language_details.#{lang}").addClass('second')
+    @$('.language_details').removeClass('active')
+    @$(".language_details.#{lang}").addClass('active')
 
 
   willDestroyElement: ->
     window.clearInterval @refreshTimer
+    window.clearInterval @rrdTimer
 })
