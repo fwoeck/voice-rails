@@ -1,11 +1,23 @@
 .gauge {
-  margin: 0 20px 0 -20px;
+  margin: 0 23px 0 -15px;
   height: 160px;
-  width: 200px;
+  width: 160px;
   float: left;
 }
 
-#stats_table {
+#calls6.gauge {
+  margin: 0 -23px 0 -15px;
+}
+
+#rrd_history {
+  margin-top: 40px;
+
+  img {
+    border: 1px solid #ddd;
+  }
+}
+
+#gauge_table {
   border-top: 1px solid #eee;
   padding: 20px 0 0 0;
   position: initial;
@@ -13,4 +25,85 @@
   width: 100%;
   bottom: 0;
   top: 40px;
+}
+
+.language_details {
+  display: none;
+}
+
+.language_details.active {
+  display: block;
+}
+
+table#stat_details {
+  width: 100%;
+
+  thead td {
+    color: #666;
+  }
+
+  tbody td {
+    padding: 0;
+  }
+
+  table.stat_detail {
+    width: 100%;
+    border: 0;
+    margin: 0;
+
+    td {
+      border: 1px solid #eee;
+      padding: 4px 8px 0px;
+      text-align: center;
+      position: relative;
+      width: 50%;
+    }
+
+    td:before {
+      position: absolute;
+      font-size: 12px;
+      color: #999;
+      left: 2px;
+      top: 0;
+    }
+
+    td.qc:before {
+      content: 'QC';
+    }
+
+    td.dc:before {
+      content: 'DC';
+    }
+
+    td.md:before {
+      content: 'MD';
+    }
+
+    td.ad:before {
+      content: 'AD';
+    }
+
+    span {
+      display: inline-block;
+      line-height: 40px;
+      overflow: hidden;
+      font-size: 24px;
+      height: 40px;
+    }
+
+    span.empty {
+      font-size: 18px;
+      color: #aaa;
+    }
+
+    span.warn {
+      font-size: 30px;
+      color: #ffa500;
+    }
+
+    span.err {
+      font-size: 36px;
+      color: red;
+    }
+  }
 }

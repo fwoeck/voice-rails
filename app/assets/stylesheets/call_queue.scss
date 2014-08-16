@@ -44,7 +44,6 @@ table#callstats_table {
 
   tr {
     background-color: #faebd7;
-    vertical-align: baseline;
   }
 
   tr.thead td {
@@ -52,11 +51,14 @@ table#callstats_table {
     position: relative;
     font-weight: bold;
     font-size: 14px;
+    height: 36px;
     color: #333;
   }
 
   td.split {
     padding: 9px 10px;
+    line-height: 18px;
+    height: 86px;
     width: 355px;
   }
 

@@ -43,6 +43,26 @@ class Dataset
   end
 
 
+  def queued_calls
+    dataset.fetch('queued_calls', {})
+  end
+
+
+  def dispatched_calls
+    dataset.fetch('dispatched_calls', {})
+  end
+
+
+  def max_delay
+    dataset.fetch('max_delay', {})
+  end
+
+
+  def average_delay
+    dataset.fetch('average_delay', {})
+  end
+
+
   private
 
   def get_dataset

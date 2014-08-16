@@ -44,17 +44,17 @@ Ember.FromNow = Ember.View.extend({
 
 
 Ember.CreatedAt = Ember.FromNow.extend({
-  template: Ember.Handlebars.compile("{{fromNow createdAt}}")
+  template: Ember.Handlebars.compile("{{unbound fromNow createdAt}}")
 })
 
 
 Ember.QueuedAt = Ember.FromNow.extend({
-  template: Ember.Handlebars.compile("{{fromNow queuedAt}}")
+  template: Ember.Handlebars.compile("{{unbound fromNow queuedAt}}")
 })
 
 
 Ember.CalledAt = Ember.FromNow.extend({
-  template: Ember.Handlebars.compile("{{fromNow calledAt}}")
+  template: Ember.Handlebars.compile("{{unbound fromNow calledAt}}")
 })
 
 

@@ -25,3 +25,27 @@ Ember.Handlebars.helper('zendeskUser', (value, options) ->
 Ember.Handlebars.helper('agentFor', (value, options) ->
   app.getAgentFrom(value) if value
 )
+
+Ember.Handlebars.helper('printSkill', (value, options) ->
+  env.skills[value]
+)
+
+Ember.Handlebars.helper('printQC', (data, val1, val2, tr, options) ->
+  val = data.get("queuedCalls.#{val1}.#{val2}") || 0
+  app.renderStatsEntry(val, 10, 20)
+)
+
+Ember.Handlebars.helper('printDC', (data, val1, val2, options) ->
+  val = data.get("dispatchedCalls.#{val1}.#{val2}") || 0
+  app.renderStatsEntry(val, 10, 20)
+)
+
+Ember.Handlebars.helper('printMD', (data, val1, val2, options) ->
+  val = data.get("maxDelay.#{val1}.#{val2}") || 0
+  app.renderStatsEntry(val, 10, 20)
+)
+
+Ember.Handlebars.helper('printAD', (data, val1, val2, options) ->
+  val = data.get("averageDelay.#{val1}.#{val2}") || 0
+  app.renderStatsEntry(val, 10, 20)
+)

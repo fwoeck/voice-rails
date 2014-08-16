@@ -3,7 +3,7 @@ table.callstats_table
     tr
       td width="40%" Caller Id
       td width="60%"
-        = callerName
+        = unbound callerName
         span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Called at: #{unbound moment calledAt}"
           i.fa.fa-info-circle
     tr
@@ -17,5 +17,5 @@ table.callstats_table
       td Language choice
       td = upcase language
     tr
-      td Requested skill
+      td Reskill
       td = skillName

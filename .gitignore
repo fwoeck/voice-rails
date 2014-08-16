@@ -9,4 +9,5 @@
 /Guardfile
 /public/assets
 /public/record
+/public/*.png
 ._*
