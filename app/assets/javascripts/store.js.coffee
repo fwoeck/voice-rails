@@ -19,5 +19,21 @@ DS.ArrayTransform = DS.Transform.extend(
     else
       []
 )
-
 Voice.register 'transform:array', DS.ArrayTransform
+
+
+DS.ObjectTransform = DS.Transform.extend(
+
+  deserialize: (serialized) ->
+    (if (Ember.typeOf(serialized) is 'object') then serialized else {})
+
+  serialize: (deserialized) ->
+    type = Ember.typeOf(deserialized)
+    if type is 'object'
+      deserialized
+    else if type is 'string'
+      new Ember.Object(JSON.parse deserialized)
+    else
+      {}
+)
+Voice.register 'transform:object', DS.ObjectTransform

@@ -1,6 +1,6 @@
 tr
   td width="18%" = view Ember.CreatedAt
-  td width="24%" = zendeskUser submitterId
+  td width="24%" = unbound zendeskUser submitterId
   td
     span data-tooltip="" title="#{unbound description}"
       a target="_blank" href="#{unbound url}" = subject
