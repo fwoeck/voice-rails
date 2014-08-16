@@ -9,5 +9,5 @@
 /Guardfile
 /public/assets
 /public/record
-/public/*.png
+/public/images/queue-stats.png
 ._*
