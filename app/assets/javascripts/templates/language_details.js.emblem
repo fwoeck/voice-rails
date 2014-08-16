@@ -1,7 +1,9 @@
 each lang in languages
   div class={lang :language_details}
     h5
-      span.header = unbound upcase lang
+      span.header
+        ' Language:
+        = unbound upcase lang
 
     table#stat_details
       thead
