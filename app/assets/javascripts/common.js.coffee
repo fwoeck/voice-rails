@@ -1,5 +1,17 @@
 window.app = {
 
+  renderStatsEntry: (val, level1, level2) ->
+    tag = if val
+            lef = 'norm'
+            lev = 'warn' if val > level1
+            lev = 'err'  if val > level2
+            "<span class='#{lev}'>#{val}</span>"
+          else
+            "<span class='empty'>&mdash;</span>"
+
+    new Ember.Handlebars.SafeString(tag)
+
+
   compileAvailabilityPartials: ->
     Ember.keys(env.availability).forEach (avail, index) ->
       Ember.TEMPLATES["availability/#{avail}"] = Ember.Handlebars.compile(
