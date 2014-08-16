@@ -10,7 +10,7 @@
   #center_column.large-12.medium-12.columns
     h5
       i.header.fa.fa-dashboard
-      span.header Call center dashboard
+      span.header Call Center Dashboard
 
     #gauge_table
       = ember-gauge gid="calls1" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"
