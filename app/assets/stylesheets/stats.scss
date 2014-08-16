@@ -19,6 +19,25 @@
   top: 40px;
 }
 
+.language_details {
+  width: calc(100% - 2rem);
+  position: absolute;
+  display: none;
+  z-index: 1;
+  top: 230px;
+}
+
+.language_details.first {
+  display: block;
+  z-index: 2;
+}
+
+.language_details.second {
+  display: block;
+  z-index: 2;
+  top: 430px;
+}
+
 table#stat_details {
   width: 100%;
 

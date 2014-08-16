@@ -11,4 +11,11 @@ Voice.Dataset = DS.Model.extend({
   dispatchedCalls:     DS.attr 'object'
   averageDelay:        DS.attr 'object'
   maxDelay:            DS.attr 'object'
+
+
+  triggerStatsUpdate: ->
+    @notifyPropertyChange('queuedCalls')
+    @notifyPropertyChange('dispatchedCalls')
+    @notifyPropertyChange('averageDelay')
+    @notifyPropertyChange('maxDelay')
 })
