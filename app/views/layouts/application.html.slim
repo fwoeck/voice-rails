@@ -25,23 +25,25 @@ html
 
     javascript:
       window.env = {
-        messages:      [],
-        sseErrors:     0,
-        chromeVersion: 36,
-        debug:         false,
-        railsEnv:     "#{Rails.env}",
-        sipAgent:     "#{current_user.try(:name)}",
-        sipSecret:    "#{current_user.try(:secret)}",
-        sipHost:      "#{WimConfig.sip_host}",
-        userId:       "#{current_user.try(:id)}",
-        sessionToken: "#{form_authenticity_token}",
-        sslEnabled:    #{Rails.env.test? ? 'false' : 'true'},
-        availability:  #{WimConfig.availability.to_json.html_safe},
-        visibility:    #{WimConfig.visibility.to_json.html_safe},
-        languages:     #{WimConfig.languages.to_json.html_safe},
-        activity:      #{WimConfig.activity.to_json.html_safe},
-        skills:        #{WimConfig.skills.to_json.html_safe},
-        roles:         #{WimConfig.roles.to_json.html_safe}
+        messages:       [],
+        sseErrors:      0,
+        chromeVersion:  36,
+        firefoxVersion: 31,
+        debug:          false,
+        railsEnv:      "#{Rails.env}",
+        sipAgent:      "#{current_user.try(:name)}",
+        sipSecret:     "#{current_user.try(:secret)}",
+        sipHost:       "#{WimConfig.sip_host}",
+        userId:        "#{current_user.try(:id)}",
+        sessionToken:  "#{form_authenticity_token}",
+        rrdSource:     "#{WimConfig.stats_image_url}",
+        sslEnabled:     #{Rails.env.test? ? 'false' : 'true'},
+        availability:   #{WimConfig.availability.to_json.html_safe},
+        visibility:     #{WimConfig.visibility.to_json.html_safe},
+        languages:      #{WimConfig.languages.to_json.html_safe},
+        activity:       #{WimConfig.activity.to_json.html_safe},
+        skills:         #{WimConfig.skills.to_json.html_safe},
+        roles:          #{WimConfig.roles.to_json.html_safe}
       }
 
     = javascript_include_tag 'application'

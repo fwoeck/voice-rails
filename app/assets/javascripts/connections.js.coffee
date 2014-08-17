@@ -22,7 +22,7 @@ app.setupPhone = ->
     console.log('SIP remove call:', call) if env.debug
     if env.callDialogActive
       env.callDialogActive = false
-      Voice.dialogController.clear()
+      Voice.dialogController.cancel()
 
   phone.notifyRegistered = (session) ->
     console.log('SIP registered:', session) if env.debug

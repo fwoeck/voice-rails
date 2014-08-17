@@ -1,7 +1,7 @@
 Voice.StatsController = Ember.ArrayController.extend({
 
   dataBinding: 'Voice.allDatasets.firstObject'
-  rrdSource:   '/images/queue-stats.png'
+  rrdSource:   ''
 
 
   skills: (->

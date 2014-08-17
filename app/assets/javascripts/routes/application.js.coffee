@@ -24,6 +24,7 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
 
   shortcuts:
+    'esc':    'closeDialog'
     'ctrl+d': 'dialNumber'
     'ctrl+s': 'toggleStats'
     'ctrl+q': 'showCallQueue'
@@ -34,36 +35,46 @@ Voice.ApplicationRoute = Ember.Route.extend({
     'ctrl+t': 'activateChat'
 
 
+  silence: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    false
+
+
   actions:
-    dialNumber: ->
+    closeDialog: (e) ->
+      Voice.dialogController.cancel()
+      @silence(e)
+
+    dialNumber: (e) ->
       app.originateCall()
-      false
+      @silence(e)
 
-    showCallQueue: ->
+    showCallQueue: (e) ->
       app.toggleCallQueue()
-      false
+      @silence(e)
 
-    toggleStats: ->
+    toggleStats: (e) ->
       app.toggleStatsView()
-      false
+      @silence(e)
 
-    toggleAgentOverview: ->
+    toggleAgentOverview: (e) ->
       app.toggleAgentOverview()
-      false
+      @silence(e)
 
-    cycleAvailability: ->
+    cycleAvailability: (e) ->
       app.cycleAvailability()
-      false
+      @silence(e)
 
-    toggleForeignCalls: ->
+    toggleForeignCalls: (e) ->
       Voice.toggleProperty('hideForeignCalls')
-      false
+      @silence(e)
 
-    activateSearch: ->
+    activateSearch: (e) ->
       Ember.run.next -> ($ 'input[name=agent_search]').focus()
-      false
+      @silence(e)
 
-    activateChat: ->
+    activateChat: (e) ->
       Ember.run.next -> ($ 'input[name=chat_message]').focus()
-      false
+      @silence(e)
 })
