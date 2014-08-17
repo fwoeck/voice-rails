@@ -35,6 +35,7 @@ html
         sipHost:      "#{WimConfig.sip_host}",
         userId:       "#{current_user.try(:id)}",
         sessionToken: "#{form_authenticity_token}",
+        rrdSource:    "#{WimConfig.stats_image_url}",
         sslEnabled:    #{Rails.env.test? ? 'false' : 'true'},
         availability:  #{WimConfig.availability.to_json.html_safe},
         visibility:    #{WimConfig.visibility.to_json.html_safe},

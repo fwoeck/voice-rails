@@ -18,12 +18,17 @@ Voice.StatsView = Ember.View.extend({
     ), 3000
 
     @rrdTimer = window.setInterval (->
-      self.set 'rrdSource', "/images/queue-stats.png?#{new Date().getTime()}"
+      self.updateRrdSource()
     ), 60000
 
 
   setDisplayProperties: ->
+    Ember.run.next @, @updateRrdSource
     @cycleLangs()
+
+
+  updateRrdSource: ->
+    @set 'rrdSource', "#{env.rrdSource}?#{new Date().getTime()}"
 
 
   cycleLangs: ->
