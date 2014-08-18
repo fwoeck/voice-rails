@@ -11,5 +11,5 @@
    | Call Statistics
   '  &mdash;
   = link-to 'agents'
-   | Agent Overview
+   | Agents
   '  &mdash;
