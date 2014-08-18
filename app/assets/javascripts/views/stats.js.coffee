@@ -28,6 +28,7 @@ Voice.StatsView = Ember.View.extend({
 
 
   updateRrdSource: ->
+    return if @isDestroyed
     @set 'rrdSource', "#{env.rrdSource}?#{new Date().getTime()}"
 
 
@@ -38,8 +39,8 @@ Voice.StatsView = Ember.View.extend({
     lang  = langs[index]
 
     @set 'currentLang', lang
-    @$('.language_details').removeClass('active')
-    @$(".language_details.#{lang}").addClass('active')
+    @$('.language_details')?.removeClass('active')
+    @$(".language_details.#{lang}")?.addClass('active')
 
 
   willDestroyElement: ->

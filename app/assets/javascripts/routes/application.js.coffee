@@ -25,14 +25,17 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
   shortcuts:
     'esc':    'closeDialog'
-    'ctrl+d': 'dialNumber'
+    'ctrl+n': 'dialNumber'
     'ctrl+s': 'toggleStats'
+    'ctrl+a': 'toggleAgents'
+    'ctrl+d': 'showDashboard'
     'ctrl+q': 'showCallQueue'
     'ctrl+o': 'toggleAgentOverview'
     'ctrl+h': 'toggleForeignCalls'
-    'ctrl+a': 'cycleAvailability'
     'ctrl+f': 'activateSearch'
     'ctrl+t': 'activateChat'
+    'ctrl+r': 'setReady'
+    'ctrl+b': 'setBusy'
 
 
   silence: (e) ->
@@ -54,6 +57,18 @@ Voice.ApplicationRoute = Ember.Route.extend({
       app.toggleCallQueue()
       @silence(e)
 
+    setReady: (e) ->
+      app.setAvailability('ready')
+      @silence(e)
+
+    setBusy: (e) ->
+      app.setAvailability('busy')
+      @silence(e)
+
+    showDashboard: (e) ->
+      Voice.aR.transitionTo('/')
+      @silence(e)
+
     toggleStats: (e) ->
       app.toggleStatsView()
       @silence(e)
@@ -62,8 +77,8 @@ Voice.ApplicationRoute = Ember.Route.extend({
       app.toggleAgentOverview()
       @silence(e)
 
-    cycleAvailability: (e) ->
-      app.cycleAvailability()
+    toggleAgents: (e) ->
+      app.toggleAgentView()
       @silence(e)
 
     toggleForeignCalls: (e) ->

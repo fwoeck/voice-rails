@@ -1,1 +1,6 @@
-= outlet
+#hidden_tabindex: input tabindex='3'
+= render 'dialog'
+
+#main.row
+  = partial 'page_headers'
+  = outlet

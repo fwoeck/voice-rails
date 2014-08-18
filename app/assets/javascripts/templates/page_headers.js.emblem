@@ -1,0 +1,15 @@
+#logout_link
+  ' #{Voice.currentUser.name} / #{Voice.currentUser.displayName} &mdash;
+  a data-method="delete" href="/auth/logout" rel="nofollow" Logout 
+
+#navigation_bar
+  '  &mdash;
+  = link-to 'index'
+   | Dashboard
+  '  &mdash;
+  = link-to 'stats'
+   | Call Statistics
+  '  &mdash;
+  = link-to 'agents'
+   | Agents
+  '  &mdash;

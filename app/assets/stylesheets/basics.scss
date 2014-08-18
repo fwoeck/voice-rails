@@ -55,19 +55,26 @@ html.touch {
 
 #version_tag {
   position: absolute;
-  font-size: 11px;
+  line-height: 9px;
+  font-size: 9px;
   opacity: 0.7;
   margin: 5px;
   left: 0;
   top: 0;
 }
 
-#logout_link {
+#logout_link,
+#navigation_bar {
   position: absolute;
   font-size: 12px;
   margin: 5px;
   right: 0;
   top: 0;
+}
+
+#navigation_bar {
+  text-align: center;
+  width: 100%;
 }
 
 form#new_user {
