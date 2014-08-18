@@ -147,6 +147,13 @@ window.app = {
     ($ '#my_settings > h5').click -> app.toggleSettings()
 
 
+  toggleAgentView: ->
+    if Voice.get('currentPath') == 'agents'
+      Voice.aR.transitionTo('/')
+    else
+      Voice.aR.transitionTo('/agents')
+
+
   toggleStatsView: ->
     if Voice.get('currentPath') == 'stats'
       Voice.aR.transitionTo('/')
@@ -154,13 +161,8 @@ window.app = {
       Voice.aR.transitionTo('/stats')
 
 
-  cycleAvailability: ->
-    cu    = Voice.get('currentUser')
-    avail = switch cu.get('availability')
-              when 'ready' then 'busy'
-              when 'busy'  then 'away'
-              when 'away'  then 'ready'
-
+  setAvailability: (avail) ->
+    cu = Voice.get('currentUser')
     cu.set('availability', avail)
 
 

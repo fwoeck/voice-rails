@@ -1,26 +1,17 @@
-#hidden_tabindex: input tabindex='3'
-= render 'dialog'
+#center_column.large-12.medium-12.columns
+  h5
+    i.header.fa.fa-dashboard
+    span.header Call Center Statistics
 
-#main.row
+  #gauge_table
+    = ember-gauge gid="calls1" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"
+    = ember-gauge gid="calls2" value=data.preQueuedCallCount min=0 max=100 title="Incoming calls" label="call count"
+    = ember-gauge gid="calls3" value=data.queuedCallCount min=0 max=100 title="Queued calls" label="call count"
+    = ember-gauge gid="calls4" value=data.dispatchedCallCount min=0 max=100 title="Dispatched calls" label="call count"
+    = ember-gauge gid="calls5" value=data.queuedCallsDelayMax min=0 max=100 title="Max. queue delay" label="seconds"
+    = ember-gauge gid="calls6" value=data.queuedCallsDelayAvg min=0 max=100 title="Avg. queue delay" label="seconds"
 
-  #logout_link
-    ' #{Voice.currentUser.name} / #{Voice.currentUser.displayName} &mdash;
-    a data-method="delete" href="/auth/logout" rel="nofollow" Logout 
+  = partial 'language_details'
 
-  #center_column.large-12.medium-12.columns
-    h5
-      i.header.fa.fa-dashboard
-      span.header Call Center Dashboard
-
-    #gauge_table
-      = ember-gauge gid="calls1" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"
-      = ember-gauge gid="calls2" value=data.preQueuedCallCount min=0 max=100 title="Incoming calls" label="call count"
-      = ember-gauge gid="calls3" value=data.queuedCallCount min=0 max=100 title="Queued calls" label="call count"
-      = ember-gauge gid="calls4" value=data.dispatchedCallCount min=0 max=100 title="Dispatched calls" label="call count"
-      = ember-gauge gid="calls5" value=data.queuedCallsDelayMax min=0 max=100 title="Max. queue delay" label="seconds"
-      = ember-gauge gid="calls6" value=data.queuedCallsDelayAvg min=0 max=100 title="Avg. queue delay" label="seconds"
-
-    = partial 'language_details'
-
-    #rrd_history
-      img src=rrdSource width=970 height=220
+  #rrd_history
+    img src=rrdSource width=970 height=220
