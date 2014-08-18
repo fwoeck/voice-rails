@@ -25,9 +25,10 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
   shortcuts:
     'esc':    'closeDialog'
-    'ctrl+d': 'dialNumber'
+    'ctrl+n': 'dialNumber'
     'ctrl+s': 'toggleStats'
     'ctrl+a': 'toggleAgents'
+    'ctrl+d': 'showDashboard'
     'ctrl+q': 'showCallQueue'
     'ctrl+o': 'toggleAgentOverview'
     'ctrl+h': 'toggleForeignCalls'
@@ -62,6 +63,10 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
     setBusy: (e) ->
       app.setAvailability('busy')
+      @silence(e)
+
+    showDashboard: (e) ->
+      Voice.aR.transitionTo('/')
       @silence(e)
 
     toggleStats: (e) ->
