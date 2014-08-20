@@ -5,7 +5,7 @@ Voice.EmberGaugeComponent = Ember.Component.extend(
 
 
   dataDidChange: (->
-    @get('theGauge').refresh @get('value')
+    @get('gauge').refresh @get('value')
   ).observes('value')
 
 
@@ -24,5 +24,5 @@ Voice.EmberGaugeComponent = Ember.Component.extend(
           "#ff0000"
         ]
       )
-      @set 'theGauge', g
+      @set 'gauge', g
 )

@@ -8,14 +8,8 @@ Voice.CallQueueController = Ember.ArrayController.extend({
 
   actions:
     hangupCall: ->
-      cc = Voice.get('currentCall')
-      return unless cc
-
-      app.dialog(
-        'Do you want to hangup your current call?', 'question'
-      ).then ( ->
-        cc.hangup()
-      ), (->)
+      return unless cc = Voice.get('currentCall')
+      app.hangupCall(cc)
       return false
 
 
@@ -49,9 +43,12 @@ Voice.CallQueueController = Ember.ArrayController.extend({
 
 
   currentStatusLine: (->
-    waiting   = @get('waitingCalls.length')
-    customers = if waiting == 1 then 'customer is' else 'customers are'
+    count = @get('waitingCalls.length')
+    are   = if count == 1
+              i18n.customers.customer_is
+            else
+              i18n.customers.customers_are
 
-    "#{waiting} #{customers} queued."
+    "#{count} #{are} #{i18n.customers.queued}."
   ).property('waitingCalls.length')
 })

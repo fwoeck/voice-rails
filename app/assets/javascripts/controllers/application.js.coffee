@@ -19,12 +19,15 @@ Voice.ApplicationController = Ember.Controller.extend({
 
   displayBrowserWarning: ->
     unless @browserIsSupported()
-      app.showDefaultError("For now, Chrome #{env.chromeVersion}+ and Firefox #{env.firefoxVersion}+ are the only supported browsers. Make sure, your platform delivers WebRTC and SSE.")
+      app.showDefaultError(i18n.dialog.browser_warning
+        .replace('FIREFOX', env.firefoxVers)
+        .replace('CHROME', env.chromeVers)
+      )
 
 
   browserIsSupported: ->
-    navigator.userAgent.match(/Chrome\/(3.)/)?[1] >= env.chromeVersion ||
-      navigator.userAgent.match(/Firefox\/(3.)/)?[1] >= env.firefoxVersion
+    navigator.userAgent.match(/Chrome\/(3.)/)?[1] >= env.chromeVers ||
+      navigator.userAgent.match(/Firefox\/(3.)/)?[1] >= env.firefoxVers
 
 
   setCurrentCall: (->

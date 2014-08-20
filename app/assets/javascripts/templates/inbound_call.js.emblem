@@ -17,5 +17,5 @@ table.callstats_table
       td Language choice
       td = upcase language
     tr
-      td Reskill
+      td Requested skill
       td = skillName

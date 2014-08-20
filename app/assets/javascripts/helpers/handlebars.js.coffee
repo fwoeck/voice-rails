@@ -1,3 +1,7 @@
+Ember.Handlebars.helper('t', (value, options) ->
+  value.toUpperCase() if value
+)
+
 Ember.Handlebars.helper('upcase', (value, options) ->
   value.toUpperCase() if value
 )

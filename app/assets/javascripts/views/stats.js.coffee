@@ -6,17 +6,23 @@ Voice.StatsView = Ember.View.extend({
 
 
   didInsertElement: ->
+    @setDisplayProperties()
+    @setRefreshTimer()
+    @setRrdTimer()
+
+
+  setRefreshTimer: ->
     self = @
     data = @get('data')
-
-    @setDisplayProperties()
-
     @refreshTimer = window.setInterval (->
       Voice.store.find('dataset').then ->
         data.triggerStatsUpdate()
         self.cycleLangs()
     ), 3000
 
+
+  setRrdTimer: ->
+    self = @
     @rrdTimer = window.setInterval (->
       self.updateRrdSource()
     ), 60000

@@ -6,7 +6,7 @@ Voice.CustomerController = Ember.ObjectController.extend({
   actions:
     syncZendesk: ->
       if (cust = @get 'content')
-        cust.set('zendeskId', 'requested..')
+        cust.set('zendeskId', '...') # FIXME This is ugly.
         cust.save()
       false
 

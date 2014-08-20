@@ -5,7 +5,7 @@ Voice.EntryController = Ember.ObjectController.extend({
 
 
   actions:
-    toZendekTicket: ->
+    toZendeskTicket: ->
       @createZendeskTicket()
       false
 
@@ -22,7 +22,7 @@ Voice.EntryController = Ember.ObjectController.extend({
   getDescription: ->
     call = Voice.currentCall.get('origin')
     time = moment(call.get 'calledAt').format()
-    "This ticket was created for the call #{call.get 'id'}, at #{time}."
+    i18n.zendesk.default_descr.replace('TIME', time).replace('CALL', call.get 'id')
 
 
   zendeskIsActive: (->
