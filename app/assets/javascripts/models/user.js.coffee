@@ -37,6 +37,15 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   ).property('fullname')
 
 
+  matchesSearch: (pattern) ->
+    try
+      @get('fullname').toLowerCase().match(pattern) ||
+      @get('email').toLowerCase().match(pattern) ||
+      @get('name').match(pattern)
+    catch
+      false
+
+
   displayLangs: (->
     @get('languages').split(',').map((l) -> l.toUpperCase()).join(', ')
   ).property('languages')

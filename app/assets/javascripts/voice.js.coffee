@@ -9,3 +9,5 @@
 #= require_tree ./routes
 #= require ./router
 #= require_self
+
+window.i18n = env.i18n[env.locale]

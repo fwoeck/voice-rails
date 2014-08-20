@@ -6,7 +6,7 @@ DragNDrop.cancel = (e) ->
   false
 
 
-DragNDrop.Dragable = Ember.Mixin.create {
+DragNDrop.Dragable = Ember.Mixin.create({
 
   attributeBindings: 'draggable'
   draggable: 'true'
@@ -26,11 +26,10 @@ DragNDrop.Dragable = Ember.Mixin.create {
   dragStartCallback: (e) ->
     # Implement me in your class
     true
+})
 
-}
 
-
-DragNDrop.Droppable = Ember.Mixin.create {
+DragNDrop.Droppable = Ember.Mixin.create({
 
   dragEnter: DragNDrop.cancel
   dragLeave: DragNDrop.cancel
@@ -45,5 +44,4 @@ DragNDrop.Droppable = Ember.Mixin.create {
   dragStopCallback: ->
     # Implement me in your class
     false
-
-}
+})

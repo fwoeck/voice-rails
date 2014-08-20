@@ -1,5 +1,14 @@
 window.app = {
 
+
+  hangupCall: (call) ->
+    app.dialog(i18n.dialog.hangup_this_call,
+      'question', i18n.dialog.hangup, i18n.dialog.cancel
+    ).then ( ->
+      call.hangup()
+    ), (->)
+
+
   renderStatsEntry: (val, level1, level2) ->
     tag = if val
             lef = 'norm'

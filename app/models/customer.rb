@@ -14,7 +14,7 @@ class Customer
 
 
   def manage_zendesk_account(par_zendesk_id)
-    if par_zendesk_id == 'requested..' # FIXME This is ugly.
+    if par_zendesk_id == '...' # FIXME This is ugly.
       request_zendesk_id
     elsif zendesk_id.blank? && !par_zendesk_id.blank?
       self.zendesk_id = par_zendesk_id
