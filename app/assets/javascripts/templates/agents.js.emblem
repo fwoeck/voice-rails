@@ -1,4 +1,4 @@
 #center_column.large-12.medium-12.columns
   h5
     i.header.fa.fa-user
-    span.header Agent Management
+    span.header = t 'headers.agent_management'

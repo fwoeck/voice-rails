@@ -1,5 +1,17 @@
-Ember.Handlebars.helper('t', (value, options) ->
-  value.toUpperCase() if value
+Ember.Handlebars.registerHelper('t', (value, options) ->
+  value.split('.').reduce(
+    ((base, key) -> base[key]), i18n
+  )
+)
+
+Ember.Handlebars.registerHelper('agentTitle', (a, options) ->
+  return "" unless a
+  "#{i18n.domain.email}: #{a.get 'email'}<br />#{i18n.domain.sip_extension}: #{a.get 'name'}"
+)
+
+Ember.Handlebars.registerHelper('bridgeTitle', (c, options) ->
+  return "" unless c
+  "#{c.get 'id'}<br />#{i18n.domain.answered_at}: #{moment(c.get 'calledAt').format()}"
 )
 
 Ember.Handlebars.helper('upcase', (value, options) ->

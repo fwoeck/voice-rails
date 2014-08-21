@@ -47,15 +47,8 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
   actions:
     showHelpDialog: (e) ->
-      text = Ember.keys(i18n.help).reduce(
-        ((arr, key) -> arr.concat(i18n.help[key])), []
-      ).join('<br />')
-      app.showDefaultMessage(
-        '<span class="header">' + i18n.dialog.shortcut_header +
-        '</span><span class="list">' + text + '</span>'
-      )
+      app.showShortcutList()
       @silence(e)
-
 
     closeDialog: (e) ->
       Voice.dialogController.cancel()

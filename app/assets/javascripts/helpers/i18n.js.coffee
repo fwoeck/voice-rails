@@ -38,3 +38,16 @@ env.i18n =
       r:                'Ctrl+R: Set my state to "ready"'
       s:                'Ctrl+S: Show the stats page'
       t:                'Ctrl+T: Type a chat message'
+    domain:
+      email:            'Email'
+      sip_extension:    'SIP Extension'
+      answered_at:      'Answered at'
+    headers:
+      agent_overview:   'Agent Overview'
+      agent_management: 'Agent Management'
+      current_calls:    'Current Calls'
+      inbound_calls:    'Inbound Calls'
+      connected_agents: 'Connected Agents'
+    calls:
+      hide_foreign:     'Hide foreign calls'
+      call_queue_empty: 'The call queue is empty right now.'

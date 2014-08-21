@@ -2,13 +2,14 @@ table#callstats_table
   tbody
     tr.thead
       td.split
-        | Inbound Calls
+        = t 'headers.inbound_calls'
         span.matches
           label
-            ' Hide foreign calls
+            = t 'calls.hide_foreign'
+            ' &nbsp;
             = input type='checkbox' checked=hideForeignCalls
       td.split
-        | Connected Agents
+        = t 'headers.connected_agents'
     each call in sortedCalls
       tr
         td.split = render 'inbound_call' call
@@ -18,5 +19,5 @@ table#callstats_table
           td.split &nbsp;
     else
       tr
-        td.split The call queue is empty right now.
+        td.split = t 'calls.call_queue_empty'
         td.split &nbsp;

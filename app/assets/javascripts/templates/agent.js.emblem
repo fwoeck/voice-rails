@@ -6,6 +6,6 @@
 
   i class={activity :fa :fa-comments} click="callAction this"
 
-  span.name.has-tip.radius data-tooltip="" title="Email: #{unbound email}<br />SIP extension: #{unbound name}" #{displayName}
+  span.name.has-tip.radius data-tooltip="" title="#{agentTitle this}" #{displayName}
   span.languages = displayLangs
   span.skills = displaySkills

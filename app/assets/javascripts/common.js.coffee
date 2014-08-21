@@ -1,6 +1,16 @@
 window.app = {
 
 
+  showShortcutList: ->
+    text = Ember.keys(i18n.help).reduce(
+      ((arr, key) -> arr.concat(i18n.help[key])), []
+    ).join('<br />')
+    app.showDefaultMessage(
+      '<span class="header">' + i18n.dialog.shortcut_header +
+      '</span><span class="list">' + text + '</span>'
+    )
+
+
   hangupCall: (call) ->
     app.dialog(i18n.dialog.hangup_this_call,
       'question', i18n.dialog.hangup, i18n.dialog.cancel
