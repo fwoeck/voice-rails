@@ -25,7 +25,7 @@ env.i18n =
       queued:           'queued'
     zendesk:
       default_descr:    'This ticket was created at TIME, for the call CALL.'
-      create_title:     'Create a Zendesk ticket from this call'
+      create_ticket:    'Create a Zendesk ticket from this call'
       recent_tickets:   'Recent tickets at Zendesk'
       request_new_user: 'Request a new Zendesk user for this customer.'
     help:
@@ -44,11 +44,15 @@ env.i18n =
       agent:            'Agent'
       answered_at:      'Answered at'
       called_at:        'Called At'
+      caller_id:        'Caller Id'
       email:            'E-Mail'
       full_name:        'Full Name'
+      language_choice:  'Language Choice'
+      queued_at:        'Queued At'
       remarks:          'Remarks'
       save_record:      'Save Record'
       sip_extension:    'SIP Extension'
+      requested_skill:  'Requested Skill'
       zendesk_id:       'Zendesk Id'
     headers:
       agent_overview:   'Agent Overview'
@@ -61,7 +65,13 @@ env.i18n =
       call_queue_empty: 'The call queue is empty right now.'
       you_are_talking:  'You are talking to'
     placeholder:
-      the_full_name:    'The full name..'
       an_email_address: 'An e-mail address..'
-      the_user_id:      'The user\'s Id..'
+      optional_text:    'Enter optional text..'
       refresh_tickets:  'Refresh this customer\'s Zendesk tickets'
+      the_full_name:    'The full name..'
+      the_user_id:      'The user\'s Id..'
+      type_a_number:    'Type a number..'
+      type_here:        'Type here..'
+    errors:
+      number_format:    'German numbers: 030... / Intl. numbers: 0049...'
+      must_be_text:     'Must be a text..'

@@ -14,6 +14,11 @@ Ember.Handlebars.registerHelper('bridgeTitle', (_, options) ->
   "#{c.get 'id'}<br />#{i18n.domain.answered_at}: #{moment(c.get 'calledAt').format()}"
 )
 
+Ember.Handlebars.registerHelper('callTitle', (_, options) ->
+  return "" unless c = @get('model')
+  "#{c.get 'id'}<br />#{i18n.domain.called_at}: #{moment(c.get 'calledAt').format()}"
+)
+
 Ember.Handlebars.helper('upcase', (value, options) ->
   value.toUpperCase() if value
 )

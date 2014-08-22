@@ -2,20 +2,20 @@ if isActive
   #dialog_wrapper click='cancelDialog'
     div class={type :panel} click='noop bubbles=false'
       p.message
-        == parsedMessage
+        == message
 
       if requiresInput
         form.text data-abide="" novalidate="" submit='noop'
 
           if validatesNumber
-            label: Ember.TextField type='text' name='dialog' maxlength='32' tabindex='2' value=text placeholder='Type a number..' pattern='number'
-            small.error German numbers: 030..., intl. numbers: 0049...
+            label: Ember.TextField type='text' name='dialog' maxlength='32' tabindex='2' value=text placeholder=placeholderNumber pattern='number'
+            small.error = t 'errors.number_format'
           else
             if inputIsOptional
-              label: Ember.TextField type='text' name='dialog' maxlength='256' tabindex='2' value=text placeholder='Enter optional text..'
+              label: Ember.TextField type='text' name='dialog' maxlength='256' tabindex='2' value=text placeholder=placeholderOptional
             else
-              label: Ember.TextField type='text' name='dialog' required='' maxlength='256' tabindex='2' value=text placeholder='Type here..'
-              small.error Must be a text..
+              label: Ember.TextField type='text' name='dialog' required='' maxlength='256' tabindex='2' value=text placeholder=placeholderHere
+              small.error = t 'errors.must_be_text'
 
       if requiresDecision
         #dialog_no.tiny.button.radius.last.right click='cancelDialog'
