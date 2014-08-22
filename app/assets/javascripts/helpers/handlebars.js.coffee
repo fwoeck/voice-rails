@@ -4,13 +4,13 @@ Ember.Handlebars.registerHelper('t', (value, options) ->
   )
 )
 
-Ember.Handlebars.registerHelper('agentTitle', (a, options) ->
-  return "" unless a
+Ember.Handlebars.registerHelper('agentTitle', (_, options) ->
+  return "" unless a = @get('model')
   "#{i18n.domain.email}: #{a.get 'email'}<br />#{i18n.domain.sip_extension}: #{a.get 'name'}"
 )
 
-Ember.Handlebars.registerHelper('bridgeTitle', (c, options) ->
-  return "" unless c
+Ember.Handlebars.registerHelper('bridgeTitle', (_, options) ->
+  return "" unless c = @get('model')
   "#{c.get 'id'}<br />#{i18n.domain.answered_at}: #{moment(c.get 'calledAt').format()}"
 )
 

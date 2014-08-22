@@ -26,6 +26,8 @@ env.i18n =
     zendesk:
       default_descr:    'This ticket was created at TIME, for the call CALL.'
       create_title:     'Create a Zendesk ticket from this call'
+      recent_tickets:   'Recent tickets at Zendesk'
+      request_new_user: 'Request a new Zendesk user for this customer.'
     help:
       a:                'Ctrl+A: Show the agents page'
       b:                'Ctrl+B: Set my state to "busy"'
@@ -39,9 +41,15 @@ env.i18n =
       s:                'Ctrl+S: Show the stats page'
       t:                'Ctrl+T: Type a chat message'
     domain:
-      email:            'Email'
-      sip_extension:    'SIP Extension'
+      agent:            'Agent'
       answered_at:      'Answered at'
+      called_at:        'Called At'
+      email:            'E-Mail'
+      full_name:        'Full Name'
+      remarks:          'Remarks'
+      save_record:      'Save Record'
+      sip_extension:    'SIP Extension'
+      zendesk_id:       'Zendesk Id'
     headers:
       agent_overview:   'Agent Overview'
       agent_management: 'Agent Management'
@@ -51,3 +59,9 @@ env.i18n =
     calls:
       hide_foreign:     'Hide foreign calls'
       call_queue_empty: 'The call queue is empty right now.'
+      you_are_talking:  'You are talking to'
+    placeholder:
+      the_full_name:    'The full name..'
+      an_email_address: 'An e-mail address..'
+      the_user_id:      'The user\'s Id..'
+      refresh_tickets:  'Refresh this customer\'s Zendesk tickets'

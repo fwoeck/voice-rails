@@ -22,4 +22,19 @@ Voice.CustomerController = Ember.ObjectController.extend({
   dirty: (->
     @get('content.currentState.stateName') != 'root.loaded.saved'
   ).property('content.currentState.stateName')
+
+
+  fullNamePlaceholder: (->
+    i18n.placeholder.the_full_name
+  ).property()
+
+
+  emailAddressPlaceholder: (->
+    i18n.placeholder.an_email_address
+  ).property()
+
+
+  userIdPlaceholder: (->
+    i18n.placeholder.the_user_id
+  ).property()
 })
