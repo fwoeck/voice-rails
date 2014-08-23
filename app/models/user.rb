@@ -70,13 +70,30 @@ class User < ActiveRecord::Base
   end
 
 
+  # Caution, this is used by the external chef provisioning:
+  #
   def self.seed_admin_user
-    return if User.with_role(:admin).count > 0
+    u = User.where(email: WimConfig.admin_email).first_or_initialize
+    return if u.has_role?(:admin)
 
+    u.add_role(:admin)
+    update_admin_user(u)
+    # TODO send SIGHUP to Ahn
   end
 
-  private
 
+  def self.update_admin_user(u)
+    u.name                  = WimConfig.admin_name
+    u.email                 = WimConfig.admin_email
+    u.secret                = WimConfig.admin_secret
+    u.fullname              = WimConfig.admin_fullname
+    u.password              = WimConfig.admin_password
+    u.password_confirmation = WimConfig.admin_password
+    u.save
+  end
+
+
+  private
 
   def notify_ahn_about_update(key)
     self.reload
