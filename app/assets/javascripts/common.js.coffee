@@ -75,8 +75,8 @@ window.app = {
 
 
   originateCall: ->
-    app.dialog('Enter a number to dial to:',
-      'dialog', 'Dial now', 'Cancel', '', 'number'
+    app.dialog(i18n.dialog.enter_number,
+      'dialog', i18n.dialog.dial_now, i18n.dialog.cancel, '', 'number'
     ).then (num) ->
       Voice.Call.originate(num)
     , (->)
@@ -119,7 +119,7 @@ window.app = {
   resetServerTimer: ->
     window.clearTimeout(env.serverTimeout) if env.serverTimeout
     env.serverTimeout = window.setTimeout (->
-      app.dialog('Sorry, we stopped receiving messages &mdash;<br />please open just one app window at a time.', 'error').then (->
+      app.dialog(i18n.dialog.no_messages, 'error').then (->
         app.logout()
       )
     ), 12000
@@ -294,15 +294,15 @@ window.app = {
 
   takeIncomingCall: (call, name) ->
     par = if Voice.callIsOriginate
-      message: "Do you want to call<br /><strong>#{name}</strong>?"
-      textYes: 'Yes, dial'
-      textNo:  'Cancel'
-      call:     call
+      message: i18n.dialog.outgoing_call.replace('NAME', name)
+      textYes: i18n.dialog.dial_now
+      textNo:  i18n.dialog.cancel
+      call:    call
     else
-      message:  "You have an incoming call from<br /><strong>#{name}</strong>"
-      textYes:  'Take call'
-      textNo:   'I\'m busy'
-      call:     call
+      message: i18n.dialog.incoming_call.replace('NAME', name)
+      textYes: i18n.dialog.take_call
+      textNo:  i18n.dialog.i_am_busy
+      call:    call
 
     Voice.callIsOriginate = false
     @showDialDialog(par)

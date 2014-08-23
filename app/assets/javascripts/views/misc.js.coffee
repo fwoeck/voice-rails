@@ -60,9 +60,12 @@ Ember.CalledAt = Ember.FromNow.extend({
 
 Ember.ChatInput = Ember.TextField.extend({
 
-  name:        'chat_message'
-  placeholder: 'Type here...'
-  maxlength:   '150'
+  name:      'chat_message'
+  maxlength: '150'
+
+  placeholder: (->
+    i18n.placeholder.type_here
+  ).property()
 
   keyUp: (evt) ->
     switch evt.which
@@ -84,15 +87,16 @@ Ember.ChatInput = Ember.TextField.extend({
 Ember.RemarksInput = Ember.TextField.extend({
 
   classNameBindings: ['dirty']
-  placeholder:        'Enter remarks for this call..'
   entryBinding:       'controller.content'
   maxlength:          '250'
 
+  placeholder: (->
+    i18n.placeholder.enter_remarks
+  ).property()
 
   dirty: (->
     @get('entry.currentState.stateName') != 'root.loaded.saved'
   ).property('entry.currentState.stateName')
-
 
   focusIn: ->
     @oldValue = @get 'value'
@@ -135,10 +139,13 @@ Voice.TextField = Ember.TextField.extend({
 
 Voice.AgentSearch = Voice.TextField.extend({
 
-  type:        'text'
-  name:        'agent_search'
-  maxlength:   '16'
-  placeholder: 'Find a name..'
+  type:      'text'
+  name:      'agent_search'
+  maxlength: '16'
+
+  placeholder: (->
+    i18n.placeholder.find_a_name
+  ).property()
 
   focusIn: ->
     app.showAgentOverview()

@@ -1,15 +1,15 @@
 #center_column.large-12.medium-12.columns
   h5
     i.header.fa.fa-dashboard
-    span.header Call Center Statistics
+    span.header = t 'headers.callcenter_stats'
 
   #gauge_table
-    = ember-gauge gid="calls1" value=data.activeCallCount min=0 max=100 title="Active calls" label="call count"
-    = ember-gauge gid="calls2" value=data.preQueuedCallCount min=0 max=100 title="Incoming calls" label="call count"
-    = ember-gauge gid="calls3" value=data.queuedCallCount min=0 max=100 title="Queued calls" label="call count"
-    = ember-gauge gid="calls4" value=data.dispatchedCallCount min=0 max=100 title="Dispatched calls" label="call count"
-    = ember-gauge gid="calls5" value=data.queuedCallsDelayMax min=0 max=100 title="Max. queue delay" label="seconds"
-    = ember-gauge gid="calls6" value=data.queuedCallsDelayAvg min=0 max=100 title="Avg. queue delay" label="seconds"
+    = ember-gauge gid="calls1" value=data.activeCallCount min=0 max=100 title=titleActiveCalls label=labelCallCount
+    = ember-gauge gid="calls2" value=data.preQueuedCallCount min=0 max=100 title=titleIncomingCalls label=labelCallCount
+    = ember-gauge gid="calls3" value=data.queuedCallCount min=0 max=100 title=titleQueuedCalls label=labelCallCount
+    = ember-gauge gid="calls4" value=data.dispatchedCallCount min=0 max=100 title=titleDispatchedCalls label=labelCallCount
+    = ember-gauge gid="calls5" value=data.queuedCallsDelayMax min=0 max=100 title=titleMaxQueueDelay label=labelSeconds
+    = ember-gauge gid="calls6" value=data.queuedCallsDelayAvg min=0 max=100 title=titleAvgQueueDelay label=labelSeconds
 
   = partial 'language_details'
 

@@ -1,17 +1,17 @@
 #my_settings.large-12.medium-12.columns
   h5
     i.header.fa.fa-cogs
-    span.header My Settings
+    span.header = t 'headers.my_settings'
     span.stats = currentStatusLine
 
   #my_settings_body
     ul.tabs.vertical data-tab=""
       li.tab-title.active
-        a href="#panel1" Availability
+        a href="#panel1" = t 'domain.availability'
       li.tab-title
-        a href="#panel2" Languages
+        a href="#panel2" = t 'domain.languages'
       li.tab-title
-        a href="#panel3" Skills
+        a href="#panel3" = t 'domain.skills'
 
     .tabs-content.vertical
       #panel1.content.active
@@ -22,7 +22,7 @@
           .td: .switch.tiny
             Ember.CheckMark selection=useWebRtc
             label for="use_web_rtc"
-          .td.space Use the web-phone
+          .td.space = t 'headers.use_web_phone'
 
       #panel2.content
         #language_table
