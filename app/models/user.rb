@@ -82,13 +82,13 @@ class User < ActiveRecord::Base
   end
 
 
-  def self.update_admin_user(u)
-    u.name                  = WimConfig.admin_name
-    u.email                 = WimConfig.admin_email
-    u.secret                = WimConfig.admin_secret
-    u.fullname              = WimConfig.admin_fullname
-    u.password              = WimConfig.admin_password
-    u.password_confirmation = WimConfig.admin_password
+  def self.update_admin_user(u, c = WimConfig)
+    u.name                  = c.admin_name
+    u.email                 = c.admin_email
+    u.secret                = c.admin_secret
+    u.fullname              = c.admin_fullname
+    u.password              = c.admin_password
+    u.password_confirmation = c.admin_password
     u.save
   end
 
