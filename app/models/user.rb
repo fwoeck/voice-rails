@@ -69,6 +69,12 @@ class User < ActiveRecord::Base
           .map { |s| s[0].to_i }
   end
 
+
+  def self.seed_admin_user
+    return if User.with_role(:admin).count > 0
+
+  end
+
   private
 
 
