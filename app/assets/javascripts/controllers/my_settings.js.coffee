@@ -38,7 +38,10 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
   showReloadDialog: (value) ->
     app.storeLocalKey 'useWebRtc', value
-    app.dialog('We need to reload the browser window to activate this setting.', 'question', 'Reload', 'Cancel').then (->
+    app.dialog(
+      i18n.dialog.reload_necessary, 'question',
+      i18n.dialog.reload, i18n.dialog.cancel
+    ).then (->
       window.location.reload()
     ), (->)
 
@@ -61,11 +64,6 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     avail = cont.get('availability')
     name  = (if cont.get('isCallable') then avail else act)
 
-    if name == 'ready'
-      name = 'ready to take calls'
-    else
-      name = "currently #{name}"
-
-    "I'm #{name}."
+    i18n.status[name]
   ).property('content.{availability,isCallable}')
 })

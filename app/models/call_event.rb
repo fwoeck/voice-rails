@@ -43,7 +43,7 @@ class CallEvent
 
     def agent_takes_call?(data)
       data['headers']['Activity'] == 'talking' &&
-        data['headers']['Extension'] != '100' # Use ext. 100 to make test calls.
+        data['headers']['Extension'] != WimConfig.admin_name
     end
 
 

@@ -50,7 +50,7 @@ app.setupSSE = ->
     if env.sseErrors < 4
       window.setTimeout app.setupSSE, 1000
     else
-      app.dialog('Sorry, we lost our connection to the server &mdash;<br />please check your network and try to re-login.', 'error').then (->
+      app.dialog(i18n.dialog.lost_server_conn, 'error').then (->
         app.logout()
       )
 

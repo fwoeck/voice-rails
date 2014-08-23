@@ -25,8 +25,8 @@ Voice.AgentView = Ember.View.extend(DragNDrop.Droppable, {
   transferTo: (agent, call) ->
     if agent != Voice.get('currentUser') && agent.get('isCallable')
       app.dialog(
-        "Do you want to transfer this call to<br /><strong>#{agent.get 'displayName'}</strong>?",
-        'question', 'Transfer', 'Cancel'
+        i18n.dialog.transfer_call.replace('AGENT', agent.get 'displayName')
+        'question', i18n.dialog.transfer, i18n.dialog.cancel
       ).then ( ->
         call.transfer(agent.get 'name')
       ), (->)

@@ -2,7 +2,8 @@ table#callstats_table
   tbody
     tr.thead
       td.split colspan="2"
-        ' You are talking to
+        = t 'calls.you_are_talking'
+        '
         = origin.callerName
     tr
       td.split = render 'inbound_call' origin

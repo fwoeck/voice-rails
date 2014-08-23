@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :roles
+  rolify
+
   has_many :skills
   has_many :languages
 
@@ -68,8 +69,31 @@ class User < ActiveRecord::Base
           .map { |s| s[0].to_i }
   end
 
-  private
 
+  # Caution, this is used by the external chef provisioning:
+  #
+  def self.seed_admin_user
+    u = User.where(email: WimConfig.admin_email).first_or_initialize
+    return if u.has_role?(:admin)
+
+    u.add_role(:admin)
+    update_admin_user(u)
+    # TODO send SIGHUP to Ahn
+  end
+
+
+  def self.update_admin_user(u)
+    u.name                  = WimConfig.admin_name
+    u.email                 = WimConfig.admin_email
+    u.secret                = WimConfig.admin_secret
+    u.fullname              = WimConfig.admin_fullname
+    u.password              = WimConfig.admin_password
+    u.password_confirmation = WimConfig.admin_password
+    u.save
+  end
+
+
+  private
 
   def notify_ahn_about_update(key)
     self.reload

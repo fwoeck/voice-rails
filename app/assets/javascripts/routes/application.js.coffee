@@ -30,8 +30,9 @@ Voice.ApplicationRoute = Ember.Route.extend({
     'ctrl+a': 'toggleAgents'
     'ctrl+d': 'showDashboard'
     'ctrl+q': 'showCallQueue'
+    'ctrl+h': 'showHelpDialog'
     'ctrl+o': 'toggleAgentOverview'
-    'ctrl+h': 'toggleForeignCalls'
+    'ctrl+j': 'toggleForeignCalls'
     'ctrl+f': 'activateSearch'
     'ctrl+t': 'activateChat'
     'ctrl+r': 'setReady'
@@ -45,6 +46,10 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
 
   actions:
+    showHelpDialog: (e) ->
+      app.showShortcutList()
+      @silence(e)
+
     closeDialog: (e) ->
       Voice.dialogController.cancel()
       @silence(e)

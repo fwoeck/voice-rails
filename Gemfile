@@ -7,6 +7,7 @@ gem 'hirb',                      require: false
 gem 'rake',                      require: false
 gem 'redis'
 gem 'bunny'
+gem 'rolify'
 gem 'devise'
 gem 'wirble',                    require: false
 gem 'mongoid'

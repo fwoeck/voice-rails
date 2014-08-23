@@ -64,12 +64,6 @@ Voice.DialogController = Ember.ObjectController.extend {
     (text && text.length > 0) || @get('inputIsOptional')
 
 
-  parsedMessage: ( ->
-    @get('message')?.replace(/^(fa-.+?) /, '<i class="icon fa $1"></i>')
-                    .replace(/\[(.+?)\]/,  '<i data-tooltip="" class="fa fa-info-circle has-tip radius" title="$1"></i>')
-  ).property('message')
-    
-
   clear: ->
     model = @get 'model'
     return unless model
@@ -98,4 +92,18 @@ Voice.DialogController = Ember.ObjectController.extend {
     @get('model.format') == 'number'
   ).property('model.format')
 
+
+  placeholderNumber: (->
+    i18n.placeholder.type_a_number
+  ).property()
+
+
+  placeholderOptional: (->
+    i18n.placeholder.optional_text
+  ).property()
+
+
+  placeholderHere: (->
+    i18n.placeholder.type_here
+  ).property()
 }

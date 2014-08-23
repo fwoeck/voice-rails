@@ -30,6 +30,11 @@
 
 .language_details {
   display: none;
+
+  span.blue {
+    font-size: 20px;
+    color: #008cba;
+  }
 }
 
 .language_details.active {

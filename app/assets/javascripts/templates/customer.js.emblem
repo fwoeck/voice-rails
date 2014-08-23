@@ -3,40 +3,46 @@ table.customer_table
     tr class=dirty
       td.space25
         label
-          | Full Name
-          = input type='text' value=fullname placeholder='The full name..'
+          = t 'domain.full_name'
+          = input type='text' value=fullname placeholder=fullNamePlaceholder
       td.space25
         label
-          | E-Mail
-          = input type='text' value=email placeholder='An e-mail address..'
+          = t 'domain.email'
+          = input type='text' value=email placeholder=emailAddressPlaceholder
       td.space15
         label
-          | Zendesk Id
+          = t 'domain.zendesk_id'
           unless zendeskId
             ' &nbsp;
-            i.fa.fa-plus-circle.zendesk title='Request a new Zendesk user for this customer' click=syncZendesk
-          = input type='text' value=zendeskId placeholder="The user's Id.."
+            i.fa.fa-plus-circle.zendesk title="#{t 'zendesk.request_new_user'}" click=syncZendesk
+          = input type='text' value=zendeskId placeholder=userIdPlaceholder
       td.space15
         label
           | &nbsp;
           .button.tiny.store click=storeRecord
-            | Save Record
+            = t 'domain.save_record'
 
 table.history_table
+  col style='width: 18%'
+  col style='width: 24%'
+  col style='width: 58%'
   thead
     tr
-      td width="18%" Called At
-      td width="24%" Agent
-      td Remarks
+      td = t 'domain.called_at'
+      td = t 'domain.agent'
+      td = t 'domain.remarks'
   tbody
     each entry in orderedEntries
       = render 'entry' entry
 
 table.tickets_table
+  col style='width: 18%'
+  col style='width: 24%'
+  col style='width: 58%'
   thead
     tr: td colspan="3"
-      | Recent tickets at Zendesk
-      i.fa.fa-refresh title="Refresh this customer's Zendesk tickets" click=fetchZendeskTickets
+      = t 'zendesk.recent_tickets'
+      i.fa.fa-refresh title="#{t 'placeholder.refresh_tickets'}" click=fetchZendeskTickets
   tbody
     each ticket in orderedTickets
       = render 'ticket' ticket

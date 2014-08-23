@@ -7,7 +7,7 @@ table.callstats_table
         img.avatar width="48px" height="48px" src=agent.gravatarUrl
       td width="60%"
         ' &nbsp;
-        span.has-tip.radius data-tooltip="" title="#{unbound id}<br />Answered at: #{unbound moment calledAt}"
+        span.has-tip.radius data-tooltip="" title="#{bridgeTitle this}"
           i.fa.fa-info-circle
     tr
       td &nbsp;
