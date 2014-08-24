@@ -21,11 +21,11 @@ module UpdateFields
 
 
   def set_role(key)
-    set_field(:role, key)
+    # TODO
   end
 
   def unset_role(key)
-    unset_field(:role, key)
+    # TODO
   end
 
 
@@ -43,7 +43,9 @@ module UpdateFields
   def set_field(field, _key)
     key = _key.to_s
     check_for_validity(field, key)
+
     self.send("#{field}s").find_or_create_by(name: key)
+    self.reload
     notify_ahn_about_update(field)
   end
 
@@ -51,7 +53,9 @@ module UpdateFields
   def unset_field(field, _key)
     key = _key.to_s
     check_for_validity(field, key)
+
     self.send("#{field}s").find_by(name: key).try(:delete)
+    self.reload
     notify_ahn_about_update(field)
   end
 

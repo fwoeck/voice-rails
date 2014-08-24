@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 
   include UpdateFields
 
+  before_save   :send_ahn_notification
+  after_create  :notify_ahn_about_update
+  after_destroy :notify_ahn_about_update
+
 
   def update_attributes_from(params)
     update_availability_from(params)
@@ -58,9 +62,22 @@ class User < ActiveRecord::Base
   end
 
 
+  def set_admin_prefs(c = WimConfig)
+    tap { |u|
+      u.name                  = c.admin_name
+      u.email                 = c.admin_email
+      u.secret                = c.admin_secret
+      u.fullname              = c.admin_fullname
+      u.password              = c.admin_password
+      u.password_confirmation = c.admin_password
+      u.save
+    }
+  end
+
+
   # TODO This requires too many redis-requests.
-  #      We should cache this information from the incoming
-  #      amqp-messages:
+  #      Can we cache this information from the incoming
+  #      amqp-messages?
   #
   def self.all_online_ids
     $redis.keys(Rails.env + '.visibility.*')
@@ -77,31 +94,28 @@ class User < ActiveRecord::Base
     return if u.has_role?(:admin)
 
     u.add_role(:admin)
-    update_admin_user(u)
-    # TODO send SIGHUP to Ahn
-  end
-
-
-  def self.update_admin_user(u, c = WimConfig)
-    u.name                  = c.admin_name
-    u.email                 = c.admin_email
-    u.secret                = c.admin_secret
-    u.fullname              = c.admin_fullname
-    u.password              = c.admin_password
-    u.password_confirmation = c.admin_password
-    u.save
+    u.set_admin_prefs
   end
 
 
   private
 
-  def notify_ahn_about_update(key)
-    self.reload
+  def send_ahn_notification
+    unless (self.changes.keys & %w{name secret}).empty?
+      Thread.new {
+        sleep 0.05
+        notify_ahn_about_update
+      }
+    end
+  end
+
+
+  def notify_ahn_about_update(key=nil)
     return if Rails.env.test?
 
-    AmqpManager.ahn_publish(
-      user_id: self.id,
-      key   => send("#{key}_summary")
-    )
+    hash = {user_id: self.id}
+    hash.merge!({key => send("#{key}_summary")}) if key
+
+    AmqpManager.ahn_publish(hash)
   end
 end
