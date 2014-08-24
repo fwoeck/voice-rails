@@ -1,0 +1,2 @@
+#agent_table.large-12.medium-12.columns
+  h5: span.header = t 'headers.agent_table'

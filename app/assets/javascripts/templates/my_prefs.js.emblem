@@ -1,0 +1,2 @@
+#my_prefs.large-12.medium-12.columns
+  h5: span.header = t 'headers.my_settings'

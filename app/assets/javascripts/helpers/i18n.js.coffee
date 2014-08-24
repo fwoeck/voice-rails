@@ -72,6 +72,7 @@ env.i18n =
     headers:
       agent_management: 'Agent Management'
       agent_overview:   'Agent Overview'
+      agent_table:      'Agent Table'
       agents:           'Agents'
       callcenter_stats: 'Call Center Statistics'
       call_statistics:  'Call Statistics'
@@ -80,6 +81,7 @@ env.i18n =
       dashboard:        'Dashboard'
       inbound_calls:    'Inbound Calls'
       my_settings:      'My Settings'
+      new_agent:        'Add an Agent'
       team_chat:        'Team Chat'
       use_web_phone:    'Use the web-phone'
     calls:
