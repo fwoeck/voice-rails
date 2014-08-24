@@ -26,6 +26,11 @@ app.compileSkillPartials()
 app.compileLanguagePartials()
 app.compileAvailabilityPartials()
 
+app.aggregateSkillSelection()
+app.aggregateLanguageSelection()
+app.aggregateRoleSelection()
+
+
 window.Voice = Ember.Application.create(
   rootElement: '#ember_main'
 )

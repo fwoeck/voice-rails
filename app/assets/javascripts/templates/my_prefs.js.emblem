@@ -1,43 +1,60 @@
 #my_prefs.large-12.medium-12.columns
-  form.agent_form
+  form.agent_form data-abide="" novalidate="" submit='noop'
     fieldset
       legend = t 'headers.my_settings'
 
       if gravatarUrl
-        img.avatar width="48px" height="48px" src=gravatarUrl
+        img.avatar width="52px" height="52px" src=gravatarUrl
       else
         span.avatar
 
-      label
-        = t 'domain.full_name'
-        = input value=fullname
-      label
-        = t 'domain.sip_extension'
-        = input value=name
-      label
-        = t 'domain.sip_secret'
-        = input type='password' value=secret
-      label
-        = t 'domain.email'
-        = input value=email
-      label
-        = t 'domain.password'
-        = input type='password' value=password
-      label
-        = t 'domain.confirmation'
-        = input type='password' value=confirmation
-      label
-        = t 'domain.roles'
-        = input value=roles
-      label
-        = t 'domain.languages'
-        = input value=languages
-      label
+      label.select.small-4
         = t 'domain.skills'
-        = input value=skills
-      label
-        = t 'domain.zendesk_id'
-        = input value=zendeskId
+        = view Ember.Select multiple="" content=skillSelection optionValuePath='content.id' optionLabelPath='content.name'
+
+      label.select.small-2
+        = t 'domain.languages'
+        = view Ember.Select multiple="" content=languageSelection optionValuePath='content.id' optionLabelPath='content.name'
+
+      label.select.small-2
+        = t 'domain.roles'
+        = view Ember.Select multiple="" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name'
 
       button.tiny click=safeRecord
-        = t 'domain.save_record'
+        = t 'domain.save_changes'
+
+      button.tiny.secondary click=cancelChanges
+        = t 'domain.clear'
+
+      label.small-4.clear
+        = t 'domain.full_name'
+        = input value=fullname
+
+      label.small-4
+        = t 'domain.email'
+        = input value=email disabled='disabled'
+
+      label.small-2
+        = t 'domain.sip_extension'
+        = input value=name pattern='number' maxlength='3'
+        small.error = t 'errors.extension_format'
+
+      label.small-2
+        = t 'domain.sip_secret'
+        = input type='password' value=secret
+
+      label.small-2
+        = t 'domain.zendesk_id'
+        = input value=zendeskId pattern='number' maxlength='10'
+        small.error = t 'errors.zendesk_format'
+
+      label.small-2
+        ' &nbsp;
+
+      label.small-4
+        = t 'domain.password'
+        = input type='password' value=password
+
+      label.small-4
+        = t 'domain.confirmation'
+        = input type='password' value=confirmation
