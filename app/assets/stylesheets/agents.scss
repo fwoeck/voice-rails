@@ -4,3 +4,22 @@
   margin-bottom: 10px;
   width: 100%;
 }
+
+#my_prefs {
+  padding: 0;
+}
+
+
+form.agent_form {
+
+  .avatar {
+    box-shadow: #888 2px 2px 3px;
+    margin-bottom: 15px;
+    height: 48px;
+    width: 48px;
+  }
+
+  button.tiny  {
+    margin: 0;
+  }
+}

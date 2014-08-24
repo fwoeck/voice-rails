@@ -1,2 +1,43 @@
 #my_prefs.large-12.medium-12.columns
-  h5: span.header = t 'headers.my_settings'
+  form.agent_form
+    fieldset
+      legend = t 'headers.my_settings'
+
+      if gravatarUrl
+        img.avatar width="48px" height="48px" src=gravatarUrl
+      else
+        span.avatar
+
+      label
+        = t 'domain.full_name'
+        = input value=fullname
+      label
+        = t 'domain.sip_extension'
+        = input value=name
+      label
+        = t 'domain.sip_secret'
+        = input type='password' value=secret
+      label
+        = t 'domain.email'
+        = input value=email
+      label
+        = t 'domain.password'
+        = input type='password' value=password
+      label
+        = t 'domain.confirmation'
+        = input type='password' value=confirmation
+      label
+        = t 'domain.roles'
+        = input value=roles
+      label
+        = t 'domain.languages'
+        = input value=languages
+      label
+        = t 'domain.skills'
+        = input value=skills
+      label
+        = t 'domain.zendesk_id'
+        = input value=zendeskId
+
+      button.tiny click=safeRecord
+        = t 'domain.save_record'

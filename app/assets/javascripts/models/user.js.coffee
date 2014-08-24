@@ -4,11 +4,14 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   email:         DS.attr 'string'
   roles:         DS.attr 'string'
   skills:        DS.attr 'string'
+  secret:        DS.attr 'string'
+  password:      DS.attr 'string'
   fullname:      DS.attr 'string'
   activity:      DS.attr 'string'
   languages:     DS.attr 'string'
   zendeskId:     DS.attr 'string'
   visibility:    DS.attr 'string'
+  confirmation:  DS.attr 'string'
   availability:  DS.attr 'string'
 
 

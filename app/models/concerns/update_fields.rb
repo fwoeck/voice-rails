@@ -116,7 +116,15 @@ module UpdateFields
 
 
   def update_fields_from(params)
-    self.fullname = params[:user].fetch(:fullname, fullname)
+    p = params[:user]
+    self.name       = p.fetch(:name,       name)
+    self.fullname   = p.fetch(:fullname,   fullname)
+    self.zendesk_id = p.fetch(:zendesk_id, zendesk_id)
+
+    self.secret     = p[:secret] unless p[:secret].blank?
+    self.password   = p[:password] unless p[:password].blank?
+    self.password_confirmation = p[:confirmation] unless p[:confirmation].blank?
+
     save!
   end
 end
