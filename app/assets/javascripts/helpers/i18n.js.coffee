@@ -65,7 +65,7 @@ env.i18n =
       logout:           'Logout'
       old_password:     'Old Password'
       password:         'New Password'
-      confirmation:     'Password Again'
+      confirmation:     'Password Confirmation'
       queued_at:        'Queued At'
       remarks:          'Remarks'
       roles:            'Roles'
@@ -79,6 +79,7 @@ env.i18n =
     headers:
       agent_management: 'Agent Management'
       agent_overview:   'Agent Overview'
+      agent_profile:    'Agent Profile'
       agent_table:      'Agent Table'
       agents:           'Agents'
       callcenter_stats: 'Call Center Statistics'

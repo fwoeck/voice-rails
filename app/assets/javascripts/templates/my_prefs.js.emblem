@@ -1,7 +1,7 @@
 #my_prefs.large-12.medium-12.columns
   form.agent_form data-abide="" novalidate="" submit='noop'
     fieldset
-      legend = t 'headers.my_settings'
+      legend = t 'headers.agent_profile'
 
       if gravatarUrl
         img.avatar width="52px" height="52px" src=gravatarUrl
