@@ -4,8 +4,8 @@ module CommonHelper
 
 
   def clear_redis_keys
-    keys = $redis.keys("#{Rails.env}.*")
-    $redis.del(*keys) unless keys.empty?
+    keys = Redis.current.keys("#{Rails.env}.*")
+    Redis.current.del(*keys) unless keys.empty?
   end
 
 

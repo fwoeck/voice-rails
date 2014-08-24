@@ -14,7 +14,7 @@ class SessionsController < Devise::SessionsController
     # FIXME See comment in spec about drawing out the redis connection to a
     #       service class.
     #
-    $redis.set(key_name, user_session_token, ex: token_ttl)
+    Redis.current.set(key_name, user_session_token, ex: token_ttl)
   end
 
   def token_keyname(key)

@@ -67,7 +67,7 @@ class Dataset
 
   def get_dataset
     JSON.parse(
-      $redis.get("#{Rails.env}.numbers-dataset") || '{}'
+      Redis.current.get("#{Rails.env}.numbers-dataset") || '{}'
     )
   end
 

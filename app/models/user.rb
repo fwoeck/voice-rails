@@ -34,18 +34,18 @@ class User < ActiveRecord::Base
 
 
   def availability
-    @memo_availability ||= ($redis.get(availability_keyname) || 'unknown')
+    @memo_availability ||= (Redis.current.get(availability_keyname) || 'unknown')
   end
   alias :availability_summary :availability
 
 
   def activity
-    @memo_activity ||= ($redis.get(activity_keyname) || 'silent')
+    @memo_activity ||= (Redis.current.get(activity_keyname) || 'silent')
   end
 
 
   def visibility
-    @memo_visibility ||= ($redis.get(visibility_keyname) || 'offline')
+    @memo_visibility ||= (Redis.current.get(visibility_keyname) || 'offline')
   end
 
 
@@ -64,14 +64,13 @@ class User < ActiveRecord::Base
 
   def set_admin_prefs(c = WimConfig)
     tap { |u|
-      u.name                  = c.admin_name
-      u.email                 = c.admin_email
-      u.secret                = c.admin_secret
-      u.fullname              = c.admin_fullname
-      u.password              = c.admin_password
+      u.name     = c.admin_name
+      u.email    = c.admin_email
+      u.secret   = c.admin_secret
+      u.fullname = c.admin_fullname
+      u.password = c.admin_password
       u.password_confirmation = c.admin_password
-      u.save
-    }
+    }.save
   end
 
 
@@ -80,10 +79,10 @@ class User < ActiveRecord::Base
   #      amqp-messages?
   #
   def self.all_online_ids
-    $redis.keys(Rails.env + '.visibility.*')
-          .map { |key| [key[/\d+$/], $redis.get(key)] }
-          .select { |s| s[1] == 'online' }
-          .map { |s| s[0].to_i }
+    Redis.current.keys(Rails.env + '.visibility.*')
+         .map { |key| [key[/\d+$/], Redis.current.get(key)] }
+         .select { |s| s[1] == 'online' }
+         .map { |s| s[0].to_i }
   end
 
 
