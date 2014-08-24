@@ -37,6 +37,23 @@ module UpdateFields
     unset_field(:skill, key)
   end
 
+
+  def availability_keyname
+    "#{Rails.env}.availability.#{self.id}"
+  end
+
+  def activity_keyname
+    "#{Rails.env}.activity.#{self.id}"
+  end
+
+  def visibility_keyname
+    "#{Rails.env}.visibility.#{self.id}"
+  end
+
+  def token_keyname
+    "#{Rails.env}.token.#{self.id}"
+  end
+
   private
 
 
@@ -65,19 +82,6 @@ module UpdateFields
     unless keys.include?(key)
       raise "Invalid user #{field} #{key} - use any of #{keys.join(',')}"
     end
-  end
-
-
-  def availability_keyname
-    "#{Rails.env}.availability.#{self.id}"
-  end
-
-  def activity_keyname
-    "#{Rails.env}.activity.#{self.id}"
-  end
-
-  def visibility_keyname
-    "#{Rails.env}.visibility.#{self.id}"
   end
 
 
