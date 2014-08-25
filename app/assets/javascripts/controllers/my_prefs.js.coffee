@@ -15,8 +15,7 @@ Voice.MyPrefsController = Ember.ObjectController.extend({
       false
 
     cancelChanges: ->
-      @get('model').rollback()
-      @setAttributeArrays()
+      @resetForm()
       false
 
 
@@ -29,11 +28,23 @@ Voice.MyPrefsController = Ember.ObjectController.extend({
     # TODO This depends on the template element.
     #      Can we pass it here from the view?
     #
-    errorCount = ($ '#my_prefs form div.error:visible').length
+    errorCount = ($ '#my_prefs form div.error').length
     if errorCount == 0
       @get('model').save()
     else
       app.showDefaultError(i18n.dialog.form_with_errors)
+
+
+  resetForm: ->
+    @get('model').rollback()
+    @setAttributeArrays()
+    @hideErrors()
+
+
+  # TODO See coment above.
+  #
+  hideErrors: ->
+    ($ '#my_prefs form div.error').removeClass('error')
 
 
   setAttributeArrays: ->
