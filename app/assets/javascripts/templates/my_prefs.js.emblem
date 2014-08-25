@@ -10,17 +10,17 @@
 
       label.select.small-4
         = t 'domain.skills'
-        = view Ember.Select multiple="" content=skillSelection optionValuePath='content.id' optionLabelPath='content.name'
+        = view Ember.Select multiple="true" content=skillSelection optionValuePath='content.id' optionLabelPath='content.name' selection=skillArray
 
       label.select.small-2
         = t 'domain.languages'
-        = view Ember.Select multiple="" content=languageSelection optionValuePath='content.id' optionLabelPath='content.name'
+        = view Ember.Select multiple="true" content=languageSelection optionValuePath='content.id' optionLabelPath='content.name' selection=languageArray
 
       label.select.small-2
         = t 'domain.roles'
-        = view Ember.Select multiple="" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name'
+        = view Ember.Select multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
 
-      button.tiny click=safeRecord
+      button.tiny type='submit' click=safeRecord
         = t 'domain.save_changes'
 
       button.tiny.secondary click=cancelChanges
@@ -35,18 +35,20 @@
         = input value=email disabled='disabled'
 
       label.small-2
-        = t 'domain.sip_extension'
-        = input value=name pattern='number' maxlength='3'
-        small.error = t 'errors.extension_format'
+        .field
+          = t 'domain.sip_extension'
+          = input value=name pattern='number' maxlength='3'
+          small.error = t 'errors.extension_format'
 
       label.small-2
         = t 'domain.sip_secret'
         = input type='password' value=secret
 
       label.small-2
-        = t 'domain.zendesk_id'
-        = input value=zendeskId pattern='number' maxlength='10'
-        small.error = t 'errors.zendesk_format'
+        .field
+          = t 'domain.zendesk_id'
+          = input value=zendeskId pattern='number' maxlength='10'
+          small.error = t 'errors.zendesk_format'
 
       label.small-2
         ' &nbsp;

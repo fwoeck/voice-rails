@@ -5,6 +5,7 @@ env.i18n =
       cancel:           'Cancel'
       dial_now:         'Dial now'
       enter_number:     'Enter a number to dial to:'
+      form_with_errors: 'Some fields contain invalid data. Please fill them in correctly and try again.'
       hangup:           'Hangup'
       hangup_this_call: 'Do you want to hangup this call?'
       i_am_busy:        'I\'m busy'

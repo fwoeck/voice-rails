@@ -2,19 +2,19 @@ window.app = {
 
 
   aggregateSkillSelection: ->
-    env.skillSelection = Ember.keys(env.skills).reduce(
+    env.skillSelection = Ember.keys(env.skills).sort().reduce(
       ((arr, key) -> arr.concat({id: key, name: env.skills[key]})), []
     )
 
 
   aggregateLanguageSelection: ->
-    env.languageSelection = Ember.keys(env.languages).reduce(
+    env.languageSelection = Ember.keys(env.languages).sort().reduce(
       ((arr, key) -> arr.concat({id: key, name: key.toUpperCase()})), []
     )
 
 
   aggregateRoleSelection: ->
-    env.roleSelection = Ember.keys(env.roles).reduce(
+    env.roleSelection = Ember.keys(env.roles).sort().reduce(
       ((arr, key) -> arr.concat({id: key, name: env.roles[key]})), []
     )
 
