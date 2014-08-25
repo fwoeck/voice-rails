@@ -26,6 +26,9 @@ Voice.MyPrefsController = Ember.ObjectController.extend({
 
 
   validateAndSaveForm: ->
+    # TODO This depends on the template element.
+    #      Can we pass it here from the view?
+    #
     errorCount = ($ '#my_prefs form div.error:visible').length
     if errorCount == 0
       @get('model').save()
