@@ -1,5 +1,11 @@
-Voice.ApplicationStore      = DS.Store.extend()
-Voice.ApplicationAdapter    = DS.ActiveModelAdapter.extend()
+Voice.ApplicationStore = DS.Store.extend()
+
+Voice.ApplicationAdapter = DS.ActiveModelAdapter.extend(
+  ajaxError: (jqXHR) ->
+    error = @_super(jqXHR)
+    app.showDefaultError i18n.errors.ajax_error.replace('MSG', error.message)
+)
+
 Voice.ApplicationSerializer = DS.ActiveModelSerializer.extend()
 
 Voice.aS = Voice.ApplicationSerializer.create(container: Voice.__container__)
@@ -36,4 +42,5 @@ DS.ObjectTransform = DS.Transform.extend(
     else
       {}
 )
+
 Voice.register 'transform:object', DS.ObjectTransform

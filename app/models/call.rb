@@ -87,7 +87,7 @@ class Call
   # FIXME This may become expensive for high call counts:
   #
   def self.all
-    $redis.keys("#{Rails.env}.call.*").map { |key|
+    Redis.current.keys("#{Rails.env}.call.*").map { |key|
       call = find(key[/[^.]+$/])
       !call.hungup ? call : nil
     }.compact
@@ -103,7 +103,7 @@ class Call
 
   def self.find(tcid)
     return unless tcid
-    entry  = $redis.get(Call.key_name tcid) || new.headers.to_json
+    entry  = Redis.current.get(Call.key_name tcid) || new.headers.to_json
     fields = JSON.parse entry
 
     par = {

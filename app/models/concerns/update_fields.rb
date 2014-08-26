@@ -4,7 +4,7 @@ module UpdateFields
 
   def set_availability(key)
     check_for_validity(:availability, key)
-    $redis.set(availability_keyname, key)
+    Redis.current.set(availability_keyname, key)
 
     @memo_availability = nil
     notify_ahn_about_update(:availability)
@@ -21,11 +21,11 @@ module UpdateFields
 
 
   def set_role(key)
-    set_field(:role, key)
+    # TODO
   end
 
   def unset_role(key)
-    unset_field(:role, key)
+    # TODO
   end
 
 
@@ -35,32 +35,6 @@ module UpdateFields
 
   def unset_skill(key)
     unset_field(:skill, key)
-  end
-
-  private
-
-
-  def set_field(field, _key)
-    key = _key.to_s
-    check_for_validity(field, key)
-    self.send("#{field}s").find_or_create_by(name: key)
-    notify_ahn_about_update(field)
-  end
-
-
-  def unset_field(field, _key)
-    key = _key.to_s
-    check_for_validity(field, key)
-    self.send("#{field}s").find_by(name: key).try(:delete)
-    notify_ahn_about_update(field)
-  end
-
-
-  def check_for_validity(field, key)
-    keys = WimConfig.send("#{field}#{field[/y\z/] ? '' : 's'}").keys
-    unless keys.include?(key)
-      raise "Invalid user #{field} #{key} - use any of #{keys.join(',')}"
-    end
   end
 
 
@@ -74,6 +48,40 @@ module UpdateFields
 
   def visibility_keyname
     "#{Rails.env}.visibility.#{self.id}"
+  end
+
+  def token_keyname
+    "#{Rails.env}.token.#{self.id}"
+  end
+
+  private
+
+
+  def set_field(field, _key)
+    key = _key.to_s
+    check_for_validity(field, key)
+
+    self.send("#{field}s").find_or_create_by(name: key)
+    self.reload
+    notify_ahn_about_update(field)
+  end
+
+
+  def unset_field(field, _key)
+    key = _key.to_s
+    check_for_validity(field, key)
+
+    self.send("#{field}s").find_by(name: key).try(:delete)
+    self.reload
+    notify_ahn_about_update(field)
+  end
+
+
+  def check_for_validity(field, key)
+    keys = WimConfig.send("#{field}#{field[/y\z/] ? '' : 's'}").keys
+    unless keys.include?(key)
+      raise "Invalid user #{field} #{key} - use any of #{keys.join(',')}"
+    end
   end
 
 
@@ -108,7 +116,15 @@ module UpdateFields
 
 
   def update_fields_from(params)
-    self.fullname = params[:user].fetch(:fullname, fullname)
+    p = params[:user]
+    self.name       = p.fetch(:name,       name)
+    self.fullname   = p.fetch(:fullname,   fullname)
+    self.zendesk_id = p.fetch(:zendesk_id, zendesk_id)
+
+    self.secret     = p[:secret] unless p[:secret].blank?
+    self.password   = p[:password] unless p[:password].blank?
+    self.password_confirmation = p[:confirmation] unless p[:confirmation].blank?
+
     save!
   end
 end

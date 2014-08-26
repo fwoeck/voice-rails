@@ -1,6 +1,24 @@
 window.app = {
 
 
+  aggregateSkillSelection: ->
+    env.skillSelection = Ember.keys(env.skills).sort().reduce(
+      ((arr, key) -> arr.concat({id: key, name: env.skills[key]})), []
+    )
+
+
+  aggregateLanguageSelection: ->
+    env.languageSelection = Ember.keys(env.languages).sort().reduce(
+      ((arr, key) -> arr.concat({id: key, name: key.toUpperCase()})), []
+    )
+
+
+  aggregateRoleSelection: ->
+    env.roleSelection = Ember.keys(env.roles).sort().reduce(
+      ((arr, key) -> arr.concat({id: key, name: env.roles[key]})), []
+    )
+
+
   showShortcutList: ->
     text = Ember.keys(i18n.help).reduce(
       ((arr, key) -> arr.concat(i18n.help[key])), []
@@ -70,7 +88,11 @@ window.app = {
       )
 
 
-  initFoundation: ->
+  setupAbide: ->
+    Foundation.libs.abide.settings.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
+
+
+  setupFoundation: ->
     ($ document).foundation()
 
 
@@ -136,7 +158,7 @@ window.app = {
     env.userId.length == 0
 
 
-  setupInterface: ->
+  setupDashboard: ->
     @agentOverviewToggle()
     @mySettingsToggle()
     @callQueueToggle()

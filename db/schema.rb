@@ -42,16 +42,18 @@ ActiveRecord::Schema.define(version: 20140823061302) do
     t.string   "name",                   limit: 80, default: "",        null: false
     t.string   "fullcontact",            limit: 80
     t.string   "host",                   limit: 31, default: "dynamic", null: false
-    t.string   "md5secret",              limit: 80
-    t.string   "port",                   limit: 5,  default: "5060",    null: false
-    t.string   "qualify",                limit: 3,  default: "no"
     t.string   "secret",                 limit: 80
+    t.string   "md5secret",              limit: 80
+    t.string   "qualify",                limit: 3,  default: "no"
+    t.string   "ipaddr",                 limit: 50, default: "",        null: false
+    t.string   "port",                   limit: 5,  default: "5060",    null: false
     t.string   "type",                   limit: 6,  default: "friend",  null: false
     t.string   "regserver"
     t.integer  "regseconds",                        default: 0,         null: false
-    t.string   "ipaddr",                 limit: 50, default: "",        null: false
     t.string   "defaultuser",            limit: 10
+    t.string   "callbackextension",      limit: 40
     t.string   "useragent",              limit: 20
+    t.string   "insecure",               limit: 20
     t.string   "lastms",                 limit: 11
     t.string   "email",                             default: "",        null: false
     t.string   "encrypted_password",                default: "",        null: false

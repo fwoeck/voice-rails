@@ -58,6 +58,11 @@ Ember.CalledAt = Ember.FromNow.extend({
 })
 
 
+Ember.PassConf = Ember.TextField.extend({
+  attributeBindings: ['name', 'type', 'value', 'data-equalto', 'pattern']
+})
+
+
 Ember.ChatInput = Ember.TextField.extend({
 
   name:      'chat_message'

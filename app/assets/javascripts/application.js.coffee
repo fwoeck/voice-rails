@@ -26,11 +26,16 @@ app.compileSkillPartials()
 app.compileLanguagePartials()
 app.compileAvailabilityPartials()
 
+app.aggregateSkillSelection()
+app.aggregateLanguageSelection()
+app.aggregateRoleSelection()
+
+
 window.Voice = Ember.Application.create(
   rootElement: '#ember_main'
 )
 
 if app.noLogin()
   Voice.deferReadiness()
-  app.initFoundation()
-  app.setupInterface()
+  app.setupFoundation()
+  app.setupAbide()

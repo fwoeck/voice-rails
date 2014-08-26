@@ -1,0 +1,71 @@
+#my_prefs.large-12.medium-12.columns
+  form.agent_form data-abide="" novalidate="" submit='noop'
+    fieldset
+      legend = t 'headers.agent_profile'
+
+      if gravatarUrl
+        img.avatar width="52px" height="52px" src=gravatarUrl
+      else
+        span.avatar
+
+      label.select.small-4
+        = t 'domain.skills'
+        = view Ember.Select multiple="true" content=skillSelection optionValuePath='content.id' optionLabelPath='content.name' selection=skillArray
+
+      label.select.small-2
+        = t 'domain.languages'
+        = view Ember.Select multiple="true" content=languageSelection optionValuePath='content.id' optionLabelPath='content.name' selection=languageArray
+
+      label.select.small-2
+        = t 'domain.roles'
+        = view Ember.Select multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
+
+      button.tiny.icon type='submit' click=safeRecord
+        = t 'domain.save_changes'
+        i.fa.fa-refresh
+
+      button.tiny.secondary click=cancelChanges
+        = t 'domain.clear'
+
+      label.small-4.clear
+        = t 'domain.full_name' maxlength='30'
+        = input value=fullname
+
+      label.small-4
+        .field
+          = t 'domain.email'
+          = input value=email disabled='disabled' pattern='email' maxlength='30'
+          small.error = t 'errors.email_format'
+
+      label.small-2
+        .field
+          = t 'domain.sip_extension'
+          = input value=name pattern='number' maxlength='3'
+          small.error = t 'errors.extension_format'
+
+      label.small-2
+        .field
+          = t 'domain.sip_secret'
+          = input type='password' value=secret pattern='number' maxlength='10'
+          small.error = t 'errors.sip_secret'
+
+      label.small-2
+        .field
+          = t 'domain.zendesk_id'
+          = input value=zendeskId pattern='number' maxlength='10'
+          small.error = t 'errors.zendesk_format'
+
+      label.small-2
+        ' &nbsp;
+
+      label.small-4
+        .field
+          = t 'domain.password'
+          = input id='password' type='password' value=password pattern='password'
+          small.error = t 'errors.password_format'
+
+      label.small-4
+        .field
+          = t 'domain.confirmation'
+          = view Ember.PassConf type='password' value=confirmation data-equalto='password' pattern='password'
+          small.error = t 'errors.password_match'
