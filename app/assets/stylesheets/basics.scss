@@ -124,6 +124,18 @@ form#new_user {
     font-size: 13px;
   }
 
+  button.icon  {
+    padding-right: 30px;
+
+    i.fa {
+      position: absolute;
+      font-size: 14px;
+      display: block;
+      right: 10px;
+      top: 10px;
+    }
+  }
+
   div.switch.tiny label {
     height: 1.47rem;
     width: 3rem;

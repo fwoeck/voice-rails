@@ -20,19 +20,22 @@
         = t 'domain.roles'
         = view Ember.Select multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
 
-      button.tiny type='submit' click=safeRecord
+      button.tiny.icon type='submit' click=safeRecord
         = t 'domain.save_changes'
+        i.fa.fa-refresh
 
       button.tiny.secondary click=cancelChanges
         = t 'domain.clear'
 
       label.small-4.clear
-        = t 'domain.full_name'
+        = t 'domain.full_name' maxlength='30'
         = input value=fullname
 
       label.small-4
-        = t 'domain.email'
-        = input value=email disabled='disabled'
+        .field
+          = t 'domain.email'
+          = input value=email disabled='disabled' pattern='email' maxlength='30'
+          small.error = t 'errors.email_format'
 
       label.small-2
         .field
@@ -41,8 +44,10 @@
           small.error = t 'errors.extension_format'
 
       label.small-2
-        = t 'domain.sip_secret'
-        = input type='password' value=secret
+        .field
+          = t 'domain.sip_secret'
+          = input type='password' value=secret pattern='number' maxlength='10'
+          small.error = t 'errors.sip_secret'
 
       label.small-2
         .field
@@ -54,9 +59,13 @@
         ' &nbsp;
 
       label.small-4
-        = t 'domain.password'
-        = input type='password' value=password
+        .field
+          = t 'domain.password'
+          = input id='password' type='password' value=password pattern='password'
+          small.error = t 'errors.password_format'
 
       label.small-4
-        = t 'domain.confirmation'
-        = input type='password' value=confirmation
+        .field
+          = t 'domain.confirmation'
+          = view Ember.PassConf type='password' value=confirmation data-equalto='password' pattern='password'
+          small.error = t 'errors.password_match'

@@ -88,7 +88,11 @@ window.app = {
       )
 
 
-  initFoundation: ->
+  setupAbide: ->
+    Foundation.libs.abide.settings.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
+
+
+  setupFoundation: ->
     ($ document).foundation()
 
 
@@ -154,7 +158,7 @@ window.app = {
     env.userId.length == 0
 
 
-  setupInterface: ->
+  setupDashboard: ->
     @agentOverviewToggle()
     @mySettingsToggle()
     @callQueueToggle()

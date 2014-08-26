@@ -37,5 +37,5 @@ window.Voice = Ember.Application.create(
 
 if app.noLogin()
   Voice.deferReadiness()
-  app.initFoundation()
-  app.setupInterface()
+  app.setupFoundation()
+  app.setupAbide()
