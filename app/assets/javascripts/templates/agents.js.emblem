@@ -6,6 +6,6 @@
   = render 'my_prefs' Voice.currentUser
 
   if cuIsAdmin
-    = render 'new_agent'
+    = render 'new_agent' newAgent
 
   = render 'agent_table' Voice.allUsers

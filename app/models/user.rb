@@ -97,7 +97,13 @@ class User < ActiveRecord::Base
   end
 
 
+  def self.create_from(params)
+    # TODO
+    User.new(params[:user])
+  end
+
   private
+
 
   def send_ahn_notification
     unless (self.changes.keys & %w{name secret}).empty?

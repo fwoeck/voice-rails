@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get    'users'               => 'users#index'
   get    'users/:id'           => 'users#show'
   put    'users/:id'           => 'users#update'
+  post   'users'               => 'users#create'
 
   get    'customers'           => 'customers#index'
   put    'customers/:id'       => 'customers#update'
