@@ -5,6 +5,20 @@ class UsersController < ApplicationController
   end
 
 
+  def create
+    if current_user.has_role?(:admin)
+      begin
+        user = User.create_from(params[:user])
+        render json: user
+      rescue => e
+        render json: {errors: [e.message]}, status: 422
+      end
+    else
+      render json: {}, status: 403
+    end
+  end
+
+
   def update
     user = User.find params[:id]
 
@@ -14,10 +28,10 @@ class UsersController < ApplicationController
         user.send_update_notification_to_clients
         render json: user
       rescue => e
-        render json: user, status: 422
+        render json: {errors: [e.message]}, status: 422
       end
     else
-      render nothing: true, status: 403
+      render json: {}, status: 403
     end
   end
 

@@ -9,7 +9,8 @@ Voice.SkillSettings = Ember.Mixin.create({
 
 
   skillIsSet: (skill) ->
-    !!@get('skills').match(skill)
+    skills = @get('skills') || ""
+    !!skills.match(skill)
 
 
   joinSkills: ->

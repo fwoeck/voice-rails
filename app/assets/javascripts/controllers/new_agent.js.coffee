@@ -1,2 +1,2 @@
-Voice.NewAgentController = Ember.ObjectController.extend({
+Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 })

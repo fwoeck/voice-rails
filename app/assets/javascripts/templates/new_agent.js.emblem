@@ -1,2 +1,4 @@
 #new_agent.large-12.medium-12.columns
   h5: span.header = t 'headers.new_agent'
+
+= partial 'agent_form'

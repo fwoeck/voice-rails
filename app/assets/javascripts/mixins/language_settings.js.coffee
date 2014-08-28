@@ -9,7 +9,8 @@ Voice.LanguageSettings = Ember.Mixin.create({
 
 
   langIsSet: (lang) ->
-    !!@get('languages').match(lang)
+    langs = @get('languages') || ""
+    !!langs.match(lang)
 
 
   joinLanguages: ->
