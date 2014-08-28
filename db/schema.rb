@@ -39,15 +39,15 @@ ActiveRecord::Schema.define(version: 20140823061302) do
   add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name",                   limit: 80, default: "",        null: false
-    t.string   "fullcontact",            limit: 80
-    t.string   "host",                   limit: 31, default: "dynamic", null: false
+    t.string   "name",                   limit: 80
     t.string   "secret",                 limit: 80
     t.string   "md5secret",              limit: 80
-    t.string   "qualify",                limit: 3,  default: "no"
+    t.string   "fullcontact",            limit: 80
+    t.string   "host",                   limit: 31, default: "dynamic", null: false
     t.string   "ipaddr",                 limit: 50, default: "",        null: false
     t.string   "port",                   limit: 5,  default: "5060",    null: false
     t.string   "type",                   limit: 6,  default: "friend",  null: false
+    t.string   "qualify",                limit: 3,  default: "no"
     t.string   "regserver"
     t.integer  "regseconds",                        default: 0,         null: false
     t.string   "defaultuser",            limit: 10

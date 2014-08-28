@@ -3,7 +3,7 @@ Voice.ApplicationStore = DS.Store.extend()
 Voice.ApplicationAdapter = DS.ActiveModelAdapter.extend(
   ajaxError: (jqXHR) ->
     error = @_super(jqXHR)
-    app.showDefaultError i18n.errors.ajax_error.replace('MSG', error.message)
+    app.showDefaultError error.message
 )
 
 Voice.ApplicationSerializer = DS.ActiveModelSerializer.extend()

@@ -18,6 +18,23 @@ class User < ActiveRecord::Base
   after_destroy :notify_ahn_about_update
 
 
+  validates :name,       numericality: {only_integer: true},
+                         length: { is: 3 },
+                         allow_blank: true,
+                         uniqueness: true
+
+  validates :secret,     numericality: {only_integer: true},
+                         allow_blank: true
+
+  validates :email,      presence: true,
+                         uniqueness: true,
+                         email: true
+
+  validates :zendesk_id, numericality: {only_integer: true},
+                         length: { is: 9 },
+                         allow_blank: true
+
+
   def update_attributes_from(params)
     update_availability_from(params)
     update_languages_from(params)
@@ -97,9 +114,28 @@ class User < ActiveRecord::Base
   end
 
 
-  def self.create_from(params)
-    # TODO
-    User.new(params[:user])
+  def self.create_from(p)
+    params = {
+      name:       p.fetch(:name, nil).try(:strip),
+      email:      p.fetch(:email).strip.downcase,
+      secret:     p.fetch(:secret, nil).try(:strip),
+      password:   p.fetch(:password),
+      fullname:   p.fetch(:fullname).strip,
+      zendesk_id: p.fetch(:zendesk_id, nil).try(:strip),
+      password_confirmation: p.fetch(:confirmation)
+    }
+
+    cleanup_params(params)
+    user = User.create!(params)
+    # TODO set roles/skills/langs
+    user
+  end
+
+
+  def self.cleanup_params(p)
+    [:name, :secret, :zendesk_id].each { |sym|
+      p[sym] = nil if p[sym].blank?
+    }
   end
 
   private

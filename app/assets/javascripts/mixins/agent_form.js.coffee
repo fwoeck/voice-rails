@@ -33,7 +33,7 @@ Voice.AgentForm = Ember.Mixin.create({
   submitForm: ->
     errorCount = @get('formEl').find('form div.error').length
     if errorCount == 0
-      @get('model').save()
+      @get('model').save().then (=> @clearAgent()), (->)
     else
       app.showDefaultError(i18n.dialog.form_with_errors)
 
@@ -49,13 +49,18 @@ Voice.AgentForm = Ember.Mixin.create({
   ).property('model.id')
 
 
-  resetForm: ->
-    if @get('model.isNew')
-      @get('model').deleteRecord()
+  clearAgent: ->
+    model = @get('model')
+
+    if model.get('isNew')
+      model.deleteRecord()
       @set 'model', @store.createRecord(Voice.User)
     else
-      @get('model').rollback()
+      model.rollback()
 
+
+  resetForm: ->
+    @clearAgent()
     @setAttributeArrays()
     @hideErrors()
 
