@@ -29,13 +29,13 @@
 
       label.small-4.clear
         .field
-          = t 'domain.full_name'
+          span.required = t 'domain.full_name'
           = input value=fullname maxlength='30' required=""
           small.error = t 'errors.fullname_format'
 
       label.small-4
         .field
-          = t 'domain.email'
+          span.required = t 'domain.email'
           if agentIsNew
             = input value=email pattern='email' maxlength='30' required=""
           else
@@ -65,18 +65,20 @@
 
       label.small-4
         .field
-          = t 'domain.password'
           if agentIsNew
+            span.required = t 'domain.password'
             = input id=passwordId type='password' value=password pattern='password' required=""
           else
+            = t 'domain.password'
             = input id=passwordId type='password' value=password pattern='password'
           small.error = t 'errors.password_format'
 
       label.small-4
         .field
-          = t 'domain.confirmation'
           if agentIsNew
+            span.required = t 'domain.confirmation'
             = view Ember.PassConf type='password' value=confirmation data-equalto=passwordId pattern='password' required=""
           else
+            = t 'domain.confirmation'
             = view Ember.PassConf type='password' value=confirmation data-equalto=passwordId pattern='password'
           small.error = t 'errors.password_match'

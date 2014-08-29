@@ -31,11 +31,35 @@ Voice.AgentForm = Ember.Mixin.create({
 
 
   submitForm: ->
-    errorCount = @get('formEl').find('form div.error').length
+    el         = @get('formEl')
+    errorCount = el.find('form div.error').length
+
     if errorCount == 0
-      @get('model').save().then (=> @clearAgent()), (->)
+      @saveAgentData(el)
     else
       app.showDefaultError(i18n.dialog.form_with_errors)
+
+
+  saveAgentData: (el) ->
+    spin = el.find('.fa-refresh')
+    @enableSpinner(spin)
+
+    @get('model').save().then (=>
+      @disableSpinner(spin)
+      @clearAgent()
+    ), (->
+      @disableSpinner(spin)
+    )
+
+
+  enableSpinner: (spin) ->
+    spin.addClass('fa-spin')
+
+
+  disableSpinner: (spin) ->
+    Ember.run.later @, (->
+      spin.removeClass('fa-spin')
+    ), 1000
 
 
   agentIsNew: (->

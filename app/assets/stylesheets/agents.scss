@@ -43,6 +43,10 @@ form.agent_form {
     margin: 0;
   }
 
+  span.required:after {
+    content: ' *'
+  }
+
   label.select {
     padding-bottom: 20px;
     height: auto;

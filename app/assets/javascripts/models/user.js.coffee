@@ -50,13 +50,13 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
 
   displayLangs: (->
-    @get('languages').split(',').map((l) -> l.toUpperCase()).join(', ')
+    @get('languages')?.split(',').map((l) -> l.toUpperCase()).join(', ')
   ).property('languages')
 
 
   displaySkills: (->
-    @get('skills').split(',').map((l) -> l.capitalize())
-                  .join(', ').replace(/_booking/g, 'Book')
+    @get('skills')?.split(',').map((l) -> l.capitalize())
+                   .join(', ').replace(/_booking/g, 'Book')
   ).property('skills')
 
 
