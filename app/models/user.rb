@@ -91,51 +91,73 @@ class User < ActiveRecord::Base
   end
 
 
-  # TODO This requires too many redis-requests.
-  #      Can we cache this information from the incoming
-  #      amqp-messages?
-  #
-  def self.all_online_ids
-    Redis.current.keys(Rails.env + '.visibility.*')
-         .map { |key| [key[/\d+$/], Redis.current.get(key)] }
-         .select { |s| s[1] == 'online' }
-         .map { |s| s[0].to_i }
-  end
+  class << self
+
+    # TODO This requires too many redis-requests.
+    #      Can we cache this information from the incoming
+    #      amqp-messages?
+    #
+    def all_online_ids
+      Redis.current.keys(Rails.env + '.visibility.*')
+           .map { |key| [key[/\d+$/], Redis.current.get(key)] }
+           .select { |s| s[1] == 'online' }
+           .map { |s| s[0].to_i }
+    end
 
 
-  # Caution, this is used by the external chef provisioning:
-  #
-  def self.seed_admin_user
-    u = User.where(email: WimConfig.admin_email).first_or_initialize
-    return if u.has_role?(:admin)
+    # Caution, this is used by the external chef provisioning:
+    #
+    def seed_admin_user
+      u = User.where(email: WimConfig.admin_email).first_or_initialize
+      return if u.has_role?(:admin)
 
-    u.add_role(:admin)
-    u.set_admin_prefs
-  end
-
-
-  def self.create_from(p)
-    params = {
-      name:       p.fetch(:name, nil).try(:strip),
-      email:      p.fetch(:email).strip.downcase,
-      secret:     p.fetch(:secret, nil).try(:strip),
-      password:   p.fetch(:password),
-      fullname:   p.fetch(:fullname).strip,
-      zendesk_id: p.fetch(:zendesk_id, nil).try(:strip),
-      password_confirmation: p.fetch(:confirmation)
-    }
-
-    cleanup_params(params)
-    user = User.create!(params)
-    # TODO set roles/skills/langs
-    user
-  end
+      u.add_role(:admin)
+      u.set_admin_prefs
+    end
 
 
-  def self.cleanup_params(p)
-    [:name, :secret, :zendesk_id].each { |sym|
-      p[sym] = nil if p[sym].blank?
-    }
+    def create_from(p)
+      params = {
+        name:       p.fetch(:name, nil).try(:strip),
+        email:      p.fetch(:email).strip.downcase,
+        secret:     p.fetch(:secret, nil).try(:strip),
+        password:   p.fetch(:password),
+        fullname:   p.fetch(:fullname).strip,
+        zendesk_id: p.fetch(:zendesk_id, nil).try(:strip),
+        password_confirmation: p.fetch(:confirmation)
+      }
+
+      sanitize_params(params)
+      user = User.create!(params)
+      # TODO set roles/skills/langs
+      user
+    end
+
+
+    def sanitize_params(p)
+      [:name, :secret, :zendesk_id].each { |sym|
+        p[sym] = nil if p[sym].blank?
+      }
+
+      p[:name]   ||= get_next_available_name
+      p[:secret] ||= get_random_secret
+    end
+
+
+    def get_next_available_name
+      names = all_agent_names
+      (100..999).find { |n| !names.include?(n) }
+    end
+
+
+    def all_agent_names
+      User.all.pluck(:name).compact.map(&:to_i)
+    end
+
+
+    def get_random_secret
+      (0..5).each_with_object('') {|n, pass| pass << rand(9).to_s }
+    end
   end
 
   private

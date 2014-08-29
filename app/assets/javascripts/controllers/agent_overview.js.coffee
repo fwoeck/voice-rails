@@ -6,12 +6,10 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
 
 
   matchingAgents: (->
-    pattern = @get('pattern').toLowerCase()
-    agents  = @get('content')
+    pattern =  @get('pattern').toLowerCase()
+    agents  = (@get('content') || []).filter (agent) -> !agent.get('isNew')
 
-    return [] unless agents
     return agents unless pattern
-
     agents.filter (agent) -> agent.matchesSearch(pattern)
   ).property('pattern')
 
