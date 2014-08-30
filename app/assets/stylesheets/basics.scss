@@ -44,11 +44,11 @@ html.touch {
   }
 }
 
-a:focus, button:focus, select:focus {
+div:focus, a:focus, button:focus, select:focus {
   outline: 0 !important;
 }
 
-label:disabled, select:disabled,
+select:disabled,
 input[type="text"][disabled] {
   background-color: #fff !important;
 }

@@ -4,7 +4,6 @@ Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
 
   clearAgent: ->
-    @get('model').deleteRecord()
     @set('model', @store.createRecord Voice.User)
 
 

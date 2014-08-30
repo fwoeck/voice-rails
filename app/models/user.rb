@@ -43,10 +43,15 @@ class User < ActiveRecord::Base
   end
 
 
-  def send_update_notification_to_clients
-    AmqpManager.push_publish(
-      user_ids: User.all_online_ids, data: UserSerializer.new(self)
-    )
+  def send_update_notification_to_clients(async=false)
+    delay = async ? 0.1 : 0
+
+    Thread.new {
+      sleep delay
+      AmqpManager.push_publish(
+        user_ids: User.all_online_ids, data: UserSerializer.new(self)
+      )
+    }
   end
 
 
