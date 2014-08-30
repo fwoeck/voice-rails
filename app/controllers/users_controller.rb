@@ -6,37 +6,27 @@ class UsersController < ApplicationController
 
 
   def create
-    par = params[:user]
+    r = RequestStruct.new(
+      nil, par = params[:user], par && cu_is_admin?
+    )
 
-    if par && cu_is_admin?
-      begin
-        user = User.create_from(par)
-        user.send_update_notification_to_clients(:async)
-        render json: user
-      rescue ActiveRecord::RecordInvalid => e
-        render json: {errors: [e.message]}, status: 422
-      end
-    else
-      render json: {}, status: 403
+    handle_client_request(r) do
+      r.obj = User.create_from(r.par)
+      r.obj.send_update_notification_to_clients(:async)
     end
   end
 
 
   def update
-    user = User.find params[:id]
-    par  = params[:user]
+    r = RequestStruct.new(
+      user = User.find(params[:id]), par = params[:user],
+      par && cu_can_update?(user)
+    )
 
-    if par && cu_can_update?(user)
-      begin
-        user.update_attributes_from(par)
-        user.update_roles_from(par, self_update?(user)) if cu_is_admin?
-        user.send_update_notification_to_clients(:async)
-        render json: user
-      rescue ActiveRecord::RecordInvalid => e
-        render json: {errors: [e.message]}, status: 422
-      end
-    else
-      render json: {}, status: 403
+    handle_client_request(r) do
+      r.obj.update_attributes_from(r.par)
+      r.obj.update_roles_from(r.par, self_update?(r.obj)) if cu_is_admin?
+      r.obj.send_update_notification_to_clients(:async)
     end
   end
 
@@ -55,10 +45,5 @@ class UsersController < ApplicationController
 
   def cu_can_update?(user)
     self_update?(user) || cu_is_admin?
-  end
-
-
-  def cu_is_admin?
-    current_user.has_role?(:admin)
   end
 end

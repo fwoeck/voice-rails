@@ -127,3 +127,4 @@ env.i18n =
       password_match:   'Must match the first password'
       zendesk_format:   'Enter 9 or 10 digits'
       sip_secret:       'Enter 6 or more digits'
+      webrtc_access:    'We could not open the sound device.<br />Please allow the browser to access it<br />in the WebRTC settings.'
