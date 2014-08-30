@@ -48,7 +48,7 @@ a:focus, button:focus, select:focus {
   outline: 0 !important;
 }
 
-select:disabled,
+label:disabled, select:disabled,
 input[type="text"][disabled] {
   background-color: #fff !important;
 }
