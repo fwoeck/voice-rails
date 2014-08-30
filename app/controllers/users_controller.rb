@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     if par && cu_is_admin?
       begin
         user = User.create_from(par)
+        user.send_update_notification_to_clients
         render json: user
       rescue ActiveRecord::RecordInvalid => e
         render json: {errors: [e.message]}, status: 422
