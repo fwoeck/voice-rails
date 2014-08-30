@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '= 4.1.4'
+gem 'rails', '= 4.1.5'
 
 gem 'puma',                      require: false
 gem 'hirb',                      require: false

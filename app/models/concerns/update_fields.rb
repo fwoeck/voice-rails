@@ -2,6 +2,18 @@ module UpdateFields
   extend ActiveSupport::Concern
 
 
+  def update_roles_from(p, as_admin=false)
+    old_roles = roles.map(&:name).sort
+    new_roles = p.fetch(:roles, "").split(',').sort
+    new_roles = (['admin'] + new_roles).uniq if as_admin
+
+    if old_roles != new_roles
+      (old_roles - new_roles).each { |r| remove_role(r.to_sym) }
+      (new_roles - old_roles).each { |r| add_role(r.to_sym) }
+    end
+  end
+
+
   def set_availability(key)
     check_for_validity(:availability, key)
     Redis.current.set(availability_keyname, key)
@@ -17,15 +29,6 @@ module UpdateFields
 
   def unset_language(key)
     unset_field(:language, key)
-  end
-
-
-  def set_role(key)
-    # TODO
-  end
-
-  def unset_role(key)
-    # TODO
   end
 
 
@@ -85,17 +88,17 @@ module UpdateFields
   end
 
 
-  def update_availability_from(params)
-    _availability = params[:user].fetch(:availability, availability)
-    if _availability != availability
-      set_availability(_availability)
+  def update_availability_from(p)
+    new_avail = p.fetch(:availability, availability)
+    if !new_avail.blank? && new_avail != availability
+      set_availability(new_avail)
     end
   end
 
 
-  def update_languages_from(params)
+  def update_languages_from(p)
     old_langs = languages.map(&:name).sort
-    new_langs = params[:user].fetch(:languages).split(',').sort
+    new_langs = p.fetch(:languages, "").split(',').sort
 
     if old_langs != new_langs
       (old_langs - new_langs).each { |l| unset_language(l) }
@@ -104,19 +107,18 @@ module UpdateFields
   end
 
 
-  def update_skills_from(params)
+  def update_skills_from(p)
     old_skills = skills.map(&:name).sort
-    new_skills = params[:user].fetch(:skills).split(',').sort
+    new_skills = p.fetch(:skills, "").split(',').sort
 
     if old_skills != new_skills
-      (old_skills - new_skills).each { |l| unset_skill(l) }
-      (new_skills - old_skills).each { |l| set_skill(l) }
+      (old_skills - new_skills).each { |s| unset_skill(s) }
+      (new_skills - old_skills).each { |s| set_skill(s) }
     end
   end
 
 
-  def update_fields_from(params)
-    p = params[:user]
+  def update_fields_from(p)
     self.name       = p.fetch(:name,       name)
     self.fullname   = p.fetch(:fullname,   fullname)
     self.zendesk_id = p.fetch(:zendesk_id, zendesk_id)

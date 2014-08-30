@@ -47,7 +47,7 @@ Voice.AgentForm = Ember.Mixin.create({
     @get('model').save().then (=>
       @disableSpinner(spin)
       @clearAgent()
-    ), (->
+    ), (=>
       @disableSpinner(spin)
     )
 
