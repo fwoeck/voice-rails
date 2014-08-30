@@ -11,7 +11,7 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
 
     return agents unless pattern
     agents.filter (agent) -> agent.matchesSearch(pattern)
-  ).property('pattern')
+  ).property('pattern', 'content.[]')
 
 
   currentStatusLine: (->

@@ -70,6 +70,7 @@
   float: left;
   padding: 0;
 
+  span.avatar,
   img.avatar {
     display: block;
     opacity: 0.8;
@@ -129,7 +130,6 @@
 
   span.avatar {
     background-color: #ddd;
-    margin: 0 8px 0 0;
     height: 48px;
     width: 48px;
   }
