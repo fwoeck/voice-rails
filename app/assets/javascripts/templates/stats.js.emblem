@@ -14,4 +14,4 @@
   = partial 'language_details'
 
   #rrd_history
-    img src=rrdSource width='970px' height='220px'
+    img src=rrdSource width='970px' height='222px'
