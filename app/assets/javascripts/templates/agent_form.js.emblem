@@ -33,7 +33,7 @@
       label.small-4.clear
         .field
           span.required = t 'domain.full_name'
-          = input value=fullname maxlength='30' required=""
+          = input value=fullName maxlength='30' required=""
           small.error = t 'errors.fullname_format'
 
       label.small-4

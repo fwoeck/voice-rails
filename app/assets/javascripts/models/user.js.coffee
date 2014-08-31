@@ -6,7 +6,7 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   skills:        DS.attr 'string'
   secret:        DS.attr 'string'
   password:      DS.attr 'string'
-  fullname:      DS.attr 'string'
+  fullName:      DS.attr 'string'
   activity:      DS.attr 'string'
   languages:     DS.attr 'string'
   zendeskId:     DS.attr 'string'
@@ -36,13 +36,13 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
 
   displayName: (->
-    @get('fullname') || @get('email')
-  ).property('fullname')
+    @get('fullName') || @get('email')
+  ).property('fullName')
 
 
   matchesSearch: (pattern) ->
     try
-      @get('fullname').toLowerCase().match(pattern) ||
+      @get('fullName').toLowerCase().match(pattern) ||
       @get('email').toLowerCase().match(pattern) ||
       @get('name').match(pattern)
     catch

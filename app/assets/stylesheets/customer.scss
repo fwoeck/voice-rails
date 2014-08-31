@@ -120,9 +120,12 @@ table.tickets_table {
 
 table#callstats_table {
   .button.store {
+    border: 1px solid #ccc;
+    margin: -16px 0 0 0;
     padding: 10px 14px;
+    line-height: 14px;
     font-size: 14px;
     display: block;
-    height: 36px;
+    height: 37px;
   }
 }

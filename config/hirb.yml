@@ -6,7 +6,7 @@
           - id
           - name
           - email
-          - fullname
+          - full_name
           - zendesk_id
           - fullcontact
           - role_summary

@@ -4,7 +4,7 @@ table.customer_table
       td.space25
         label
           = t 'domain.full_name'
-          = input type='text' value=fullname placeholder=fullNamePlaceholder
+          = input type='text' value=fullName placeholder=fullNamePlaceholder
       td.space25
         label
           = t 'domain.email'

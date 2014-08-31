@@ -59,8 +59,8 @@ class CustomersController < ApplicationController
 
   def update_customer_with(par, cust)
     cust.tap { |c|
-      c.fullname = (par[:fullname] || "").strip
-      c.email    = (par[:email] || "").strip.downcase
+      c.full_name = (par[:full_name] || "").strip
+      c.email     = (par[:email] || "").strip.downcase
       c.manage_zendesk_account(par[:zendesk_id])
       c.save
     }
