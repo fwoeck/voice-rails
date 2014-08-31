@@ -18,4 +18,4 @@ table.callstats_table
     tr
       td &nbsp;
       td.strong
-        | #{agent.name} / #{agent.fullname}
+        | #{agent.name} / #{agent.fullName}

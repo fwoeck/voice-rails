@@ -120,7 +120,7 @@ module UpdateFields
 
   def update_fields_from(p)
     self.name       = p.fetch(:name,       name)
-    self.fullname   = p.fetch(:fullname,   fullname)
+    self.full_name  = p.fetch(:full_name,  full_name)
     self.zendesk_id = p.fetch(:zendesk_id, zendesk_id)
 
     self.secret     = p[:secret] unless p[:secret].blank?

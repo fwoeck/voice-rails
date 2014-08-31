@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
 
-  attributes :id, :email, :fullname, :roles, :skills, :languages,
+  attributes :id, :email, :full_name, :roles, :skills, :languages,
              :availability, :activity, :visibility, :name, :zendesk_id
 
 

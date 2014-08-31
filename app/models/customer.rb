@@ -2,8 +2,8 @@ class Customer
 
   include Mongoid::Document
 
-  field :fullname,   type: String,   default: ""
   field :email,      type: String,   default: ""
+  field :full_name,  type: String,   default: ""
   field :caller_ids, type: Array,    default: -> { [] }
   field :zendesk_id, type: String,   default: ""
   field :created_at, type: DateTime, default: -> { Time.now.utc }
@@ -29,8 +29,8 @@ class Customer
 
   def fetch_zendesk_user
     if (user = $zendesk.users.find id: zendesk_id)
-      self.fullname = user.name
-      self.email    = user.email
+      self.full_name = user.name
+      self.email     = user.email
     end
   end
 
@@ -40,7 +40,7 @@ class Customer
       user = $zendesk.users.find(id: zendesk_id)
 
       if zendesk_needs_update?(user)
-        user.name    = fullname
+        user.name    = full_name
         user.phone ||= caller_ids.first
         user.email   = email
         user.save
@@ -51,14 +51,14 @@ class Customer
 
   def zendesk_needs_update?(user)
     return unless user
-    user.name != fullname || user.email != email ||
+    user.name != full_name || user.email != email ||
       user.phone != caller_ids.first
   end
 
 
   def request_zendesk_id
-    unless fullname.blank?
-      opts         = {name: fullname}
+    unless full_name.blank?
+      opts         = {name: full_name}
       opts[:email] = email unless email.blank?
       opts[:phone] = caller_ids.first
 

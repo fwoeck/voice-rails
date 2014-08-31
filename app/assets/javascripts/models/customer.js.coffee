@@ -8,7 +8,7 @@ Voice.Customer = DS.Model.extend({
   orderedTickets: Ember.computed.sort 'zendeskTickets', 'ticketSorting'
 
   email:          DS.attr 'string'
-  fullname:       DS.attr 'string'
+  fullName:       DS.attr 'string'
   zendeskId:      DS.attr 'string'
   callerIds:      DS.attr 'array'
 

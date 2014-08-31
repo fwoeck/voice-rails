@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20140823061302) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fullname",                          default: ""
+    t.string   "full_name",                         default: ""
     t.string   "zendesk_id"
   end
 

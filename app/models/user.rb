@@ -86,11 +86,11 @@ class User < ActiveRecord::Base
 
   def set_admin_prefs(c = WimConfig)
     tap { |u|
-      u.name     = c.admin_name
-      u.email    = c.admin_email
-      u.secret   = c.admin_secret
-      u.fullname = c.admin_fullname
-      u.password = c.admin_password
+      u.name      = c.admin_name
+      u.email     = c.admin_email
+      u.secret    = c.admin_secret
+      u.password  = c.admin_password
+      u.full_name = c.admin_fullname
       u.password_confirmation = c.admin_password
     }.save
   end
@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
         email:      p.fetch(:email).strip.downcase,
         secret:     p.fetch(:secret, nil).try(:strip),
         password:   p.fetch(:password),
-        fullname:   p.fetch(:fullname).strip,
+        full_name:  p.fetch(:full_name).strip,
         zendesk_id: p.fetch(:zendesk_id, nil).try(:strip),
         password_confirmation: p.fetch(:confirmation)
       }
