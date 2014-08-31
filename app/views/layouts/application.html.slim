@@ -32,7 +32,6 @@ html
         locale:       "en",
         debug:         false,
         railsEnv:     "#{Rails.env}",
-        adminName:    "#{WimConfig.admin_name}",
         sipAgent:     "#{current_user.try(:name)}",
         sipSecret:    "#{current_user.try(:secret)}",
         sipHost:      "#{WimConfig.sip_host}",

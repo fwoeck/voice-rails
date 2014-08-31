@@ -15,7 +15,11 @@ app.setupPhone = ->
 
     if call.incoming
       env.callDialogActive = true
-      name = app.getAgentFrom(call.visibleNameCaller)
+      # FIXME When agents call themselves internally, the
+      #       "caller" can appear as "asterisk":
+      #
+      name = app.getAgentFrom(call.caller)
+      name = app.getAgentFrom(call.visibleNameCaller) if name == 'asterisk'
       app.takeIncomingCall(call, name)
 
   phone.notifyRemoveCall = (call) ->
