@@ -36,7 +36,7 @@ class Customer
 
 
   def update_zendesk_record
-    Thread.new {
+    VoiceThread.run {
       user = $zendesk.users.find(id: zendesk_id)
 
       if zendesk_needs_update?(user)

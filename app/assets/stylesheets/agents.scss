@@ -1,8 +1,19 @@
 #agent_table, #new_agent, #my_prefs {
-  border-top: 1px solid #eee;
-  padding: 20px 0 0 0;
-  margin-bottom: 10px;
-  width: 100%;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  height: 43px;
+  padding: 0;
+}
+
+.agent_form_wrapper {
+  transition: height ease 300ms;
+  overflow: hidden;
+  z-index: 5;
+  height: 0;
+}
+
+.agent_form_wrapper.expanded {
+  height: 374px;
 }
 
 form.agent_form {
