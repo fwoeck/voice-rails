@@ -2,12 +2,12 @@ class CustomersController < ApplicationController
 
 
   def index
-    render json: Customer.where(caller_ids: params[:caller_id])
+    render json: Customer.where(caller_ids: params[:caller_id]), each_serializer: CustomerSerializer
   end
 
 
   def show
-    render json: Customer.find(params[:id])
+    render json: Customer.find(params[:id]), serializer: CustomerSerializer
   end
 
 

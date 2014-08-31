@@ -1,8 +1,7 @@
 class CustomerSerializer < ActiveModel::Serializer
 
   attributes :id, :email, :full_name, :caller_ids, :zendesk_id
-  has_many   :history_entries, serializer: HistoryEntrySerializer
-  embed      :ids, include: true
+  has_many   :history_entries, serializer: HistoryEntrySerializer, embed: :ids, include: true
 
 
   def history_entries

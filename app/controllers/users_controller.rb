@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
+  def index
+    render json: User.all, each_serializer: UserSerializer
+  end
+
+
   def show
-    render json: User.find(params[:id])
+    render json: User.find(params[:id]), serializer: UserSerializer
   end
 
 
@@ -28,11 +33,6 @@ class UsersController < ApplicationController
       r.obj.update_roles_from(r.par, self_update?(r.obj)) if cu_is_admin?
       r.obj.send_update_notification_to_clients(:async)
     end
-  end
-
-
-  def index
-    render json: User.all
   end
 
   private
