@@ -18,7 +18,7 @@ app.setupPhone = ->
       # FIXME When agents call themselves internally, the
       #       "caller" can appear as "asterisk":
       #
-      name = app.getAgentFrom(call.caller)
+      name = app.getAgentFrom call.caller.replace('SIP/', '')
       name = app.getAgentFrom(call.visibleNameCaller) if name == 'asterisk'
       app.takeIncomingCall(call, name)
 
