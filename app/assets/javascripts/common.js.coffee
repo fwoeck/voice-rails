@@ -1,5 +1,15 @@
 window.app = {
 
+  # TODO This needs some generalization/i18n:
+  #
+  parseAjaxError: (msg) ->
+    validationRegex = /Validation failed: /
+    if validationRegex.test(msg)
+      msg = msg.replace(validationRegex, '')
+               .split(', ').uniq().join(', ')
+               .replace('Name', 'SIP Extension')
+    msg
+
 
   aggregateSkillSelection: ->
     env.skillSelection = Ember.keys(env.skills).sort().reduce(

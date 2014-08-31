@@ -1,14 +1,32 @@
 #agent_table, #new_agent, #my_prefs {
-  border-top: 1px solid #eee;
-  padding: 20px 0 0 0;
-  margin-bottom: 10px;
-  width: 100%;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  height: 43px;
+  padding: 0;
+}
+
+.agent_form_wrapper {
+  transition: height ease 300ms;
+  overflow: hidden;
+  clear: both;
+  height: 0;
+}
+
+.agent_form_wrapper.expanded {
+  height: 374px;
 }
 
 form.agent_form {
 
   fieldset {
+    box-shadow: #888 2px 2px 3px;
     padding: 10px 0 10px 20px;
+    background-color: #f6f6f6;
+    width: calc(100% - 4px);
+
+    legend {
+      background: transparent;
+    }
   }
 
   .avatar {

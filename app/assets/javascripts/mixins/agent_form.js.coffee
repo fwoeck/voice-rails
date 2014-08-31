@@ -3,6 +3,8 @@ Voice.AgentForm = Ember.Mixin.create({
   roleArray:     []
   skillArray:    []
   languageArray: []
+  agentIsNew:    false
+  cuIsAdmin:     false
   formEl:        null
 
 
@@ -45,26 +47,15 @@ Voice.AgentForm = Ember.Mixin.create({
     @enableSpinner(spin)
 
     @get('model').save().then (=>
-      @disableSpinner(spin)
       @clearAgent()
-    ), (->
-      @disableSpinner(spin)
-    )
+    ), (->)
 
 
   enableSpinner: (spin) ->
     spin.addClass('fa-spin')
-
-
-  disableSpinner: (spin) ->
     Ember.run.later @, (->
       spin.removeClass('fa-spin')
     ), 1000
-
-
-  agentIsNew: (->
-    @get('model.isNew')
-  ).property('model.isNew')
 
 
   passwordId: (->
@@ -103,9 +94,11 @@ Voice.AgentForm = Ember.Mixin.create({
     env.skillSelection
   ).property()
 
+
   languageSelection: (->
     env.languageSelection
   ).property()
+
 
   roleSelection: (->
     env.roleSelection
@@ -117,6 +110,7 @@ Voice.AgentForm = Ember.Mixin.create({
     arr = selection.filter (n) -> all.match(n.id)
     @set "#{attr}Array", arr
 
+
   serializeArray: (attr) ->
     arr = @get("#{attr}Array")
     @set "content.#{attr}s", arr.map(
@@ -124,24 +118,30 @@ Voice.AgentForm = Ember.Mixin.create({
     ).sort().join(',')
 
 
-  setRoleArray: ->
+  setRoleArray: (->
     @setArray('role', env.roleSelection)
+  ).observes('content.roles')
+
 
   observeRoleArray: (->
     @serializeArray('role')
   ).observes('roleArray.[]')
 
 
-  setSkillArray: ->
+  setSkillArray: (->
     @setArray('skill', env.skillSelection)
+  ).observes('content.skills')
+
 
   observeSkillArray: (->
     @serializeArray('skill')
   ).observes('skillArray.[]')
 
 
-  setLanguageArray: ->
+  setLanguageArray: (->
     @setArray('language', env.languageSelection)
+  ).observes('content.languages')
+
 
   observeLanguageArray: (->
     @serializeArray('language')

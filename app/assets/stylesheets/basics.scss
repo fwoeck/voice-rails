@@ -44,6 +44,15 @@ html.touch {
   }
 }
 
+div:focus, a:focus, button:focus, select:focus {
+  outline: 0 !important;
+}
+
+select:disabled,
+input[type="text"][disabled] {
+  background-color: #fff !important;
+}
+
 #hidden_tabindex {
   display: none;
 }
@@ -98,6 +107,7 @@ form#new_user {
 
 #ember_main {
   position: relative;
+  overflow: hidden;
   height: 100%;
 
   .error small.error {

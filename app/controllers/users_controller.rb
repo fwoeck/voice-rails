@@ -6,32 +6,27 @@ class UsersController < ApplicationController
 
 
   def create
-    if current_user.has_role?(:admin)
-      begin
-        user = User.create_from(params[:user])
-        render json: user
-      rescue => e
-        render json: {errors: [e.message]}, status: 422
-      end
-    else
-      render json: {}, status: 403
+    r = RequestStruct.new(
+      nil, par = params[:user], par && cu_is_admin?
+    )
+
+    handle_client_request(r) do
+      r.obj = User.create_from(r.par)
+      r.obj.send_update_notification_to_clients(:async)
     end
   end
 
 
   def update
-    user = User.find params[:id]
+    r = RequestStruct.new(
+      user = User.find(params[:id]), par = params[:user],
+      par && cu_can_update?(user)
+    )
 
-    if cu_can_update?(user)
-      begin
-        user.update_attributes_from(params)
-        user.send_update_notification_to_clients
-        render json: user
-      rescue => e
-        render json: {errors: [e.message]}, status: 422
-      end
-    else
-      render json: {}, status: 403
+    handle_client_request(r) do
+      r.obj.update_attributes_from(r.par)
+      r.obj.update_roles_from(r.par, self_update?(r.obj)) if cu_is_admin?
+      r.obj.send_update_notification_to_clients(:async)
     end
   end
 
@@ -43,8 +38,12 @@ class UsersController < ApplicationController
   private
 
 
+  def self_update?(user)
+    user == current_user
+  end
+
+
   def cu_can_update?(user)
-    return false unless user
-    current_user.has_role?(:admin) || user == current_user
+    self_update?(user) || cu_is_admin?
   end
 end

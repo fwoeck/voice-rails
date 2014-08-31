@@ -259,7 +259,7 @@ WebRtcMediaManager.prototype.createAnswer = function (createAnswerCallback, hasV
       me.onSetRemoteDescriptionErrorCallback(error);
     });
   } catch (exception) {
-    app.showDefaultError('We could not open the sound device.<br />Please allow the browser to access it<br />in the WebRTC settings.');
+    app.showDefaultError(i18n.errors.webrtc_access);
     console.log(exception);
   }
 };

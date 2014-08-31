@@ -1,6 +1,7 @@
 env.i18n =
   en:
     dialog:
+      agent_created:    'You successfully added NAME as new ROLE.'
       browser_warning:  'For now, Chrome CHROME+ and Firefox FIREFOX+ are the only supported browsers. Use this platform at own risk.'
       cancel:           'Cancel'
       dial_now:         'Dial now'
@@ -76,6 +77,7 @@ env.i18n =
       sip_extension:    'SIP Extension'
       sip_secret:       'SIP Password'
       skills:           'Skills'
+      user:             'user'
       zendesk_id:       'Zendesk Id'
     headers:
       agent_management: 'Agent Management'
@@ -117,7 +119,7 @@ env.i18n =
       type_a_number:    'Type a number..'
       type_here:        'Type here..'
     errors:
-      ajax_error:       'Sorry, an error happened during your request.'
+      ajax_error:       'Sorry, your request couldn\'t be finalized:<br />MSG.'
       must_be_text:     'Must be a text..'
       number_format:    'Local numbers: 030... / Intl. numbers: 0049...'
       email_format:     'Enter a valid email address'
@@ -127,3 +129,4 @@ env.i18n =
       password_match:   'Must match the first password'
       zendesk_format:   'Enter 9 or 10 digits'
       sip_secret:       'Enter 6 or more digits'
+      webrtc_access:    'We could not open the sound device.<br />Please allow the browser to access it<br />in the WebRTC settings.'

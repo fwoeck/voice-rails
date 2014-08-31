@@ -18,7 +18,10 @@
 
       label.select.small-2
         = t 'domain.roles'
-        = view Ember.Select multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
+        if cuIsAdmin
+          = view Ember.Select multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
+        else
+          = view Ember.Select disabled="disabled" multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
 
       button.tiny.icon type='submit' click=safeRecord
         = t 'domain.save_changes'

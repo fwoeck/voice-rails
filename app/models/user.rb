@@ -35,18 +35,23 @@ class User < ActiveRecord::Base
                          allow_blank: true
 
 
-  def update_attributes_from(params)
-    update_availability_from(params)
-    update_languages_from(params)
-    update_skills_from(params)
-    update_fields_from(params)
+  def update_attributes_from(p)
+    update_availability_from(p)
+    update_languages_from(p)
+    update_skills_from(p)
+    update_fields_from(p)
   end
 
 
-  def send_update_notification_to_clients
-    AmqpManager.push_publish(
-      user_ids: User.all_online_ids, data: UserSerializer.new(self)
-    )
+  def send_update_notification_to_clients(async=false)
+    delay = async ? 0.1 : 0
+
+    VoiceThread.run {
+      sleep delay
+      AmqpManager.push_publish(
+        user_ids: User.all_online_ids, data: UserSerializer.new(self)
+      )
+    }
   end
 
 
@@ -116,8 +121,8 @@ class User < ActiveRecord::Base
     end
 
 
-    def create_from(p)
-      params = {
+    def build_param_hash(p)
+      {
         name:       p.fetch(:name, nil).try(:strip),
         email:      p.fetch(:email).strip.downcase,
         secret:     p.fetch(:secret, nil).try(:strip),
@@ -126,10 +131,16 @@ class User < ActiveRecord::Base
         zendesk_id: p.fetch(:zendesk_id, nil).try(:strip),
         password_confirmation: p.fetch(:confirmation)
       }
+    end
 
-      sanitize_params(params)
-      user = User.create!(params)
-      # TODO set roles/skills/langs
+
+    def create_from(p)
+      sanitize_params(p)
+      par  = build_param_hash(p)
+      user = User.create!(par)
+
+      user.update_attributes_from(p)
+      user.update_roles_from(p)
       user
     end
 
@@ -156,7 +167,7 @@ class User < ActiveRecord::Base
 
 
     def get_random_secret
-      (0..5).each_with_object('') {|n, pass| pass << rand(9).to_s }
+      (0..5).each_with_object('') { |n, pass| pass << rand(9).to_s }
     end
   end
 
@@ -165,7 +176,7 @@ class User < ActiveRecord::Base
 
   def send_ahn_notification
     unless (self.changes.keys & %w{name secret}).empty?
-      Thread.new {
+      VoiceThread.run {
         sleep 0.05
         notify_ahn_about_update
       }
