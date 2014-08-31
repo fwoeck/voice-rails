@@ -8,7 +8,7 @@
 .agent_form_wrapper {
   transition: height ease 300ms;
   overflow: hidden;
-  z-index: 5;
+  clear: both;
   height: 0;
 }
 
@@ -19,7 +19,14 @@
 form.agent_form {
 
   fieldset {
+    box-shadow: #888 2px 2px 3px;
     padding: 10px 0 10px 20px;
+    background-color: #f6f6f6;
+    width: calc(100% - 4px);
+
+    legend {
+      background: transparent;
+    }
   }
 
   .avatar {

@@ -107,6 +107,7 @@ form#new_user {
 
 #ember_main {
   position: relative;
+  overflow: hidden;
   height: 100%;
 
   .error small.error {

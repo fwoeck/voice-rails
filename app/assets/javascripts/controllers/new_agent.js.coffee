@@ -3,8 +3,17 @@ Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
   agentIsNew: true
 
 
+  saveAgentData: (el) ->
+    spin = el.find('.fa-refresh')
+    @enableSpinner(spin)
+
+    @get('model').save().then (=>
+      @showSuccesMessage()
+      @clearAgent()
+    ), (->)
+
+
   clearAgent: ->
-    @showSuccesMessage()
     @set('model', @store.createRecord Voice.User)
 
 

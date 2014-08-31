@@ -14,8 +14,10 @@ Voice.StatsView = Ember.View.extend({
   setRefreshTimer: ->
     self = @
     data = @get('data')
+
     @refreshTimer = window.setInterval (->
       Voice.store.find('dataset').then ->
+        return unless self.get('_state') == 'inDOM'
         data.triggerStatsUpdate()
         self.cycleLangs()
     ), 3000
