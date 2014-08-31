@@ -67,7 +67,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
 
 
   agentsCallLeg: ( ->
-    @get('extension') != '0' && @get('extension') != env.adminName
+    @get('extension') != '0'
   ).property('extension')
 
 
