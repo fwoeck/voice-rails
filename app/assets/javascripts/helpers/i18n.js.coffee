@@ -1,6 +1,7 @@
 env.i18n =
   en:
     dialog:
+      agent_created:    'You successfully added NAME as new ROLE.'
       browser_warning:  'For now, Chrome CHROME+ and Firefox FIREFOX+ are the only supported browsers. Use this platform at own risk.'
       cancel:           'Cancel'
       dial_now:         'Dial now'
@@ -76,6 +77,7 @@ env.i18n =
       sip_extension:    'SIP Extension'
       sip_secret:       'SIP Password'
       skills:           'Skills'
+      user:             'user'
       zendesk_id:       'Zendesk Id'
     headers:
       agent_management: 'Agent Management'

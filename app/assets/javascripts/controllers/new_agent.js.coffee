@@ -4,7 +4,19 @@ Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
 
   clearAgent: ->
+    @showSuccesMessage()
     @set('model', @store.createRecord Voice.User)
+
+
+  showSuccesMessage: ->
+    name = @get('model.displayName')
+    role = @get('model.roles')?.split(',')[0] || i18n.domain.user
+
+    app.showDefaultMessage(
+      i18n.dialog.agent_created
+                 .replace('NAME', name)
+                 .replace('ROLE', role)
+    )
 
 
   gravatarUrl: (->
