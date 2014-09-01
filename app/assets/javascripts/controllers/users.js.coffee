@@ -1,8 +1,11 @@
 Voice.UsersController = Ember.ArrayController.extend({
 
   availableAgents: (->
-    @get('content').filter( (a) ->
+    @get('allAgents').filter( (a) ->
       a.get('availability') == 'ready' && a.get('isCallable')
     ).length
-  ).property('content.@each.{isCallable,availability}')
+  ).property('allAgents.@each.{isCallable,availability}')
+
+
+  allAgents: Ember.computed.filterProperty 'content', 'isNew', false
 })

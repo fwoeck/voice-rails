@@ -11,6 +11,17 @@ window.app = {
     msg
 
 
+  expandAgentForm: (el, invert=false) ->
+    ($ '.agent_form_wrapper').removeClass('expanded')
+    el.find('.agent_form_wrapper').addClass('expanded')
+
+    table = ($ '#agent_table_wrapper')
+    if invert
+      table.addClass('expanded')
+    else
+      table.removeClass('expanded')
+
+
   aggregateSkillSelection: ->
     env.skillSelection = Ember.keys(env.skills).sort().reduce(
       ((arr, key) -> arr.concat({id: key, name: env.skills[key]})), []

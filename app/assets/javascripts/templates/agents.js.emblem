@@ -5,4 +5,4 @@
   if cuIsAdmin
     = render 'new_agent' newAgent
 
-  = render 'agent_table' Voice.allUsers
+  = render 'agent_table'

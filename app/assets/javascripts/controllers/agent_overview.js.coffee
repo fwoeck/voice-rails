@@ -2,12 +2,12 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
 
   pattern: ''
   needs: ['calls', 'users']
-  contentBinding: 'controllers.users'
+  contentBinding: 'controllers.users.allAgents'
 
 
   matchingAgents: (->
-    pattern =  @get('pattern').toLowerCase()
-    agents  = (@get('content') || []).filter (agent) -> !agent.get('isNew')
+    pattern = @get('pattern').toLowerCase()
+    agents  = @get('content')
 
     return agents unless pattern
     agents.filter (agent) -> agent.matchesSearch(pattern)
@@ -15,12 +15,12 @@ Voice.AgentOverviewController = Ember.ArrayController.extend({
 
 
   currentStatusLine: (->
-    count = @get('content.availableAgents')
+    count = @get('controllers.users.availableAgents')
     are   = if count == 1
               i18n.agents.agent_is
             else
               i18n.agents.agents_are
 
     "#{count} #{are} #{i18n.agents.available}."
-  ).property('content.availableAgents')
+  ).property('controllers.users.availableAgents')
 })

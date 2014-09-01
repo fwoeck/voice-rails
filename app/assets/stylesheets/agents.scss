@@ -16,6 +16,20 @@
   height: 374px;
 }
 
+#agent_table_wrapper {
+  transition: top ease 300ms;
+  overflow-y: scroll;
+  position: absolute;
+  padding-top: 15px;
+  width: 978px;
+  top: 503px;
+  bottom: 0;
+}
+
+#agent_table_wrapper.expanded {
+  top: 129px;
+}
+
 form.agent_form {
 
   fieldset {
