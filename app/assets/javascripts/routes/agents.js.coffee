@@ -5,7 +5,8 @@ Voice.AgentsRoute = Ember.Route.extend({
 
 
   activate: ->
-    @controllerFor('agents').set 'newAgent', Voice.store.createRecord(Voice.User)
+    agent = Voice.store.createRecord(Voice.User)
+    @controllerFor('agents').set('newAgent', agent)
 
 
   deactivate: ->

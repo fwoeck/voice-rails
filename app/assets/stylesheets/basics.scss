@@ -119,8 +119,9 @@ form#new_user {
   }
 }
 
-#ember_main .ember-view.application,
-#ember_main .ember-view.index {
+#main > .ember-view,
+#ember_main .ember-view.index,
+#ember_main .ember-view.application {
   height: 100%;
 }
 

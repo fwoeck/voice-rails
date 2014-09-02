@@ -1,6 +1,9 @@
 Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
-  agentIsNew: true
+  needs:            ['agents', 'users']
+  agentIsNew:       true
+  contentBinding:   'controllers.agents.newAgent'
+  cuIsAdminBinding: 'controllers.users.cuIsAdmin'
 
 
   saveAgentData: (el) ->
@@ -14,6 +17,8 @@ Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
 
   clearAgent: ->
+    agent = @get('model')
+    agent.deleteRecord() if agent.get('isNew')
     @set('model', @store.createRecord Voice.User)
 
 
@@ -31,9 +36,4 @@ Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
   gravatarUrl: (->
     'https://secure.gravatar.com/avatar/000?s=48'
   ).property()
-
-
-  cuIsAdmin: (->
-    /admin/.test(Voice.get 'currentUser.roles')
-  ).property('Voice.currentUser.roles')
 })

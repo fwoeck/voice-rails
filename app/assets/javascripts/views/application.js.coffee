@@ -8,8 +8,7 @@ Voice.ApplicationView = Ember.View.extend({
     Ember.run.later app, app.setupPhone, 1500
 
     app.setupSSE()
-    app.setupAbide()
-    app.setupFoundation()
+    app.initFoundation()
 
     window.onbeforeunload = ->
       env.sseSource.close()

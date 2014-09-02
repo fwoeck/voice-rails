@@ -13,6 +13,7 @@ env.i18n =
       incoming_call:    'You have an incoming call from<br /><strong>NAME</strong>'
       lost_server_conn: 'Sorry, we lost our connection to the server &mdash;<br />please check your network and try to re-login.'
       no_messages:      'Sorry, we stopped receiving messages &mdash;<br />please open just one app window at a time.'
+      ok:               'Ok'
       outgoing_call:    'Do you want to call<br /><strong>NAME</strong>?'
       reload_necessary: 'We need to reload the browser window to activate this setting.'
       reload:           'Reload'

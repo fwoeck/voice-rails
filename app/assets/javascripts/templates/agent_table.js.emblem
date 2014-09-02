@@ -2,3 +2,16 @@
   h5
     i.header.fa.fa-compass
     span.header = t 'headers.agent_table'
+
+#agent_table_wrapper.bottom-mask.expanded.large-12.medium-12
+  each content
+    .agent
+      img.avatar width="48px" height="48px" src=gravatarUrl
+
+      span = email
+      span &nbsp; / &nbsp;
+      span = fullName
+      br
+      span = displayLangs
+      span &nbsp; / &nbsp;
+      span = displaySkills

@@ -1,4 +1,4 @@
-#my_prefs.large-12.medium-12.columns click='expandPane target=view'
+#my_config.large-12.medium-12.columns click='expandPane target=view'
   h5
     i.header.fa.fa-cogs
     span.header = t 'headers.my_settings'

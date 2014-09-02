@@ -11,6 +11,17 @@ window.app = {
     msg
 
 
+  expandAgentForm: (el, invert=false) ->
+    ($ '.agent_form_wrapper').removeClass('expanded')
+    el.find('.agent_form_wrapper').addClass('expanded')
+
+    table = ($ '#agent_table_wrapper')
+    if invert
+      table.addClass('expanded')
+    else
+      table.removeClass('expanded')
+
+
   aggregateSkillSelection: ->
     env.skillSelection = Ember.keys(env.skills).sort().reduce(
       ((arr, key) -> arr.concat({id: key, name: env.skills[key]})), []
@@ -99,10 +110,11 @@ window.app = {
 
 
   setupAbide: ->
-    Foundation.libs.abide.settings.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
+    env.patterns = Foundation.libs.abide.settings.patterns
+    env.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
 
 
-  setupFoundation: ->
+  initFoundation: ->
     ($ document).foundation()
 
 
@@ -298,7 +310,10 @@ window.app = {
     app.dialog(message, 'message').then (->), (->)
 
 
-  dialog: (message, type='question', textYes='Ok', textNo='Cancel', text, format) ->
+  dialog: (
+    message, type='question', textYes=i18n.dialog.ok,
+    textNo=i18n.dialog.cancel, text, format
+  ) ->
     new Ember.RSVP.Promise (resolve, reject) ->
       dialog = Ember.Object.create
         message: message

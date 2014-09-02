@@ -4,7 +4,7 @@ Voice.AgentBridgeView = Ember.View.extend(DragNDrop.Dragable, {
 
 
   didInsertElement: ->
-    app.setupFoundation()
+    app.initFoundation()
 
     # FIXME This is ugly:
     #
