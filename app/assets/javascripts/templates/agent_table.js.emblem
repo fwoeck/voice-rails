@@ -5,11 +5,5 @@
 
 #agent_table_wrapper.bottom-mask.expanded.large-12.medium-12
   each content
-    .panel
-      = displayName
-  each content
-    .panel
-      = displayName
-  each content
-    .panel
+    .agent
       = displayName

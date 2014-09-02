@@ -1,6 +1,8 @@
 Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
-  agentIsNew: true
+  needs:          ['agents']
+  agentIsNew:     true
+  contentBinding: 'controllers.agents.newAgent'
 
 
   saveAgentData: (el) ->
@@ -14,6 +16,8 @@ Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
 
   clearAgent: ->
+    agent = @get('model')
+    agent.deleteRecord() if agent.get('isNew')
     @set('model', @store.createRecord Voice.User)
 
 

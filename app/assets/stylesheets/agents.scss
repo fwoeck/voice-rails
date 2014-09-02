@@ -1,4 +1,4 @@
-#agent_table, #new_agent, #my_prefs {
+#agent_table, #new_agent, #my_config {
   border-bottom: 1px solid #eee;
   position: relative;
   height: 43px;
@@ -24,6 +24,11 @@
   width: 978px;
   top: 503px;
   bottom: 0;
+
+  .agent {
+    width: calc(100% - 4px);
+    padding: 8px 12px;
+  }
 }
 
 #agent_table_wrapper.expanded {

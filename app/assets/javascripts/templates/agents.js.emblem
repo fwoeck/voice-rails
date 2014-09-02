@@ -1,8 +1,8 @@
 #center_column.large-12.medium-12.columns
 
-  = render 'my_prefs' Voice.currentUser
+  = render 'my_config'
 
   if cuIsAdmin
-    = render 'new_agent' newAgent
+    = render 'new_agent'
 
   = render 'agent_table'
