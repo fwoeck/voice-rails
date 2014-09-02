@@ -17,7 +17,7 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
 
   gravatarUrl: (->
     email = @get 'email'
-    return "" unless env.patterns?.email.test(email)
+    return "" unless env.patterns.email.test(email)
     gravatar(email, size: 48)
   ).property('email')
 

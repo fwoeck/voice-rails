@@ -30,6 +30,7 @@ app.aggregateSkillSelection()
 app.aggregateLanguageSelection()
 app.aggregateRoleSelection()
 
+app.setupAbide()
 
 window.Voice = Ember.Application.create(
   rootElement: '#ember_main'
@@ -37,5 +38,4 @@ window.Voice = Ember.Application.create(
 
 if app.noLogin()
   Voice.deferReadiness()
-  app.setupFoundation()
-  app.setupAbide()
+  app.initFoundation()

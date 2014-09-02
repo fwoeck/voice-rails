@@ -114,7 +114,7 @@ window.app = {
     env.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
 
 
-  setupFoundation: ->
+  initFoundation: ->
     ($ document).foundation()
 
 
