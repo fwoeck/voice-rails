@@ -71,13 +71,6 @@
   float: left;
   padding: 0;
 
-  span.avatar, img.avatar {
-    display: block;
-    opacity: 0.8;
-    margin: 8px;
-    float: left;
-  }
-
   i.fa {
     transition: color linear 300ms;
     background-color: #fff;
@@ -129,12 +122,6 @@
     float: left;
   }
 
-  span.avatar {
-    background-color: #ddd;
-    height: 48px;
-    width: 48px;
-  }
-
   span.skills, span.languages {
     width: 270px;
   }
@@ -143,5 +130,18 @@
     border-bottom: none;
     margin: 7px 0 6px 0;
     color: #008cba;
+  }
+
+  span.avatar, img.avatar {
+    display: block;
+    opacity: 0.8;
+    height: 48px;
+    width: 48px;
+    margin: 8px;
+    float: left;
+  }
+
+  span.avatar {
+    background-color: #ddd;
   }
 }

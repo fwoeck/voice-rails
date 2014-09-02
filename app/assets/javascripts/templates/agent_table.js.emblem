@@ -6,4 +6,9 @@
 #agent_table_wrapper.bottom-mask.expanded.large-12.medium-12
   each content
     .agent
-      = displayName
+      img.avatar width="48px" height="48px" src=gravatarUrl
+
+      span = email
+      span = fullName
+      span = displayLangs
+      span = displaySkills
