@@ -310,7 +310,10 @@ window.app = {
     app.dialog(message, 'message').then (->), (->)
 
 
-  dialog: (message, type='question', textYes='Ok', textNo='Cancel', text, format) ->
+  dialog: (
+    message, type='question', textYes=i18n.dialog.ok,
+    textNo=i18n.dialog.cancel, text, format
+  ) ->
     new Ember.RSVP.Promise (resolve, reject) ->
       dialog = Ember.Object.create
         message: message
