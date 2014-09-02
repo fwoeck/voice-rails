@@ -9,6 +9,9 @@
       img.avatar width="48px" height="48px" src=gravatarUrl
 
       span = email
+      span &nbsp; / &nbsp;
       span = fullName
+      br
       span = displayLangs
+      span &nbsp; / &nbsp;
       span = displaySkills
