@@ -69,8 +69,16 @@ table#callstats_table {
   }
 
   span.matches label {
+    padding-right: 15px;
+    position: relative;
     line-height: 35px;
     font-size: 12px;
+
+    input {
+      position: absolute;
+      top: 11px;
+      right: 0;
+    }
   }
 }
 
