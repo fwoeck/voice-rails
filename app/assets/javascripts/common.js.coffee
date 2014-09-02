@@ -110,7 +110,8 @@ window.app = {
 
 
   setupAbide: ->
-    Foundation.libs.abide.settings.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
+    env.patterns = Foundation.libs.abide.settings.patterns
+    env.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
 
 
   setupFoundation: ->
