@@ -4,7 +4,7 @@
   else
     span.avatar
 
-  i class={activity :fa :fa-comments} click="callAction this"
+  i class={activity :fa :fa-comments} click="callAgent this"
 
   span.name.has-tip.radius data-tooltip="" title="#{agentTitle this}" #{displayName}
   span.languages = displayLangs

@@ -1,0 +1,49 @@
+.agent
+  img.avatar width="48px" height="48px" src=gravatarUrl
+
+  if cuCanEditAgent
+    i.fa.fa-wrench click="editAgent"
+  else
+    i.fa.fa-info-circle click="editAgent"
+
+  i class={activity :fa :fa-comments} click="callAgent this"
+
+  ul
+    li
+      .space
+       = t 'domain.email'
+       | :
+      = email
+    li
+      .space
+       = t 'domain.full_name'
+       | :
+      = fullName
+
+  ul
+    li
+      .space
+       = t 'domain.languages'
+       | :
+      = displayLangs
+    li
+      .space
+       = t 'domain.skills'
+       | :
+      = displaySkills
+
+  ul.short
+    li
+      .space
+       = t 'domain.roles'
+       | :
+      = displayRoles
+    li
+      .space
+       = t 'domain.state'
+       | :
+      = visibility
+      | /
+      = activity
+
+  ul.last

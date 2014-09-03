@@ -60,6 +60,11 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
   ).property('skills')
 
 
+  displayRoles: (->
+    @get('roles')?.split(',').map((l) -> l.capitalize()).join(', ')
+  ).property('roles')
+
+
   isCallable: (->
     @get('activity') == 'silent' && @get('visibility') == 'online'
   ).property('activity', 'visibility')

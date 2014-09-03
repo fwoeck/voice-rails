@@ -35,6 +35,72 @@
       height: 48px;
       width: 48px;
     }
+
+    i.fa {
+      transition: color linear 300ms;
+      background-color: #fff;
+      border: 3px solid #ddd;
+      border-radius: 1000px;
+      position: absolute;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 5px;
+      height: 34px;
+      color: #777;
+      width: 34px;
+      right: 18px;
+      top: 15px;
+    }
+
+    i.fa.fa-comments {
+      right: 60px;
+    }
+
+    i.fa.fa-info-circle:before {
+      margin: 2px -1px -2px 1px;
+    }
+
+    i.fa:hover {
+      color: #000;
+    }
+
+    ul {
+      border: 1px solid #d8d8d8;
+      margin: 0 8px 0 0;
+      padding-left: 5px;
+      line-height: 23px;
+      overflow: hidden;
+      height: 48px;
+      width: 285px;
+      color: #555;
+      float: left;
+    }
+
+    .space {
+      display: inline-block;
+      color: #888;
+      width: 80px;
+    }
+
+    ul.last {
+      margin-right: 0;
+      float: right;
+      width: 97px;
+    }
+
+    ul.short {
+      width: 200px;
+
+      .space {
+        width: 45px;
+      }
+    }
+
+    li {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 }
 
@@ -109,12 +175,12 @@ form.agent_form {
   }
 
   select {
+    padding: 7px 5px 4px 5px;
     line-height: 18px;
     height: 89px;
 
     option {
       padding: 0 2px 1px 2px;
-      line-height: 18px;
     }
   }
 
