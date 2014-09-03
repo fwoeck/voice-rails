@@ -77,6 +77,7 @@ env.i18n =
       save_changes:     'Save Changes'
       sip_extension:    'SIP Extension'
       sip_secret:       'SIP Password'
+      state:            'State'
       skills:           'Skills'
       user:             'user'
       zendesk_id:       'Zendesk Id'

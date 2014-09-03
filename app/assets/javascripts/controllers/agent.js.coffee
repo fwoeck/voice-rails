@@ -1,7 +1,7 @@
 Voice.AgentController = Ember.ObjectController.extend({
 
   actions:
-    callAction: (agent) ->
+    callAgent: (agent) ->
       cu = Voice.get('currentUser')
 
       if cu != agent && cu.get('isCallable') && agent.get('isCallable')
