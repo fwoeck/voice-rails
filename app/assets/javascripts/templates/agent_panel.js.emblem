@@ -1,7 +1,7 @@
 .agent class=cuCanEditAgent
   img.avatar width="48px" height="48px" src=gravatarUrl
 
-  i.fa.fa-wrench click="editAgent"
+  i.fa.fa-wrench click="editAgent target=view"
   i class={isCallable :fa :fa-comments} click="callAgent this"
 
   ul
@@ -47,4 +47,5 @@
   ul.last
 
 if formIsActive
-  | show agent form
+  .panel.left
+    | Show agent form

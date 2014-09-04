@@ -1,5 +1,11 @@
 window.app = {
 
+  setCurrentAgentForm: (el) ->
+    av = Voice.get('agentsView')
+    if av && el != av.get('currentForm')
+      av.set('currentForm', el)
+
+
   # TODO This needs some generalization/i18n:
   #
   parseAjaxError: (msg) ->
@@ -11,12 +17,13 @@ window.app = {
     msg
 
 
-  expandAgentForm: (el, invert=false) ->
-    ($ '.agent_form_wrapper').removeClass('expanded')
-    el.find('.agent_form_wrapper').addClass('expanded')
+  expandAgentForm: (oldF, curF) ->
+    oldF.find('.agent_form_wrapper').removeClass('expanded') if oldF
+    curF.find('.agent_form_wrapper').addClass('expanded')
 
-    table = ($ '#agent_table_wrapper')
-    if invert
+    tableId = '#agent_table_wrapper'
+    table   = ($ tableId)
+    if curF.find(tableId)
       table.addClass('expanded')
     else
       table.removeClass('expanded')
