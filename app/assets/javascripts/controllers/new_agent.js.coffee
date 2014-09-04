@@ -1,9 +1,8 @@
 Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
-  needs:            ['agents', 'users']
-  agentIsNew:       true
-  contentBinding:   'controllers.agents.newAgent'
-  cuIsAdminBinding: 'controllers.users.cuIsAdmin'
+  contentBinding: 'controllers.agents.newAgent'
+  agentIsNew:     true
+  cuIsAdmin:      true
 
 
   saveAgentData: (el) ->
@@ -29,8 +28,7 @@ Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
     app.showDefaultMessage(
       i18n.dialog.agent_created
                  .replace('NAME', name)
-                 .replace('ROLE', role)
-    )
+                 .replace('ROLE', role))
 
 
   gravatarUrl: (->

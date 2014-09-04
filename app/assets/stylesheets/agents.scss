@@ -43,24 +43,28 @@
       border-radius: 1000px;
       position: absolute;
       font-size: 18px;
-      cursor: pointer;
       padding: 5px;
       height: 34px;
-      color: #777;
       width: 34px;
       right: 18px;
       top: 15px;
     }
 
-    i.fa.fa-comments {
+    i.fa-wrench {
+      color: #e8e8e8;
+    }
+
+    i.fa-comments {
+      color: #e8e8e8;
       right: 60px;
     }
 
-    i.fa.fa-info-circle:before {
-      margin: 2px -1px -2px 1px;
+    i.fa-comments.is-callable {
+      cursor: pointer;
+      color: #777;
     }
 
-    i.fa:hover {
+    i.fa-comments.is-callable:hover {
       color: #000;
     }
 
@@ -101,6 +105,17 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+    }
+  }
+
+  .agent.cu-can-edit-agent {
+    i.fa-wrench {
+      cursor: pointer;
+      color: #777;
+    }
+
+    i.fa-wrench:hover {
+      color: #000;
     }
   }
 }

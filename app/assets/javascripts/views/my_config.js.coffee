@@ -7,5 +7,6 @@ Voice.MyConfigView = Ember.View.extend({
 
   actions:
     expandPane: ->
+      @set('controller.currentForm', null)
       app.expandAgentForm @$()
 })

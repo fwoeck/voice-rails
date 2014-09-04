@@ -1,5 +1,8 @@
 Voice.UsersController = Ember.ArrayController.extend({
 
+  currentForm: null
+
+
   availableAgents: (->
     @get('allAgents').filter( (a) ->
       a.get('availability') == 'ready' && a.get('isCallable')

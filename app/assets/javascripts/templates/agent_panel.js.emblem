@@ -1,49 +1,50 @@
-.agent
+.agent class=cuCanEditAgent
   img.avatar width="48px" height="48px" src=gravatarUrl
 
-  if cuCanEditAgent
-    i.fa.fa-wrench click="editAgent"
-  else
-    i.fa.fa-info-circle click="editAgent"
-
-  i class={activity :fa :fa-comments} click="callAgent this"
+  i.fa.fa-wrench click="editAgent"
+  i class={isCallable :fa :fa-comments} click="callAgent this"
 
   ul
     li
       .space
-       = t 'domain.email'
-       | :
+        = t 'domain.email'
+        | :
       = email
     li
       .space
-       = t 'domain.full_name'
-       | :
+        = t 'domain.full_name'
+        | :
       = fullName
 
   ul
     li
       .space
-       = t 'domain.languages'
-       | :
+        = t 'domain.languages'
+        | :
       = displayLangs
     li
       .space
-       = t 'domain.skills'
-       | :
+        = t 'domain.skills'
+        | :
       = displaySkills
 
   ul.short
     li
       .space
-       = t 'domain.roles'
-       | :
+        = t 'domain.roles'
+        | :
       = displayRoles
     li
       .space
-       = t 'domain.state'
-       | :
+        = t 'domain.line'
+        | :
+      = name
+      ' &nbsp;/
       = visibility
-      | /
+      ' &nbsp;/
       = activity
 
   ul.last
+
+if formIsActive
+  | show agent form
