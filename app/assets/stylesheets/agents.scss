@@ -43,24 +43,28 @@
       border-radius: 1000px;
       position: absolute;
       font-size: 18px;
-      cursor: pointer;
       padding: 5px;
       height: 34px;
-      color: #777;
       width: 34px;
       right: 18px;
       top: 15px;
     }
 
-    i.fa.fa-comments {
+    i.fa-wrench {
+      color: #e8e8e8;
+    }
+
+    i.fa-comments {
+      color: #e8e8e8;
       right: 60px;
     }
 
-    i.fa.fa-info-circle:before {
-      margin: 2px -1px -2px 1px;
+    i.fa-comments.is-callable {
+      cursor: pointer;
+      color: #777;
     }
 
-    i.fa:hover {
+    i.fa-comments.is-callable:hover {
       color: #000;
     }
 
@@ -85,14 +89,15 @@
     ul.last {
       margin-right: 0;
       float: right;
-      width: 97px;
+      width: 96px;
     }
 
     ul.short {
-      width: 200px;
+      width: 202px;
+      margin: 0;
 
       .space {
-        width: 45px;
+        width: 50px;
       }
     }
 
@@ -100,6 +105,40 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+    }
+  }
+
+  .agent.cu-can-edit-agent {
+    i.fa-wrench {
+      cursor: pointer;
+      color: #777;
+    }
+
+    i.fa-wrench:hover {
+      color: #000;
+    }
+  }
+
+  .agent_form_wrapper {
+    transition: height ease 500ms;
+    margin-top: -10px;
+    float: left;
+
+    img.avatar {
+      display: none;
+    }
+  }
+
+  .agent_form_wrapper.expanded {
+    height: 324px;
+  }
+
+  fieldset {
+    padding-top: 15px;
+    margin: 0;
+
+    legend {
+      display: none;
     }
   }
 }

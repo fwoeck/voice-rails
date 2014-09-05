@@ -12,7 +12,7 @@ Voice.UsersController = Ember.ArrayController.extend({
   #          (e.g. the online visibility):
   #
   # allAgents: Ember.computed.filterProperty 'content', 'isNew', false
-
+  #
   allAgents: (->
     @get('content').filter (a) -> !a.get('isNew')
   ).property('content.@each.isNew')

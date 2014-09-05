@@ -1,4 +1,4 @@
-Voice.NewAgentView = Ember.View.extend({
+Voice.AgentConfigView = Ember.View.extend({
 
   didInsertElement: ->
     @set 'controller.formEl', @$()

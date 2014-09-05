@@ -1,5 +1,12 @@
 window.app = {
 
+  setCurrentAgentForm: (el) ->
+    return unless (av = Voice.get 'agentsView')
+
+    if el?[0] != av.get('currentForm')?[0]
+      av.set('currentForm', el)
+
+
   # TODO This needs some generalization/i18n:
   #
   parseAjaxError: (msg) ->
@@ -11,12 +18,20 @@ window.app = {
     msg
 
 
-  expandAgentForm: (el, invert=false) ->
-    ($ '.agent_form_wrapper').removeClass('expanded')
-    el.find('.agent_form_wrapper').addClass('expanded')
+  expandAgentForm: (oldF, curF) ->
+    @toggleAgentTable(curF)
 
-    table = ($ '#agent_table_wrapper')
-    if invert
+    oldF.find('.agent_form_wrapper').removeClass('expanded') if oldF
+    Ember.run.later @, (->
+      curF.find('.agent_form_wrapper').addClass('expanded')
+    ), 100
+
+
+  toggleAgentTable: (curF) ->
+    tableId = '#agent_table_wrapper'
+    table   = ($ tableId)
+
+    if curF.find(tableId).length || table.find(curF).length
       table.addClass('expanded')
     else
       table.removeClass('expanded')

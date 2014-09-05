@@ -1,11 +1,10 @@
 Voice.AgentForm = Ember.Mixin.create({
 
+  needs:         ['agents', 'users']
+  formEl:        null
   roleArray:     []
   skillArray:    []
   languageArray: []
-  agentIsNew:    false
-  cuIsAdmin:     false
-  formEl:        null
 
 
   actions:
