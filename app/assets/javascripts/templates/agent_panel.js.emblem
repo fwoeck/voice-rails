@@ -47,5 +47,4 @@
   ul.last
 
 if formIsActive
-  .panel.left
-    | Show agent form
+  = render 'agent_config' content

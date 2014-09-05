@@ -10,10 +10,23 @@ Voice.AgentPanelView = Ember.View.extend({
 
 
   observeActiveForm: (->
-    cur = @get('controller.formIsActive')
-    eql = @get('agentsView.currentForm')[0] == @$()[0]
+    old = @get('controller.formIsActive')
+    act = @get('agentsView.currentForm')?[0] == @$()[0]
+    return if act == old
 
-    if eql != cur
-      @set('controller.formIsActive', eql)
+    if act
+      @expandForm()
+    else
+      @collapseForm()
   ).observes('agentsView.currentForm')
+
+
+  collapseForm: ->
+    Ember.run.later @, (->
+      @set('controller.formIsActive', false)
+    ), 1000
+
+
+  expandForm: ->
+    @set('controller.formIsActive', true)
 })

@@ -118,6 +118,29 @@
       color: #000;
     }
   }
+
+  .agent_form_wrapper {
+    transition: height ease 500ms;
+    margin-top: -10px;
+    float: left;
+
+    img.avatar {
+      display: none;
+    }
+  }
+
+  .agent_form_wrapper.expanded {
+    height: 324px;
+  }
+
+  fieldset {
+    padding-top: 15px;
+    margin: 0;
+
+    legend {
+      display: none;
+    }
+  }
 }
 
 #agent_table_wrapper.expanded {
