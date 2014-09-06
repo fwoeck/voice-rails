@@ -15,6 +15,6 @@ Voice.AgentPanelController = Ember.ObjectController.extend({
 
   cuCanEditAgent: (->
     cu = Voice.get('currentUser')
-    @get('cuIsAdmin') || cu == @get('model')
-  ).property('cuIsAdmin')
+    @get('cuIsAdmin') && cu != @get('model')
+  ).property('cuIsAdmin', 'model')
 })

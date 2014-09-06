@@ -15,7 +15,7 @@ Voice.UsersController = Ember.ArrayController.extend({
   #
   allAgents: (->
     @get('content').filter (a) -> !a.get('isNew')
-  ).property('content.@each.isNew')
+  ).property('content.[]')
 
 
   cuIsAdmin: (->

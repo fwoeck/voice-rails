@@ -5,6 +5,8 @@ window.app = {
 
     if el?[0] != av.get('currentForm')?[0]
       av.set('currentForm', el)
+    else
+      av.set('currentForm', null)
 
 
   # TODO This needs some generalization/i18n:
@@ -21,17 +23,20 @@ window.app = {
   expandAgentForm: (oldF, curF) ->
     @toggleAgentTable(curF)
 
-    oldF.find('.agent_form_wrapper').removeClass('expanded') if oldF
-    Ember.run.later @, (->
-      curF.find('.agent_form_wrapper').addClass('expanded')
-    ), 100
+    if oldF
+      oldF.find('.agent_form_wrapper').removeClass('expanded')
+
+    if curF
+      Ember.run.later @, (->
+        curF.find('.agent_form_wrapper').addClass('expanded')
+      ), 100
 
 
   toggleAgentTable: (curF) ->
     tableId = '#agent_table_wrapper'
     table   = ($ tableId)
 
-    if curF.find(tableId).length || table.find(curF).length
+    if !curF || curF.find(tableId).length || table.find(curF).length
       table.addClass('expanded')
     else
       table.removeClass('expanded')
@@ -63,6 +68,11 @@ window.app = {
       '<span class="header">' + i18n.dialog.shortcut_header +
       '</span><span class="list">' + text + '</span>'
     )
+
+
+  hangupCurrentCall: ->
+    cc = Voice.get('currentCall')
+    app.hangupCall(cc) if cc
 
 
   hangupCall: (call) ->

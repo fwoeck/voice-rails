@@ -12,5 +12,8 @@
    = t 'headers.call_statistics'
   '  &mdash;
   = link-to 'agents'
-   = t 'headers.agents'
+   = t 'headers.agent_list'
+  '  &mdash;
+  a href='#' click='showHelp'
+   = t 'headers.help'
   '  &mdash;
