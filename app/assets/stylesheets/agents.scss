@@ -33,6 +33,11 @@
   height: 374px;
 }
 
+.agent_form_wrapper.dirty button[type="submit"] {
+  background-color: #ffd890 !important;
+  color: #444;
+}
+
 #agent_table_wrapper {
   transition: top ease 300ms;
   overflow-y: scroll;

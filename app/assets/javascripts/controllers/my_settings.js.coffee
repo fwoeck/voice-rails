@@ -55,7 +55,7 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
   saveCurrentUser: ->
     cu = Voice.get('currentUser')
-    cu.save() if cu.get('currentState.stateName') != 'root.loaded.saved'
+    cu.save() if cu.get('isDirty')
 
 
   currentStatusLine: (->

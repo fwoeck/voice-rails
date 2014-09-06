@@ -289,10 +289,12 @@ window.app = {
 
     if obj
       Voice.aS.normalizeAttributes(klass, data[name])
+
       if name == 'call' && data[name].hungup
         obj.deleteRecord()
       else
         @updateKeysFromData(obj, name, data)
+        obj.markAsSaved()
     else
       Voice.store.pushPayload(name, data)
 

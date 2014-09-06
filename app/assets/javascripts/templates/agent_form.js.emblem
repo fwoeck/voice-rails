@@ -1,4 +1,4 @@
-.agent_form_wrapper.large-12.medium-12
+.agent_form_wrapper class={dirty :large-12 :medium-12}
   form.agent_form data-abide="" novalidate="" submit='noop'
     fieldset
       legend = t 'headers.agent_profile'

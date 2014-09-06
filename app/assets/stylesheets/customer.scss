@@ -30,6 +30,19 @@ table.customer_table {
 
 table.tickets_table,
 table.history_table {
+
+  col.w18 {
+    width: 18%;
+  }
+
+  col.w24 {
+    width: 24%;
+  }
+
+  col.w58 {
+    width: 58%;
+  }
+
   thead td {
     font-size: 14px;
   }

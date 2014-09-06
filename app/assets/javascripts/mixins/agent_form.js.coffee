@@ -31,6 +31,12 @@ Voice.AgentForm = Ember.Mixin.create({
     @get('formEl').find('form').trigger('validate.fndtn.abide')
 
 
+  dirty: (->
+    agent = @get('model')
+    agent && agent.get('isDirty')
+  ).property('model.isDirty')
+
+
   submitForm: ->
     el         = @get('formEl')
     errorCount = el.find('form div.error').length
@@ -105,21 +111,21 @@ Voice.AgentForm = Ember.Mixin.create({
 
 
   setArray: (attr, selection) ->
-    all = @get("content.#{attr}s") || ""
+    all = @get("model.#{attr}s") || ""
     arr = selection.filter (n) -> all.match(n.id)
     @set "#{attr}Array", arr
 
 
   serializeArray: (attr) ->
     arr = @get("#{attr}Array")
-    @set "content.#{attr}s", arr.map(
+    @set "model.#{attr}s", arr.map(
       (n) -> n.id
     ).sort().join(',')
 
 
   setRoleArray: (->
     @setArray('role', env.roleSelection)
-  ).observes('content.roles')
+  ).observes('model.roles')
 
 
   observeRoleArray: (->
@@ -129,7 +135,7 @@ Voice.AgentForm = Ember.Mixin.create({
 
   setSkillArray: (->
     @setArray('skill', env.skillSelection)
-  ).observes('content.skills')
+  ).observes('model.skills')
 
 
   observeSkillArray: (->
@@ -139,7 +145,7 @@ Voice.AgentForm = Ember.Mixin.create({
 
   setLanguageArray: (->
     @setArray('language', env.languageSelection)
-  ).observes('content.languages')
+  ).observes('model.languages')
 
 
   observeLanguageArray: (->
