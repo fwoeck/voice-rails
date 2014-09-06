@@ -61,7 +61,7 @@ window.app = {
 
 
   showShortcutList: ->
-    text = Ember.keys(i18n.help).reduce(
+    text = Ember.keys(i18n.help).sort().reduce(
       ((arr, key) -> arr.concat(i18n.help[key])), []
     ).join('<br />')
     app.showDefaultMessage(

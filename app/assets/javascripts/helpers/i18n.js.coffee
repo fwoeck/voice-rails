@@ -42,8 +42,8 @@ env.i18n =
       recent_tickets:   'Recent tickets at Zendesk'
       request_new_user: 'Request a new Zendesk user for this customer.'
     help:
-      y:                'CR:     Confirm current dialog'
-      z:                'ESC:    Close current dialog'
+      A:                'CR:     Confirm current dialog'
+      B:                'ESC:    Close current dialog'
       a:                'Ctrl+A: Show the agents page'
       b:                'Ctrl+B: Set my state to "busy"'
       d:                'Ctrl+D: Show the dashboard'
