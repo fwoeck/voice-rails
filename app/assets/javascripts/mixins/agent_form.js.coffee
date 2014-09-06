@@ -8,13 +8,13 @@ Voice.AgentForm = Ember.Mixin.create({
 
 
   actions:
-
     noop: ->
       false
 
     safeRecord: ->
-      @validateForm()
-      Ember.run.next @, @submitForm
+      if @get('dirty')
+        @validateForm()
+        Ember.run.next @, @submitForm
       false
 
     cancelChanges: ->
