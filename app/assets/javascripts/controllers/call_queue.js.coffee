@@ -8,8 +8,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
 
   actions:
     hangupCall: ->
-      return unless cc = Voice.get('currentCall')
-      app.hangupCall(cc)
+      app.hangupCurrentCall()
       return false
 
 

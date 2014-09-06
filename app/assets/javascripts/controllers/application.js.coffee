@@ -10,6 +10,12 @@ Voice.ApplicationController = Ember.Controller.extend({
     Ember.run.next @, @displayBrowserWarning
 
 
+  actions:
+    showHelp: ->
+      app.showShortcutList()
+      false
+
+
   getMyCall: ->
     calls = @get('allCalls')
     return false unless calls

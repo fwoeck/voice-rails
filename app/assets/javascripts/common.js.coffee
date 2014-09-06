@@ -70,6 +70,11 @@ window.app = {
     )
 
 
+  hangupCurrentCall: ->
+    cc = Voice.get('currentCall')
+    app.hangupCall(cc) if cc
+
+
   hangupCall: (call) ->
     app.dialog(i18n.dialog.hangup_this_call,
       'question', i18n.dialog.hangup, i18n.dialog.cancel
