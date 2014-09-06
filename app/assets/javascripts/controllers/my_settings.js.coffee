@@ -47,6 +47,9 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
 
   saveOnUpdate: (->
+    # We check for this condition to avoid recursive
+    # loops triggered by fast consecutive mouse clicks:
+    #
     state = @get('content.currentState.stateName')
     if state == 'root.loaded.updated.uncommitted'
       Ember.run.scheduleOnce 'afterRender', @, @saveCurrentUser
