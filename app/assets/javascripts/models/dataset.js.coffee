@@ -1,4 +1,4 @@
-Voice.Dataset = DS.Model.extend({
+Voice.Dataset = DS.Model.extend(Voice.Resetable, {
 
   activeCallCount:     DS.attr 'number'
   queuedCallCount:     DS.attr 'number'

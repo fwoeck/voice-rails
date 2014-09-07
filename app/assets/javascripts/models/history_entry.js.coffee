@@ -1,4 +1,4 @@
-Voice.HistoryEntry = DS.Model.extend({
+Voice.HistoryEntry = DS.Model.extend(Voice.Resetable, {
 
   customer:  DS.belongsTo('customer')
 

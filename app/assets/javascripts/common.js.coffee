@@ -61,7 +61,7 @@ window.app = {
 
 
   showShortcutList: ->
-    text = Ember.keys(i18n.help).reduce(
+    text = Ember.keys(i18n.help).sort().reduce(
       ((arr, key) -> arr.concat(i18n.help[key])), []
     ).join('<br />')
     app.showDefaultMessage(
@@ -289,10 +289,12 @@ window.app = {
 
     if obj
       Voice.aS.normalizeAttributes(klass, data[name])
+
       if name == 'call' && data[name].hungup
         obj.deleteRecord()
       else
         @updateKeysFromData(obj, name, data)
+        obj.markAsSaved()
     else
       Voice.store.pushPayload(name, data)
 

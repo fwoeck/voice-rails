@@ -1,4 +1,4 @@
-Voice.ZendeskTicket = DS.Model.extend({
+Voice.ZendeskTicket = DS.Model.extend(Voice.Resetable, {
 
   requesterId: DS.attr('string')
   submitterId: DS.attr('string')

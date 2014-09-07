@@ -1,4 +1,4 @@
-Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, {
+Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.Resetable, {
 
   name:          DS.attr 'string'
   email:         DS.attr 'string'

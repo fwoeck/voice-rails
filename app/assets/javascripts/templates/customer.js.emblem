@@ -23,9 +23,10 @@ table.customer_table
             = t 'domain.save_record'
 
 table.history_table
-  col style='width: 18%'
-  col style='width: 24%'
-  col style='width: 58%'
+  colgroup
+    col.w18
+    col.w24
+    col.w58
   thead
     tr
       td = t 'domain.called_at'
@@ -36,9 +37,10 @@ table.history_table
       = render 'entry' entry
 
 table.tickets_table
-  col style='width: 18%'
-  col style='width: 24%'
-  col style='width: 58%'
+  colgroup
+    col.w18
+    col.w24
+    col.w58
   thead
     tr: td colspan="3"
       = t 'zendesk.recent_tickets'

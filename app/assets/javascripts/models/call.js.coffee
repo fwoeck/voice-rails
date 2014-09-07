@@ -6,7 +6,7 @@ Voice.CompCall = Ember.Mixin.create({
 })
 
 
-Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, {
+Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, {
 
   allCallsBinding: 'Voice.allCalls'
   allUsersBinding: 'Voice.allUsers'

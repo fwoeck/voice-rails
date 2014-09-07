@@ -100,8 +100,8 @@ Ember.RemarksInput = Ember.TextField.extend({
   ).property()
 
   dirty: (->
-    @get('entry.currentState.stateName') != 'root.loaded.saved'
-  ).property('entry.currentState.stateName')
+    @get('entry.isDirty')
+  ).property('entry.isDirty')
 
   focusIn: ->
     @oldValue = @get 'value'

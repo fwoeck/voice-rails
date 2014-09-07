@@ -111,10 +111,10 @@ form#new_user {
   height: 100%;
 
   .error small.error {
-    padding: 2px 8px 0px 8px;
     text-transform: none;
     margin-bottom: 12px;
     font-style: normal;
+    padding: 1px 8px;
     font-size: 12px;
   }
 }
@@ -131,8 +131,10 @@ form#new_user {
   height: 100%;
 
   button.tiny, .button.tiny {
+    line-height: 17px;
     padding: 9px 14px;
     font-size: 13px;
+    height: 38px;
   }
 
   button.icon  {
@@ -143,7 +145,7 @@ form#new_user {
       font-size: 14px;
       display: block;
       right: 10px;
-      top: 10px;
+      top: 11px;
     }
   }
 
@@ -190,11 +192,19 @@ form#new_user {
   }
 }
 
+@-moz-document url-prefix() {
+  #main {
+    button.tiny, .button.tiny {
+      line-height: 16px;
+    }
+  }
+}
+
 .blurred {
   -webkit-filter: blur(3px);
   -moz-filter: blur(3px);
 }
 
-tr.dirty input, input.dirty {
+tr.dirty input, input.dirty,  {
   background-color: #ffd890 !important;
 }

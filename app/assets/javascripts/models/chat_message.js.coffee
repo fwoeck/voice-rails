@@ -1,4 +1,4 @@
-Voice.ChatMessage = DS.Model.extend({
+Voice.ChatMessage = DS.Model.extend(Voice.Resetable, {
 
   to:         DS.attr 'string'
   from:       DS.attr 'string'

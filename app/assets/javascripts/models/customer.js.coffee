@@ -1,4 +1,4 @@
-Voice.Customer = DS.Model.extend({
+Voice.Customer = DS.Model.extend(Voice.Resetable, {
 
   entrySorting:   ['createdAt:desc']
   historyEntries: DS.hasMany 'historyEntry'

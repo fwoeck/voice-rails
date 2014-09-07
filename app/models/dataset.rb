@@ -3,6 +3,8 @@ require 'json'
 class Dataset
 
   include ActiveModel::Serialization
+  include Keynames
+
   attr_reader :dataset
 
 
@@ -67,7 +69,7 @@ class Dataset
 
   def get_dataset
     JSON.parse(
-      Redis.current.get("#{Rails.env}.numbers-dataset") || '{}'
+      Redis.current.get(dataset_keyname) || '{}'
     )
   end
 
