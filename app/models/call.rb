@@ -3,6 +3,7 @@ require 'json'
 class Call
 
   include ActiveModel::Serialization
+  include Keynames
 
   attr_accessor :call_tag, :target_id, :language, :extension,
                 :called_at, :queued_at, :hungup_at, :dispatched_at,
@@ -87,7 +88,7 @@ class Call
   # FIXME This may become expensive for high call counts:
   #
   def self.all
-    Redis.current.keys("#{Rails.env}.call.*").map { |key|
+    Redis.current.keys(call_pattern).map { |key|
       call = find(key[/[^.]+$/])
       !call.hungup ? call : nil
     }.compact
@@ -103,7 +104,7 @@ class Call
 
   def self.find(tcid)
     return unless tcid
-    entry  = Redis.current.get(Call.key_name tcid) || new.headers.to_json
+    entry  = Redis.current.get(call_keyname tcid) || new.headers.to_json
     fields = JSON.parse entry
 
     par = {
@@ -122,10 +123,5 @@ class Call
     }
 
     new(par)
-  end
-
-
-  def self.key_name(tcid)
-    "#{Rails.env}.call.#{tcid}"
   end
 end

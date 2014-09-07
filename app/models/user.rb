@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :languages
 
   include UpdateFields
+  include Keynames
 
   before_save   :send_ahn_notification
   after_create  :notify_ahn_about_update
@@ -103,7 +104,7 @@ class User < ActiveRecord::Base
     #      amqp-messages?
     #
     def all_online_ids
-      Redis.current.keys(Rails.env + '.visibility.*')
+      Redis.current.keys(visibility_pattern)
            .map { |key| [key[/\d+$/], Redis.current.get(key)] }
            .select { |s| s[1] == 'online' }
            .map { |s| s[0].to_i }
