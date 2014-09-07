@@ -3,24 +3,24 @@ require 'json'
 
 class Call
   FORMAT = %w{target_id call_tag language skill extension caller_id hungup called_at mailbox queued_at hungup_at dispatched_at}
-           .each_with_object({}) { |key, hash| hash[key.camelize] = key.to_sym }
+           .map(&:to_sym)
 
-  attr_accessor *FORMAT.values
+  attr_accessor *FORMAT
 
   include ActiveModel::Serialization
   include Keynames
 
 
   def initialize(par=nil)
-    Call::FORMAT.values.each do |sym|
+    Call::FORMAT.each do |sym|
       self.send "#{sym}=", par.fetch(sym, nil)
     end if par
   end
 
 
   def headers
-    Call::FORMAT.keys.each_with_object({}) { |key, hash|
-      hash[key] = self.send(Call::FORMAT[key])
+    Call::FORMAT.each_with_object({}) { |sym, hash|
+      hash[sym.to_s.camelize] = self.send(sym)
     }
   end
 
@@ -95,8 +95,8 @@ class Call
     fields = JSON.parse(Redis.current.get(call_keyname tcid) || new.headers.to_json)
     fields['TargetId'] = tcid
 
-    new Call::FORMAT.keys.each_with_object({}) { |key, hash|
-      hash[Call::FORMAT[key]] = fields[key]
+    new Call::FORMAT.each_with_object({}) { |sym, hash|
+      hash[sym] = fields[sym.to_s.camelize]
     }
   end
 end
