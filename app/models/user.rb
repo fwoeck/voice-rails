@@ -57,18 +57,24 @@ class User < ActiveRecord::Base
 
 
   def availability
-    @memo_availability ||= (Redis.current.get(availability_keyname) || 'unknown')
+    @memo_availability ||= (
+      Redis.current.get(availability_keyname) || availability_default
+    )
   end
   alias :availability_summary :availability
 
 
   def activity
-    @memo_activity ||= (Redis.current.get(activity_keyname) || 'silent')
+    @memo_activity ||= (
+      Redis.current.get(activity_keyname) || activity_default
+    )
   end
 
 
   def visibility
-    @memo_visibility ||= (Redis.current.get(visibility_keyname) || 'offline')
+    @memo_visibility ||= (
+      Redis.current.sismember(User.online_users_keyname, id) ? 'online' : 'offline'
+    )
   end
 
 
@@ -99,15 +105,8 @@ class User < ActiveRecord::Base
 
   class << self
 
-    # TODO This requires too many redis-requests.
-    #      Can we cache this information from the incoming
-    #      amqp-messages?
-    #
     def all_online_ids
-      Redis.current.keys(visibility_pattern)
-           .map { |key| [key[/\d+$/], Redis.current.get(key)] }
-           .select { |s| s[1] == 'online' }
-           .map { |s| s[0].to_i }
+      Redis.current.smembers(online_users_keyname).map(&:to_i)
     end
 
 
