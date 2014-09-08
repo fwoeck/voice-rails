@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    opts = caller_ids: params[:caller_id]
+    opts = {caller_ids: params[:caller_id]}
     render json: Customer.api_where(opts), each_serializer: CustomerSerializer
   end
 
