@@ -1,6 +1,5 @@
 class ChatMessagesController < ApplicationController
 
-
   def create
     created_at = Time.now.utc
     from       = current_user.email

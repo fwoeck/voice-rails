@@ -1,18 +1,20 @@
 class CustomersController < ApplicationController
 
-
   def index
-    render json: Customer.where(caller_ids: params[:caller_id]), each_serializer: CustomerSerializer
+    opts = caller_ids: params[:caller_id]
+    render json: Customer.api_where(opts), each_serializer: CustomerSerializer
   end
 
 
   def show
-    render json: Customer.find(params[:id]), serializer: CustomerSerializer
+    render json: Customer.api_find(params[:id]), serializer: CustomerSerializer
   end
 
 
   def get_zendesk_tickets
-    if (tickets = ZendeskTicket.fetch params[:requester_id])
+    tickets = ZendeskTicket.fetch(params[:requester_id])
+
+    if tickets
       render json: tickets, each_serializer: ZendeskTicketSerializer, root: :zendesk_tickets
     else
       render nothing: true, status: 404
@@ -21,7 +23,9 @@ class CustomersController < ApplicationController
 
 
   def create_zendesk_ticket
-    if (ticket = ZendeskTicket.create current_user.zendesk_id, params[:zendesk_ticket])
+    ticket = ZendeskTicket.create(current_user.zendesk_id, params[:zendesk_ticket])
+
+    if ticket
       render json: ticket, serializer: ZendeskTicketSerializer
     else
       render nothing: true, status: 404
@@ -30,39 +34,25 @@ class CustomersController < ApplicationController
 
 
   def update_history
+    hid  = params[:id]
     par  = params[:history_entry]
-    cust = Customer.find(par[:customer_id])
+    cust = Customer.api_find(par[:customer_id])
     stat = 404
 
-    if cust && (entry = cust.history_entries.find params[:id])
-      entry.remarks = (par[:remarks] || "").strip
-      entry.save && stat = 200
-    end
+    cust.try(:update_history_with, hid, par) && stat = 200
     render json: {}, status: stat
   end
 
 
   def update
     par  = params[:customer]
-    cust = Customer.find(params[:id])
+    cust = Customer.api_find(params[:id])
 
     if par && cust
-      update_customer_with(par, cust)
+      cust.update_with(par)
       render json: cust, serializer: FlatCustomerSerializer, root: :customer
     else
       render nothing: true, status: 404
     end
-  end
-
-  private
-
-
-  def update_customer_with(par, cust)
-    cust.tap { |c|
-      c.full_name = (par[:full_name] || "").strip
-      c.email     = (par[:email] || "").strip.downcase
-      c.manage_zendesk_account(par[:zendesk_id])
-      c.save
-    }
   end
 end
