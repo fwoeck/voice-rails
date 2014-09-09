@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     VoiceThread.run {
       sleep delay
       AmqpManager.push_publish(
-        user_ids: User.all_online_ids, data: UserSerializer.new(self)
+        user_ids: User.all_online_ids, data: UserSerializer.new(self).to_json
       )
     }
   end

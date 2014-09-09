@@ -33,8 +33,8 @@ module AmqpRequest
 
 
     def handle_response(data)
-      req = Registry[data['id']]
-      req << Marshal.load(Base64.decode64 data['value']) if req
+      req = Registry[data[:id]]
+      req << data[:value] if req
     end
   end
 end

@@ -44,7 +44,7 @@ class Call
 
   def send_update_notification_to_clients
     AmqpManager.push_publish(
-      user_ids: User.all_online_ids, data: CallSerializer.new(self)
+      user_ids: User.all_online_ids, data: CallSerializer.new(self).to_json
     )
   end
 
@@ -68,7 +68,7 @@ class Call
 
   def self.find(tcid)
     return unless tcid
-    fields = JSON.parse(Redis.current.get(call_keyname tcid) || new.headers.to_json)
+    fields = Marshal.load(Redis.current.get(call_keyname tcid) || Marshal.dump(new.headers))
     fields['TargetId'] = tcid
 
     new Call::FORMAT.each_with_object({}) { |sym, hash|
