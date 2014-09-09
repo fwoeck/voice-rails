@@ -24,7 +24,7 @@ module AmqpManager
     end
 
     def push_publish(payload)
-      push_xchange.publish(payload.to_json, routing_key: 'voice.push')
+      push_xchange.publish(Marshal.dump(payload), routing_key: 'voice.push')
       true
     end
 
@@ -42,7 +42,7 @@ module AmqpManager
     end
 
     def custom_publish(payload)
-      custom_xchange.publish(payload.to_json, routing_key: 'voice.custom')
+      custom_xchange.publish(Marshal.dump(payload), routing_key: 'voice.custom')
       true
     end
 
@@ -60,7 +60,7 @@ module AmqpManager
     end
 
     def ahn_publish(payload)
-      ahn_xchange.publish(payload.to_json, routing_key: 'voice.ahn')
+      ahn_xchange.publish(Marshal.dump(payload), routing_key: 'voice.ahn')
       true
     end
 
@@ -94,12 +94,12 @@ module AmqpManager
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
-        data = JSON.parse(payload)
+        data = Marshal.load(payload)
 
-        if data['res_to']
-          AmqpRequest.handle_response data
+        if data[:res_to]
+          AmqpRequest.handle_response(data)
         else
-          CallEvent.handle_update data
+          CallEvent.handle_update(data)
         end
       end if ENV['SUBSCRIBE_AMQP']
     end
