@@ -11,16 +11,17 @@ gem 'rolify'
 gem 'devise'
 gem 'wirble',                    require: false
 gem 'mongoid'
+gem 'celluloid'
 gem 'slim-rails'
 gem 'redis-rails'
+gem 'thread_safe'
 gem 'connection_pool'
 gem 'rubygems-bundler',          require: false
 gem 'active_model_serializers'
 
-gem 'faker'
 gem 'uglifier'
 gem 'sprockets'
-gem 'sass-rails',               '~> 4.0'
+gem 'sass-rails'
 gem 'ember-rails'
 gem 'emblem-rails'
 gem 'coffee-rails'
@@ -29,6 +30,7 @@ gem 'font-awesome-rails'
 
 group :test, :development do
   gem 'pry'
+  gem 'faker'
   gem 'listen',                  require: false
   gem 'rb-inotify',              require: false
   gem 'qunit-rails'
