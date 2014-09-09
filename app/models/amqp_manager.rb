@@ -29,6 +29,24 @@ module AmqpManager
     end
 
 
+    def custom_channel
+      Thread.current[:custom_channel] ||= connection.create_channel
+    end
+
+    def custom_xchange
+      Thread.current[:custom_xchange] ||= custom_channel.topic('voice.custom', auto_delete: false)
+    end
+
+    def custom_queue
+      Thread.current[:custom_queue] ||= custom_channel.queue('voice.custom', auto_delete: false)
+    end
+
+    def custom_publish(payload)
+      custom_xchange.publish(payload.to_json, routing_key: 'voice.custom')
+      true
+    end
+
+
     def ahn_channel
       Thread.current[:ahn_channel] ||= connection.create_channel
     end
@@ -76,7 +94,13 @@ module AmqpManager
 
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
-        CallEvent.handle_update JSON.parse(payload)
+        data = JSON.parse(payload)
+
+        if data['res_to']
+          AmqpRequest.handle_response data
+        else
+          CallEvent.handle_update data
+        end
       end if ENV['SUBSCRIBE_AMQP']
     end
   end
