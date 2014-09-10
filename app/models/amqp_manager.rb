@@ -1,27 +1,27 @@
 module AmqpManager
+  TOPICS = [:rails, :push, :custom, :ahn]
 
   class << self
 
-    def rails_channel
-      Thread.current[:rails_channel] ||= connection.create_channel
-    end
-
-    def rails_xchange
-      Thread.current[:rails_xchange] ||= rails_channel.topic('voice.rails', auto_delete: false)
-    end
-
-    def rails_queue
-      Thread.current[:rails_queue] ||= rails_channel.queue('voice.rails', auto_delete: false)
+    def close_channels
+      TOPICS.each { |name| Thread.current["#{name}_channel".to_sym].try(:close) }
     end
 
 
-    def push_channel
-      Thread.current[:push_channel] ||= connection.create_channel
-    end
+    TOPICS.each { |name|
+      define_method "#{name}_channel" do
+        Thread.current["#{name}_channel".to_sym] ||= connection.create_channel
+      end
 
-    def push_xchange
-      Thread.current[:push_xchange] ||= push_channel.topic('voice.push', auto_delete: false)
-    end
+      define_method "#{name}_xchange" do
+        Thread.current["#{name}_xchange".to_sym] ||= send("#{name}_channel").topic("voice.#{name}", auto_delete: false)
+      end
+
+      define_method "#{name}_queue" do
+        Thread.current["#{name}_queue".to_sym] ||= send("#{name}_channel").queue("voice.#{name}", auto_delete: false)
+      end
+    }
+
 
     def push_publish(payload)
       push_xchange.publish(MultiJson.dump(payload), routing_key: 'voice.push')
@@ -29,35 +29,11 @@ module AmqpManager
     end
 
 
-    def custom_channel
-      Thread.current[:custom_channel] ||= connection.create_channel
-    end
-
-    def custom_xchange
-      Thread.current[:custom_xchange] ||= custom_channel.topic('voice.custom', auto_delete: false)
-    end
-
-    def custom_queue
-      Thread.current[:custom_queue] ||= custom_channel.queue('voice.custom', auto_delete: false)
-    end
-
     def custom_publish(payload)
       custom_xchange.publish(Marshal.dump(payload), routing_key: 'voice.custom')
       true
     end
 
-
-    def ahn_channel
-      Thread.current[:ahn_channel] ||= connection.create_channel
-    end
-
-    def ahn_xchange
-      Thread.current[:ahn_xchange] ||= ahn_channel.topic('voice.ahn', auto_delete: false)
-    end
-
-    def ahn_queue
-      Thread.current[:ahn_queue] ||= ahn_channel.queue('voice.ahn', auto_delete: false)
-    end
 
     def ahn_publish(payload)
       ahn_xchange.publish(Marshal.dump(payload), routing_key: 'voice.ahn')
