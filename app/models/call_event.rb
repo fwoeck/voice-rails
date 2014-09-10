@@ -29,14 +29,14 @@ class CallEvent
 
 
     def get_agent_from(data)
-      if data['name'] == 'AgentEvent'
-        data['headers']['Extension']
+      if data[:name] == 'AgentEvent'
+        data[:headers][:extension]
       end
     end
 
 
     def handle_call_update(data)
-      if data['name'] == 'CallState'
+      if data[:name] == 'CallState'
         send_updates_for_call(data)
       end
     end
@@ -50,7 +50,7 @@ class CallEvent
 
 
     def yield_to_call(data, &block)
-      if (tcid = data['target_call_id'])
+      if (tcid = data[:target_call_id])
         if (call = Call.find tcid)
           block.call(call)
           return tcid
