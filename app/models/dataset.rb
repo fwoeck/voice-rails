@@ -68,7 +68,7 @@ class Dataset
   private
 
   def get_dataset
-    JSON.parse(
+    MultiJson.load(
       Redis.current.get(dataset_keyname) || '{}'
     )
   end

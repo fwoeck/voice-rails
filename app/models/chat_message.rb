@@ -16,7 +16,7 @@ class ChatMessage
   #
   def send_update_notification_to_clients
     AmqpManager.push_publish(
-      user_ids: User.all_online_ids, data: ChatMessageSerializer.new(self).to_json
+      user_ids: User.all_online_ids, data: ChatMessageSerializer.new(self)
     )
   end
 
