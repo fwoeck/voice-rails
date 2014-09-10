@@ -24,7 +24,7 @@ module AmqpManager
     end
 
     def push_publish(payload)
-      push_xchange.publish(Marshal.dump(payload), routing_key: 'voice.push')
+      push_xchange.publish(MultiJson.dump(payload), routing_key: 'voice.push')
       true
     end
 

@@ -12,6 +12,7 @@ gem 'devise'
 gem 'wirble',                    require: false
 gem 'mongoid'
 gem 'celluloid'
+gem 'multi_json'
 gem 'slim-rails'
 gem 'redis-rails'
 gem 'thread_safe'
@@ -53,6 +54,7 @@ platforms :mri do
 end
 
 platforms :jruby do
+  gem 'jrjackson'
   gem 'jruby-openssl',           require: false
   gem 'activerecord-jdbc-adapter'
   gem 'activerecord-jdbcmysql-adapter'
@@ -70,6 +72,7 @@ platforms :rbx do
 end
 
 platforms :ruby do
+  gem 'oj'
   gem 'mysql2'
   gem 'git-smart',               require: false
 
