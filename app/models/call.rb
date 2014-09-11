@@ -28,6 +28,11 @@ class Call
   end
 
 
+  def handle_update
+    send_update_notification_to_clients
+  end
+
+
   def send_update_notification_to_clients
     AmqpManager.push_publish(
       user_ids: User.all_online_ids, data: CallSerializer.new(self)
