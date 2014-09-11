@@ -80,7 +80,7 @@ module AmqpManager
         if is_rpc_response?(data)
           AmqpRequest.handle_response(data)
         else
-          CallEvent.handle_update(data)
+          data.handle_update
         end
       end if ENV['SUBSCRIBE_AMQP']
     end
