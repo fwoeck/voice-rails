@@ -2,7 +2,7 @@ require 'json'
 
 
 class Call
-  FORMAT = %w{target_id call_tag language skill extension caller_id hungup called_at mailbox queued_at hungup_at dispatched_at}
+  FORMAT = %w{call_id call_tag language skill extension caller_id hungup called_at mailbox queued_at hungup_at dispatched_at}
            .map(&:to_sym)
 
   attr_accessor *FORMAT
@@ -19,12 +19,12 @@ class Call
 
 
   def hangup
-    AmqpManager.ahn_publish(call_id: target_id, command: :hangup)
+    AmqpManager.ahn_publish(call_id: call_id, command: :hangup)
   end
 
 
   def transfer_to(to)
-    AmqpManager.ahn_publish(call_id: target_id, to: to, command: :transfer)
+    AmqpManager.ahn_publish(call_id: call_id, to: to, command: :transfer)
   end
 
 
