@@ -36,23 +36,17 @@ class CustomersController < ApplicationController
   def update_history
     hid  = params[:id]
     par  = params[:history_entry]
-    cust = Customer.rpc_find(par[:customer_id])
+    stat = Customer.rpc_update_history_with(hid, par) ? 200 : 404
 
-    stat = 404
-    if par && cust
-      cust.rpc_update_history_with(hid, par)
-      stat = 200
-    end
     render json: {}, status: stat
   end
 
 
   def update
-    par  = params[:customer]
-    cust = Customer.rpc_find(params[:id])
+    cid = params[:id]
+    par = params[:customer]
 
-    if par && cust
-      cust.rpc_update_with(par)
+    if (cust = Customer.rpc_update_with cid, par)
       render json: cust, serializer: FlatCustomerSerializer, root: :customer
     else
       render nothing: true, status: 404

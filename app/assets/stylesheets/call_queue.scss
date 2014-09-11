@@ -103,7 +103,10 @@ table.callstats_table {
 
   td {
     -webkit-user-select: text;
+    text-overflow: ellipsis;
     -moz-user-select: text;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 12px;
     padding: 0 4px;
     margin: 0;
