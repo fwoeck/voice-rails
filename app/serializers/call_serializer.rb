@@ -4,6 +4,6 @@ class CallSerializer < ActiveModel::Serializer
              :called_at, :queued_at, :hungup_at, :dispatched_at, :mailbox
 
   def id
-    object.target_id
+    object.call_id
   end
 end
