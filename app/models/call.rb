@@ -11,23 +11,9 @@ class Call
   include Keynames
 
 
-  def initialize(par=nil)
-    Call::FORMAT.each do |sym|
-      self.send "#{sym}=", par.fetch(sym, nil)
-    end if par
-  end
-
-
-  def headers
-    Call::FORMAT.each_with_object({}) { |sym, hash|
-      hash[sym.to_s.camelize] = self.send(sym)
-    }
-  end
-
-
+  # TODO We have to restrict access here:
+  #
   def is_owned_by?(user)
-    # TODO We have to restrict access here:
-    #
     true
   end
 
@@ -53,9 +39,10 @@ class Call
   #
   def self.all
     Redis.current.keys(call_pattern).map { |key|
-      call = find(key[/[^.]+$/])
-      !call.hungup ? call : nil
-    }.compact
+      Marshal.load(Redis.current.get(key) || "\x04\b0")
+    }.compact.select { |call|
+      !call.hungup
+    }
   end
 
 
@@ -68,11 +55,7 @@ class Call
 
   def self.find(tcid)
     return unless tcid
-    fields = Marshal.load(Redis.current.get(call_keyname tcid) || Marshal.dump(new.headers))
-    fields['TargetId'] = tcid
-
-    new Call::FORMAT.each_with_object({}) { |sym, hash|
-      hash[sym] = fields[sym.to_s.camelize]
-    }
+    call = Redis.current.get(call_keyname tcid)
+    Marshal.load(call) if call
   end
 end

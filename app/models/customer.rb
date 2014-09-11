@@ -12,34 +12,41 @@ class Customer
   index(caller_ids: 1)
 
 
-  def update_with(par)
-    # => VC
-  end
-
-
-  def update_history_with(hid, par)
-    # => VC
-  end
-
-
   class << self
 
-    # TODO Move this to VC:
-    #
-    def api_where(*args)
-      where(*args)
+    def rpc_update_with(cid, par)
+      params = {
+        id:          cid,
+        email:       par[:email],
+        full_name:   par[:full_name],
+        zendesk_id:  par[:zendesk_id]
+      }
+      AmqpRequest.rpc_to_custom(self.name, :update_with, [params])
     end
 
-    # TODO Move this to VC:
-    #
-    def api_find(*args)
-      find(*args)
+
+    def rpc_update_history_with(hid, par)
+      params = {
+        entry_id:    hid,
+        remarks:     par[:remarks],
+        customer_id: par[:customer_id],
+      }
+      AmqpRequest.rpc_to_custom(self.name, :update_history_with, [params])
     end
 
-    # TODO Move this to VC:
-    #
-    def api_create(*args)
-      create(*args)
+
+    def rpc_where(*args)
+      AmqpRequest.rpc_to_custom(self.name, :where, args)
+    end
+
+
+    def rpc_find(*args)
+      AmqpRequest.rpc_to_custom(self.name, :find, args)
+    end
+
+
+    def rpc_create(*args)
+      AmqpRequest.rpc_to_custom(self.name, :create, args)
     end
   end
 end

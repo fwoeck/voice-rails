@@ -9,7 +9,7 @@ module AmqpRequest
     end
 
 
-    def get_from_custom(klass, verb, params)
+    def rpc_to_custom(klass, verb, params)
       id   = new_request_id
       req  = Celluloid::Future.new
       data = {
