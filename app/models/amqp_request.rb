@@ -1,6 +1,14 @@
-module AmqpRequest
+class AmqpRequest
 
   Registry = ThreadSafe::Cache.new
+  attr_accessor :id, :verb, :klass, :params, :req_from, :res_to, :value
+
+
+  def handle_update
+    req = Registry[id]
+    req << value if req
+  end
+
 
   class << self
 
@@ -12,12 +20,12 @@ module AmqpRequest
     def rpc_to_custom(klass, verb, params)
       id   = new_request_id
       req  = Celluloid::Future.new
-      data = {
-        id:        id,
-        verb:      verb,
-        class:     klass,
-        params:    params,
-        req_from: 'voice.rails'
+      data = AmqpRequest.new.tap { |r|
+        r.id       =  id
+        r.verb     =  verb
+        r.klass    =  klass
+        r.params   =  params
+        r.req_from = 'voice.rails'
       }
 
       Registry[id] = req
@@ -29,12 +37,6 @@ module AmqpRequest
     ensure
       Registry.delete id
       result
-    end
-
-
-    def handle_response(data)
-      req = Registry[data[:id]]
-      req << data[:value] if req
     end
   end
 end

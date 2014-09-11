@@ -64,11 +64,6 @@ module AmqpManager
     end
 
 
-    def is_rpc_response?(data)
-      data.is_a?(Hash) && data[:res_to]
-    end
-
-
     def start
       establish_connection
       return if Rails.env.test?
@@ -76,12 +71,7 @@ module AmqpManager
       rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
       rails_queue.subscribe do |delivery_info, metadata, payload|
         data = Marshal.load(payload)
-
-        if is_rpc_response?(data)
-          AmqpRequest.handle_response(data)
-        else
-          data.handle_update
-        end
+        data.handle_update
       end if ENV['SUBSCRIBE_AMQP']
     end
   end
