@@ -21,10 +21,8 @@ class CallEvent
     end
 
 
-    def handle_agent_update(data)
-      agent = data[:headers][:extension]
-
-      if user = User.where(name: agent).first
+    def handle_agent_update(agent)
+      if user = User.where(name: agent.name).first
         user.send_update_notification_to_clients
       end
     end

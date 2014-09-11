@@ -6,7 +6,7 @@ Ember.Handlebars.registerHelper('t', (value, options) ->
 
 Ember.Handlebars.registerHelper('agentTitle', (_, options) ->
   return "" unless a = @get('model')
-  "#{i18n.domain.email}: #{a.get 'email'}<br />#{i18n.domain.sip_extension}: #{a.get 'name'}"
+  ".name#{i18n.domain.email}: #{a.get 'email'}<br />#{i18n.domain.sip_extension}: #{a.get 'name'}"
 )
 
 Ember.Handlebars.registerHelper('bridgeTitle', (_, options) ->
