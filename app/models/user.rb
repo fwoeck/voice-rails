@@ -187,10 +187,11 @@ class User < ActiveRecord::Base
   def notify_ahn_about_update(key=nil)
     return if Rails.env.test?
 
-    agent = Agent.new.tap { |a|
-      a.id = self.id
-      a.send "#{key}=", self.send("#{key}_summary") if key
-    }
-    AmqpManager.ahn_publish(agent)
+    AmqpManager.ahn_publish(
+      Agent.new.tap { |a|
+        a.id = self.id
+        a.send "#{key}=", self.send("#{key}_summary") if key
+      }
+    )
   end
 end

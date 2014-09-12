@@ -19,12 +19,23 @@ class Call
 
 
   def hangup
-    AmqpManager.ahn_publish(call_id: call_id, command: :hangup)
+    AmqpManager.ahn_publish(
+      CallRpc.new.tap { |c|
+        c.call_id =  call_id
+        c.command = :hangup
+      }
+    )
   end
 
 
   def transfer_to(to)
-    AmqpManager.ahn_publish(call_id: call_id, to: to, command: :transfer)
+    AmqpManager.ahn_publish(
+      CallRpc.new.tap { |c|
+        c.to      =  to
+        c.call_id =  call_id
+        c.command = :transfer
+      }
+    )
   end
 
 
@@ -53,7 +64,11 @@ class Call
 
   def self.originate(params)
     AmqpManager.ahn_publish(
-      from: params[:from], to: params[:to], command: :originate
+      CallRpc.new.tap { |c|
+        c.to      =  params[:to]
+        c.from    =  params[:from]
+        c.command = :originate
+      }
     )
   end
 
