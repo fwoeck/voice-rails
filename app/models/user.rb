@@ -79,15 +79,15 @@ class User < ActiveRecord::Base
 
 
   def role_summary
-    roles.map(&:name).sort.join(',')
+    roles.map(&:name).sort
   end
 
   def skill_summary
-    skills.map(&:name).sort.join(',')
+    skills.map(&:name).sort
   end
 
   def language_summary
-    languages.map(&:name).sort.join(',')
+    languages.map(&:name).sort
   end
 
 
@@ -187,9 +187,11 @@ class User < ActiveRecord::Base
   def notify_ahn_about_update(key=nil)
     return if Rails.env.test?
 
-    hash = {user_id: self.id}
-    hash.merge!({key => send("#{key}_summary")}) if key
-
-    AmqpManager.ahn_publish(hash)
+    AmqpManager.ahn_publish(
+      Agent.new.tap { |a|
+        a.id = self.id
+        a.send "#{key}=", self.send("#{key}_summary") if key
+      }
+    )
   end
 end

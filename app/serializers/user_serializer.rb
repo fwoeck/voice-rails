@@ -5,14 +5,14 @@ class UserSerializer < ActiveModel::Serializer
 
 
   def roles
-    object.role_summary
+    object.role_summary.join(',')
   end
 
   def skills
-    object.skill_summary
+    object.skill_summary.join(',')
   end
 
   def languages
-    object.language_summary
+    object.language_summary.join(',')
   end
 end

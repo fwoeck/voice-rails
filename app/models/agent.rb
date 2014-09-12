@@ -9,4 +9,14 @@ class Agent
       user.send_update_notification_to_clients
     end
   end
+
+
+  def language=(langs)
+    @languages = langs
+  end
+
+
+  def skill=(skills)
+    @skills = skills
+  end
 end
