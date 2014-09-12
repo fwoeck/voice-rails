@@ -519,7 +519,7 @@ GEM
     thread_safe (0.3.4-java)
     tilt (1.4.1)
     timecop (0.7.1)
-    timers (4.0.0)
+    timers (4.0.1)
       hitimes
     treetop (1.4.15)
       polyglot
