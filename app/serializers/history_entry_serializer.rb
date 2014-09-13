@@ -1,6 +1,6 @@
 class HistoryEntrySerializer < ActiveModel::Serializer
 
-  attributes :id, :remarks, :call_id, :extension, :mailbox,
+  attributes :id, :remarks, :call_id, :user_id, :mailbox,
              :caller_id, :created_at, :customer_id
 
 

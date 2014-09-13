@@ -1,6 +1,6 @@
 td = view Ember.CreatedAt
-if extension
-  td = unbound agentFor extension
+if userId
+  td = unbound agentFor userId
 else
   td: i.fa.fa-volume-up
 
