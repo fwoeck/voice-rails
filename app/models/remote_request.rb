@@ -1,4 +1,4 @@
-class AmqpRequest
+class RemoteRequest
 
   Registry = ThreadSafe::Cache.new
   attr_accessor :id, :verb, :klass, :params, :req_from, :res_to, :value
@@ -20,7 +20,7 @@ class AmqpRequest
     def rpc_to_custom(klass, verb, params)
       id   = new_request_id
       req  = Celluloid::Future.new
-      data = AmqpRequest.new.tap { |r|
+      data = RemoteRequest.new.tap { |r|
         r.id       =  id
         r.verb     =  verb
         r.klass    =  klass

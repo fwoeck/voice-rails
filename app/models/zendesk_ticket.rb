@@ -8,7 +8,7 @@ class ZendeskTicket
 
   def self.rpc_create(params, submitter_id)
     ticket = build_from(params, submitter_id)
-    AmqpRequest.rpc_to_custom(self.name, :create, [ticket])
+    RemoteRequest.rpc_to_custom(self.name, :create, [ticket])
   end
 
 
@@ -22,6 +22,6 @@ class ZendeskTicket
 
 
   def self.rpc_fetch(requester_id, reload)
-    AmqpRequest.rpc_to_custom(self.name, :fetch, [requester_id, reload])
+    RemoteRequest.rpc_to_custom(self.name, :fetch, [requester_id, reload])
   end
 end
