@@ -16,7 +16,7 @@ Voice.EntryController = Ember.ObjectController.extend({
       subject:     @get 'remarks'
       description: @getDescription()
     ).save().then ->
-      Voice.get('currentCustomer').fetchZendeskTickets()
+      Voice.get('currentCustomer').fetchZendeskTickets(true)
 
 
   getDescription: ->

@@ -15,7 +15,7 @@ Voice.CustomerController = Ember.ObjectController.extend({
       false
 
     fetchZendeskTickets: ->
-      Voice.get('currentCustomer').fetchZendeskTickets()
+      Voice.get('currentCustomer').fetchZendeskTickets(true)
       false
 
 

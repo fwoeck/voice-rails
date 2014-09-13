@@ -21,7 +21,7 @@ class ZendeskTicket
   end
 
 
-  def self.rpc_fetch(requester_id)
-    AmqpRequest.rpc_to_custom(self.name, :fetch, [requester_id])
+  def self.rpc_fetch(requester_id, reload)
+    AmqpRequest.rpc_to_custom(self.name, :fetch, [requester_id, reload])
   end
 end
