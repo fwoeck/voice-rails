@@ -5,26 +5,23 @@ class AmqpManager
 
 
   TOPICS.each { |name|
-    sym = "@#{name}_channel".to_sym
-    define_method "#{name}_channel" do
-      instance_variable_get(sym) || instance_variable_set(
-        sym, connection.create_channel
-      )
-    end
+    class_eval %Q"
+      def #{name}_channel
+        @#{name}_channel ||= connection.create_channel
+      end
+    "
 
-    sym = "@#{name}_xchange".to_sym
-    define_method "#{name}_xchange" do
-      instance_variable_get(sym) || instance_variable_set(
-        sym, send("#{name}_channel").topic("voice.#{name}", auto_delete: false)
-      )
-    end
+    class_eval %Q"
+      def #{name}_xchange
+        @#{name}_xchange ||= #{name}_channel.topic('voice.#{name}', auto_delete: false)
+      end
+    "
 
-    sym = "@#{name}_queue".to_sym
-    define_method "#{name}_queue" do
-      instance_variable_get(sym) || instance_variable_set(
-        sym, send("#{name}_channel").queue("voice.#{name}", auto_delete: false)
-      )
-    end
+    class_eval %Q"
+      def #{name}_queue
+        @#{name}_queue ||= #{name}_channel.queue('voice.#{name}', auto_delete: false)
+      end
+    "
   }
 
 
