@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
 
 
   def get_zendesk_tickets
-    tickets = ZendeskTicket.rpc_fetch(params[:requester_id])
+    tickets = ZendeskTicket.rpc_fetch(params[:requester_id], params[:reload] == 'true')
 
     if tickets
       render json: tickets, each_serializer: ZendeskTicketSerializer, root: :zendesk_tickets
