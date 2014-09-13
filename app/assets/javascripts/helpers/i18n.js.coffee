@@ -124,7 +124,7 @@ env.i18n =
       type_a_number:    'Type a number..'
       type_here:        'Type here..'
     errors:
-      ajax_error:       'Sorry, your request couldn\'t be finalized:<br />MSG.'
+      ajax_error:       'Sorry, the server returned an error message:<br />MSG'
       must_be_text:     'Must be a text..'
       number_format:    'Local numbers: 030... / Intl. numbers: 0049...'
       email_format:     'Enter a valid email address'
