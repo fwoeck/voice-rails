@@ -149,7 +149,7 @@ Voice.AgentSearch = Voice.TextField.extend({
   maxlength: '16'
 
   placeholder: (->
-    i18n.placeholder.find_a_name
+    i18n.placeholder.find_an_agent
   ).property()
 
   focusIn: ->

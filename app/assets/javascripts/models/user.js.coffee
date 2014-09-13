@@ -9,7 +9,7 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
   fullName:      DS.attr 'string'
   activity:      DS.attr 'string'
   languages:     DS.attr 'string'
-  zendeskId:     DS.attr 'string'
+  crmuserId:     DS.attr 'string'
   visibility:    DS.attr 'string'
   confirmation:  DS.attr 'string'
   availability:  DS.attr 'string'

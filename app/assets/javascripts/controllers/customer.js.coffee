@@ -4,9 +4,9 @@ Voice.CustomerController = Ember.ObjectController.extend({
 
 
   actions:
-    syncZendesk: ->
+    syncCrm: ->
       if (cust = @get 'content')
-        cust.set('zendeskId', '...') # FIXME This is ugly.
+        cust.set('crmuserId', '...') # FIXME This is ugly.
         cust.save()
       false
 
@@ -14,8 +14,8 @@ Voice.CustomerController = Ember.ObjectController.extend({
       @get('content')?.save()
       false
 
-    fetchZendeskTickets: ->
-      Voice.get('currentCustomer').fetchZendeskTickets(true)
+    fetchCrmTickets: ->
+      Voice.get('currentCustomer').fetchCrmTickets(true)
       false
 
 

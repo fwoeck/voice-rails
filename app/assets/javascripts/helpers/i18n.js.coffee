@@ -36,7 +36,7 @@ env.i18n =
       customer_is:      'customer is'
       customers_are:    'customers are'
       queued:           'queued'
-    zendesk:
+    crmuser:
       create_ticket:    'Create a Zendesk ticket from this call'
       default_descr:    'This ticket was created at TIME, for the call CALL.'
       recent_tickets:   'Recent tickets at Zendesk'
@@ -82,7 +82,7 @@ env.i18n =
       sip_secret:       'SIP Password'
       skills:           'Skills'
       user:             'user'
-      zendesk_id:       'Zendesk Id'
+      crmuser_id:       'Zendesk Id'
     headers:
       agent_management: 'Agent Management'
       agent_overview:   'Agent Overview'
@@ -115,7 +115,7 @@ env.i18n =
     placeholder:
       an_email_address: 'An e-mail address..'
       enter_remarks:    'Enter remarks for this call..'
-      find_a_name:      'Find a name..'
+      find_an_agent:    'Find an agent..'
       no_recent_messg:  'There are no recent messages in the team chat until now &mdash; be the first to write one!'
       optional_text:    'Enter optional text..'
       refresh_tickets:  'Refresh this customer\'s Zendesk tickets'
@@ -132,6 +132,6 @@ env.i18n =
       fullname_format:  'Enter the agent\'s full name'
       password_format:  'Enter 8 or more chars.: 1 lower, 1 upper, 1 digit'
       password_match:   'Must match the first password'
-      zendesk_format:   'Enter 9 or 10 digits'
+      crmuser_format:   'Enter 9 or 10 digits'
       sip_secret:       'Enter 6 or more digits'
       webrtc_access:    'We could not open the sound device.<br />Please allow the browser to access it<br />in the WebRTC settings.'

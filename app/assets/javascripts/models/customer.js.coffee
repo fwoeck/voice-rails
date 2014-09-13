@@ -5,29 +5,29 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
   orderedEntries: Ember.computed.sort 'historyEntries', 'entrySorting'
 
   ticketSorting:  ['createdAt:desc']
-  orderedTickets: Ember.computed.sort 'zendeskTickets', 'ticketSorting'
+  orderedTickets: Ember.computed.sort 'crmTickets', 'ticketSorting'
 
   email:          DS.attr 'string'
   fullName:       DS.attr 'string'
-  zendeskId:      DS.attr 'string'
+  crmuserId:      DS.attr 'string'
   callerIds:      DS.attr 'array'
   reload:         false
 
 
-  fetchZendeskTickets: (reload) ->
+  fetchCrmTickets: (reload) ->
     @set('reload', reload)
-    @notifyPropertyChange('zendeskId')
+    @notifyPropertyChange('crmuserId')
 
 
-  zendeskTickets: (->
-    return [] unless (zid = @get 'zendeskId')
+  crmTickets: (->
+    return [] unless (zid = @get 'crmuserId')
     app.ticketSpinnerOn()
 
     reload = @get('reload')
     @set('reload', false)
 
-    zt = @store.findQuery('zendeskTicket', requester_id: zid, reload: reload)
+    zt = @store.findQuery('crmTicket', requester_id: zid, reload: reload)
     zt.then -> app.ticketSpinnerOff()
     zt
-  ).property('zendeskId')
+  ).property('crmuserId')
 })

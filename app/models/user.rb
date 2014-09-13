@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
                          uniqueness: true,
                          email: true
 
-  validates :zendesk_id, numericality: {only_integer: true},
+  validates :crmuser_id, numericality: {only_integer: true},
                          length: { is: 9 },
                          allow_blank: true
 
@@ -128,7 +128,7 @@ class User < ActiveRecord::Base
         secret:     p.fetch(:secret, nil).try(:strip),
         password:   p.fetch(:password),
         full_name:  p.fetch(:full_name).strip,
-        zendesk_id: p.fetch(:zendesk_id, nil).try(:strip),
+        crmuser_id: p.fetch(:crmuser_id, nil).try(:strip),
         password_confirmation: p.fetch(:confirmation)
       }
     end
@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
 
 
     def sanitize_params(p)
-      [:name, :secret, :zendesk_id].each { |sym|
+      [:name, :secret, :crmuser_id].each { |sym|
         p[sym] = nil if p[sym].blank?
       }
 

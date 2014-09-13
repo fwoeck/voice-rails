@@ -162,14 +162,14 @@ window.app = {
 
 
 
-  getZendeskUserFrom: (zendeskId) ->
-    return "" unless zendeskId
-    agent = Voice.get('allUsers').find (u) -> u.get('zendeskId') == zendeskId
+  getCrmUserFrom: (crmuserId) ->
+    return "" unless crmuserId
+    agent = Voice.get('allUsers').find (u) -> u.get('crmuserId') == crmuserId
 
     if agent
      "#{agent.get 'name'} / #{agent.get 'displayName'}"
     else
-      zendeskId
+      crmuserId
 
 
   getAgentFrom: (callerId) ->

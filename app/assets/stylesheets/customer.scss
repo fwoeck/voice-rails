@@ -16,14 +16,14 @@ table.customer_table {
     width: 15%;
   }
 
-  i.zendesk {
+  i.crmuser {
     transition: color linear 300ms;
     vertical-align: super;
     font-size: 12px;
     color: #444;
   }
 
-  i.zendesk:hover {
+  i.crmuser:hover {
     color: #aaa;
   }
 }
@@ -58,7 +58,7 @@ table.history_table {
     color: #000;
   }
 
-  i.to-zendesk {
+  i.to-crmuser {
     transition: color linear 300ms;
     position: absolute;
     font-size: 15px;
@@ -68,7 +68,7 @@ table.history_table {
     top: 6px;
   }
 
-  i.to-zendesk:hover {
+  i.to-crmuser:hover {
     color: #aaa;
   }
 

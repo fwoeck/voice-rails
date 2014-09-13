@@ -80,6 +80,11 @@ class AmqpManager
   class << self
 
     def start
+      # TODO This will suppress warnings at exit, but could also
+      #       mask potential problems. Try to remove after a while:
+      #
+      Celluloid.logger = nil
+
       Celluloid::Actor[:amqp] = AmqpManager.pool
       @@manager ||= new.tap { |m| m.start }
     end

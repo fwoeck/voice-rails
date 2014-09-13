@@ -5,7 +5,7 @@ class Customer
   field :email,      type: String,   default: ""
   field :full_name,  type: String,   default: ""
   field :caller_ids, type: Array,    default: -> { [] }
-  field :zendesk_id, type: String,   default: ""
+  field :crmuser_id, type: String,   default: ""
   field :created_at, type: DateTime, default: -> { Time.now.utc }
 
   embeds_many :history_entries
@@ -19,9 +19,9 @@ class Customer
         id:          cid,
         email:       par[:email],
         full_name:   par[:full_name],
-        zendesk_id:  par[:zendesk_id]
+        crmuser_id:  par[:crmuser_id]
       }
-      AmqpRequest.rpc_to_custom(self.name, :update_with, [params])
+      RemoteRequest.rpc_to_custom(self.name, :update_with, [params])
     end
 
 
@@ -31,22 +31,22 @@ class Customer
         remarks:     par[:remarks],
         customer_id: par[:customer_id],
       }
-      AmqpRequest.rpc_to_custom(self.name, :update_history_with, [params])
+      RemoteRequest.rpc_to_custom(self.name, :update_history_with, [params])
     end
 
 
     def rpc_where(*args)
-      AmqpRequest.rpc_to_custom(self.name, :where, args)
+      RemoteRequest.rpc_to_custom(self.name, :where, args)
     end
 
 
     def rpc_find(*args)
-      AmqpRequest.rpc_to_custom(self.name, :find, args)
+      RemoteRequest.rpc_to_custom(self.name, :find, args)
     end
 
 
     def rpc_create(*args)
-      AmqpRequest.rpc_to_custom(self.name, :create, args)
+      RemoteRequest.rpc_to_custom(self.name, :create, args)
     end
   end
 end

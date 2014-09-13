@@ -59,9 +59,9 @@
 
       label.small-2
         .field
-          = t 'domain.zendesk_id'
-          = input value=zendeskId pattern='number' maxlength='10'
-          small.error = t 'errors.zendesk_format'
+          = t 'domain.crmuser_id'
+          = input value=crmuserId pattern='number' maxlength='10'
+          small.error = t 'errors.crmuser_format'
 
       label.small-2
         ' &nbsp;
