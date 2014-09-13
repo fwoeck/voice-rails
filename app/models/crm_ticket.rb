@@ -1,4 +1,4 @@
-class ZendeskTicket
+class CrmTicket
 
   include ActiveModel::Serialization
 

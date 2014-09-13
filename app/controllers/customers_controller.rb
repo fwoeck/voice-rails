@@ -11,22 +11,22 @@ class CustomersController < ApplicationController
   end
 
 
-  def get_zendesk_tickets
-    tickets = ZendeskTicket.rpc_fetch(params[:requester_id], params[:reload] == 'true')
+  def get_crm_tickets
+    tickets = CrmTicket.rpc_fetch(params[:requester_id], params[:reload] == 'true')
 
     if tickets
-      render json: tickets, each_serializer: ZendeskTicketSerializer, root: :zendesk_tickets
+      render json: tickets, each_serializer: CrmTicketSerializer, root: :crm_tickets
     else
       render nothing: true, status: 404
     end
   end
 
 
-  def create_zendesk_ticket
-    ticket = ZendeskTicket.rpc_create(params[:zendesk_ticket], current_user.zendesk_id)
+  def create_crm_ticket
+    ticket = CrmTicket.rpc_create(params[:crm_ticket], current_user.crmuser_id)
 
     if ticket
-      render json: ticket, serializer: ZendeskTicketSerializer
+      render json: ticket, serializer: CrmTicketSerializer
     else
       render nothing: true, status: 404
     end

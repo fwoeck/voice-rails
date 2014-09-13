@@ -7,7 +7,7 @@
           - name
           - email
           - full_name
-          - zendesk_id
+          - crmuser_id
           - fullcontact
           - role_summary
           - skill_summary

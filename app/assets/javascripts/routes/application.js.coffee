@@ -18,7 +18,7 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
     Voice.set 'allCalls',     @store.all('call')
     Voice.set 'allUsers',     @store.all('user')
-    Voice.set 'allTickets',   @store.all('zendeskTicket')
+    Voice.set 'allTickets',   @store.all('crmTicket')
     Voice.set 'allCustomers', @store.all('customer')
     Voice.set 'currentUser',  @store.getById('user', env.userId)
 

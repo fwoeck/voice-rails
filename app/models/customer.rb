@@ -5,7 +5,7 @@ class Customer
   field :email,      type: String,   default: ""
   field :full_name,  type: String,   default: ""
   field :caller_ids, type: Array,    default: -> { [] }
-  field :zendesk_id, type: String,   default: ""
+  field :crmuser_id, type: String,   default: ""
   field :created_at, type: DateTime, default: -> { Time.now.utc }
 
   embeds_many :history_entries
@@ -19,7 +19,7 @@ class Customer
         id:          cid,
         email:       par[:email],
         full_name:   par[:full_name],
-        zendesk_id:  par[:zendesk_id]
+        crmuser_id:  par[:crmuser_id]
       }
       RemoteRequest.rpc_to_custom(self.name, :update_with, [params])
     end

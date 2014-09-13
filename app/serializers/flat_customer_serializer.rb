@@ -1,6 +1,6 @@
 class FlatCustomerSerializer < ActiveModel::Serializer
 
-  attributes :id, :email, :full_name, :caller_ids, :zendesk_id
+  attributes :id, :email, :full_name, :caller_ids, :crmuser_id
   has_many   :history_entries, serializer: HistoryEntrySerializer, embed: :ids, embed_in_root: false
 
 

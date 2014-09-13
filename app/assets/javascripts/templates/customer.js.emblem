@@ -11,11 +11,11 @@ table.customer_table
           = input type='text' value=email placeholder=emailAddressPlaceholder
       td.space15
         label
-          = t 'domain.zendesk_id'
-          unless zendeskId
+          = t 'domain.crmuser_id'
+          unless crmuserId
             ' &nbsp;
-            i.fa.fa-plus-circle.zendesk title="#{t 'zendesk.request_new_user'}" click=syncZendesk
-          = input type='text' value=zendeskId placeholder=userIdPlaceholder
+            i.fa.fa-plus-circle.crmuser title="#{t 'crmuser.request_new_user'}" click=syncCrm
+          = input type='text' value=crmuserId placeholder=userIdPlaceholder
       td.space15
         label
           | &nbsp;
@@ -43,8 +43,8 @@ table.tickets_table
     col.w58
   thead
     tr: td colspan="3"
-      = t 'zendesk.recent_tickets'
-      i.fa.fa-refresh title="#{t 'placeholder.refresh_tickets'}" click=fetchZendeskTickets
+      = t 'crmuser.recent_tickets'
+      i.fa.fa-refresh title="#{t 'placeholder.refresh_tickets'}" click=fetchCrmTickets
   tbody
     each ticket in orderedTickets
       = render 'ticket' ticket
