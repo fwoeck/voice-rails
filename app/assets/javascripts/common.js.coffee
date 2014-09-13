@@ -162,14 +162,25 @@ window.app = {
 
 
 
-  getCrmUserFrom: (crmuserId) ->
-    return "" unless crmuserId
-    agent = Voice.get('allUsers').find (u) -> u.get('crmuserId') == crmuserId
-
+  renderAgentName: (agent, alt) ->
     if agent
      "#{agent.get 'name'} / #{agent.get 'displayName'}"
     else
-      crmuserId
+      alt
+
+
+  getAgent: (userId) ->
+    return "" unless userId
+
+    agent = Voice.store.getById('user', userId)
+    @renderAgentName(agent, "Agent ##{userId}")
+
+
+  getCrmUserFrom: (crmuserId) ->
+    return "" unless crmuserId
+
+    agent = Voice.get('allUsers').find (u) -> u.get('crmuserId') == crmuserId
+    @renderAgentName(agent, "User ##{crmuserId}")
 
 
   getAgentFrom: (callerId) ->
@@ -178,11 +189,7 @@ window.app = {
     matches = "#{callerId}".match(app.agentRegex)
     name    = if matches then matches[2] else ""
     agent   = Voice.get('allUsers').find (u) -> u.get('name') == name
-
-    if agent
-     "#{agent.get 'name'} / #{agent.get 'displayName'}"
-    else
-      callerId
+    @renderAgentName(agent, callerId)
 
 
   resetServerTimer: ->

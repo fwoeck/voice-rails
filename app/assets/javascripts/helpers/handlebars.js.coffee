@@ -44,7 +44,7 @@ Ember.Handlebars.helper('crmuserUser', (value, options) ->
 )
 
 Ember.Handlebars.helper('agentFor', (value, options) ->
-  app.getAgentFrom(value) if value
+  app.getAgent(value) if value
 )
 
 Ember.Handlebars.helper('printSkill', (value, options) ->

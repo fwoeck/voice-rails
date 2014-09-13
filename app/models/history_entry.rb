@@ -5,7 +5,7 @@ class HistoryEntry
   field :remarks,    type: String,   default: ""
   field :mailbox,    type: String
   field :call_id,    type: String
-  field :extension,  type: String
+  field :user_id,    type: Integer
   field :caller_id,  type: String
   field :created_at, type: DateTime, default: -> { Time.now.utc }
 

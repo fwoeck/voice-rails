@@ -1,4 +1,4 @@
-class CallEvent
+class AgentEvent
   include Mongoid::Document
 
   field :timestamp, type: Time
