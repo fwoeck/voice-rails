@@ -115,7 +115,7 @@ env.i18n =
     placeholder:
       an_email_address: 'An e-mail address..'
       enter_remarks:    'Enter remarks for this call..'
-      find_a_name:      'Find a name..'
+      find_an_agent:    'Find an agent..'
       no_recent_messg:  'There are no recent messages in the team chat until now &mdash; be the first to write one!'
       optional_text:    'Enter optional text..'
       refresh_tickets:  'Refresh this customer\'s Zendesk tickets'
