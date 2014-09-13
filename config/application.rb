@@ -17,11 +17,6 @@ WimConfig.keys.each { |key|
   WimConfig.instance_eval "class << self; define_method(:#{key}) {self['#{key}']}; end"
 }
 
-# TODO This will suppress warnings at exit, but could also
-#       mask potential problems. Try to remove after a while:
-#
-Celluloid.logger = nil
-
 module Voice
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
