@@ -30,6 +30,8 @@ table.customer_table {
 
 table.tickets_table,
 table.history_table {
+  width: calc(100% - 8px);
+  margin: 4px;
 
   col.w18 {
     width: 18%;
@@ -51,27 +53,6 @@ table.history_table {
     border-bottom: 1px solid #fff;
   }
 
-  tr.call-is-current td {
-    position: relative;
-    padding: 0 0 0 4px;
-    line-height: 26px;
-    color: #000;
-  }
-
-  i.to-crmuser {
-    transition: color linear 300ms;
-    position: absolute;
-    font-size: 15px;
-    cursor: pointer;
-    color: #666;
-    right: 7px;
-    top: 6px;
-  }
-
-  i.to-crmuser:hover {
-    color: #aaa;
-  }
-
   td {
     text-overflow: ellipsis;
     padding: 4px 0 0 4px;
@@ -81,15 +62,6 @@ table.history_table {
     font-size: 12px;
     height: 26px;
     color: #666;
-  }
-
-  td.remarks input {
-    padding: 2px 5px 1px;
-    line-height: 14px;
-    display: inline;
-    font-size: 12px;
-    height: 26px;
-    margin: 0;
   }
 
   span.jp-duration {
@@ -142,5 +114,24 @@ table#callstats_table {
     font-size: 14px;
     display: block;
     height: 37px;
+  }
+}
+
+#current_entry {
+  margin: 0 4px 10px 4px;
+  position: relative;
+
+  i.to-crmuser {
+    transition: color linear 300ms;
+    position: absolute;
+    font-size: 15px;
+    cursor: pointer;
+    color: #666;
+    right: 7px;
+    top: 6px;
+  }
+
+  i.to-crmuser:hover {
+    color: #aaa;
   }
 }

@@ -23,6 +23,10 @@ table.customer_table
             = t 'domain.save_record'
 
 
+#current_entry
+  = render 'current_entry' orderedEntries.firstObject
+
+
 table.history_table
   colgroup
     col.w18

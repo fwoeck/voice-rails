@@ -92,7 +92,6 @@ Ember.ChatInput = Ember.TextField.extend({
 Ember.RemarksInput = Ember.TextField.extend({
 
   classNameBindings: ['dirty']
-  entryBinding:       'controller.content'
   maxlength:          '250'
 
   placeholder: (->

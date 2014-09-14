@@ -4,20 +4,14 @@ if userId
 else
   td: i.fa.fa-volume-up
 
-if callIsCurrent
-  td.remarks
-    = view Ember.RemarksInput value=remarks
-    if crmuserIsActive
-      i.fa.fa-plus-circle.to-crmuser title="#{t 'crmuser.create_ticket'}" click=toCrmTicket
+if mailbox
+  td.mailbox
+    div id=mailboxPlayer
+    div id=mailboxContainer
+      span.jp-current-time
+      span.jp-duration
+      span.jp-stop: i.fa.fa-stop
+      span.jp-pause: i.fa.fa-pause
+      span.jp-play: i.fa.fa-play
 else
-  if mailbox
-    td.mailbox
-      div id=mailboxPlayer
-      div id=mailboxContainer
-        span.jp-current-time
-        span.jp-duration
-        span.jp-stop: i.fa.fa-stop
-        span.jp-pause: i.fa.fa-pause
-        span.jp-play: i.fa.fa-play
-  else
-    td = remarks
+  td = remarks

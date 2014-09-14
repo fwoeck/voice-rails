@@ -1,0 +1,4 @@
+.remarks
+  = view Ember.RemarksInput value=content.remarks entry=content
+  if crmuserIsActive
+    i.fa.fa-plus-circle.to-crmuser title="#{t 'crmuser.create_ticket'}" click=toCrmTicket
