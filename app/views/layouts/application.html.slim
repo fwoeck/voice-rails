@@ -37,6 +37,7 @@ html
         sipHost:      "#{WimConfig.sip_host}",
         userId:       "#{current_user.try(:id)}",
         sessionToken: "#{form_authenticity_token}",
+        crmProvider:  "#{WimConfig.crm_provider}",
         crmUserUrl:   "#{WimConfig.crm_user_url}",
         rrdSource:    "#{WimConfig.stats_image_url}",
         sslEnabled:    #{Rails.env.test? ? 'false' : 'true'},

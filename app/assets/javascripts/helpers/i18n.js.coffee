@@ -37,10 +37,10 @@ env.i18n =
       customers_are:    'customers are'
       queued:           'queued'
     crmuser:
-      create_ticket:    'Create a Zendesk ticket from this call'
+      create_ticket:    "Create a #{env.crmProvider} ticket from this call"
       default_descr:    'Created at: TIME\nCreated by: AGENT\nCall Id: CALL'
-      recent_tickets:   'Recent tickets at Zendesk'
-      request_new_user: 'Request a new Zendesk user for this customer.'
+      recent_tickets:   "Recent tickets at #{env.crmProvider}"
+      request_new_user: "Request a new #{env.crmProvider} user for this customer."
     help:
       A:                'CR:     Confirm current dialog'
       B:                'ESC:    Close current dialog'
@@ -82,7 +82,7 @@ env.i18n =
       sip_secret:       'SIP Password'
       skills:           'Skills'
       user:             'user'
-      crmuser_id:       'Zendesk Id'
+      crmuser_id:       "#{env.crmProvider} Id"
     headers:
       agent_management: 'Agent Management'
       agent_overview:   'Agent Overview'
@@ -118,7 +118,7 @@ env.i18n =
       find_an_agent:    'Find an agent..'
       no_recent_messg:  'There are no recent messages in the team chat until now &mdash; be the first to write one!'
       optional_text:    'Enter optional text..'
-      refresh_tickets:  'Refresh this customer\'s Zendesk tickets'
+      refresh_tickets:  "Refresh this customer's #{env.crmProvider} tickets"
       the_full_name:    'The full name..'
       the_user_id:      'The user\'s Id..'
       type_a_number:    'Type a number..'
@@ -132,6 +132,6 @@ env.i18n =
       fullname_format:  'Enter the agent\'s full name'
       password_format:  'Enter 8 or more chars.: 1 lower, 1 upper, 1 digit'
       password_match:   'Must match the first password'
-      crmuser_format:   'Enter 9 or 10 digits'
+      crmuser_format:   'Enter 9 digits'
       sip_secret:       'Enter 6 or more digits'
       webrtc_access:    'We could not open the sound device.<br />Please allow the browser to access it<br />in the WebRTC settings.'
