@@ -131,6 +131,7 @@ env.i18n =
       email_format:     'Enter a valid email address'
       extension_format: 'Enter 3 digits'
       fullname_format:  'Enter the agent\'s full name'
+      line_is_busy:     'Please hangup the phone before making another call.'
       password_format:  'Enter 8 or more chars.: 1 lower, 1 upper, 1 digit'
       password_match:   'Must match the first password'
       crmuser_format:   'Enter 9 digits'
