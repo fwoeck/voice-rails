@@ -38,7 +38,7 @@ env.i18n =
       queued:           'queued'
     crmuser:
       create_ticket:    'Create a Zendesk ticket from this call'
-      default_descr:    'This ticket was created at TIME, for the call CALL.'
+      default_descr:    'Created at: TIME\nCreated by: AGENT\nCall Id: CALL'
       recent_tickets:   'Recent tickets at Zendesk'
       request_new_user: 'Request a new Zendesk user for this customer.'
     help:

@@ -1,4 +1,4 @@
-Voice.EntryView = Ember.View.extend({
+Voice.HistoryEntryView = Ember.View.extend({
 
   tagName:            'tr'
   classNameBindings: ['controller.callIsCurrent']

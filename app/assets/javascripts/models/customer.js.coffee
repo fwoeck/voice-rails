@@ -14,6 +14,12 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
   reload:         false
 
 
+  crmuserUrl: (->
+    uid = @get 'crmuserId'
+    env.crmUserUrl.replace('USERID', uid)
+  ).property('crmuserId')
+
+
   fetchCrmTickets: (reload) ->
     @set('reload', reload)
     @notifyPropertyChange('crmuserId')

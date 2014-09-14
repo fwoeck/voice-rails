@@ -22,6 +22,7 @@ table.customer_table
           .button.tiny.store click=storeRecord
             = t 'domain.save_record'
 
+
 table.history_table
   colgroup
     col.w18
@@ -34,7 +35,8 @@ table.history_table
       td = t 'domain.remarks'
   tbody
     each entry in orderedEntries
-      = render 'entry' entry
+      = render 'history_entry' entry
+
 
 table.tickets_table
   colgroup
@@ -43,7 +45,8 @@ table.tickets_table
     col.w58
   thead
     tr: td colspan="3"
-      = t 'crmuser.recent_tickets'
+      a href=crmuserUrl target='_blank'
+        = t 'crmuser.recent_tickets'
       i.fa.fa-refresh title="#{t 'placeholder.refresh_tickets'}" click=fetchCrmTickets
   tbody
     each ticket in orderedTickets
