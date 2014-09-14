@@ -13,21 +13,15 @@ Voice.CurrentEntryController = Ember.ObjectController.extend({
   createCrmTicket: ->
     @store.createRecord('crmTicket',
       requesterId: @get 'customer.crmuserId'
-      subject:     @get 'content.remarks'
-      description: @getDescription()
+      description: @get 'content.remarks'
+      subject:     @getSubject()
     ).save().then ->
       Voice.get('currentCustomer').fetchCrmTickets(true)
 
 
-  getDescription: ->
+  getSubject: ->
     call  = Voice.get('currentCall.origin')
-    agent = Voice.get('currentUser.displayName')
-    time  = moment(call.get 'calledAt').format('LLL')
-
-    i18n.crmuser.default_descr
-        .replace('TIME',  time)
-        .replace('AGENT', agent)
-        .replace('CALL',  call.get 'id')
+    i18n.crmuser.default_subject.replace('CALL', call.get 'id')
 
 
   crmuserIsActive: (->

@@ -26,6 +26,10 @@ table.customer_table {
   i.crmuser:hover {
     color: #aaa;
   }
+
+  label {
+    font-size: 13px;
+  }
 }
 
 table.tickets_table,
@@ -46,7 +50,9 @@ table.history_table {
   }
 
   thead td {
-    font-size: 14px;
+    padding-bottom: 6px;
+    font-weight: bold;
+    font-size: 13px;
   }
 
   tr {
@@ -55,11 +61,11 @@ table.history_table {
 
   td {
     text-overflow: ellipsis;
-    padding: 4px 0 0 4px;
     white-space: nowrap;
-    line-height: 18px;
+    line-height: 19px;
     overflow: hidden;
     font-size: 12px;
+    padding: 0 4px;
     height: 26px;
     color: #666;
   }
@@ -120,6 +126,11 @@ table#callstats_table {
 #current_entry {
   margin: 0 4px 10px 4px;
   position: relative;
+
+  textarea {
+    font-size: 12px;
+    height: 65px;
+  }
 
   i.to-crmuser {
     transition: color linear 300ms;

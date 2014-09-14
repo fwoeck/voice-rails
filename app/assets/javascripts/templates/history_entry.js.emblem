@@ -2,7 +2,10 @@ td = view Ember.CreatedAt
 if userId
   td = unbound agentFor userId
 else
-  td: i.fa.fa-volume-up
+  td
+    = t 'domain.mailbox'
+    ' &nbsp;
+    i.fa.fa-volume-up
 
 if mailbox
   td.mailbox
