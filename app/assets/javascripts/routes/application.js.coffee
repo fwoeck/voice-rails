@@ -59,7 +59,10 @@ Voice.ApplicationRoute = Ember.Route.extend({
       @silence(e)
 
     dialNumber: (e) ->
-      app.originateCall()
+      if Voice.get('currentCall')
+        app.showDefaultError(i18n.errors.line_is_busy)
+      else
+        app.originateCall()
       @silence(e)
 
     hangupCall: (e) ->

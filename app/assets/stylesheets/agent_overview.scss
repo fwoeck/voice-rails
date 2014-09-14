@@ -12,7 +12,7 @@
 
   span.search input {
     padding: 1px 5px 0px 5px;
-    line-height: 14px;
+    line-height: 17px;
     margin: 6px 0 0 0;
     font-size: 12px;
     height: 24px;
@@ -63,7 +63,7 @@
 
 .agent {
   box-shadow: #888 2px 2px 3px;
-  background-color: #f6f6f6;
+  background-color: #f0f0f0;
   border: 1px solid #ddd;
   position: relative;
   margin-bottom: 8px;
@@ -76,10 +76,13 @@
     background-color: #fff;
     border: 3px solid #ddd;
     border-radius: 1000px;
+    line-height: 18px;
     position: absolute;
     font-size: 18px;
     padding: 5px;
+    height: 34px;
     right: 18px;
+    width: 34px;
     top: 16px;
   }
 
@@ -143,5 +146,11 @@
 
   span.avatar {
     background-color: #ddd;
+  }
+}
+
+@-moz-document url-prefix() {
+  .agent i.fa {
+    line-height: 17px;
   }
 }

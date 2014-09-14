@@ -26,10 +26,16 @@ table.customer_table {
   i.crmuser:hover {
     color: #aaa;
   }
+
+  label {
+    font-size: 13px;
+  }
 }
 
 table.tickets_table,
 table.history_table {
+  width: calc(100% - 8px);
+  margin: 4px;
 
   col.w18 {
     width: 18%;
@@ -44,52 +50,24 @@ table.history_table {
   }
 
   thead td {
-    font-size: 14px;
+    padding-bottom: 6px;
+    font-weight: bold;
+    font-size: 13px;
   }
 
   tr {
     border-bottom: 1px solid #fff;
   }
 
-  tr.call-is-current td {
-    position: relative;
-    padding: 0 0 0 4px;
-    line-height: 26px;
-    color: #000;
-  }
-
-  i.to-crmuser {
-    transition: color linear 300ms;
-    position: absolute;
-    font-size: 15px;
-    cursor: pointer;
-    color: #666;
-    right: 7px;
-    top: 6px;
-  }
-
-  i.to-crmuser:hover {
-    color: #aaa;
-  }
-
   td {
     text-overflow: ellipsis;
-    padding: 4px 0 0 4px;
     white-space: nowrap;
-    line-height: 18px;
+    line-height: 19px;
     overflow: hidden;
     font-size: 12px;
+    padding: 0 4px;
     height: 26px;
     color: #666;
-  }
-
-  td.remarks input {
-    padding: 2px 5px 1px;
-    line-height: 14px;
-    display: inline;
-    font-size: 12px;
-    height: 26px;
-    margin: 0;
   }
 
   span.jp-duration {
@@ -142,5 +120,29 @@ table#callstats_table {
     font-size: 14px;
     display: block;
     height: 37px;
+  }
+}
+
+#current_entry {
+  margin: 0 4px 10px 4px;
+  position: relative;
+
+  textarea {
+    font-size: 12px;
+    height: 65px;
+  }
+
+  i.to-crmuser {
+    transition: color linear 300ms;
+    position: absolute;
+    font-size: 15px;
+    cursor: pointer;
+    color: #666;
+    right: 7px;
+    top: 6px;
+  }
+
+  i.to-crmuser:hover {
+    color: #aaa;
   }
 }

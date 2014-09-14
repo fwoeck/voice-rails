@@ -1,7 +1,6 @@
 Voice.HistoryEntryView = Ember.View.extend({
 
-  tagName:            'tr'
-  classNameBindings: ['controller.callIsCurrent']
+  tagName: 'tr'
 
 
   didInsertElement: ->

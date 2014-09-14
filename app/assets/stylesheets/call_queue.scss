@@ -31,9 +31,13 @@
   padding: 10px 8px 0 0;
   position: absolute;
   overflow-y: scroll;
-  width: 735px; // Can we avoid setting this directly?
+  width: 734px;
   bottom: 0;
   top: 40px;
+}
+
+@-moz-document url-prefix() {
+  width: 742px;
 }
 
 table#callstats_table {
@@ -103,10 +107,7 @@ table.callstats_table {
 
   td {
     -webkit-user-select: text;
-    text-overflow: ellipsis;
     -moz-user-select: text;
-    white-space: nowrap;
-    overflow: hidden;
     font-size: 12px;
     padding: 0 4px;
     margin: 0;
@@ -165,10 +166,16 @@ table.callstats_table {
   img.avatar {
     border: 2px solid #aaa;
     position: absolute;
-    margin: 16px 75px;
+    margin: 18px 75px;
     opacity: 0.8;
     height: 48px;
     width: 48px;
+  }
+}
+
+@-moz-document url-prefix() {
+  table.callstats_table img.avatar {
+    margin: 22px 75px;
   }
 }
 

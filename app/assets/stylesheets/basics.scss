@@ -53,6 +53,11 @@ input[type="text"][disabled] {
   background-color: #fff !important;
 }
 
+
+textarea {
+  resize: none;
+}
+
 #hidden_tabindex {
   display: none;
 }
@@ -89,7 +94,9 @@ input[type="text"][disabled] {
 
   a {
     transition: color linear 300ms !important;
-    text-decoration: underline;
+    box-shadow: #ccc 0px 5px 6px -4px;
+    padding: 0px 2px;
+
   }
 
   a:hover {
@@ -203,6 +210,11 @@ form#new_user {
   i.header:before {
     margin: 0 -2px 0 2px;
   }
+
+  .has-tip {
+    border-bottom: 0;
+    font-weight: normal;
+  }
 }
 
 @-moz-document url-prefix() {
@@ -218,6 +230,6 @@ form#new_user {
   -moz-filter: blur(3px);
 }
 
-tr.dirty input, input.dirty,  {
+tr.dirty input, input.dirty, textarea.dirty {
   background-color: #ffd890 !important;
 }

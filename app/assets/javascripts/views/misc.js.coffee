@@ -89,11 +89,10 @@ Ember.ChatInput = Ember.TextField.extend({
 })
 
 
-Ember.RemarksInput = Ember.TextField.extend({
+Ember.RemarksInput = Ember.TextArea.extend({
 
   classNameBindings: ['dirty']
-  entryBinding:       'controller.content'
-  maxlength:          '250'
+  maxlength:          '1000'
 
   placeholder: (->
     i18n.placeholder.enter_remarks
@@ -112,7 +111,7 @@ Ember.RemarksInput = Ember.TextField.extend({
 
   keyUp: (evt) ->
     switch evt.which
-      when 13 then @leaveField()
+      # when 13 then @leaveField()
       when 27 then @clearInput()
     return true
 
