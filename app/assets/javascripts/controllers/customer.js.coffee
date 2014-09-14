@@ -11,7 +11,8 @@ Voice.CustomerController = Ember.ObjectController.extend({
       false
 
     storeRecord: ->
-      @get('content')?.save()
+      cust = @get('content')
+      cust && cust.get('isDirty') && cust.save()
       false
 
     fetchCrmTickets: ->
