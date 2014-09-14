@@ -1,12 +1,12 @@
 class RemoteRequest
 
   Registry = ThreadSafe::Cache.new
-  attr_accessor :id, :verb, :klass, :params, :req_from, :res_to, :value
+  attr_accessor :id, :verb, :klass, :params, :req_from, :res_to, :value, :status, :error
 
 
   def handle_update
     future = Registry[id]
-    future << value if future
+    future << self if future
   end
 
 
@@ -30,12 +30,15 @@ class RemoteRequest
       Registry[id] = future
       AmqpManager.send("#{target}_publish", request)
 
-      result = future.value(5)
-    rescue => e
-      # ...
+      propagate_result_of future.value(5)
     ensure
       Registry.delete id
-      result
+    end
+
+
+    def propagate_result_of(future)
+      raise future.error if future.status >= 400
+      future.value
     end
 
 

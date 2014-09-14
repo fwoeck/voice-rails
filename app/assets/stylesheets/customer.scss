@@ -73,21 +73,23 @@ table.history_table {
   }
 
   td {
+    text-overflow: ellipsis;
     padding: 4px 0 0 4px;
+    white-space: nowrap;
     line-height: 18px;
+    overflow: hidden;
     font-size: 12px;
     height: 26px;
     color: #666;
   }
 
   td.remarks input {
-    width: calc(100% + 6px);
     padding: 2px 5px 1px;
-    margin: 0 0 0 -6px;
     line-height: 14px;
     display: inline;
     font-size: 12px;
     height: 26px;
+    margin: 0;
   }
 
   span.jp-duration {
