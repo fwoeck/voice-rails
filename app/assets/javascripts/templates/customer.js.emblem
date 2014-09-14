@@ -50,6 +50,6 @@ table.tickets_table
       i.fa.fa-refresh title="#{t 'placeholder.refresh_tickets'}" click=fetchCrmTickets
   tbody
     each ticket in orderedTickets
-      = render 'ticket' ticket
+      = render 'crm_ticket' ticket
     else
       tr: td colspan="3" &mdash;
