@@ -2,13 +2,13 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
 
   name:          DS.attr 'string'
   email:         DS.attr 'string'
-  roles:         DS.attr 'string'
-  skills:        DS.attr 'string'
+  roles:         DS.attr 'array'
+  skills:        DS.attr 'array'
   secret:        DS.attr 'string'
   password:      DS.attr 'string'
   fullName:      DS.attr 'string'
   activity:      DS.attr 'string'
-  languages:     DS.attr 'string'
+  languages:     DS.attr 'array'
   crmuserId:     DS.attr 'string'
   visibility:    DS.attr 'string'
   confirmation:  DS.attr 'string'
@@ -50,18 +50,18 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
 
 
   displayLangs: (->
-    @get('languages')?.split(',').map((l) -> l.toUpperCase()).join(', ')
+    @get('languages').map((l) -> l.toUpperCase()).join(', ')
   ).property('languages')
 
 
   displaySkills: (->
-    @get('skills')?.split(',').map((l) -> l.capitalize())
-                   .join(', ').replace(/_booking/g, 'Book')
+    @get('skills').map((l) -> l.capitalize())
+                  .join(', ').replace(/_booking/g, 'Book')
   ).property('skills')
 
 
   displayRoles: (->
-    @get('roles')?.split(',').map((l) -> l.capitalize()).join(', ')
+    @get('roles').map((l) -> l.capitalize()).join(', ')
   ).property('roles')
 
 

@@ -9,8 +9,7 @@ Voice.LanguageSettings = Ember.Mixin.create({
 
 
   langIsSet: (lang) ->
-    langs = @get('languages') || ""
-    !!langs.match(lang)
+    @get('languages').indexOf(lang) > -1
 
 
   joinLanguages: ->
@@ -19,8 +18,8 @@ Voice.LanguageSettings = Ember.Mixin.create({
       key = "language#{lang.toUpperCase()}"
       newLangs.push(lang) if @get(key)
 
-    newVal = newLangs.sort().join(',')
-    @set('languages', newVal) if newVal != @get('languages')
+    newVal = newLangs.sort()
+    @set('languages', newVal) if Ember.compare(newVal, @get 'languages')
 
 
   observeLanguages: ->

@@ -1,7 +1,7 @@
 env.i18n =
   en:
     dialog:
-      agent_created:    'You successfully added NAME as new ROLE.'
+      agent_created:    'You successfully added the user<br /><strong>NAME</strong>'
       browser_warning:  'For now, Chrome CHROME+ and Firefox FIREFOX+ are the only supported browsers. Use this platform at own risk.'
       cancel:           'Cancel'
       dial_now:         'Dial now'

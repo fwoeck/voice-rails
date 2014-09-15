@@ -53,7 +53,7 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     state = @get('content.currentState.stateName')
     if state == 'root.loaded.updated.uncommitted'
       Ember.run.scheduleOnce 'afterRender', @, @saveCurrentUser
-  ).observes('content.{availability,skills,languages}')
+  ).observes('content.{availability,skills.[],languages.[]}')
 
 
   saveCurrentUser: ->

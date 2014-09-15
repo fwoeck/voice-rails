@@ -9,8 +9,7 @@ Voice.SkillSettings = Ember.Mixin.create({
 
 
   skillIsSet: (skill) ->
-    skills = @get('skills') || ""
-    !!skills.match(skill)
+    @get('skills').indexOf(skill) > -1
 
 
   joinSkills: ->
@@ -19,8 +18,8 @@ Voice.SkillSettings = Ember.Mixin.create({
       key = "skill#{skill.toUpperCase()}"
       newSkills.push(skill) if @get(key)
 
-    newVal = newSkills.sort().join(',')
-    @set('skills', newVal) if newVal != @get('skills')
+    newVal = newSkills.sort()
+    @set('skills', newVal) if Ember.compare(newVal, @get 'skills')
 
 
   observeSkills: ->

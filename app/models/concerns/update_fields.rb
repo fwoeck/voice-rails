@@ -4,7 +4,7 @@ module UpdateFields
 
   def update_roles_from(p, as_admin=false)
     old_roles = roles.map(&:name).sort
-    new_roles = fetch_blank(p, :roles).split(',').sort
+    new_roles = (p[:roles] || []).sort
     new_roles = (['admin'] + new_roles).uniq if as_admin
 
     if old_roles != new_roles
@@ -81,7 +81,7 @@ module UpdateFields
 
   def update_languages_from(p)
     old_langs = languages.map(&:name).sort
-    new_langs = fetch_blank(p, :languages).split(',').sort
+    new_langs = (p[:languages] || []).sort
 
     if old_langs != new_langs
       (old_langs - new_langs).each { |l| unset_language(l) }
@@ -92,7 +92,7 @@ module UpdateFields
 
   def update_skills_from(p)
     old_skills = skills.map(&:name).sort
-    new_skills = fetch_blank(p, :skills).split(',').sort
+    new_skills = (p[:skills] || []).sort
 
     if old_skills != new_skills
       (old_skills - new_skills).each { |s| unset_skill(s) }
@@ -111,10 +111,5 @@ module UpdateFields
     self.password_confirmation = p[:confirmation] unless p[:confirmation].blank?
 
     save!
-  end
-
-
-  def fetch_blank(hash, name)
-    hash.fetch(name, "") || ""
   end
 end

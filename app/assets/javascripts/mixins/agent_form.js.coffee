@@ -111,21 +111,21 @@ Voice.AgentForm = Ember.Mixin.create({
 
 
   setArray: (attr, selection) ->
-    all = @get("model.#{attr}s") || ""
-    arr = selection.filter (n) -> all.match(n.id)
-    @set "#{attr}Array", arr
+    all = @get("model.#{attr}s") || []
+    arr = selection.filter (n) -> all.indexOf(n.id) > -1
+    old = @get("#{attr}Array")
+    @set("#{attr}Array", arr) if Ember.compare(old, arr)
 
 
   serializeArray: (attr) ->
-    arr = @get("#{attr}Array")
-    @set "model.#{attr}s", arr.map(
-      (n) -> n.id
-    ).sort().join(',')
+    arr = @get("#{attr}Array").map((n) -> n.id).sort()
+    old = @get("model.#{attr}s")
+    @set("model.#{attr}s", arr) if Ember.compare(old, arr)
 
 
   setRoleArray: (->
     @setArray('role', env.roleSelection)
-  ).observes('model.roles')
+  ).observes('model.roles.[]')
 
 
   observeRoleArray: (->
@@ -135,7 +135,7 @@ Voice.AgentForm = Ember.Mixin.create({
 
   setSkillArray: (->
     @setArray('skill', env.skillSelection)
-  ).observes('model.skills')
+  ).observes('model.skills.[]')
 
 
   observeSkillArray: (->
@@ -145,7 +145,7 @@ Voice.AgentForm = Ember.Mixin.create({
 
   setLanguageArray: (->
     @setArray('language', env.languageSelection)
-  ).observes('model.languages')
+  ).observes('model.languages.[]')
 
 
   observeLanguageArray: (->
