@@ -140,6 +140,10 @@ window.app = {
 
 
   initFoundation: ->
+    Ember.run.scheduleOnce 'afterRender', app, app.callFoundation
+
+
+  callFoundation: ->
     ($ document).foundation()
 
 

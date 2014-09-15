@@ -37,6 +37,7 @@ html.touch {
 
   #team_chat,
   #call_queue_body,
+  #agent_table_wrapper,
   #agent_overview_body {
     -webkit-overflow-scrolling: touch;
     -webkit-backface-visibility: hidden;
@@ -165,9 +166,26 @@ form#new_user {
     }
   }
 
-  div.switch.tiny label {
-    height: 1.47rem;
-    width: 3rem;
+  div.switch.tiny {
+    label {
+      border-bottom: 1px solid #fff;
+      border-right: 1px solid #fff;
+      border-left: 1px solid #aaa;
+      border-top: 1px solid #aaa;
+      height: 20px;
+      width: 42px;
+    }
+
+    label:after {
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      top: 2px;
+    }
+
+    input:checked + label:after {
+      left: 23px;
+    }
   }
 
   h5 {

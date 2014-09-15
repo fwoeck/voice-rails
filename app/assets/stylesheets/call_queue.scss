@@ -90,6 +90,10 @@ table#callstats_table {
   }
 }
 
+.customer_table {
+  height: 80px;
+}
+
 table.callstats_table {
   -webkit-border-horizontal-spacing: 0;
   -webkit-border-vertical-spacing: 0;
@@ -158,7 +162,10 @@ table.callstats_table {
   }
 
   td.strong {
+    text-overflow: ellipsis;
+    white-space: nowrap;
     line-height: 12px;
+    overflow: hidden;
     font-size: 15px;
     color: #888;
   }

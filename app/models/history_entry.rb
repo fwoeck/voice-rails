@@ -2,6 +2,7 @@ class HistoryEntry
 
   include Mongoid::Document
 
+  field :tags,       type: Array,    default: -> { [] }
   field :remarks,    type: String,   default: ""
   field :mailbox,    type: String
   field :call_id,    type: String
