@@ -14,10 +14,6 @@ Ember.RemarksInput = Ember.TextArea.extend({
   ).property('entry.isDirty')
 
 
-  focusIn: ->
-    @oldValue = @get 'value'
-
-
   focusOut: ->
     @saveRemark()
     false
@@ -35,12 +31,10 @@ Ember.RemarksInput = Ember.TextArea.extend({
 
 
   saveRemark: ->
-    remarks = @get 'value'
-    return false if remarks == @oldValue
-    @get('entry').save()
+    @get('entry').save() if @get('dirty')
     false
 
 
   clearInput: ->
-    @set('value', @oldValue)
+    @get('entry').rollback()
 })

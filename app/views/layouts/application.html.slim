@@ -9,7 +9,7 @@ html
     meta name='apple-mobile-web-app-capable' content='yes' /
     meta name='apple-touch-fullscreen' content='yes' /
 
-    / link rel='apple-touch-icon' href='/images/dokmatic-logo.png' /
+    / link rel='apple-touch-icon' href='/images/voice.png' /
 
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'vendor/modernizr'
@@ -41,6 +41,7 @@ html
         crmUserUrl:   "#{WimConfig.crm_user_url}",
         rrdSource:    "#{WimConfig.stats_image_url}",
         sslEnabled:    #{Rails.env.test? ? 'false' : 'true'},
+        defaultTags:   #{WimConfig.default_tags.to_json.html_safe},
         availability:  #{WimConfig.availability.to_json.html_safe},
         visibility:    #{WimConfig.visibility.to_json.html_safe},
         languages:     #{WimConfig.languages.to_json.html_safe},
