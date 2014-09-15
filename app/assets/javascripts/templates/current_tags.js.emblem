@@ -1,4 +1,5 @@
-= tags
+each tag in tags
+  span.tag = tag
 
 .taglist
   = view Ember.HistoryTagsInput

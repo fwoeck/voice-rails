@@ -66,6 +66,15 @@ table#callstats_table {
     width: 355px;
   }
 
+  #customer {
+    overflow: hidden;
+    height: auto;
+  }
+
+  #customer.hidden {
+    height: 0;
+  }
+
   span.matches {
     position: absolute;
     right: 8px;

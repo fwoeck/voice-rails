@@ -10,4 +10,5 @@ table#callstats_table
       td.split = render 'agent_bridge' model
     tr
       td.split colspan="2"
-        = render 'customer'
+        #customer.hidden
+          = render 'customer'

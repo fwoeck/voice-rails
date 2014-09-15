@@ -1,4 +1,4 @@
-Voice.HistoryTagsView = Ember.View.extend({
+Voice.CurrentTagsView = Ember.View.extend({
 
   allUsersBinding: 'Voice.allUsers'
 
@@ -36,8 +36,12 @@ Voice.HistoryTagsView = Ember.View.extend({
 
 
   addToTags: (tag) ->
-    tags = @get('controller.tags')
-    tags.addObject(tag) unless tags.indexOf(tag) > -1
+    entry = @get('controller.content')
+    tags  = entry.get('tags')
+
+    unless tags.indexOf(tag) > -1
+      tags.addObject(tag)
+      entry.save()
 
 
   clearInput: ->
