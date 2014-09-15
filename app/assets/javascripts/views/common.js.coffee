@@ -63,72 +63,6 @@ Ember.PassConf = Ember.TextField.extend({
 })
 
 
-Ember.ChatInput = Ember.TextField.extend({
-
-  name:      'chat_message'
-  maxlength: '150'
-
-  placeholder: (->
-    i18n.placeholder.type_here
-  ).property()
-
-  keyUp: (evt) ->
-    switch evt.which
-      when 13 then @sendMessage()
-      when 27 then @clearInput()
-    return true
-
-  sendMessage: ->
-    message = @get('value')
-    if message
-      Voice.ChatMessage.send(message)
-      @set('value', '')
-
-  clearInput: ->
-    @set('value', '')
-})
-
-
-Ember.RemarksInput = Ember.TextArea.extend({
-
-  classNameBindings: ['dirty']
-  maxlength:          '1000'
-
-  placeholder: (->
-    i18n.placeholder.enter_remarks
-  ).property()
-
-  dirty: (->
-    @get('entry.isDirty')
-  ).property('entry.isDirty')
-
-  focusIn: ->
-    @oldValue = @get 'value'
-
-  focusOut: ->
-    @saveRemark()
-    false
-
-  keyUp: (evt) ->
-    switch evt.which
-      # when 13 then @leaveField()
-      when 27 then @clearInput()
-    return true
-
-  leaveField: ->
-    @$().blur()
-
-  saveRemark: ->
-    remarks = @get 'value'
-    return false if remarks == @oldValue
-    @get('entry').save()
-    false
-
-  clearInput: ->
-    @set('value', @oldValue)
-})
-
-
 Voice.TextField = Ember.TextField.extend({
 
   keyUp: (evt) ->
@@ -153,4 +87,8 @@ Voice.AgentSearch = Voice.TextField.extend({
 
   focusIn: ->
     app.showAgentOverview()
+})
+
+
+Ember.HistoryTagsInput = Ember.TextField.extend({
 })

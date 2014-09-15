@@ -28,6 +28,7 @@ class Customer
     def rpc_update_history_with(hid, par)
       params = {
         entry_id:    hid,
+        tags:        par[:tags],
         remarks:     par[:remarks],
         customer_id: par[:customer_id],
       }

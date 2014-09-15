@@ -27,6 +27,10 @@ table.customer_table
   = render 'current_entry' orderedEntries.firstObject
 
 
+#history_tags
+  = render 'history_tags' orderedEntries.firstObject
+
+
 table.history_table
   colgroup
     col.w18
