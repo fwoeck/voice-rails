@@ -1,6 +1,10 @@
 module Keynames
   extend ActiveSupport::Concern
 
+  def keyname_for(field)
+    "#{Rails.env}.#{field}s.#{self.id}"
+  end
+
   def availability_keyname
     "#{Rails.env}.availability.#{self.id}"
   end

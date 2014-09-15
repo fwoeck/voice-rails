@@ -8,9 +8,6 @@ class User < ActiveRecord::Base
 
   rolify
 
-  has_many :skills
-  has_many :languages
-
   include UpdateFields
   include Keynames
 
@@ -34,6 +31,16 @@ class User < ActiveRecord::Base
   validates :crmuser_id, numericality: {only_integer: true},
                          length: { is: 9 },
                          allow_blank: true
+
+
+  def skills
+    @memo_skills ||= Redis.current.smembers(keyname_for :skill).sort
+  end
+
+
+  def languages
+    @memo_languages ||= Redis.current.smembers(keyname_for :language).sort
+  end
 
 
   def update_attributes_from(p)
@@ -61,7 +68,6 @@ class User < ActiveRecord::Base
       Redis.current.get(availability_keyname) || availability_default
     )
   end
-  alias :availability_summary :availability
 
 
   def activity
@@ -80,14 +86,6 @@ class User < ActiveRecord::Base
 
   def role_summary
     roles.map(&:name).sort
-  end
-
-  def skill_summary
-    skills.map(&:name).sort
-  end
-
-  def language_summary
-    languages.map(&:name).sort
   end
 
 
@@ -186,12 +184,12 @@ class User < ActiveRecord::Base
 
   def notify_ahn_about_update(key=nil)
     return if Rails.env.test?
+    _key = key == :role ? :role_summary : "#{key}s"
 
-    AmqpManager.ahn_publish(
-      Agent.new.tap { |a|
-        a.id = self.id
-        a.send "#{key}=", self.send("#{key}_summary") if key
-      }
-    )
+    agent = Agent.new.tap { |a|
+      a.id = self.id
+      a.send "#{key}=", self.send(_key) if key
+    }
+    AmqpManager.ahn_publish(agent)
   end
 end

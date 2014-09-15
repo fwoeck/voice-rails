@@ -7,12 +7,4 @@ class UserSerializer < ActiveModel::Serializer
   def roles
     object.role_summary
   end
-
-  def skills
-    object.skill_summary
-  end
-
-  def languages
-    object.language_summary
-  end
 end

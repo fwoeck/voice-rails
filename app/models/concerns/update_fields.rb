@@ -40,25 +40,25 @@ module UpdateFields
     unset_field(:skill, key)
   end
 
+
   private
 
-
-  def set_field(field, _key)
-    key = _key.to_s
-    check_for_validity(field, key)
-
-    self.send("#{field}s").find_or_create_by(name: key)
-    self.reload
-    notify_ahn_about_update(field)
+  def set_field(field, key)
+    update_field(:sadd, field, key)
   end
 
 
-  def unset_field(field, _key)
+  def unset_field(field, key)
+    update_field(:srem, field, key)
+  end
+
+
+  def update_field(sym, field, _key)
     key = _key.to_s
     check_for_validity(field, key)
 
-    self.send("#{field}s").find_by(name: key).try(:delete)
-    self.reload
+    Redis.current.send(sym, keyname_for(field), key)
+    instance_variable_set("@memo_#{field}s", nil)
     notify_ahn_about_update(field)
   end
 
@@ -80,7 +80,7 @@ module UpdateFields
 
 
   def update_languages_from(p)
-    old_langs = languages.map(&:name).sort
+    old_langs = languages
     new_langs = (p[:languages] || []).sort
 
     if old_langs != new_langs
@@ -91,7 +91,7 @@ module UpdateFields
 
 
   def update_skills_from(p)
-    old_skills = skills.map(&:name).sort
+    old_skills = skills
     new_skills = (p[:skills] || []).sort
 
     if old_skills != new_skills
