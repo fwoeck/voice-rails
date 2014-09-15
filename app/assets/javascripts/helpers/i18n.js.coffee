@@ -115,6 +115,7 @@ env.i18n =
       you_are_talking:  'You are talking to'
     placeholder:
       an_email_address: 'An e-mail address..'
+      enter_entry_tags: 'Enter some tags..'
       enter_remarks:    'Enter remarks for this call..'
       find_an_agent:    'Find an agent..'
       no_recent_messg:  'There are no recent messages in the team chat until now &mdash; be the first to write one!'

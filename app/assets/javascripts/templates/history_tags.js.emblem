@@ -1,1 +1,4 @@
-= view Ember.HistoryTagsInput value=content.tags entry=content
+= tags
+
+.taglist
+  = view Ember.HistoryTagsInput

@@ -8,6 +8,7 @@
 #= require foundation/foundation.tab
 #= require foundation/foundation.abide
 #= require foundation/foundation.tooltip
+#= require typeahead.bundle
 #= require gravatar
 #= require raphael
 #= require justgage

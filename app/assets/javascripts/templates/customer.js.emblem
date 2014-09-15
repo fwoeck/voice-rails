@@ -24,11 +24,10 @@ table.customer_table
 
 
 #current_entry
-  = render 'current_entry' orderedEntries.firstObject
-
+  = render 'current_entry'
 
 #history_tags
-  = render 'history_tags' orderedEntries.firstObject
+  = render 'history_tags'
 
 
 table.history_table

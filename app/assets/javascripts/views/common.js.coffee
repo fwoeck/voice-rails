@@ -88,7 +88,3 @@ Voice.AgentSearch = Voice.TextField.extend({
   focusIn: ->
     app.showAgentOverview()
 })
-
-
-Ember.HistoryTagsInput = Ember.TextField.extend({
-})
