@@ -9,9 +9,9 @@
           - full_name
           - crmuser_id
           - fullcontact
+          - skills
+          - languages
           - role_summary
-          - skill_summary
-          - language_summary
           - availability
           - visibility
           - activity

@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140823061302) do
 
-  create_table "languages", force: true do |t|
-    t.integer "user_id"
-    t.string  "name",    default: "", null: false
-  end
-
-  add_index "languages", ["user_id"], name: "index_languages_on_user_id", using: :btree
-
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -30,13 +23,6 @@ ActiveRecord::Schema.define(version: 20140823061302) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-
-  create_table "skills", force: true do |t|
-    t.integer "user_id"
-    t.string  "name",    default: "", null: false
-  end
-
-  add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",                   limit: 80

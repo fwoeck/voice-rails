@@ -99,15 +99,15 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
        @set 'matchesFilter', result
   ).observes(
     'hungup', 'agentsCallLeg', 'language' ,'skill'
-    'Voice.currentUser.{languages,skills}',
+    'Voice.currentUser.{languages,skills}.[]',
     'Voice.hideForeignCalls'
   )
 
 
   matchesCU: ->
     cu = Voice.get('currentUser')
-    !!cu.get('languages').match(@get 'language') &&
-      !!cu.get('skills').match(@get 'skill')
+    cu.get('languages').indexOf(@get 'language') > -1 &&
+      cu.get('skills').indexOf(@get 'skill') > -1
 
 
   isInbound: ->

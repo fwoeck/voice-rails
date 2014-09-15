@@ -19,6 +19,6 @@ Voice.UsersController = Ember.ArrayController.extend({
 
 
   cuIsAdmin: (->
-    /admin/.test(Voice.get 'currentUser.roles')
-  ).property('Voice.currentUser.roles')
+    Voice.get('currentUser.roles').indexOf('admin') > -1
+  ).property('Voice.currentUser.roles.[]')
 })
