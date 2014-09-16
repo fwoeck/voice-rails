@@ -3,6 +3,12 @@ Voice.CurrentTagsView = Ember.View.extend({
   allUsersBinding: 'Voice.allUsers'
 
 
+  actions:
+    removeTag: (tag) ->
+      @removeFromTags(tag)
+      false
+
+
   tagList: (->
     users = @get('allUsers') || []
     @extractTagsFrom(users).sort()
@@ -11,7 +17,7 @@ Voice.CurrentTagsView = Ember.View.extend({
 
   extractTagsFrom: (users) ->
     users.mapProperty('email').concat(
-      users.mapProperty('name').concat(
+      users.mapProperty('name').map((n) -> "##{n}").concat(
         Ember.keys(env.defaultTags)
       )
     )
@@ -33,6 +39,15 @@ Voice.CurrentTagsView = Ember.View.extend({
       return true
     else
       return false
+
+
+  removeFromTags: (tag) ->
+    entry = @get('controller.content')
+    tags  = entry.get('tags')
+
+    if tags.indexOf(tag) > -1
+      tags.removeObject(tag)
+      entry.save()
 
 
   addToTags: (tag) ->

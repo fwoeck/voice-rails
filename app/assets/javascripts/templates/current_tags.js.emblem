@@ -1,5 +1,7 @@
 each tag in tags
-  span.tag = tag
+  span.tag
+    = tag
+    i.fa.fa-times-circle-o click="removeTag tag target=view"
 
 .taglist
   = view Ember.HistoryTagsInput
