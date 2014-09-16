@@ -10,6 +10,8 @@ Voice.CurrentTagsView = Ember.View.extend({
       false
 
 
+  # TODO Move the following two to a more prominent place:
+  #
   tagList: (->
     users = @get('allUsers') || []
     @extractTagsFrom(users).sort()
@@ -18,8 +20,12 @@ Voice.CurrentTagsView = Ember.View.extend({
 
   extractTagsFrom: (users) ->
     users.mapProperty('email').concat(
-      users.mapProperty('name').map((n) -> "##{n}").concat @defaultTags
-    )
+      Ember.keys(env.languages).map (n) -> n.toUpperCase()
+    ).concat(
+      Ember.keys(env.skills).map (n) -> n.replace('_', '-')
+    ).concat(
+      users.mapProperty('name').map (n) -> "##{n}"
+    ).concat @defaultTags
 
 
   getTags: ->
