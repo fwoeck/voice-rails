@@ -45,8 +45,16 @@ table.history_table {
     width: 24%;
   }
 
-  col.w58 {
-    width: 58%;
+  col.w50 {
+    width: 50%;
+  }
+
+  td.w50 {
+    max-width: 343px;
+  }
+
+  col.w8 {
+    width: 8%;
   }
 
   thead td {
@@ -68,6 +76,19 @@ table.history_table {
     padding: 0 4px;
     height: 26px;
     color: #666;
+  }
+
+  td.status {
+    text-align: right;
+
+    span {
+      padding: 0px 6px 1px 6px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      cursor: default;
+      font-size: 10px;
+    }
   }
 
   span.jp-duration {
@@ -165,12 +186,16 @@ table#callstats_table {
 
   span.tag {
     padding: 1px 16px 1px 4px;
+    text-overflow: ellipsis;
     background-color: #fff;
     border: 1px solid #bbb;
     display: inline-block;
+    white-space: nowrap;
     margin: 0 5px 4px 0;
     border-radius: 7px;
     position: relative;
+    max-width: 236px;
+    overflow: hidden;
 
     i.fa {
       transition: color linear 300ms;

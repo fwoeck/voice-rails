@@ -1,7 +1,7 @@
 Voice.CurrentTagsView = Ember.View.extend({
 
   allUsersBinding: 'Voice.allUsers'
-  defaultTags:      Ember.keys(env.defaultTags)
+  defaultTags:      Voice.HistoryEntry.defaultTags
 
 
   actions:

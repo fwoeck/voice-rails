@@ -34,12 +34,14 @@ table.history_table
   colgroup
     col.w18
     col.w24
-    col.w58
+    col.w50
+    col.w8
   thead
     tr
       td = t 'domain.called_at'
       td = t 'domain.agent'
       td = t 'domain.remarks'
+      td
   tbody
     each entry in orderedEntries
       = render 'history_entry' entry
@@ -49,9 +51,10 @@ table.tickets_table
   colgroup
     col.w18
     col.w24
-    col.w58
+    col.w50
+    col.w8
   thead
-    tr: td colspan="3"
+    tr: td colspan="4"
       a href=crmuserUrl target='_blank'
         = t 'crmuser.recent_tickets'
       i.fa.fa-refresh title="#{t 'placeholder.refresh_tickets'}" click=fetchCrmTickets
@@ -59,4 +62,4 @@ table.tickets_table
     each ticket in orderedTickets
       = render 'crm_ticket' ticket
     else
-      tr: td colspan="3" &mdash;
+      tr: td colspan="4" &mdash;
