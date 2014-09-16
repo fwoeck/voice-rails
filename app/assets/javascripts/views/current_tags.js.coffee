@@ -10,6 +10,8 @@ Voice.CurrentTagsView = Ember.View.extend({
       false
 
 
+  # TODO Move the following two to a more prominent place:
+  #
   tagList: (->
     users = @get('allUsers') || []
     @extractTagsFrom(users).sort()
