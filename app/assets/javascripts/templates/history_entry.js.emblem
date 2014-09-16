@@ -1,4 +1,5 @@
 td = view Ember.CreatedAt
+
 if userId
   td = unbound agentFor userId
 else
@@ -17,4 +18,8 @@ if mailbox
       span.jp-pause: i.fa.fa-pause
       span.jp-play: i.fa.fa-play
 else
-  td = remarks
+  td.w46 = remarks
+
+td.status
+  if status
+    span = status

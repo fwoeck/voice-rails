@@ -1,6 +1,13 @@
 Voice.CurrentTagsView = Ember.View.extend({
 
   allUsersBinding: 'Voice.allUsers'
+  defaultTags:      Voice.HistoryEntry.defaultTags
+
+
+  actions:
+    removeTag: (tag) ->
+      @removeFromTags(tag)
+      false
 
 
   tagList: (->
@@ -11,9 +18,7 @@ Voice.CurrentTagsView = Ember.View.extend({
 
   extractTagsFrom: (users) ->
     users.mapProperty('email').concat(
-      users.mapProperty('name').concat(
-        Ember.keys(env.defaultTags)
-      )
+      users.mapProperty('name').map((n) -> "##{n}").concat @defaultTags
     )
 
 
@@ -35,11 +40,26 @@ Voice.CurrentTagsView = Ember.View.extend({
       return false
 
 
+  removeDefaultTags: (tag) ->
+    tags = @get('controller.content.tags')
+    if @defaultTags.indexOf(tag) > -1
+      @defaultTags.forEach (dt) -> tags.removeObject(dt)
+
+
+  removeFromTags: (tag) ->
+    entry = @get('controller.content')
+    tags  = entry.get('tags')
+
+    tags.removeObject(tag)
+    entry.save()
+
+
   addToTags: (tag) ->
     entry = @get('controller.content')
     tags  = entry.get('tags')
 
     unless tags.indexOf(tag) > -1
+      @removeDefaultTags(tag)
       tags.addObject(tag)
       entry.save()
 
