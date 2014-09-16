@@ -47,18 +47,20 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
 
   saveOnUpdate: (->
-    # We check for this condition to avoid recursive
-    # loops triggered by fast consecutive mouse clicks:
-    #
-    state = @get('content.currentState.stateName')
-    if state == 'root.loaded.updated.uncommitted'
-      Ember.run.scheduleOnce 'afterRender', @, @saveCurrentUser
+    Ember.run.scheduleOnce 'afterRender', @, @saveCurrentUser
   ).observes('content.{availability,skills.[],languages.[]}')
 
 
   saveCurrentUser: ->
-    cu = Voice.get('currentUser')
-    cu.save() if cu.get('isDirty')
+    self = @
+    cu   = Voice.get('currentUser')
+
+    if cu.get('isDirty')
+      @set('lockedForUpdate', true)
+      cu.save().then ->
+        Ember.run.later @, (->
+          self.set('lockedForUpdate', false)
+        ), 500
 
 
   currentStatusLine: (->

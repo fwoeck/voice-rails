@@ -184,12 +184,23 @@ class User < ActiveRecord::Base
 
   def notify_ahn_about_update(key=nil)
     return if Rails.env.test?
-    _key = key == :role ? :role_summary : "#{key}s"
+    _key = infer_key_name(key)
 
-    agent = Agent.new.tap { |a|
-      a.id = self.id
-      a.send "#{key}=", self.send(_key) if key
-    }
-    AmqpManager.ahn_publish(agent)
+    AmqpManager.ahn_publish(
+      Agent.new.tap { |a|
+        a.id = self.id
+        a.send "#{key}=", self.send(_key) if key
+      }
+    )
+  end
+
+
+  # TODO This will break, if a singular key (e.g. availability)
+  #      does NOT end with a "y" or a plural key (e.g. skills)
+  #      DOES end with a "y":
+  #
+  def infer_key_name(key)
+    return unless key
+    key == :role ? :role_summary : key[/y$/] ? key : "#{key}s"
   end
 end
