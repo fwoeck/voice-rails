@@ -4,6 +4,8 @@
     span.header = t 'headers.my_settings'
     span.stats = currentStatusLine
 
+  #my_settings_mask
+
   #my_settings_body
     ul.tabs.vertical data-tab=""
       li.tab-title.active

@@ -26,8 +26,8 @@ table.customer_table
 #current_entry
   = render 'current_entry'
 
-#history_tags
-  = render 'history_tags'
+#current_tags
+  = render 'current_tags'
 
 
 table.history_table

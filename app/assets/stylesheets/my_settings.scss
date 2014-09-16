@@ -22,6 +22,19 @@
   }
 }
 
+#my_settings_mask {
+  position: absolute;
+  display: none;
+  height: 120px;
+  width: 550px;
+  z-index: 10;
+  left: 180px;
+}
+
+.locked-for-update #my_settings_mask {
+  display: block;
+}
+
 #my_settings.expanded {
   height: 180px;
 }

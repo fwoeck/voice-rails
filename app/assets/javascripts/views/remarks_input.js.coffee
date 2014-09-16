@@ -10,8 +10,9 @@ Ember.RemarksInput = Ember.TextArea.extend({
 
 
   dirty: (->
-    @get('entry.isDirty')
-  ).property('entry.isDirty')
+    state = @get('content.currentState.stateName')
+    state == 'root.loaded.updated.uncommitted'
+  ).property('content.currentState.stateName')
 
 
   focusOut: ->
@@ -21,20 +22,15 @@ Ember.RemarksInput = Ember.TextArea.extend({
 
   keyUp: (evt) ->
     switch evt.which
-      # when 13 then @leaveField()
       when 27 then @clearInput()
     return true
 
 
-  leaveField: ->
-    @$().blur()
-
-
   saveRemark: ->
-    @get('entry').save() if @get('dirty')
+    @get('content').save() if @get('dirty')
     false
 
 
   clearInput: ->
-    @get('entry').rollback()
+    @get('content').rollback()
 })

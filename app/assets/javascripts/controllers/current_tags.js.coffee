@@ -1,4 +1,4 @@
-Voice.HistoryTagsController = Ember.ObjectController.extend({
+Voice.CurrentTagsController = Ember.ObjectController.extend({
 
   needs: ['customer']
 
