@@ -34,8 +34,8 @@ table.history_table
   colgroup
     col.w18
     col.w24
-    col.w50
-    col.w8
+    col.w46
+    col.w12
   thead
     tr
       td = t 'domain.called_at'
@@ -51,8 +51,8 @@ table.tickets_table
   colgroup
     col.w18
     col.w24
-    col.w50
-    col.w8
+    col.w46
+    col.w12
   thead
     tr: td colspan="4"
       a href=crmuserUrl target='_blank'

@@ -18,7 +18,7 @@ if mailbox
       span.jp-pause: i.fa.fa-pause
       span.jp-play: i.fa.fa-play
 else
-  td.w50 = remarks
+  td.w46 = remarks
 
 td.status
   if status
