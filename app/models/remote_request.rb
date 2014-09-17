@@ -22,7 +22,12 @@ class RemoteRequest
     end
 
 
-    def rpc_to_service(target, klass, verb, params)
+    def rpc_to_numbers(*args)
+      rpc_to_service(:numbers, *args)
+    end
+
+
+    def rpc_to_service(target, klass, verb, params=[])
       id      = new_request_id
       future  = Celluloid::Future.new
       request = build_fom(id, verb, klass, params)

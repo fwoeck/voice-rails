@@ -25,10 +25,6 @@ module Keynames
     "#{Rails.env}.token.#{self.id}"
   end
 
-  def dataset_keyname
-    "#{Rails.env}.numbers-dataset"
-  end
-
 
   module ClassMethods
 
