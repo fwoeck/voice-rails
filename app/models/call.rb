@@ -1,7 +1,5 @@
-require 'json'
-
-
 class Call
+
   FORMAT = %w{call_id call_tag language skill extension caller_id hungup called_at mailbox queued_at hungup_at dispatched_at}
            .map(&:to_sym)
 
@@ -51,11 +49,12 @@ class Call
   end
 
 
-  # FIXME This may become expensive for high call counts:
-  #
   def self.all
-    Redis.current.keys(call_pattern).map { |key|
-      Marshal.load(Redis.current.get(key) || "\x04\b0")
+    call_keys = Redis.current.keys(call_pattern)
+    return [] if call_keys.empty?
+
+    Redis.current.mget(*call_keys).map { |call|
+      Marshal.load(call || "\x04\b0")
     }.compact.select { |call|
       !call.hungup
     }
