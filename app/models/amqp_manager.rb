@@ -1,7 +1,7 @@
 class AmqpManager
   include Celluloid
 
-  TOPICS = [:rails, :push, :custom, :ahn]
+  TOPICS = [:rails, :push, :custom, :ahn, :numbers]
 
 
   TOPICS.each { |name|
@@ -22,21 +22,23 @@ class AmqpManager
         @#{name}_queue ||= #{name}_channel.queue('voice.#{name}', auto_delete: false)
       end
     "
+
+    class_eval %Q"
+      def #{name}_publish(payload)
+        #{name}_xchange.publish(Marshal.dump(payload), routing_key: 'voice.#{name}')
+      end
+    "
+
+    class_eval %Q"
+      def self.#{name}_publish(*args)
+        Celluloid::Actor[:amqp].async.#{name}_publish(*args)
+      end
+    "
   }
 
 
   def push_publish(payload)
     push_xchange.publish(MultiJson.dump(payload), routing_key: 'voice.push')
-  end
-
-
-  def custom_publish(payload)
-    custom_xchange.publish(Marshal.dump(payload), routing_key: 'voice.custom')
-  end
-
-
-  def ahn_publish(payload)
-    ahn_xchange.publish(Marshal.dump(payload), routing_key: 'voice.ahn')
   end
 
 
@@ -89,21 +91,6 @@ class AmqpManager
 
     def shutdown
       @@manager.shutdown
-    end
-
-
-    def push_publish(*args)
-      Celluloid::Actor[:amqp].async.push_publish(*args)
-    end
-
-
-    def custom_publish(*args)
-      Celluloid::Actor[:amqp].async.custom_publish(*args)
-    end
-
-
-    def ahn_publish(*args)
-      Celluloid::Actor[:amqp].async.ahn_publish(*args)
     end
   end
 end

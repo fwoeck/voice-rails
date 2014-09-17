@@ -1,5 +1,3 @@
-require 'json'
-
 class Dataset
 
   include ActiveModel::Serialization
@@ -11,7 +9,7 @@ class Dataset
   def id; 1; end
 
   def initialize
-    @dataset = get_dataset
+    @dataset = Dataset.rpc_fetch
   end
 
 
@@ -65,12 +63,8 @@ class Dataset
   end
 
 
-  private
-
-  def get_dataset
-    MultiJson.load(
-      Redis.current.get(dataset_keyname) || '{}'
-    )
+  def self.rpc_fetch
+    RemoteRequest.rpc_to_numbers(self.name, :fetch)
   end
 
 
