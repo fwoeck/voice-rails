@@ -103,13 +103,6 @@ class User < ActiveRecord::Base
 
   class << self
 
-    def fetch_all
-      users = nil
-      Redis.current.pipelined { users = all.to_a }
-      users
-    end
-
-
     def all_online_ids
       Redis.current.smembers(online_users_keyname).map(&:to_i)
     end
