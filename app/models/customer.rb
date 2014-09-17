@@ -49,5 +49,10 @@ class Customer
     def rpc_create(*args)
       RemoteRequest.rpc_to_custom(self.name, :create, args)
     end
+
+
+    def rpc_search(*args)
+      RemoteRequest.rpc_to_custom(self.name, :search, args)
+    end
   end
 end

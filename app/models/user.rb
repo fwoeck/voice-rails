@@ -160,7 +160,7 @@ class User < ActiveRecord::Base
 
 
     def all_agent_names
-      User.all.pluck(:name).compact.map(&:to_i)
+      all.pluck(:name).compact.map(&:to_i)
     end
 
 
