@@ -5,7 +5,6 @@ app.defaultUserPrefs =
 
 
 app.getUserPrefs = (uid) ->
-  return unless uid
   json = window.localStorage[uid] || JSON.stringify(app.defaultUserPrefs)
   $.extend app.defaultUserPrefs, JSON.parse(json)
 
@@ -15,14 +14,12 @@ app.putUserPrefs = (uid, obj) ->
 
 
 app.storeLocalKey = (key, value) ->
-  uid = Voice.get('currentUser.id')
-  return unless uid
-  prefs = app.getUserPrefs(uid)
-  prefs[key] = value
-  app.putUserPrefs(uid, prefs)
+  if (uid = Voice.get 'currentUser.id')
+    prefs = app.getUserPrefs(uid)
+    prefs[key] = value
+    app.putUserPrefs(uid, prefs)
 
 
 app.loadLocalKey = (key) ->
-  uid = Voice.get('currentUser.id')
-  return unless uid
-  app.getUserPrefs(uid)[key]
+  if (uid = Voice.get 'currentUser.id')
+    app.getUserPrefs(uid)[key]
