@@ -1,8 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    opts = {caller_ids: params[:caller_id]}
-    render json: Customer.rpc_where(opts), each_serializer: CustomerSerializer
+    render json: fetch_customers, each_serializer: CustomerSerializer
   end
 
 
@@ -50,6 +49,21 @@ class CustomersController < ApplicationController
       render json: cust, serializer: FlatCustomerSerializer, root: :customer
     else
       render nothing: true, status: 404
+    end
+  end
+
+
+  private
+
+  def fetch_customers
+    if params[:caller_id]
+      opts = {caller_ids: params[:caller_id]}
+      Customer.rpc_where(opts)
+    elsif params[:q]
+      opts = {history: params[:q], size: 100}
+      Customer.rpc_search(opts)
+    else
+      []
     end
   end
 end
