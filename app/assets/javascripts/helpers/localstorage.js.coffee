@@ -5,6 +5,7 @@ app.defaultUserPrefs =
 
 
 app.getUserPrefs = (uid) ->
+  return unless uid
   json = window.localStorage[uid] || JSON.stringify(app.defaultUserPrefs)
   $.extend app.defaultUserPrefs, JSON.parse(json)
 
