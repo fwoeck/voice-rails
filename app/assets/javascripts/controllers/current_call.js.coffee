@@ -4,6 +4,9 @@ Voice.CurrentCallController = Ember.ObjectController.extend({
 
 
   customers: (->
+    @store.unloadAll('customer')
+    @store.unloadAll('historyEntry')
+
     @store.findQuery 'customer', caller_id: @get('callerId')
   ).property('callerId')
 

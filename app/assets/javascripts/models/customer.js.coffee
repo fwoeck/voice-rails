@@ -32,8 +32,13 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
     reload = @get('reload')
     @set('reload', false)
 
+    @requestTickets(zid, reload)
+  ).property('crmuserId')
+
+
+  requestTickets: (zid, reload) ->
+    @store.unloadAll('crmTicket')
     zt = @store.findQuery('crmTicket', requester_id: zid, reload: reload)
     zt.then -> app.ticketSpinnerOff()
     zt
-  ).property('crmuserId')
 })
