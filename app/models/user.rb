@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
 
-  def send_update_notification_to_clients(async=false)
+  def send_user_update_to_clients(async=false)
     delay = async ? 0.1 : 0
 
     VoiceThread.run {

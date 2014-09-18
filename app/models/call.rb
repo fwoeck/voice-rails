@@ -38,11 +38,19 @@ class Call
 
 
   def handle_message
-    send_update_notification_to_clients
+    send_call_update_to_admins
+    send_call_update_to_agents
   end
 
 
-  def send_update_notification_to_clients
+  def send_call_update_to_admins
+    AmqpManager.push_publish(
+      user_ids: User.all_online_ids, data: CallSerializer.new(self)
+    )
+  end
+
+
+  def send_call_update_to_agents
     AmqpManager.push_publish(
       user_ids: User.all_online_ids, data: CallSerializer.new(self)
     )

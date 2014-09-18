@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     handle_client_request(r) do
       r.obj = User.create_from(r.par)
-      r.obj.send_update_notification_to_clients(:async)
+      r.obj.send_user_update_to_clients(:async)
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     handle_client_request(r) do
       r.obj.update_attributes_from(r.par)
       r.obj.update_roles_from(r.par, self_update?(r.obj)) if cu_is_admin?
-      r.obj.send_update_notification_to_clients(:async)
+      r.obj.send_user_update_to_clients(:async)
     end
   end
 

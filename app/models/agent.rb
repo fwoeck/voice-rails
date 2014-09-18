@@ -6,7 +6,7 @@ class Agent
 
   def handle_message
     if user = User.where(name: name).first
-      user.send_update_notification_to_clients
+      user.send_user_update_to_clients
     end
   end
 
