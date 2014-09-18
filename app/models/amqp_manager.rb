@@ -71,7 +71,7 @@ class AmqpManager
 
     rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
     rails_queue.subscribe do |delivery_info, metadata, payload|
-      Marshal.load(payload).handle_update
+      Marshal.load(payload).handle_message
     end if ENV['SUBSCRIBE_AMQP']
   end
 

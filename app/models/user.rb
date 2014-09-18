@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
 
-  def send_update_notification_to_clients(async=false)
+  def send_user_update_to_clients(async=false)
     delay = async ? 0.1 : 0
 
     VoiceThread.run {
@@ -102,6 +102,11 @@ class User < ActiveRecord::Base
 
 
   class << self
+
+    def all_admin_ids
+      User.with_role(:admin).pluck(:id)
+    end
+
 
     def all_online_ids
       Redis.current.smembers(online_users_keyname).map(&:to_i)

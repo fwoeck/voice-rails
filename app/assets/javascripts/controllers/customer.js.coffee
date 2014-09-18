@@ -6,7 +6,10 @@ Voice.CustomerController = Ember.ObjectController.extend({
   actions:
     syncCrm: ->
       if (cust = @get 'content')
-        cust.set('crmuserId', '...') # FIXME This is ugly.
+        # FIXME We use the ... as indication to request a new
+        #       userId, that's ugly:
+        #
+        cust.set('crmuserId', '...')
         cust.save()
       false
 

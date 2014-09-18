@@ -9,12 +9,12 @@ class ChatMessage
 
   index(created_at: -1)
 
-  after_save :send_update_notification_to_clients
+  after_save :send_chat_update_to_clients
 
 
-  # TODO implement personal messages with :to
+  # TODO Implement personal messages:
   #
-  def send_update_notification_to_clients
+  def send_chat_update_to_clients
     AmqpManager.push_publish(
       user_ids: User.all_online_ids, data: ChatMessageSerializer.new(self)
     )
