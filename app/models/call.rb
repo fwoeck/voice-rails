@@ -37,7 +37,7 @@ class Call
   end
 
 
-  def handle_update
+  def handle_message
     send_update_notification_to_clients
   end
 
