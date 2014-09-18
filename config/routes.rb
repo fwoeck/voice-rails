@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post   'users'               => 'users#create'
 
   get    'customers'           => 'customers#index'
+  get    'search_results'      => 'customers#index'
   put    'customers/:id'       => 'customers#update'
   get    'customers/:id'       => 'customers#show'
   put    'history_entries/:id' => 'customers#update_history'
