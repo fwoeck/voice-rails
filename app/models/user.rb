@@ -103,6 +103,11 @@ class User < ActiveRecord::Base
 
   class << self
 
+    def all_admin_ids
+      User.with_role(:admin).pluck(:id)
+    end
+
+
     def all_online_ids
       Redis.current.smembers(online_users_keyname).map(&:to_i)
     end

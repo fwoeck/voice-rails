@@ -37,22 +37,25 @@ class Call
   end
 
 
+  def hide_from_agents?
+    language.blank? || skill.blank?
+  end
+
+
   def handle_message
-    send_call_update_to_admins
-    send_call_update_to_agents
+    uids = if hide_from_agents?
+      User.all_online_ids & User.all_admin_ids
+    else
+      User.all_online_ids
+    end
+
+    send_call_update_to_clients(uids)
   end
 
 
-  def send_call_update_to_admins
+  def send_call_update_to_clients(uids)
     AmqpManager.push_publish(
-      user_ids: User.all_online_ids, data: CallSerializer.new(self)
-    )
-  end
-
-
-  def send_call_update_to_agents
-    AmqpManager.push_publish(
-      user_ids: User.all_online_ids, data: CallSerializer.new(self)
+      user_ids: uids, data: CallSerializer.new(self)
     )
   end
 
