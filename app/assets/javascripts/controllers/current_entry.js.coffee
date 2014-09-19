@@ -17,8 +17,8 @@ Voice.CurrentEntryController = Ember.ObjectController.extend({
       requesterId: @get 'customer.crmuserId'
       description: @get 'content.remarks'
       subject:     @getSubject()
-    ).save().then ->
-      Voice.get('currentCustomer').fetchCrmTickets(true)
+    ).save().then =>
+      @get('customer').fetchCrmTickets(true)
 
 
   getSubject: ->

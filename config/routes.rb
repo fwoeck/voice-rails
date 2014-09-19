@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root   'application#index'
   get    'stats'               => 'application#index'
   get    'agents'              => 'application#index'
+  get    'custom'              => 'application#index'
+
   get    'datasets'            => 'stats#index'
 
   get    'calls'               => 'calls#index'

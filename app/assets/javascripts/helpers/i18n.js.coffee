@@ -94,6 +94,7 @@ env.i18n =
       call_statistics:  'Call Statistics'
       connected_agents: 'Connected Agents'
       current_calls:    'Current Calls'
+      customers:        'Customers'
       dashboard:        'Dashboard'
       help:             'Help'
       inbound_calls:    'Inbound Calls'
