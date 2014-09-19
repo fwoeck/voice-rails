@@ -1,7 +1,7 @@
 Voice.ApplicationController = Ember.Controller.extend({
 
   needs: ['calls', 'users', 'chatMessages']
-  allCallsBinding: 'Voice.allCalls'
+  allCallsBinding: 'controllers.calls.content'
 
 
   init: ->

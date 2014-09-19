@@ -2,5 +2,5 @@
 = render 'dialog'
 
 #main.row
-  = partial 'page_headers'
+  = partial 'navigation'
   = outlet

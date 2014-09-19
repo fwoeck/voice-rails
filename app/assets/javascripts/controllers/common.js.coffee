@@ -1,4 +1,16 @@
+Voice.DatasetsController = Ember.ArrayController.extend({
+})
+
+
+Voice.SearchResultsController = Ember.ArrayController.extend({
+})
+
+
 Voice.CallsController = Ember.ArrayController.extend({
+})
+
+
+Voice.CustomersController = Ember.ArrayController.extend({
 })
 
 

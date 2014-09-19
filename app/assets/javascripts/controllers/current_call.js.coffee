@@ -1,19 +1,26 @@
 Voice.CurrentCallController = Ember.ObjectController.extend({
 
-  callerIdBinding: 'Voice.currentCall.origin.callerId'
+  needs:           ['customers']
+  callerIdBinding:  'Voice.currentCall.origin.callerId'
+  customersBinding: 'controllers.customers.content'
 
 
-  customers: (->
+  init: ->
+    @_super()
+    @fetchCustomers()
+
+
+  fetchCustomers: (->
     @store.unloadAll('customer')
     @store.unloadAll('historyEntry')
     return [] unless cid = @get('callerId')
 
     @store.findQuery('customer', caller_id: cid)
-  ).property('callerId')
+  ).observes('callerId')
 
 
   setCurrentCustomer: (->
-    customer = @get('customers.content.firstObject')
+    customer = @get('customers.firstObject')
     Voice.set 'currentCustomer', customer
-  ).observes('customers.content.[]')
+  ).observes('customers.[]')
 })

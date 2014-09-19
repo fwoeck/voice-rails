@@ -1,5 +1,6 @@
 Voice.Router.map ->
   @resource('agents')
+  @resource('custom')
   @resource('stats')
 
 

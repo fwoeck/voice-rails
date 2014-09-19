@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    render json: fetch_customers, each_serializer: CustomerSerializer
+    render json: fetch_customers, each_serializer: CustomerSerializer, root: customers_root
   end
 
 
@@ -65,5 +65,10 @@ class CustomersController < ApplicationController
     else
       []
     end
+  end
+
+
+  def customers_root
+    params[:q] ? :search_results : :customers
   end
 end

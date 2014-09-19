@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root   'application#index'
   get    'stats'               => 'application#index'
   get    'agents'              => 'application#index'
+  get    'custom'              => 'application#index'
+
   get    'datasets'            => 'stats#index'
 
   get    'calls'               => 'calls#index'
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   post   'users'               => 'users#create'
 
   get    'customers'           => 'customers#index'
+  get    'search_results'      => 'customers#index'
   put    'customers/:id'       => 'customers#update'
   get    'customers/:id'       => 'customers#show'
   put    'history_entries/:id' => 'customers#update_history'

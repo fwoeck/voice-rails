@@ -1,0 +1,12 @@
+each customer in searchResults
+  h5
+    = customer.email
+    '  /
+    = customer.fullName
+  ul: each entry in customer.historyEntries
+    li = entry.tags
+    li = entry.callId
+    li = entry.userId
+    li = entry.mailbox
+    li = entry.remarks
+    li = entry.callerId

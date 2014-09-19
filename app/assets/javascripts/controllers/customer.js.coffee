@@ -1,6 +1,7 @@
 Voice.CustomerController = Ember.ObjectController.extend({
 
-  contentBinding: 'parentController.customers.firstObject'
+  needs:         ['customers']
+  contentBinding: 'controllers.customers.content.firstObject'
 
 
   actions:
@@ -19,7 +20,7 @@ Voice.CustomerController = Ember.ObjectController.extend({
       false
 
     fetchCrmTickets: ->
-      Voice.get('currentCustomer').fetchCrmTickets(true)
+      @get('content').fetchCrmTickets(true)
       false
 
 

@@ -8,6 +8,9 @@
   = link-to 'index'
    = t 'headers.dashboard'
   '  &mdash;
+  = link-to 'custom'
+   = t 'headers.customers'
+  '  &mdash;
   = link-to 'stats'
    = t 'headers.call_statistics'
   '  &mdash;

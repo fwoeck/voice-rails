@@ -42,3 +42,7 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
     zt.then -> app.ticketSpinnerOff()
     zt
 })
+
+
+Voice.SearchResult = Voice.Customer.extend({
+})
