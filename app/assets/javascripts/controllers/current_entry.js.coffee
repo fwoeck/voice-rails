@@ -22,7 +22,7 @@ Voice.CurrentEntryController = Ember.ObjectController.extend({
 
 
   getSubject: ->
-    call  = Voice.get('currentCall.origin')
+    call = Voice.get('currentCall.origin')
     i18n.crmuser.default_subject.replace('CALL', call.get 'id')
 
 

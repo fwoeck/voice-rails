@@ -27,6 +27,7 @@ Voice.ApplicationRoute = Ember.Route.extend({
     'esc':    'closeDialog'
     'ctrl+o': 'dialNumber'
     'ctrl+h': 'hangupCall'
+    'ctrl+x': 'closeCall'
     'ctrl+s': 'toggleStats'
     'ctrl+a': 'toggleAgents'
     'ctrl+d': 'showDashboard'
@@ -62,6 +63,10 @@ Voice.ApplicationRoute = Ember.Route.extend({
         app.showDefaultError(i18n.errors.line_is_busy)
       else
         app.originateCall()
+      @silence(e)
+
+    closeCall: (e) ->
+      app.closeCurrentCall()
       @silence(e)
 
     hangupCall: (e) ->

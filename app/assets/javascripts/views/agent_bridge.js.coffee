@@ -6,11 +6,6 @@ Voice.AgentBridgeView = Ember.View.extend(DragNDrop.Dragable, {
   didInsertElement: ->
     app.initFoundation()
 
-    # FIXME This is ugly:
-    #
-    if navigator.appVersion.indexOf('Chrome/') != -1
-      @$('.connection').css(padding: '4px 5px')
-
 
   willDestroyElement: ->
     tooltip = @$('span.has-tip').attr('data-selector')

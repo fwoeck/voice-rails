@@ -42,6 +42,11 @@ class Call
   end
 
 
+  def visible_to_client?(unscoped)
+    !hungup && (unscoped || !hide_from_agents?)
+  end
+
+
   def handle_message
     uids = if hide_from_agents?
       User.all_online_ids & User.all_admin_ids
@@ -60,14 +65,14 @@ class Call
   end
 
 
-  def self.all
+  def self.all(unscoped=true)
     call_keys = Redis.current.keys(call_pattern)
     return [] if call_keys.empty?
 
     Redis.current.mget(*call_keys).map { |call|
       Marshal.load(call || "\x04\b0")
     }.compact.select { |call|
-      !call.hungup
+      call.visible_to_client?(unscoped)
     }
   end
 

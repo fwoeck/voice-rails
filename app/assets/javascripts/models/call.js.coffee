@@ -41,6 +41,17 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
     $.post("/calls/#{callId}", {'_method': 'DELETE'})
 
 
+  removeAfterHangup: (->
+    if @get('hungup') && @isForeignCall()
+      Ember.run.later @, @remove, 3000
+  ).observes('hungup')
+
+
+  isForeignCall: ->
+    cc = Voice.get('currentCall')
+    !cc || @ != cc && @ != cc.get('origin')
+
+
   transfer: (to) ->
     callId = @get('id')
     $.post("/calls/#{callId}/transfer", {'to': to})

@@ -32,8 +32,9 @@ Voice.CallQueueController = Ember.ArrayController.extend({
 
 
   talking: ( ->
-    !!Voice.get('currentCall')
-  ).property('Voice.currentCall')
+    cc = Voice.get('currentCall')
+    cc && !cc.get('hungup')
+  ).property('Voice.currentCall.hungup')
 
 
   waitingCalls: Ember.computed.filter('filteredCalls',
