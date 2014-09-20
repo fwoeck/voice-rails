@@ -5,4 +5,8 @@ Voice.IndexView = Ember.View.extend({
 
   didInsertElement: ->
     app.setupDashboard()
+
+
+  willDestroyElement: ->
+    app.cleanupDashboard()
 })

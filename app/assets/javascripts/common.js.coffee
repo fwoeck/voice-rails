@@ -232,6 +232,10 @@ window.app = {
     @setupLabelInputs()
 
 
+  cleanupDashboard: ->
+    @unbindLabelInputs()
+
+
   showAgentOverview: ->
     ($ '#call_queue').removeClass('expanded')
 
@@ -286,8 +290,12 @@ window.app = {
       app.toggleCallQueue()
 
 
+  unbindLabelInputs: ->
+    ($ '#my_settings label').off 'click'
+
+
   setupLabelInputs: ->
-    ($ document).on 'click', '#my_settings label', (el) ->
+    ($ '#my_settings label').on 'click', (el) ->
       ($ el.target).siblings('input').click()
 
 
