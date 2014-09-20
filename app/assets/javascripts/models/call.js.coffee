@@ -20,6 +20,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
   callerId:      DS.attr 'string'
   hungupAt:      DS.attr 'date'
   language:      DS.attr 'string'
+  originId:      DS.attr 'string'
   queuedAt:      DS.attr 'date'
   extension:     DS.attr 'string'
   dispatchedAt:  DS.attr 'date'
