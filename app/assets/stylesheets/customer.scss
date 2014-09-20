@@ -6,9 +6,14 @@ table.customer_table {
   margin: 0;
   border: 0;
 
-  td.space25 {
+  td.space22 {
     padding: 4px;
-    width: 25%;
+    width: 22%;
+  }
+
+  td.space28 {
+    padding: 4px;
+    width: 28%;
   }
 
   td.space15 {
@@ -148,7 +153,7 @@ table#callstats_table {
   margin-bottom: 10px;
   position: relative;
   padding: 4px;
-  width: 434px;
+  width: 433px;
   float: left;
 
   textarea {
@@ -181,7 +186,7 @@ table#callstats_table {
   padding: 5px 4px;
   font-size: 11px;
   height: 65px;
-  width: 252px;
+  width: 253px;
   float: left;
 
   span.tag {

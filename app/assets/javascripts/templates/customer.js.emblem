@@ -1,11 +1,11 @@
 table.customer_table
   tbody
     tr class=dirty
-      td.space25
+      td.space22
         label
           = t 'domain.full_name'
           = input type='text' value=fullName placeholder=fullNamePlaceholder
-      td.space25
+      td.space28
         label
           = t 'domain.email'
           = input type='text' value=email placeholder=emailAddressPlaceholder
