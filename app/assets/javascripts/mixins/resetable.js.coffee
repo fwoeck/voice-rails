@@ -10,4 +10,9 @@ Voice.Resetable = Ember.Mixin.create({
 
     @adapterWillCommit()
     @adapterDidCommit()
+
+
+  remove: ->
+    @deleteRecord()
+    @markAsSaved()
 })

@@ -70,9 +70,18 @@ window.app = {
     )
 
 
+  closeCurrentCall: ->
+    cc = Voice.get('currentCall')
+    if cc && cc.get('hungup')
+      cc.get('origin')?.remove()
+      cc.remove()
+    else
+      app.showDefaultError(i18n.dialog.no_hungup_call)
+
+  
   hangupCurrentCall: ->
     cc = Voice.get('currentCall')
-    app.hangupCall(cc) if cc
+    app.hangupCall(cc) if cc && !cc.get('hungup')
 
 
   hangupCall: (call) ->
@@ -299,15 +308,16 @@ window.app = {
     obj = Voice.store.getById(name, data[name].id)
 
     if obj
-      Voice.aS.normalizeAttributes(klass, data[name])
-
-      if name == 'call' && data[name].hungup
-        obj.deleteRecord()
-      else
-        @updateKeysFromData(obj, name, data)
-        obj.markAsSaved()
+      unless obj.get('isDeleted')
+        @writeToObject(obj, klass, data, name)
     else
       Voice.store.pushPayload(name, data)
+
+
+  writeToObject: (obj, klass, data, name) ->
+    Voice.aS.normalizeAttributes(klass, data[name])
+    @updateKeysFromData(obj, name, data)
+    obj.markAsSaved()
 
 
   updateKeysFromData: (obj, name, data) ->

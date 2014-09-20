@@ -15,5 +15,5 @@ Voice.AgentsRoute = Ember.Route.extend({
 
   clearAgent: ->
     agent = @controllerFor('agents').get 'newAgent'
-    agent.deleteRecord() if agent?.get('isNew')
+    agent.remove() if agent?.get('isNew')
 })

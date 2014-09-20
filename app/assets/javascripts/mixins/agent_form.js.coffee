@@ -73,7 +73,7 @@ Voice.AgentForm = Ember.Mixin.create({
     model = @get('model')
 
     if model.get('isNew')
-      model.deleteRecord()
+      model.remove()
       @set 'model', @store.createRecord(Voice.User)
     else
       model.rollback()

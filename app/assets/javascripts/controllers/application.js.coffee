@@ -38,10 +38,11 @@ Voice.ApplicationController = Ember.Controller.extend({
 
   setCurrentCall: (->
     myCall  = @getMyCall()
-    newCall = myCall?.get('bridge')
+    curCall = myCall?.get('bridge')
 
-    if newCall != Voice.get('currentCall')
-      Voice.set('currentCall', newCall)
+    if curCall != Voice.get('currentCall')
+      Voice.set('currentCall', curCall)
+      app.setAvailability('busy') if curCall
   ).observes('allCalls.@each.{myCallLeg,bridge}')
 
 

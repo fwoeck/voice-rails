@@ -10,6 +10,12 @@ Voice.CurrentCallController = Ember.ObjectController.extend({
     @fetchCustomers()
 
 
+  actions:
+    closeCurrentCall: ->
+      app.closeCurrentCall()
+      false
+
+
   fetchCustomers: (->
     @store.unloadAll('customer')
     @store.unloadAll('historyEntry')

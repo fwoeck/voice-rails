@@ -1,10 +1,18 @@
 table#callstats_table
   tbody
     tr.thead
-      td.split colspan="2"
-        = t 'calls.you_are_talking'
-        '
-        = origin.callerName
+      if model.hungup
+        td.split colspan="2"
+          = t 'calls.hungup_call_to'
+          '
+          = origin.callerName
+          i.fa.fa-circle
+          i.fa.fa-times-circle-o click=closeCurrentCall
+      else
+        td.split colspan="2"
+          = t 'calls.you_are_talking'
+          '
+          = origin.callerName
     tr
       td.split = render 'inbound_call' origin
       td.split = render 'agent_bridge' model
