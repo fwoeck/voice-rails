@@ -72,9 +72,12 @@ window.app = {
 
   closeCurrentCall: ->
     cc = Voice.get('currentCall')
+    co = cc?.get('origin')
+
     if cc && cc.get('hungup')
-      cc.get('origin')?.remove()
+      Voice.set('currentCall', null)
       cc.remove()
+      co.remove() if co && co.get('hungup')
     else
       app.showDefaultError(i18n.dialog.no_hungup_call)
 
@@ -222,7 +225,7 @@ window.app = {
 
 
   noLogin: ->
-    env.userId.length == 0
+    !env.userId
 
 
   setupDashboard: ->
@@ -230,6 +233,10 @@ window.app = {
     @mySettingsToggle()
     @callQueueToggle()
     @setupLabelInputs()
+
+
+  cleanupDashboard: ->
+    @unbindLabelInputs()
 
 
   showAgentOverview: ->
@@ -286,8 +293,12 @@ window.app = {
       app.toggleCallQueue()
 
 
+  unbindLabelInputs: ->
+    ($ '#my_settings label').off 'click'
+
+
   setupLabelInputs: ->
-    ($ document).on 'click', '#my_settings label', (el) ->
+    ($ '#my_settings label').on 'click', (el) ->
       ($ el.target).siblings('input').click()
 
 

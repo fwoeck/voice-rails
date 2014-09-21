@@ -23,6 +23,8 @@
 #= require_self
 #= require voice
 
+"use strict"
+
 app.compileSkillPartials()
 app.compileLanguagePartials()
 app.compileAvailabilityPartials()

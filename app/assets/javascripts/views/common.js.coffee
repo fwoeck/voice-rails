@@ -4,8 +4,9 @@ Ember.RadioButton = Ember.View.extend({
   tagName:            'input'
   type:               'radio'
 
-  click: ->
-    @set 'selection', @$().val()
+  init: ->
+    @_super()
+    @on 'change', -> @set 'selection', @$().val()
 
   checked: (->
     @get('value') == @get('selection')
@@ -19,8 +20,9 @@ Ember.CheckMark = Ember.View.extend({
   tagName:            'input'
   type:               'checkbox'
 
-  click: ->
-    @set 'selection', !@get('selection')
+  init: ->
+    @_super()
+    @on 'change', -> @set 'selection', @$().prop('checked')
 
   checked: (->
     @get('selection')
