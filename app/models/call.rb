@@ -38,7 +38,7 @@ class Call
 
 
   def hide_from_agents?
-    language.blank? || skill.blank?
+    call_tag.blank? && (language.blank? || skill.blank?)
   end
 
 

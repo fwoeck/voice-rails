@@ -72,9 +72,12 @@ window.app = {
 
   closeCurrentCall: ->
     cc = Voice.get('currentCall')
+    co = cc?.get('origin')
+
     if cc && cc.get('hungup')
-      cc.get('origin')?.remove()
+      Voice.set('currentCall', null)
       cc.remove()
+      co.remove() if co && co.get('hungup')
     else
       app.showDefaultError(i18n.dialog.no_hungup_call)
 
@@ -222,7 +225,7 @@ window.app = {
 
 
   noLogin: ->
-    env.userId.length == 0
+    !env.userId
 
 
   setupDashboard: ->

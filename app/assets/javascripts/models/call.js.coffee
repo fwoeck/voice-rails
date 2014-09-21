@@ -11,6 +11,8 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
   allCallsBinding: 'Voice.allCalls'
   allUsersBinding: 'Voice.allUsers'
 
+  origin:        null
+  bridge:        null
 
   skill:         DS.attr 'string'
   hungup:        DS.attr 'boolean'
@@ -49,6 +51,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
 
   isForeignCall: ->
+    return true unless @get('callTag')
     cc = Voice.get('currentCall')
     !cc || @ != cc && @ != cc.get('origin')
 
@@ -73,32 +76,13 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
 
   myCallLeg: ( ->
-    name  = Voice.get('currentUser.name')
-    @get('extension') == name
+    @get('extension') == env.sipAgent
   ).property('extension')
 
 
-  agentsCallLeg: ( ->
+  agentCallLeg: ( ->
     @get('extension') != '0'
   ).property('extension')
-
-
-  origin: (->
-    calls = @get('allCalls')
-    tag   = @get('callTag')
-    return false unless calls && tag
-
-    calls.find (call) -> call.get('callTag') == tag && !call.get('agentsCallLeg')
-  ).property('allCalls.@each.{callTag,agentsCallLeg}')
-
-
-  bridge: (->
-    calls = @get('allCalls')
-    tag   = @get('callTag')
-    return false unless calls && tag
-
-    calls.find (call) -> call.get('callTag') == tag && call.get('agentsCallLeg')
-  ).property('allCalls.@each.{callTag,agentsCallLeg}')
 
 
   updateMatchesFilter: (->
@@ -110,7 +94,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
     if @get('matchesFilter') != result
        @set 'matchesFilter', result
   ).observes(
-    'hungup', 'agentsCallLeg', 'language' ,'skill'
+    'hungup', 'agentCallLeg', 'language' ,'skill'
     'Voice.currentUser.{languages,skills}.[]',
     'Voice.hideForeignCalls'
   )
@@ -123,7 +107,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
 
   isInbound: ->
-    !@get('hungup') && !@get('agentsCallLeg')
+    !@get('hungup') && !@get('agentCallLeg')
 })
 
 
