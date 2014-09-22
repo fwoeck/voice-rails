@@ -30,6 +30,5 @@ Voice.CallsController = Ember.ArrayController.extend({
   setCurrentCall: (call) ->
     if !call.get('hungup') && call.get('myCallLeg')
       Voice.set('currentCall', call)
-      unless env.railsEnv == 'development'
-        app.setAvailability('busy')
+      app.setAvailability('busy')
 })

@@ -1,6 +1,7 @@
 app.defaultUserPrefs =
   useWebRtc:        true
   autoLogout:       60
+  useAutoReady:     true
   hideForeignCalls: false
 
 
@@ -14,12 +15,12 @@ app.putUserPrefs = (uid, obj) ->
 
 
 app.storeLocalKey = (key, value) ->
-  if (uid = Voice.get 'currentUser.id')
+  if (uid = env.userId)
     prefs = app.getUserPrefs(uid)
     prefs[key] = value
     app.putUserPrefs(uid, prefs)
 
 
 app.loadLocalKey = (key) ->
-  if (uid = Voice.get 'currentUser.id')
+  if (uid = env.userId)
     app.getUserPrefs(uid)[key]

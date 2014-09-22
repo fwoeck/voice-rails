@@ -103,6 +103,7 @@ env.i18n =
       my_settings:      'My Settings'
       new_agent:        'Add an Agent'
       team_chat:        'Team Chat'
+      use_auto_ready:   'Use auto-ready'
       use_web_phone:    'Use the web-phone'
     calls:
       active_calls:     'Active calls'
