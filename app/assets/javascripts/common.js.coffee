@@ -281,7 +281,7 @@ window.app = {
 
   setAvailability: (avail) ->
     cu = Voice.get('currentUser')
-    cu.set('availability', avail)
+    cu?.set('availability', avail)
 
 
   toggleCallQueue: ->

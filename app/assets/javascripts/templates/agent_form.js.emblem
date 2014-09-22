@@ -8,6 +8,12 @@
       else
         span.avatar
 
+      label.small-2.spaced
+        .field
+          = t 'domain.crmuser_id'
+          = input value=crmuserId pattern='number' maxlength='10'
+          small.error = t 'errors.crmuser_format'
+
       label.select.small-4
         = t 'domain.skills'
         = view Ember.Select multiple="true" content=skillSelection optionValuePath='content.id' optionLabelPath='content.name' selection=skillArray
@@ -22,13 +28,6 @@
           = view Ember.Select multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
         else
           = view Ember.Select disabled="disabled" multiple="true" content=roleSelection optionValuePath='content.id' optionLabelPath='content.name' selection=roleArray
-
-      button.tiny.icon type='submit' click=safeRecord
-        = t 'domain.save_changes'
-        i.fa.fa-refresh
-
-      button.tiny.secondary click=cancelChanges
-        = t 'domain.clear'
 
       label.small-4.clear
         .field
@@ -57,15 +56,6 @@
           = input type='password' value=secret pattern='number' maxlength='10'
           small.error = t 'errors.sip_secret'
 
-      label.small-2
-        .field
-          = t 'domain.crmuser_id'
-          = input value=crmuserId pattern='number' maxlength='10'
-          small.error = t 'errors.crmuser_format'
-
-      label.small-2
-        ' &nbsp;
-
       label.small-4
         .field
           if agentIsNew
@@ -85,3 +75,10 @@
             = t 'domain.confirmation'
             = view Ember.PassConf type='password' value=confirmation data-equalto=passwordId pattern='password'
           small.error = t 'errors.password_match'
+
+      button.tiny.secondary click=cancelChanges
+        = t 'domain.clear'
+
+      button.tiny.icon type='submit' click=safeRecord
+        = t 'domain.save_changes'
+        i.fa.fa-refresh

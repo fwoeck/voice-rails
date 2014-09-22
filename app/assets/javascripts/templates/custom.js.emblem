@@ -1,12 +1,23 @@
-each customer in searchResults
+#center_column.large-12.medium-12.columns
   h5
-    = customer.email
-    '  /
-    = customer.fullName
-  ul: each entry in customer.historyEntries
-    li = entry.tags
-    li = entry.callId
-    li = entry.userId
-    li = entry.mailbox
-    li = entry.remarks
-    li = entry.callerId
+    i.header.fa.fa-smile-o
+    span.header = t 'headers.customer_history'
+
+  #customer_search
+    = view Voice.CustomerSearch value=searchTerm
+
+  #customer_search_results
+    each customer in searchResults
+      .panel
+        h6
+          = customer.email
+          '  /
+          = customer.fullName
+        each entry in customer.historyEntries
+          ul.no-bullet
+            li = entry.tags
+            li = entry.callId
+            li = entry.userId
+            li = entry.mailbox
+            li = entry.remarks
+            li = entry.callerId

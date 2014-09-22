@@ -52,12 +52,17 @@ $body-font-family: "Open Sans", sans-serif;
 // $opposite-direction: right;
 // $default-float: left;
 
-$primary-color: #008CBA;
 $secondary-color: #e7e7e7;
-$alert-color: orange;
-$success-color: #43AC6A;
-$warning-color: #f08a24;
+$primary-color: #006cb7;
+$success-color: #66aa66;
+$warning-color: #fbbb13;
+$alert-color: #da6262;
 $info-color: #a0d3e8;
+
+$wimdu-yellow-light: #ffe5a0;
+$wimdu-blue-light: #3693d5;
+$wimdu-yellow: #fbbb13;
+$wimdu-blue: #006cb7;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;

@@ -54,7 +54,6 @@ input[type="text"][disabled] {
   background-color: #fff !important;
 }
 
-
 textarea {
   resize: none;
 }
@@ -194,8 +193,8 @@ form#new_user {
     color: #666;
 
     span.stats {
+      color: $warning-color;
       font-size: 14px;
-      color: orange;
       margin: 10px;
     }
   }
@@ -214,10 +213,10 @@ form#new_user {
 
   i.header {
     transition: color linear 300ms;
+    color: $primary-color;
     margin-right: 8px;
     line-height: 32px;
     font-size: 24px;
-    color: #008CBA;
     width: 26px;
   }
 
@@ -249,5 +248,5 @@ form#new_user {
 }
 
 tr.dirty input, input.dirty, textarea.dirty {
-  background-color: #ffd890 !important;
+  background-color: $wimdu-yellow-light !important;
 }

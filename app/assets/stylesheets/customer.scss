@@ -69,7 +69,7 @@ table.history_table {
   }
 
   tr {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
   }
 
   td {
@@ -139,6 +139,7 @@ table.tickets_table {
 
 table#callstats_table {
   .button.store {
+    background-color: $wimdu-blue-light;
     border: 1px solid #ccc;
     margin: -16px 0 0 0;
     padding: 10px 14px;
@@ -146,6 +147,10 @@ table#callstats_table {
     font-size: 14px;
     display: block;
     height: 37px;
+  }
+
+  .button.store:hover {
+    background-color: $wimdu-blue;
   }
 }
 
@@ -231,7 +236,7 @@ table#callstats_table {
   input.typeahead {
     padding: 1px 5px 0px 5px;
     height: 24px;
-    width: 252px;
+    width: 253px;
     margin: 0;
   }
 

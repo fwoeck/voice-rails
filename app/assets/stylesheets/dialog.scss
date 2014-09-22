@@ -43,12 +43,8 @@
   }
 
   .panel.error {
-    border: 3px solid #e66;
+    border: 3px solid $alert-color;
   }
-
-  // form[data-abide] {
-  //   height: 64px;
-  // }
 
   form.error {
     border: 0;

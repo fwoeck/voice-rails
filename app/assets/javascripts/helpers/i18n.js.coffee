@@ -96,6 +96,7 @@ env.i18n =
       call_statistics:  'Call Statistics'
       connected_agents: 'Connected Agents'
       current_calls:    'Current Calls'
+      customer_history: 'Customer history'
       customers:        'Customers'
       dashboard:        'Dashboard'
       help:             'Help'
@@ -123,6 +124,7 @@ env.i18n =
       enter_entry_tags: 'Enter some tags..'
       enter_remarks:    'Enter remarks for this call..'
       find_an_agent:    'Find an agent..'
+      find_customers:   'Find calls and customers..'
       no_recent_messg:  'There are no recent messages in the team chat until now &mdash; be the first to write one!'
       optional_text:    'Enter optional text..'
       refresh_tickets:  "Refresh this customer's #{env.crmProvider} tickets"
