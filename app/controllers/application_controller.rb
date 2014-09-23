@@ -24,7 +24,9 @@ class ApplicationController < ActionController::Base
 
 
   def cu_is_admin?
-    current_user.has_role?(:admin)
+    Rails.cache.fetch("user_is_admin_#{current_user.id}", expires: 1.minute) {
+      current_user.has_role?(:admin)
+    }
   end
 
 

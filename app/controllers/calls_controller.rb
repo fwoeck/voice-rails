@@ -1,7 +1,7 @@
 class CallsController < ApplicationController
 
   def index
-    render json: Call.all(current_user.has_role? :admin), each_serializer: CallSerializer
+    render json: Call.all(cu_is_admin?), each_serializer: CallSerializer
   end
 
 
