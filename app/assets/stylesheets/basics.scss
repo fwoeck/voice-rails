@@ -21,10 +21,7 @@ div, img {
 
 html.touch {
   -webkit-text-size-adjust: 100%;
-
-  #ember_main {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-  }
+  background-color: #000;
 
   a {
     -webkit-touch-callout: none;
@@ -33,6 +30,12 @@ html.touch {
   input {
     -webkit-appearance: none;
     border-radius: 0;
+  }
+
+  #ember_main {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    height: calc(100% - 20px);
+    margin-top: 20px;
   }
 
   #team_chat,

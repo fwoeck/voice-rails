@@ -25,6 +25,11 @@
 
 "use strict"
 
+# FIXME This prevents vertical scrolling for iOS webapps, but
+#       makes scrollareas unusable:
+#
+# ($ document).bind('touchmove', false)
+
 app.compileSkillPartials()
 app.compileLanguagePartials()
 app.compileAvailabilityPartials()
