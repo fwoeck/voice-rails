@@ -1,5 +1,5 @@
 #center_column.large-12.medium-12.columns
-  h5
+  h5.silent
     i.header.fa.fa-dashboard
     span.header = t 'headers.callcenter_stats'
 

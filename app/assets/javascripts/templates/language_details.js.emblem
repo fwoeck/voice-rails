@@ -1,11 +1,13 @@
+#stats_control
+  i class={statsPaused:inactive:active :fa :fa-play} click=startCycling
+  i class={statsPaused:active:inactive :fa :fa-pause} click=pauseCycling
+
 each lang in languages
   div class={lang :language_details}
-    h5
+    h5.silent
       span.header
         = t 'domain.language'
-        '
-        span.blue
-          = unbound upcase lang
+        span.language = unbound upcase lang
 
     table#stat_details
       thead

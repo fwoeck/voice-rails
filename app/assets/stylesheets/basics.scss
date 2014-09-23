@@ -199,8 +199,16 @@ form#new_user {
     }
   }
 
+  h5.silent {
+    cursor: default;
+  }
+
   h5:hover {
     color: #000;
+  }
+
+  h5.silent:hover {
+    color: #666;
   }
 
   a {
@@ -222,6 +230,10 @@ form#new_user {
 
   i.header:hover {
     color: #000;
+  }
+
+  h5.silent i.header:hover {
+    color: $primary-color;
   }
 
   i.header:before {
