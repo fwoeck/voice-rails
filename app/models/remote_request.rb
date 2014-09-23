@@ -38,6 +38,7 @@ class RemoteRequest
       propagate_result_of future.value(5)
     ensure
       Registry.delete id
+      ActiveRecord::Base.clear_active_connections!
     end
 
 
