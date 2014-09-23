@@ -54,7 +54,6 @@ input[type="text"][disabled] {
   background-color: #fff !important;
 }
 
-
 textarea {
   resize: none;
 }
@@ -194,14 +193,22 @@ form#new_user {
     color: #666;
 
     span.stats {
+      color: $warning-color;
       font-size: 14px;
-      color: orange;
       margin: 10px;
     }
   }
 
+  h5.silent {
+    cursor: default;
+  }
+
   h5:hover {
     color: #000;
+  }
+
+  h5.silent:hover {
+    color: #666;
   }
 
   a {
@@ -214,15 +221,19 @@ form#new_user {
 
   i.header {
     transition: color linear 300ms;
+    color: $primary-color;
     margin-right: 8px;
     line-height: 32px;
     font-size: 24px;
-    color: #008CBA;
     width: 26px;
   }
 
   i.header:hover {
     color: #000;
+  }
+
+  h5.silent i.header:hover {
+    color: $primary-color;
   }
 
   i.header:before {
@@ -249,5 +260,5 @@ form#new_user {
 }
 
 tr.dirty input, input.dirty, textarea.dirty {
-  background-color: #ffd890 !important;
+  background-color: $wimdu-yellow-light !important;
 }

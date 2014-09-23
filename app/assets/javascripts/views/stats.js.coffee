@@ -1,8 +1,9 @@
 Voice.StatsView = Ember.View.extend({
 
-  dataBinding:      'controller.content.firstObject'
-  rrdSourceBinding: 'controller.rrdSource'
-  currentLang:       null
+  dataBinding:        'controller.content.firstObject'
+  rrdSourceBinding:   'controller.rrdSource'
+  statsPausedBinding: 'controller.statsPaused'
+  statsLangBinding:   'Voice.statsLang'
 
 
   didInsertElement: ->
@@ -18,8 +19,11 @@ Voice.StatsView = Ember.View.extend({
     @refreshTimer = window.setInterval (->
       Voice.store.find('dataset').then ->
         return unless self.get('_state') == 'inDOM'
+
         data.triggerStatsUpdate()
-        self.cycleLangs()
+        unless self.get('statsPaused')
+          self.cycleLangs()
+          self.refreshLangs()
     ), 3000
 
 
@@ -32,7 +36,8 @@ Voice.StatsView = Ember.View.extend({
 
   setDisplayProperties: ->
     Ember.run.next @, @updateRrdSource
-    @cycleLangs()
+    @cycleLangs() unless @get('statsLang')
+    @refreshLangs()
 
 
   updateRrdSource: ->
@@ -41,12 +46,15 @@ Voice.StatsView = Ember.View.extend({
 
 
   cycleLangs: ->
-    lang  = @get 'currentLang'
+    lang  = @get 'statsLang'
     langs = Ember.keys(env.languages)
     index = (langs.indexOf(lang) + 1) % langs.length
     lang  = langs[index]
+    @set 'statsLang', lang
 
-    @set 'currentLang', lang
+
+  refreshLangs: ->
+    lang = @get 'statsLang'
     @$('.language_details')?.removeClass('active')
     @$(".language_details.#{lang}")?.addClass('active')
 

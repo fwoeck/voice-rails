@@ -1,0 +1,24 @@
+#customer_search {
+  border-top: 1px solid #eee;
+
+  input {
+    margin-top: 15px;
+  }
+}
+
+#customer_search_results {
+  overflow-y: scroll;
+  height: 400px;
+  width: 970px;
+
+  ul {
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  h6 {
+    border-bottom: 1px solid #999;
+  }
+}

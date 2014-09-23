@@ -34,7 +34,7 @@
 }
 
 .agent_form_wrapper.dirty button[type="submit"] {
-  background-color: #ffd890 !important;
+  background-color: $wimdu-yellow-light !important;
   color: #444;
 }
 
@@ -48,6 +48,7 @@
   bottom: 0;
 
   .agent {
+    background-color: #f0f0f0;
     padding: 8px 8px 6px 8px;
     width: calc(100% - 4px);
 
@@ -92,40 +93,45 @@
     }
 
     ul {
-      border-bottom: 1px solid #fff;
-      border-right: 1px solid #fff;
-      border-left: 1px solid #ccc;
-      border-top: 1px solid #ccc;
       margin: 0 8px 0 0;
       padding-left: 5px;
-      line-height: 23px;
+      line-height: 25px;
       overflow: hidden;
       font-size: 13px;
       height: 48px;
-      width: 285px;
       color: #555;
       float: left;
+    }
+
+    ul.col1 {
+      width: 258px;
+    }
+
+
+    ul.col2 {
+      width: 306px;
+    }
+
+
+    ul.col3 {
+      width: 210px;
+      margin: 0;
+
+      .space {
+        width: 50px;
+      }
+    }
+
+    ul.col4 {
+      margin-right: 0;
+      float: right;
+      width: 96px;
     }
 
     .space {
       display: inline-block;
       color: #888;
       width: 80px;
-    }
-
-    ul.last {
-      margin-right: 0;
-      float: right;
-      width: 96px;
-    }
-
-    ul.short {
-      width: 202px;
-      margin: 0;
-
-      .space {
-        width: 50px;
-      }
     }
 
     li {
@@ -136,6 +142,8 @@
   }
 
   .agent.cu-can-edit-agent {
+    cursor: pointer;
+
     i.fa-wrench {
       cursor: pointer;
       color: #777;
@@ -152,7 +160,7 @@
     float: left;
 
     img.avatar {
-      display: none;
+      visibility: hidden;
     }
   }
 
@@ -198,8 +206,8 @@ form.agent_form {
 
   fieldset {
     box-shadow: #888 2px 2px 3px;
+    background-color: #f6f6f6;
     padding: 10px 0 10px 20px;
-    background-color: #faebd7;
     width: calc(100% - 4px);
 
     legend {
@@ -209,7 +217,7 @@ form.agent_form {
 
   .avatar {
     box-shadow: #888 2px 2px 3px;
-    margin: 2px 10px 15px 0;
+    margin: 18px 10px 15px 0;
     background-color: #fff;
     padding: 2px;
     height: 52px;
@@ -224,9 +232,9 @@ form.agent_form {
   button.tiny  {
     box-shadow: 2px 2px 2px #999;
     border: 2px solid #fff;
-    margin: 71px 22px 0 0;
+    margin: 19px 21px 0 0;
     border-radius: 4px;
-    float: right;
+    float: left;
   }
 
   label {
@@ -234,6 +242,10 @@ form.agent_form {
     padding-right: 20px;
     height: 78px;
     float: left;
+  }
+
+  label.spaced {
+    margin: 52px 0 0 95px;
   }
 
   input, select {

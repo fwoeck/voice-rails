@@ -35,9 +35,34 @@
 .language_details {
   display: none;
 
-  span.blue {
+  span.language {
+    color: $primary-color;
+    margin-left: 8px;
     font-size: 20px;
-    color: #008cba;
+  }
+}
+
+#stats_control {
+  position: absolute;
+  right: 16px;
+
+  i.fa {
+    transition: color linear 300ms;
+    line-height: 30px;
+    margin-left: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    float: right;
+    color: #999;
+  }
+
+  i.fa:hover {
+    color: #000;
+  }
+
+  i.fa.active {
+    cursor: default;
+    color: #ccc;
   }
 }
 
@@ -47,14 +72,18 @@
 
 table#stat_details {
   box-shadow: #888 2px 2px 3px;
+  background-color: #f5f5f5;
   width: 100%;
 
   thead td {
     font-weight: normal;
+    cursor: default;
     color: #333;
   }
 
   tbody td {
+    border: 1px solid #ddd;
+    cursor: default;
     padding: 0;
   }
 
@@ -100,6 +129,7 @@ table#stat_details {
       line-height: 40px;
       overflow: hidden;
       font-size: 24px;
+      cursor: default;
       height: 40px;
     }
 
@@ -109,13 +139,13 @@ table#stat_details {
     }
 
     span.warn {
+      color: $warning-color;
       font-size: 30px;
-      color: #ffa500;
     }
 
     span.err {
+      color: $alert-color;
       font-size: 36px;
-      color: red;
     }
   }
 }

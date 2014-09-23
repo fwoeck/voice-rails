@@ -6,7 +6,7 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
   init: ->
     @_super()
-    @restoreWebRtcSetting()
+    @restoreLocalSettings()
 
 
   skillPartials: (->
@@ -24,20 +24,27 @@ Voice.MySettingsController = Ember.ObjectController.extend({
   ).property()
 
 
-  restoreWebRtcSetting: ->
+  restoreLocalSettings: ->
     Ember.run.next =>
-      @set 'useWebRtc', app.loadLocalKey('useWebRtc')
+      @set 'useWebRtc',    app.loadLocalKey('useWebRtc')
+      @set 'useAutoReady', app.loadLocalKey('useAutoReady')
 
 
-  storePrefs: (->
+  toggleAutoReady: (->
+    value = @get 'useAutoReady'
+    app.storeLocalKey('useAutoReady', value)
+  ).observes('useAutoReady')
+
+
+  toggleWebRtc: (->
     value = @get 'useWebRtc'
     if value != app.loadLocalKey('useWebRtc')
+      app.storeLocalKey('useWebRtc', value)
       Ember.run.later @, (-> @showReloadDialog value), 500
   ).observes('useWebRtc')
 
 
   showReloadDialog: (value) ->
-    app.storeLocalKey 'useWebRtc', value
     app.dialog(
       i18n.dialog.reload_necessary, 'question',
       i18n.dialog.reload, i18n.dialog.cancel
@@ -60,7 +67,7 @@ Voice.MySettingsController = Ember.ObjectController.extend({
       cu.save().then ->
         Ember.run.later @, (->
           self.set('lockedForUpdate', false)
-        ), 500
+        ), 300
 
 
   currentStatusLine: (->

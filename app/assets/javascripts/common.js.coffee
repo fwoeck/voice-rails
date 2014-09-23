@@ -78,6 +78,9 @@ window.app = {
       Voice.set('currentCall', null)
       cc.remove()
       co.remove() if co && co.get('hungup')
+
+      if app.loadLocalKey('useAutoReady')
+        app.setAvailability('ready')
     else
       app.showDefaultError(i18n.dialog.no_hungup_call)
 
@@ -278,7 +281,7 @@ window.app = {
 
   setAvailability: (avail) ->
     cu = Voice.get('currentUser')
-    cu.set('availability', avail)
+    cu?.set('availability', avail)
 
 
   toggleCallQueue: ->

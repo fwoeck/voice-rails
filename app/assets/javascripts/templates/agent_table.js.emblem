@@ -1,5 +1,5 @@
 #agent_table.large-12.medium-12.columns
-  h5
+  h5.silent
     i.header.fa.fa-compass
     span.header = t 'headers.agent_table'
 

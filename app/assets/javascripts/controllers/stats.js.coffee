@@ -1,8 +1,20 @@
 Voice.StatsController = Ember.ArrayController.extend({
 
-  needs:      ['datasets']
-  dataBinding: 'controllers.datasets.content.firstObject'
-  rrdSource:   ''
+  needs:             ['datasets']
+  dataBinding:        'controllers.datasets.content.firstObject'
+  statsPausedBinding: 'Voice.statsPaused'
+  rrdSource:          ''
+
+
+  actions:
+
+    startCycling: ->
+      @set 'statsPaused', false
+      false
+
+    pauseCycling: ->
+      @set 'statsPaused', true
+      false
 
 
   skills: (->

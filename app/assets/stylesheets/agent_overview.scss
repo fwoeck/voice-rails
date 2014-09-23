@@ -40,11 +40,11 @@
 }
 
 .agent.online.ready i.fa {
-  border-color: #6a6;
+  border-color: $success-color;
 }
 
 .agent.online.busy i.fa {
-  border-color: #c66;
+  border-color: $alert-color;
 }
 
 .agent.online.away i.fa {
@@ -63,7 +63,7 @@
 
 .agent {
   box-shadow: #888 2px 2px 3px;
-  background-color: #f0f0f0;
+  background-color: #f6f6f6;
   border: 1px solid #ddd;
   position: relative;
   margin-bottom: 8px;
@@ -92,12 +92,12 @@
 
   i.fa.ringing,
   i.fa.talking {
-    color: #c66;
+    color: $alert-color;
   }
 
   i.fa.ringing:hover,
   i.fa.talking:hover {
-    color: #c66;
+    color: $alert-color;
   }
 
   i.fa.silent {
@@ -130,9 +130,9 @@
   }
 
   span.name {
+    color: $primary-color;
     border-bottom: none;
     margin: 7px 0 6px 0;
-    color: #008cba;
   }
 
   span.avatar, img.avatar {

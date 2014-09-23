@@ -21,6 +21,14 @@
           each avail in availabilityPartials
             = partial avail
 
+          .td
+          .td.space
+
+          .td: .switch.tiny
+            Ember.CheckMark selection=useAutoReady
+            label for="use_auto_ready"
+          .td.space = t 'headers.use_auto_ready'
+
           .td: .switch.tiny
             Ember.CheckMark selection=useWebRtc
             label for="use_web_rtc"
