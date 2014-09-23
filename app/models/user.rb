@@ -104,7 +104,9 @@ class User < ActiveRecord::Base
   class << self
 
     def all_admin_ids
-      User.with_role(:admin).pluck(:id)
+      Rails.cache.fetch('all_admin_ids', expires: 1.minute) {
+        User.with_role(:admin).pluck(:id)
+      }
     end
 
 
