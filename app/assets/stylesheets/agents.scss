@@ -95,34 +95,43 @@
     ul {
       margin: 0 8px 0 0;
       padding-left: 5px;
-      line-height: 23px;
+      line-height: 25px;
       overflow: hidden;
       font-size: 13px;
       height: 48px;
-      width: 285px;
       color: #555;
       float: left;
+    }
+
+    ul.col1 {
+      width: 258px;
+    }
+
+
+    ul.col2 {
+      width: 306px;
+    }
+
+
+    ul.col3 {
+      width: 210px;
+      margin: 0;
+
+      .space {
+        width: 50px;
+      }
+    }
+
+    ul.col4 {
+      margin-right: 0;
+      float: right;
+      width: 96px;
     }
 
     .space {
       display: inline-block;
       color: #888;
       width: 80px;
-    }
-
-    ul.last {
-      margin-right: 0;
-      float: right;
-      width: 96px;
-    }
-
-    ul.short {
-      width: 202px;
-      margin: 0;
-
-      .space {
-        width: 50px;
-      }
     }
 
     li {
@@ -223,8 +232,9 @@ form.agent_form {
   button.tiny  {
     box-shadow: 2px 2px 2px #999;
     border: 2px solid #fff;
-    margin: 19px 20px 0 0;
+    margin: 19px 21px 0 0;
     border-radius: 4px;
+    float: left;
   }
 
   label {

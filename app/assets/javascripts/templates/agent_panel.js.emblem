@@ -4,19 +4,13 @@
   i.fa.fa-wrench
   i class={isCallable :fa :fa-comments} click="callAgent this bubbles=false"
 
-  ul
+  ul.col1
     li
-      .space
-        = t 'domain.email'
-        | :
       = email
     li
-      .space
-        = t 'domain.full_name'
-        | :
       = fullName
 
-  ul
+  ul.col2
     li
       .space
         = t 'domain.languages'
@@ -28,7 +22,7 @@
         | :
       = displaySkills
 
-  ul.short
+  ul.col3
     li
       .space
         = t 'domain.roles'
@@ -44,7 +38,7 @@
       ' &nbsp;/
       = activity
 
-  ul.last
+  ul.col4
 
 if formIsActive
   = render 'agent_config' content
