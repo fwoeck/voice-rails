@@ -48,15 +48,13 @@ class Call
 
 
   def handle_message
-    ActiveRecord::Base.connection_pool.with_connection {
-      uids = if hide_from_agents?
-        User.all_online_ids & User.all_admin_ids
-      else
-        User.all_online_ids
-      end
+    uids = if hide_from_agents?
+      User.all_online_ids & User.all_admin_ids
+    else
+      User.all_online_ids
+    end
 
-      send_call_update_to_clients(uids)
-    }
+    send_call_update_to_clients(uids)
   end
 
 
