@@ -64,21 +64,18 @@ table#callstats_table {
   i.fa-circle,
   i.fa-times-circle-o {
     position: absolute;
-    font-size: 21px;
+    font-size: 16px;
+    right: 10px;
     color: #fff;
     z-index: 1;
-    right: 8px;
-    top: 8px;
+    top: 11px;
   }
 
   i.fa-times-circle-o {
     transition: color linear 300ms;
-    font-size: 18px;
     cursor: pointer;
     color: #444;
-    right: 10px;
     z-index: 2;
-    top: 10px;
   }
 
   i.fa-times-circle-o:hover {

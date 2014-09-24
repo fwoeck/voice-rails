@@ -265,3 +265,8 @@ form#new_user {
 tr.dirty input, input.dirty, textarea.dirty {
   background-color: $wimdu-yellow-light !important;
 }
+
+span.link {
+  color: $primary-color;
+  cursor: pointer;
+}

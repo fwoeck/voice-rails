@@ -46,6 +46,8 @@
 
     .body p {
       -webkit-user-select: text;
+      text-overflow: ellipsis;
+      word-break: break-word;
       -moz-user-select: text;
       margin: 6px 0 6px 0;
       line-height: 18px;

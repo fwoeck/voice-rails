@@ -20,4 +20,4 @@
             li = entry.userId
             li = entry.mailbox
             li = entry.remarks
-            li = entry.callerId
+            li = render 'hyper_text' entry.callerId
