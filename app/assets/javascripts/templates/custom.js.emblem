@@ -1,6 +1,6 @@
 #center_column.large-12.medium-12.columns
   h5.silent
-    i.header.fa.fa-smile-o
+    i.header.fa.fa-tags
     span.header = t 'headers.customer_history'
 
   #customer_search
