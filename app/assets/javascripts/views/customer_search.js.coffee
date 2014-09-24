@@ -1,12 +1,7 @@
-Voice.CustomerSearch = Ember.TextField.extend({
+Voice.GeneralSearch = Ember.TextField.extend({
 
   type:      'text'
-  name:      'customer_search'
   maxlength: '128'
-
-  placeholder: (->
-    i18n.placeholder.find_customers
-  ).property()
 
   keyUp: (evt) ->
     switch evt.which
@@ -14,15 +9,48 @@ Voice.CustomerSearch = Ember.TextField.extend({
       when 13 then @startSearch()
     return true
 
+
   clearSearch: ->
     @clearResultSet()
     @set('value', '')
-    
-  startSearch: ->
+
+
+  sendSearchRequest: (hist, cust) ->
     @clearResultSet()
-    term = @get('value').trim().toLowerCase()
-    Voice.store.findQuery('searchResult', {q: term})
+    return unless hist || cust
+    Voice.store.findQuery('searchResult', {c: cust, h: hist})
+
 
   clearResultSet: ->
     Voice.store.unloadAll('searchResult')
+})
+
+
+Voice.CustomerSearch = Voice.GeneralSearch.extend({
+
+  name: 'customer_search'
+
+  placeholder: (->
+    i18n.placeholder.find_customers
+  ).property()
+
+  startSearch: ->
+    hist = @get('other')
+    cust = @get('value')
+    @sendSearchRequest(hist, cust)
+})
+
+
+Voice.HistorySearch = Voice.GeneralSearch.extend({
+
+  name: 'history_search'
+
+  placeholder: (->
+    i18n.placeholder.find_calls
+  ).property()
+
+  startSearch: ->
+    hist = @get('value')
+    cust = @get('other')
+    @sendSearchRequest(hist, cust)
 })

@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    render json: fetch_customers, each_serializer: CustomerSerializer, root: customers_root
+    render json: fetch_customers, each_serializer: customer_serializer, root: customers_root
   end
 
 
@@ -46,7 +46,7 @@ class CustomersController < ApplicationController
     par = params[:customer]
 
     if (cust = Customer.rpc_update_with cid, par)
-      render json: cust, serializer: FlatCustomerSerializer, root: :customer
+      render json: cust, serializer: CustomerSerializer, root: :customer
     else
       render nothing: true, status: 404
     end
@@ -59,8 +59,8 @@ class CustomersController < ApplicationController
     if params[:caller_id]
       opts = {caller_ids: params[:caller_id]}
       Customer.rpc_where(opts)
-    elsif params[:q]
-      opts = {history: params[:q], size: 100}
+    elsif request_is_search?
+      opts = {c: params[:c], h: params[:h], size: 100}
       Customer.rpc_search(opts)
     else
       []
@@ -69,6 +69,16 @@ class CustomersController < ApplicationController
 
 
   def customers_root
-    params[:q] ? :search_results : :customers
+    request_is_search? ? :search_results : :customers
+  end
+
+
+  def customer_serializer
+    request_is_search? ? SearchResultSerializer : CustomerSerializer
+  end
+
+
+  def request_is_search?
+    params[:c] || params[:h]
   end
 end
