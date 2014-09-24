@@ -1,13 +1,11 @@
-if RUBY_PLATFORM == 'java'
-  module ActiveRecord
+module ActiveRecord
 
-    class Base
-      singleton_class.send(:alias_method, :original_connection, :connection)
+  class Base
+    singleton_class.send(:alias_method, :original_connection, :connection)
 
-      def self.connection
-        ActiveRecord::Base.connection_pool.with_connection do |conn|
-          conn
-        end
+    def self.connection
+      ActiveRecord::Base.connection_pool.with_connection do |conn|
+        conn
       end
     end
   end
