@@ -4,10 +4,11 @@
 
 each lang in languages
   div class={lang :language_details}
-    h5.silent
-      span.header
-        = t 'domain.language'
-        span.language = unbound upcase lang
+    h5
+      span.header click='stepLang target=view'
+        i.fa.fa-area-chart.header
+        = t 'headers.details_for'
+        span.language = unbound printLanguageHeader lang languages
 
     table#stat_details
       thead

@@ -12,6 +12,13 @@ Voice.StatsView = Ember.View.extend({
     @setRrdTimer()
 
 
+  actions:
+    stepLang: ->
+      @cycleLangs()
+      @refreshLangs()
+      false
+
+
   setRefreshTimer: ->
     self = @
     data = @get('data')
@@ -47,7 +54,7 @@ Voice.StatsView = Ember.View.extend({
 
   cycleLangs: ->
     lang  = @get 'statsLang'
-    langs = Ember.keys(env.languages)
+    langs = Ember.keys(env.languages).sort()
     index = (langs.indexOf(lang) + 1) % langs.length
     lang  = langs[index]
     @set 'statsLang', lang

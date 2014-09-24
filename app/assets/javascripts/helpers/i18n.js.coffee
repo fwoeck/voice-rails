@@ -99,6 +99,7 @@ env.i18n =
       customer_history: 'Customer history'
       customers:        'Customers'
       dashboard:        'Dashboard'
+      details_for:      'Details For'
       help:             'Help'
       inbound_calls:    'Inbound Calls'
       my_settings:      'My Settings'

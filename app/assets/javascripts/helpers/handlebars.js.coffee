@@ -70,3 +70,11 @@ Ember.Handlebars.helper('printAD', (data, val1, val2, options) ->
   val = data.get("averageDelay.#{val1}.#{val2}") || 0
   app.renderStatsEntry(val, 10, 20)
 )
+
+Ember.Handlebars.helper('printLanguageHeader', (language, languages, options) ->
+  header = languages.sort().map( (lang) ->
+    "<a class='#{if lang == language then 'active' else ''}' href='#'>#{lang.toUpperCase()}</a>"
+  ).join(' &bull; ')
+
+  new Ember.Handlebars.SafeString header
+)
