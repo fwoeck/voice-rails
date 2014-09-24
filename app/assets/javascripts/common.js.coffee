@@ -162,15 +162,16 @@ window.app = {
     ($ document).foundation()
 
 
-  originateCall: ->
+  originateCall: (number='') ->
     app.dialog(i18n.dialog.enter_number,
-      'dialog', i18n.dialog.dial_now, i18n.dialog.cancel, '', 'number'
+      'dialog', i18n.dialog.dial_now, i18n.dialog.cancel, number, 'number'
     ).then (num) ->
       Voice.Call.originate(num)
     , (->)
 
 
-  agentRegex: /^(SIP\/)?(\d\d\d\d?)$/
+  agentRegex:  /^(SIP\/)?(\d\d\d\d?)$/
+  phoneNumber: /(^| )(\+?[0-9]+[0-9 .\/-]+[0-9])/g
 
 
   ticketSpinnerOn: ->

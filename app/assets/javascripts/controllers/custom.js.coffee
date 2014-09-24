@@ -4,5 +4,6 @@ Voice.CustomController = Ember.ObjectController.extend({
   contentBinding:       'controllers.customers.firstObject'
   searchResultsBinding: 'controllers.search_results.content'
 
-  searchTerm: ''
+  customerSearch: ''
+  historySearch:  ''
 })

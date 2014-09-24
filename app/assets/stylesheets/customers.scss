@@ -3,18 +3,39 @@
 
   input {
     margin-top: 15px;
+    width: calc(50% - 8px);
+    float: left;
+  }
+
+  input:first-child {
+    margin-right: 16px;
   }
 }
 
 #customer_search_results {
+  height: calc(100% - 110px);
   overflow-y: scroll;
-  height: 400px;
-  width: 970px;
+  width: 978px;
 
+  // TODO remove once obsolete:
+  > .panel {
+    margin: 0;
+  }
+
+  // TODO remove once obsolete:
   ul {
     border-bottom: 1px solid #ddd;
-    font-size: 12px;
     padding: 10px 0;
+    margin: 0;
+
+    p {
+      display: inline;
+    }
+  }
+
+  // TODO remove once obsolete:
+  ul, li, p {
+    font-size: 12px;
     margin: 0;
   }
 

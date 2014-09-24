@@ -4,4 +4,4 @@
     br
     span.created-at = view Ember.CreatedAt
   .body
-    p = unbound model.content
+    = render 'hyper_text' model.content

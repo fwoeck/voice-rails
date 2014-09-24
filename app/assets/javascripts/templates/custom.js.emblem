@@ -4,7 +4,8 @@
     span.header = t 'headers.customer_history'
 
   #customer_search
-    = view Voice.CustomerSearch value=searchTerm
+    = view Voice.CustomerSearch value=customerSearch other=historySearch
+    = view Voice.HistorySearch value=historySearch other=customerSearch
 
   #customer_search_results
     each customer in searchResults
@@ -13,11 +14,11 @@
           = customer.email
           '  /
           = customer.fullName
-        each entry in customer.historyEntries
+        each entry in customer.orderedEntries
           ul.no-bullet
             li = entry.tags
             li = entry.callId
             li = entry.userId
             li = entry.mailbox
             li = entry.remarks
-            li = entry.callerId
+            li = render 'hyper_text' entry.callerId
