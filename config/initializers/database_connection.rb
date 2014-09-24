@@ -1,11 +1,13 @@
-Rails.application.config.after_initialize do
+if RUBY_PLATFORM == 'java'
+  module ActiveRecord
+    class Base
+      singleton_class.send(:alias_method, :original_connection, :connection)
 
-  ActiveRecord::Base.connection_pool.disconnect!
-
-  ActiveSupport.on_load(:active_record) do
-    config = ActiveRecord::Base.configurations[Rails.env] ||
-             Rails.application.config.database_configuration[Rails.env]
-
-    ActiveRecord::Base.establish_connection(config)
+      def self.connection
+        ActiveRecord::Base.connection_pool.with_connection do |conn|
+          conn
+        end
+      end
+    end
   end
 end
