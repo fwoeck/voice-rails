@@ -4,7 +4,7 @@
 
 each lang in languages
   div class={lang :language_details}
-    h5.silent
+    h5
       span.header click='stepLang target=view'
         i.fa.fa-area-chart.header
         = t 'headers.details_for'
