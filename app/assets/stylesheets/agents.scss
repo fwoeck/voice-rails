@@ -79,6 +79,7 @@
     }
 
     i.fa-comments {
+      cursor: default;
       color: #e8e8e8;
       right: 60px;
     }
@@ -138,11 +139,16 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      cursor: default;
     }
   }
 
   .agent.cu-can-edit-agent {
     cursor: pointer;
+
+    li {
+      cursor: pointer;
+    }
 
     i.fa-wrench {
       cursor: pointer;
