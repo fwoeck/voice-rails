@@ -18,7 +18,7 @@ Voice.StatsController = Ember.ArrayController.extend({
 
 
   skills: (->
-    Ember.keys(env.skills)
+    Ember.keys(env.skills).sort()
   ).property()
 
 
@@ -29,12 +29,12 @@ Voice.StatsController = Ember.ArrayController.extend({
 
 
   availabilities: (->
-    Ember.keys(env.availability)
+    Ember.keys(env.availability).sort()
   ).property()
 
 
   languages: (->
-    Ember.keys(env.languages)
+    Ember.keys(env.languages).sort()
   ).property()
 
 

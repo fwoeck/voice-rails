@@ -36,9 +36,16 @@
   display: none;
 
   span.language {
-    color: $primary-color;
-    margin-left: 8px;
-    font-size: 20px;
+    margin-left: 4px;
+    cursor: pointer;
+  }
+
+  a {
+    color: #666;
+  }
+
+  a.active {
+    color: $wimdu-blue-light;
   }
 }
 
