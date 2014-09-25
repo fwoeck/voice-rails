@@ -5,10 +5,8 @@ Rails.application.routes.draw do
   }, controllers: { sessions: 'sessions' }
 
   root   'application#index'
-  get    'stats'               => 'application#index'
-  get    'agents'              => 'application#index'
-  get    'custom'              => 'application#index'
-
+  get    'app'                 => 'application#ember_index'
+  get    'app/*any'            => 'application#ember_index'
   get    'datasets'            => 'stats#index'
 
   get    'calls'               => 'calls#index'

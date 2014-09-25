@@ -6,3 +6,4 @@ Voice.Router.map ->
 
 Voice.Router.reopen
   location: 'history'
+  rootURL:  '/app'
