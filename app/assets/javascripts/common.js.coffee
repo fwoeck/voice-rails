@@ -163,11 +163,14 @@ window.app = {
 
 
   originateCall: (number='') ->
-    app.dialog(i18n.dialog.enter_number,
-      'dialog', i18n.dialog.dial_now, i18n.dialog.cancel, number, 'number'
-    ).then (num) ->
-      Voice.Call.originate(num)
-    , (->)
+    if Voice.get('currentCall')
+      app.showDefaultError(i18n.errors.line_is_busy)
+    else
+      app.dialog(i18n.dialog.enter_number,
+        'dialog', i18n.dialog.dial_now, i18n.dialog.cancel, number, 'number'
+      ).then (num) ->
+        Voice.Call.originate(num)
+      , (->)
 
 
   agentRegex:  /^(SIP\/)?(\d\d\d\d?)$/

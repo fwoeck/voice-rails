@@ -17,9 +17,10 @@ Voice.ApplicationRoute = Ember.Route.extend({
     @controllerFor('customers').set    'model', @store.all('customer')
     @controllerFor('chatMessages').set 'model', @store.all('chatMessage')
 
-    Voice.set 'allCalls',    @store.all('call')
-    Voice.set 'allUsers',    @store.all('user')
-    Voice.set 'currentUser', @store.getById('user', env.userId)
+    Voice.set 'allCalls',     @store.all('call')
+    Voice.set 'allUsers',     @store.all('user')
+    Voice.set 'allCustomers', @store.all('customer')
+    Voice.set 'currentUser',  @store.getById('user', env.userId)
 
 
   shortcuts:
@@ -59,10 +60,7 @@ Voice.ApplicationRoute = Ember.Route.extend({
       @silence(e)
 
     dialNumber: (e) ->
-      if Voice.get('currentCall')
-        app.showDefaultError(i18n.errors.line_is_busy)
-      else
-        app.originateCall()
+      app.originateCall()
       @silence(e)
 
     closeCall: (e) ->

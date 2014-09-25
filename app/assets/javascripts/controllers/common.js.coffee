@@ -6,10 +6,6 @@ Voice.SearchResultsController = Ember.ArrayController.extend({
 })
 
 
-Voice.CustomersController = Ember.ArrayController.extend({
-})
-
-
 Voice.InboundCallController = Ember.ObjectController.extend({
 })
 
