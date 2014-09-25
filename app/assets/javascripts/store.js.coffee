@@ -1,6 +1,8 @@
 Voice.ApplicationStore = DS.Store.extend()
 
 Voice.ApplicationAdapter = DS.ActiveModelAdapter.extend(
+  namespace: 'api/1'
+
   ajaxError: (jqXHR) ->
     error = @_super(jqXHR)
     msg   = app.parseAjaxError(error.errors?[0]) || error.statusText
