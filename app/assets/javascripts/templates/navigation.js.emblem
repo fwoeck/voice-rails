@@ -8,7 +8,7 @@
   = link-to 'index'
    = t 'headers.dashboard'
   '  &mdash;
-  = link-to 'custom'
+  = link-to 'customers'
    = t 'headers.customers'
   '  &mdash;
   = link-to 'stats'

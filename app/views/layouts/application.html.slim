@@ -27,12 +27,13 @@ html
 
     javascript:
       window.env = {
+        locale:       "en",
         messages:      [],
         sseErrors:     0,
         chromeVers:    37,
         firefoxVers:   32,
-        locale:       "en",
         debug:         false,
+        apiVersion:   "/api/1",
         railsEnv:     "#{Rails.env}",
         sipAgent:     "#{current_user.try(:name)}",
         sipSecret:    "#{current_user.try(:secret)}",

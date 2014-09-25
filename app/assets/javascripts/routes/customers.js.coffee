@@ -1,4 +1,4 @@
-Voice.CustomRoute = Ember.Route.extend({
+Voice.CustomersRoute = Ember.Route.extend({
 
   activate: ->
     @store.unloadAll('searchResult')

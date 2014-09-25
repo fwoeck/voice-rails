@@ -41,7 +41,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
   hangup: ->
     callId = @get('id')
-    $.post("/calls/#{callId}", {'_method': 'DELETE'})
+    $.post("#{env.apiVersion}/calls/#{callId}", {'_method': 'DELETE'})
 
 
   removeAfterHangup: (->
@@ -58,7 +58,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
   transfer: (to) ->
     callId = @get('id')
-    $.post("/calls/#{callId}/transfer", {'to': to})
+    $.post("#{env.apiVersion}/calls/#{callId}/transfer", {'to': to})
 
 
   callerName: ( ->
@@ -114,5 +114,5 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 Voice.Call.reopenClass({
 
   originate: (to) ->
-    $.post '/calls', to: to
+    $.post "#{env.apiVersion}/calls", to: to
 })

@@ -4,10 +4,17 @@ RequestStruct = Struct.new(:obj, :par, :cond)
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
 
   def index
+    # TODO Replace this by the landing page content:
+    #
+    redirect_to action: :ember_index
+  end
+
+
+  def ember_index
   end
 
 

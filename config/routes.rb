@@ -4,34 +4,36 @@ Rails.application.routes.draw do
     sign_in: 'login', sign_out: 'logout'
   }, controllers: { sessions: 'sessions' }
 
-  root   'application#index'
-  get    'stats'               => 'application#index'
-  get    'agents'              => 'application#index'
-  get    'custom'              => 'application#index'
+  root     'application#index'
+  get      'app'                 => 'application#ember_index'
+  get      'app/*any'            => 'application#ember_index'
 
-  get    'datasets'            => 'stats#index'
 
-  get    'calls'               => 'calls#index'
-  post   'calls'               => 'calls#originate'
-  delete 'calls/:id'           => 'calls#hangup'
-  post   'calls/:id/transfer'  => 'calls#transfer'
+  scope '/api/1' do
 
-  post   'chat_messages'       => 'chat_messages#create'
-  get    'chat_messages'       => 'chat_messages#index'
+    get    'calls'               => 'calls#index'
+    post   'calls'               => 'calls#originate'
+    delete 'calls/:id'           => 'calls#hangup'
+    post   'calls/:id/transfer'  => 'calls#transfer'
 
-  get    'users'               => 'users#index'
-  get    'users/:id'           => 'users#show'
-  put    'users/:id'           => 'users#update'
-  post   'users'               => 'users#create'
+    get    'datasets'            => 'stats#index'
+    post   'chat_messages'       => 'chat_messages#create'
+    get    'chat_messages'       => 'chat_messages#index'
 
-  get    'customers'           => 'customers#index'
-  get    'search_results'      => 'customers#index'
-  put    'customers/:id'       => 'customers#update'
-  get    'customers/:id'       => 'customers#show'
-  put    'history_entries/:id' => 'customers#update_history'
-  get    'crm_tickets'         => 'customers#get_crm_tickets'
-  post   'crm_tickets'         => 'customers#create_crm_ticket'
+    get    'users'               => 'users#index'
+    get    'users/:id'           => 'users#show'
+    put    'users/:id'           => 'users#update'
+    post   'users'               => 'users#create'
 
-  get    '*path'               => 'application#catch_404'
-  post   '*path'               => 'application#catch_404'
+    get    'customers'           => 'customers#index'
+    get    'search_results'      => 'customers#index'
+    put    'customers/:id'       => 'customers#update'
+    get    'customers/:id'       => 'customers#show'
+    put    'history_entries/:id' => 'customers#update_history'
+    get    'crm_tickets'         => 'customers#get_crm_tickets'
+    post   'crm_tickets'         => 'customers#create_crm_ticket'
+  end
+
+  get      '*path'               => 'application#catch_404'
+  post     '*path'               => 'application#catch_404'
 end
