@@ -7,7 +7,8 @@ Voice.AgentsHelper = Ember.Mixin.create({
 
   matchingAgents: (->
     pattern = @get('pattern').toLowerCase()
-    agents  = @get('content')
+    agents  = @get('content').sort (a, b) ->
+      Ember.compare a.get('fullName'), b.get('fullName')
 
     return agents unless pattern
     agents.filter (agent) -> agent.matchesSearch(pattern)
