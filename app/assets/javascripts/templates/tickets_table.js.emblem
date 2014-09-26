@@ -1,0 +1,16 @@
+table.tickets_table
+  colgroup
+    col.w18
+    col.w24
+    col.w46
+    col.w12
+  thead
+    tr: td colspan="4"
+      a href=crmuserUrl target='_blank'
+        = t 'crmuser.recent_tickets'
+      i.fa.fa-refresh title="#{t 'placeholder.refresh_tickets'}" click=fetchCrmTickets
+  tbody
+    each ticket in orderedTickets
+      = render 'crm_ticket' ticket
+    else
+      tr: td colspan="4" &mdash;
