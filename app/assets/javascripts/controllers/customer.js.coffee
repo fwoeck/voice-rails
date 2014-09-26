@@ -1,6 +1,6 @@
 Voice.CustomerController = Ember.ObjectController.extend({
 
-  contentBinding: 'Voice.allCustomers.firstObject'
+  modelBinding: 'Voice.allCustomers.firstObject'
 
 
   actions:

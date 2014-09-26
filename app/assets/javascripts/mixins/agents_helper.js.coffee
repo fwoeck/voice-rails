@@ -2,7 +2,7 @@ Voice.AgentsHelper = Ember.Mixin.create({
 
   pattern: ''
   needs: ['calls', 'users']
-  contentBinding: 'controllers.users.allAgents'
+  modelBinding: 'controllers.users.allAgents'
 
 
   matchingAgents: (->
