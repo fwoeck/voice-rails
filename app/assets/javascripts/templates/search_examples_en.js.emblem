@@ -53,7 +53,7 @@
         td call_id
       tr
         td full_name
-        td remakrs
+        td remarks
       tr
         td crm_user_id
         td created_at
