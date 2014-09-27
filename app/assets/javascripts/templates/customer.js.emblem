@@ -1,5 +1,9 @@
 = partial 'customer_table'
+
 = render  'current_entry'
+
 = render  'current_tags'
+
 = partial 'history_table'
+
 = partial 'tickets_table'

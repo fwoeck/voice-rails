@@ -125,8 +125,8 @@ env.i18n =
       enter_entry_tags: 'Enter some tags..'
       enter_remarks:    'Enter remarks for this call..'
       find_an_agent:    'Find an agent..'
-      find_calls:       'Search for calls..'
-      find_customers:   'Search for customers..'
+      find_calls:       'Enter call specific terms..'
+      find_customers:   'Enter customer related terms..'
       no_recent_messg:  'There are no recent messages in the team chat until now &mdash; be the first to write one!'
       optional_text:    'Enter optional text..'
       refresh_tickets:  "Refresh this customer's #{env.crmProvider} tickets"

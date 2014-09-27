@@ -10,10 +10,7 @@
   #customer_search_results
     each customer in searchResults
       .panel
-        h6
-          = customer.email
-          '  /
-          = customer.fullName
+        h6 #{customer.email} / #{customer.fullName}
         each entry in customer.orderedEntries
           ul.no-bullet
             li = entry.tags
@@ -22,3 +19,5 @@
             li = entry.mailbox
             li = entry.remarks
             li = render 'hyper_text' entry.callerId
+    else
+      = partial searchExamplePartial

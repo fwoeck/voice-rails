@@ -19,7 +19,6 @@
 
   // TODO remove once obsolete:
   > .panel {
-    margin: 0;
   }
 
   // TODO remove once obsolete:
@@ -41,5 +40,15 @@
 
   h6 {
     border-bottom: 1px solid #999;
+  }
+}
+
+#customer_search_examples {
+  table {
+    margin-top: 20px;
+
+    td {
+      font-size: 12px;
+    }
   }
 }
