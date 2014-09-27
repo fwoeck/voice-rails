@@ -5,7 +5,7 @@ env.i18n =
       browser_warning:  'For now, Chrome CHROME+ and Firefox FIREFOX+ are the only supported browsers. Use this platform at own risk.'
       cancel:           'Cancel'
       dial_now:         'Dial now'
-      enter_number:     'Enter a number to dial to:'
+      enter_number:     'Please enter a number to dial:'
       form_with_errors: 'One or more fields contain invalid data. Please fill them in correctly and try again.'
       hangup:           'Hangup'
       hangup_this_call: 'Do you want to hangup this call?'
