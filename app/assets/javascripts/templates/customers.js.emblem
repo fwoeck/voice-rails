@@ -7,7 +7,7 @@
     = view Voice.CustomerSearch value=customerSearch other=historySearch
     = view Voice.HistorySearch value=historySearch other=customerSearch
 
-  #customer_search_results
+  #customer_search_results.bottom-mask
     each customer in searchResults
       .panel
         h6 #{customer.email} / #{customer.fullName}
@@ -20,4 +20,4 @@
             li = entry.remarks
             li = render 'hyper_text' entry.callerId
     else
-      = partial searchExamplePartial
+      = view Voice.SearchExamples

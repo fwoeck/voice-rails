@@ -12,11 +12,6 @@ Voice.CustomersController = Ember.ArrayController.extend({
     @setCurrentCustomer()
 
 
-  searchExamplePartial: (->
-    "search_examples_#{env.locale}"
-  ).property()
-  
-
   setCurrentCustomer: (->
     customer = Voice.get('allCustomers.firstObject')
     if customer != Voice.get('currentCustomer')
