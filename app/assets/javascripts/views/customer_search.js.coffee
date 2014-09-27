@@ -1,7 +1,9 @@
 Voice.GeneralSearch = Ember.TextField.extend({
 
-  type:      'text'
-  maxlength: '128'
+  type:       'text'
+  maxlength:  '128'
+  openRequest: false
+
 
   keyUp: (evt) ->
     switch evt.which
@@ -17,8 +19,11 @@ Voice.GeneralSearch = Ember.TextField.extend({
 
   sendSearchRequest: (hist, cust) ->
     @clearResultSet()
-    return unless hist || cust
-    Voice.store.findQuery('searchResult', {c: cust, h: hist})
+    return if @get('openRequest') || !(hist || cust)
+
+    @set('openRequest', true)
+    Voice.store.findQuery('searchResult', {c: cust, h: hist}).then =>
+      @set('openRequest', false)
 
 
   clearResultSet: ->
