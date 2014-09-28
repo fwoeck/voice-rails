@@ -47,6 +47,11 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
 
   actions:
+    error: (error, transition) ->
+      app.showDefaultError(i18n.errors.routing_error)
+      console.log error
+      false
+
     showHelpDialog: (e) ->
       app.showShortcutList()
       @silence(e)

@@ -7,14 +7,12 @@
     = view Voice.CustomerSearch value=customerSearch other=historySearch
     = view Voice.HistorySearch value=historySearch other=customerSearch
 
-  #customer_search_results
-    each customer in searchResults
+  #customer_search_results.bottom-mask
+    each result in searchResults
       .panel
-        h6
-          = customer.email
-          '  /
-          = customer.fullName
-        each entry in customer.orderedEntries
+        h6: = link-to 'customer' result.id
+          | #{result.email} / #{result.fullName}
+        each entry in result.orderedEntries
           ul.no-bullet
             li = entry.tags
             li = entry.callId
@@ -22,3 +20,5 @@
             li = entry.mailbox
             li = entry.remarks
             li = render 'hyper_text' entry.callerId
+    else
+      = view Voice.SearchExamples

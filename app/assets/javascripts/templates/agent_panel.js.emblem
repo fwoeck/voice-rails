@@ -5,38 +5,24 @@
   i class={isCallable :fa :fa-comments} click="callAgent this bubbles=false"
 
   ul.col1
-    li
-      = email
-    li
-      = fullName
+    li: = email
+    li: = fullName
 
   ul.col2
     li
-      .space
-        = t 'domain.languages'
-        | :
+      .space #{t 'domain.languages'}:
       = displayLangs
     li
-      .space
-        = t 'domain.skills'
-        | :
+      .space #{t 'domain.skills'}:
       = displaySkills
 
   ul.col3
     li
-      .space
-        = t 'domain.roles'
-        | :
+      .space #{t 'domain.roles'}:
       = displayRoles
     li
-      .space
-        = t 'domain.line'
-        | :
-      = name
-      ' &nbsp;/
-      = visibility
-      ' &nbsp;/
-      = activity
+      .space #{t 'domain.line'}:
+      | #{name} / #{visibility} / #{activity}
 
   ul.col4
 

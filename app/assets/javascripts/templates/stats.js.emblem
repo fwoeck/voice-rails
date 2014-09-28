@@ -11,7 +11,7 @@
     = ember-gauge gid="calls5" value=data.queuedCallsDelayMax min=0 max=100 title=titleMaxQueueDelay label=labelSeconds
     = ember-gauge gid="calls6" value=data.queuedCallsDelayAvg min=0 max=100 title=titleAvgQueueDelay label=labelSeconds
 
-  = partial 'language_details'
+  = partial 'stats_details'
 
   #rrd_history
     img src=rrdSource width='970px' height='222px'

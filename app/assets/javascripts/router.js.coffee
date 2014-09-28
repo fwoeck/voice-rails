@@ -1,5 +1,7 @@
 Voice.Router.map ->
-  @resource('customers')
+  @resource('customers', path: '/customers')
+  @resource('customer',  path: '/customers/:customer_id')
+
   @resource('agents')
   @resource('stats')
 

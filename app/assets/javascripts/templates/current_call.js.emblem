@@ -19,4 +19,4 @@ table#callstats_table
     tr
       td.split colspan="2"
         #customer.hidden
-          = render 'customer'
+          = render 'current_customer' customer

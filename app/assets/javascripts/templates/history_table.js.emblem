@@ -1,0 +1,15 @@
+table.history_table
+  colgroup
+    col.w18
+    col.w24
+    col.w46
+    col.w12
+  thead
+    tr
+      td = t 'domain.called_at'
+      td = t 'domain.agent'
+      td = t 'domain.remarks'
+      td
+  tbody
+    each entry in orderedEntries
+      = render 'history_entry' entry

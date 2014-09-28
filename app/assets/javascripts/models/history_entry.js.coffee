@@ -1,7 +1,5 @@
 Voice.HistoryEntry = DS.Model.extend(Voice.Resetable, {
 
-  customer:  DS.belongsTo('customer')
-
   tags:      DS.attr('array')
   callId:    DS.attr('string')
   userId:    DS.attr('number')

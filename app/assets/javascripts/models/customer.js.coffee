@@ -11,7 +11,7 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
   fullName:       DS.attr 'string'
   crmuserId:      DS.attr 'string'
   callerIds:      DS.attr 'array'
-  reload:         false
+  forceReload:    false
 
 
   crmuserUrl: (->
@@ -21,7 +21,7 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
 
 
   fetchCrmTickets: (reload) ->
-    @set('reload', reload)
+    @set('forceReload', reload)
     @notifyPropertyChange('crmuserId')
 
 
@@ -29,8 +29,8 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
     return [] unless (zid = @get 'crmuserId')
     app.ticketSpinnerOn()
 
-    reload = @get('reload')
-    @set('reload', false)
+    reload = @get('forceReload')
+    @set('forceReload', false)
 
     @requestTickets(zid, reload)
   ).property('crmuserId')
@@ -41,8 +41,4 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
     zt = @store.findQuery('crmTicket', requester_id: zid, reload: reload)
     zt.then -> app.ticketSpinnerOff()
     zt
-})
-
-
-Voice.SearchResult = Voice.Customer.extend({
 })

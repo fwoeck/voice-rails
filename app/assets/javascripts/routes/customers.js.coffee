@@ -1,6 +1,9 @@
 Voice.CustomersRoute = Ember.Route.extend({
 
-  activate: ->
+  deactivate: ->
     @store.unloadAll('searchResult')
+
+
+  activate: ->
     @controllerFor('search_results').set 'model', @store.all('searchResult')
 })
