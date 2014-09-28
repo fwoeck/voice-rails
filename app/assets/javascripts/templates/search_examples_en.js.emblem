@@ -17,7 +17,7 @@
   .col2
     p You can look for specific content by prefixing the search term with a field name, e.g. "email: *gmail.com".
 
-    p Use a digit with m/h/d/w/M to look only for calls from within the given timespan, e.g. "5d" for the last five days.
+    p Use digits with m/h/d/w/M to look only for calls from within the given timespan, e.g. "5d" for the last five days.
 
   table.col1
     thead
