@@ -3,6 +3,8 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   needs:       ['calls', 'users']
   callSorting: ['calledAt']
   modelBinding: 'controllers.calls'
+
+  currentCallBinding:      'Voice.currentCall'
   hideForeignCallsBinding: 'Voice.hideForeignCalls'
 
 

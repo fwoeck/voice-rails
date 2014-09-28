@@ -7,7 +7,7 @@
   span.matches
 
   #call_queue_body.bottom-mask
-    if Voice.currentCall.origin
-      = render 'current_call' Voice.currentCall
+    if currentCall.origin
+      = render 'current_call' currentCall
     else
       = partial 'calls_table'

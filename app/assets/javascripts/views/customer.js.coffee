@@ -5,3 +5,7 @@ Voice.CustomerView = Ember.View.extend({
       ($ '#customer').removeClass('hidden')
     ), 1000
 })
+
+
+Voice.CurrentCustomerView = Voice.CustomerView.extend({
+})

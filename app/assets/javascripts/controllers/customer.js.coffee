@@ -1,8 +1,5 @@
 Voice.CustomerController = Ember.ObjectController.extend({
 
-  modelBinding: 'Voice.allCustomers.firstObject'
-
-
   actions:
     syncCrm: ->
       if (cust = @get 'content')
@@ -42,4 +39,8 @@ Voice.CustomerController = Ember.ObjectController.extend({
   userIdPlaceholder: (->
     i18n.placeholder.the_user_id
   ).property()
+})
+
+
+Voice.CurrentCustomerController = Voice.CustomerController.extend({
 })

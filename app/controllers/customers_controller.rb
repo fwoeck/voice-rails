@@ -6,7 +6,11 @@ class CustomersController < ApplicationController
 
 
   def show
-    render json: Customer.rpc_find(params[:id]), serializer: CustomerSerializer
+    if (cust = Customer.rpc_find params[:id])
+      render json: cust, serializer: CustomerSerializer
+    else
+      render nothing: true, status: 404
+    end
   end
 
 

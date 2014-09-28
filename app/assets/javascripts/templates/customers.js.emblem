@@ -8,10 +8,11 @@
     = view Voice.HistorySearch value=historySearch other=customerSearch
 
   #customer_search_results.bottom-mask
-    each customer in searchResults
+    each result in searchResults
       .panel
-        h6 #{customer.email} / #{customer.fullName}
-        each entry in customer.orderedEntries
+        h6: = link-to 'customer' result.id
+          | #{result.email} / #{result.fullName}
+        each entry in result.orderedEntries
           ul.no-bullet
             li = entry.tags
             li = entry.callId
