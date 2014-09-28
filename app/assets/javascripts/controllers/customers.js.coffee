@@ -1,10 +1,11 @@
 Voice.CustomersController = Ember.ArrayController.extend({
 
-  needs:               ['search_results']
+  needs:                ['search_results']
   searchResultsBinding: 'controllers.search_results.content'
 
-  historySearch:  ''
-  customerSearch: ''
+  queryParams: ['c', 'h']
+  h: ''
+  c: ''
 
 
   init: ->

@@ -56,8 +56,5 @@
       tr
         td crm_user_id
         td created_at
-      tr
-        td
-        td customer_id
 
   p.clear You can look for specific content by prefixing the search term with a field name, e.g. "email: *gmail.com".

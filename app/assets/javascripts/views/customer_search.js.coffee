@@ -35,9 +35,15 @@ Voice.CustomerSearch = Voice.GeneralSearch.extend({
 
   name: 'customer_search'
 
+
+  didInsertElement: ->
+    @startSearch()
+
+
   placeholder: (->
     i18n.placeholder.find_customers
   ).property()
+
 
   startSearch: ->
     hist = @get('other')
@@ -50,9 +56,11 @@ Voice.HistorySearch = Voice.GeneralSearch.extend({
 
   name: 'history_search'
 
+
   placeholder: (->
     i18n.placeholder.find_calls
   ).property()
+
 
   startSearch: ->
     hist = @get('value')
