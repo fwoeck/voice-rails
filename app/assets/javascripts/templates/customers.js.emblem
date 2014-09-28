@@ -4,8 +4,8 @@
     span.header = t 'headers.customer_history'
 
   #customer_search
-    = view Voice.CustomerSearch value=customerSearch other=historySearch
-    = view Voice.HistorySearch value=historySearch other=customerSearch
+    = view Voice.CustomerSearch value=c other=h
+    = view Voice.HistorySearch value=h other=c
 
   #customer_search_results.bottom-mask
     each result in searchResults
@@ -14,11 +14,10 @@
           | #{result.email} / #{result.fullName}
         each entry in result.orderedEntries
           ul.no-bullet
-            li = entry.tags
+            li = entry.createdAt
             li = entry.callId
-            li = entry.userId
-            li = entry.mailbox
-            li = entry.remarks
             li = render 'hyper_text' entry.callerId
+            li = entry.tags
+            li = entry.remarks
     else
       = view Voice.SearchExamples

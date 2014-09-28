@@ -43,4 +43,6 @@ Voice.CustomerController = Ember.ObjectController.extend({
 
 
 Voice.CurrentCustomerController = Voice.CustomerController.extend({
+
+  modelBinding: 'Voice.currentCustomer'
 })

@@ -1,12 +1,13 @@
 Voice.HistoryEntry = DS.Model.extend(Voice.Resetable, {
 
-  tags:      DS.attr('array')
-  callId:    DS.attr('string')
-  userId:    DS.attr('number')
-  mailbox:   DS.attr('string')
-  remarks:   DS.attr('string')
-  callerId:  DS.attr('string')
-  createdAt: DS.attr('date')
+  tags:       DS.attr('array')
+  callId:     DS.attr('string')
+  userId:     DS.attr('number')
+  mailbox:    DS.attr('string')
+  remarks:    DS.attr('string')
+  callerId:   DS.attr('string')
+  createdAt:  DS.attr('date')
+  customerId: DS.attr('string')
 
 
   status: (->

@@ -1,3 +1,7 @@
+Voice.AgentTableController = Ember.ArrayController.extend(Voice.AgentsHelper, {
+})
+
+
 Voice.DatasetsController = Ember.ArrayController.extend({
 })
 
