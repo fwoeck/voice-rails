@@ -20,14 +20,12 @@
   overflow-y: scroll;
   width: 978px;
 
-  // TODO remove once obsolete:
-  > .panel {
+  .search_result {
     margin: 10px 0;
   }
 
-  // TODO remove once obsolete:
   ul {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e8e8e8;
     padding: 10px 0;
     margin: 0;
 
@@ -36,10 +34,21 @@
     }
   }
 
-  // TODO remove once obsolete:
   ul, li, p {
     font-size: 12px;
     margin: 0;
+  }
+
+  li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 20px;
+    overflow: hidden;
+    width: 178px;
+  }
+
+  li:last-child {
+    margin-right: 0;
   }
 
   p {
@@ -48,18 +57,14 @@
 
   h6 {
     border-bottom: 1px solid #999;
-    margin-bottom: 16px;
-  }
-
-  .clear {
-    clear: both;
+    margin: 30px 0 10px 0;
   }
 }
 
 #customer_search_examples {
   transition: opacity linear 1000ms;
   background-color: #fff;
-  padding: 40px 0 0 0;
+  padding: 5px 0 0 0;
   overflow: hidden;
   border-top: 0;
   border: 0;

@@ -35,6 +35,10 @@ Ember.Handlebars.helper('moment', (value, options) ->
   moment(value).format() if value
 )
 
+Ember.Handlebars.helper('momentL', (value, options) ->
+  moment(value).format('L hh:mm:ss') if value
+)
+
 Ember.Handlebars.helper('fromNow', (value, options) ->
   moment(value).fromNow() if value
 )

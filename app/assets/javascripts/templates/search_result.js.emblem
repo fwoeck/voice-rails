@@ -1,10 +1,10 @@
-.panel
+.search_result
   h6: = link-to 'customer' content.id
     | #{content.email} / #{content.fullName}
   each entry in content.orderedEntries
-    ul.no-bullet
-      li = entry.createdAt
-      li = entry.callId
+    ul.no-bullet.inline-list
+      li = unbound momentL entry.createdAt
+      li = unbound entry.callId
       li = render 'hyper_text' entry.callerId
-      li = entry.tags
-      li = entry.remarks
+      li = unbound entry.tags
+      li = unbound entry.remarks
