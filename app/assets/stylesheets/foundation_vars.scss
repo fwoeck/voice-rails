@@ -3,21 +3,29 @@ $rem-base: 14px;
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
 @import "foundation/functions";
 
+$include-html-classes: true;
+$include-html-global-classes: $include-html-classes;
+
 $base-font-size: 14px;
 $body-font-family: "Open Sans", sans-serif;
 $font-weight-normal: normal !default;
 $font-weight-bold: bold !default;
+
 $secondary-color: #e7e7e7;
 $primary-color: #006cb7;
 $success-color: #66aa66;
 $warning-color: #fbbb13;
 $alert-color: #da6262;
 $info-color: #a0d3e8;
+
 $wimdu-yellow-light: #ffe5a0;
 $wimdu-blue-light: #3693d5;
 $wimdu-yellow: #fbbb13;
 $wimdu-blue: #006cb7;
+
+$anchor-font-color: $primary-color;
 $tabs-navigation-padding: 4px;
+
 $tooltip-padding: rem-calc(8);
 $tooltip-font-size: rem-calc(12);
 $tooltip-font-weight: $font-weight-normal;
