@@ -64,7 +64,10 @@ class CustomersController < ApplicationController
       opts = {caller_ids: params[:caller_id]}
       Customer.rpc_where(opts)
     elsif request_is_search?
-      opts = {c: params[:c], h: params[:h], size: 100}
+      opts = {
+        c: params[:c], h: params[:h],
+        t: params[:t], s: 100
+      }
       Customer.rpc_search(opts)
     else
       []

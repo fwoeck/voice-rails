@@ -1,8 +1,7 @@
 Voice.GeneralSearch = Ember.TextField.extend({
 
-  type:       'text'
-  maxlength:  '128'
-  openRequest: false
+  type:      'text'
+  maxlength: '128'
 
 
   keyUp: (evt) ->
@@ -13,21 +12,12 @@ Voice.GeneralSearch = Ember.TextField.extend({
 
 
   clearSearch: ->
-    @clearResultSet()
+    @get('parentView.controller').clearResultSet()
     @set('value', '')
 
 
-  sendSearchRequest: (hist, cust) ->
-    @clearResultSet()
-    return if @get('openRequest') || !(hist || cust)
-
-    @set('openRequest', true)
-    Voice.store.findQuery('searchResult', {c: cust, h: hist}).then =>
-      @set('openRequest', false)
-
-
-  clearResultSet: ->
-    Voice.store.unloadAll('searchResult')
+  startSearch: ->
+    @get('parentView.controller').startSearch()
 })
 
 
@@ -35,20 +25,12 @@ Voice.CustomerSearch = Voice.GeneralSearch.extend({
 
   name: 'customer_search'
 
-
   didInsertElement: ->
     @startSearch()
-
 
   placeholder: (->
     i18n.placeholder.find_customers
   ).property()
-
-
-  startSearch: ->
-    hist = @get('other')
-    cust = @get('value')
-    @sendSearchRequest(hist, cust)
 })
 
 
@@ -56,14 +38,17 @@ Voice.HistorySearch = Voice.GeneralSearch.extend({
 
   name: 'history_search'
 
-
   placeholder: (->
     i18n.placeholder.find_calls
   ).property()
+})
 
 
-  startSearch: ->
-    hist = @get('value')
-    cust = @get('other')
-    @sendSearchRequest(hist, cust)
+Voice.SearchLimit = Voice.GeneralSearch.extend({
+
+  name: 'search_limit'
+
+  placeholder: (->
+    i18n.placeholder.enter_timespan
+  ).property()
 })

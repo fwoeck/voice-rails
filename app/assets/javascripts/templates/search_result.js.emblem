@@ -1,0 +1,10 @@
+.panel
+  h6: = link-to 'customer' content.id
+    | #{content.email} / #{content.fullName}
+  each entry in content.orderedEntries
+    ul.no-bullet
+      li = entry.createdAt
+      li = entry.callId
+      li = render 'hyper_text' entry.callerId
+      li = entry.tags
+      li = entry.remarks

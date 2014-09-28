@@ -4,20 +4,12 @@
     span.header = t 'headers.customer_history'
 
   #customer_search
-    = view Voice.CustomerSearch value=c other=h
-    = view Voice.HistorySearch value=h other=c
+    = view Voice.CustomerSearch value=c
+    = view Voice.HistorySearch value=h
+    = view Voice.SearchLimit value=t
 
   #customer_search_results.bottom-mask
     each result in searchResults
-      .panel
-        h6: = link-to 'customer' result.id
-          | #{result.email} / #{result.fullName}
-        each entry in result.orderedEntries
-          ul.no-bullet
-            li = entry.createdAt
-            li = entry.callId
-            li = render 'hyper_text' entry.callerId
-            li = entry.tags
-            li = entry.remarks
+      = render 'search_result' result
     else
       = view Voice.SearchExamples

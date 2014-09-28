@@ -4,13 +4,14 @@
   height: 69px;
 
   input {
-    margin-top: 15px;
-    width: calc(50% - 8px);
+    width: calc(40% - 8px);
+    margin: 15px 16px 0 0;
     float: left;
   }
 
-  input:first-child {
-    margin-right: 16px;
+  input:last-child {
+    width: calc(20% - 16px);
+    margin-right: 0;
   }
 }
 
@@ -63,6 +64,11 @@
   border-top: 0;
   border: 0;
 
+  p {
+    font-size: 13px;
+    color: #666;
+  }
+
   table {
     margin-top: 20px;
 
@@ -70,6 +76,17 @@
       font-size: 12px;
       color: #555;
     }
+  }
+
+  .col1 {
+    width: 565px;
+    float: left;
+  }
+
+  .col2 {
+    margin-left: 30px;
+    width: 375px;
+    float: left;
   }
 }
 
