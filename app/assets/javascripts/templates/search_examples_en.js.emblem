@@ -2,13 +2,18 @@
   h6 How to use the customer search
 
   p
-    br
     ' Enter terms or phrases to filter the database for customer- or call-specific fields.
+    br
     ' Use either one of the fields or both to see their common matches.
 
   p Words are case insensitive, but logical operators have to be typed uppercase.
 
-  table
+  p
+    ' The call search works accordingly, but for call details like remarks.
+    br
+    ' See a list of the indexed fields for customers and calls below.
+
+  table.left
     thead
       tr
         td Customer input field
@@ -33,17 +38,11 @@
         td "anna schwartz"
         td entries that contain the exact phrase "anna schwartz"
 
-  p
-    ' The call search works accordingly, but for call details like remarks.
-    ' See a list of the indexed fields for customers and calls below.
-
-  p You can look for specific content by prefixing the search term with a field name, e.g. "email: *gmail.com".
-
-  table
+  table.right
     thead
       tr
-        td Customer fields
-        td Call fields
+        td Indexed customer fields
+        td Indexed call fields
     tbody
       tr
         td email
@@ -60,3 +59,5 @@
       tr
         td
         td customer_id
+
+  p.clear You can look for specific content by prefixing the search term with a field name, e.g. "email: *gmail.com".

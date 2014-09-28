@@ -1,5 +1,10 @@
 Voice.HistoryEntry = DS.Model.extend(Voice.Resetable, {
 
+  # FIXME Enabling this causes problems with the polymorphic
+  #       relation to customer/historyEntry:
+  #
+  # customer:  DS.belongsTo('customer')
+
   tags:      DS.attr('array')
   callId:    DS.attr('string')
   userId:    DS.attr('number')

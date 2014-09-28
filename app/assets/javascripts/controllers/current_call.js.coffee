@@ -1,7 +1,7 @@
 Voice.CurrentCallController = Ember.ObjectController.extend({
 
   callerIdBinding: 'Voice.currentCall.origin.callerId'
-  customerBinding: 'Voice.allCustomers.firstObject'
+  customerBinding: 'Voice.currentCustomer'
 
 
   init: ->
