@@ -158,6 +158,10 @@ window.app = {
       )
 
 
+  setupMoment: ->
+    moment.locale(env.locale)
+
+
   setupAbide: ->
     env.patterns = Foundation.libs.abide.settings.patterns
     env.patterns.password = /^.*(?=.{8,20})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/

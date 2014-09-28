@@ -2,7 +2,7 @@
   h6: = link-to 'customer' content.id
     | #{content.email} / #{content.fullName}
   each entry in content.orderedEntries
-    ul.no-bullet.inline-list
+    ul.no-bullet.inline-list.inline-list
       li = unbound momentL entry.createdAt
       li = unbound entry.callId
       li = render 'hyper_text' entry.callerId
