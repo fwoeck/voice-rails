@@ -31,7 +31,7 @@ class AmqpManager
 
     class_eval %Q"
       def self.#{name}_publish(*args)
-        Celluloid::Actor[:amqp].async.#{name}_publish(*args)
+        Celluloid::Actor[:amqp].#{name}_publish(*args)
       end
     "
   }

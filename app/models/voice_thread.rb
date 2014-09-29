@@ -6,7 +6,8 @@ class VoiceThread
 
 
   def self.with_sql(&block)
-    ActiveRecord::Base.connection_pool.reap
+    # Caution! This causes havoc with mri:
+    #   ActiveRecord::Base.connection_pool.reap
     yield block
   rescue Exception => e
     raise e

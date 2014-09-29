@@ -48,7 +48,7 @@ class Call
 
 
   def handle_message
-    VoiceThread.with_sql {
+    VoiceThread.async {
       uids = if hide_from_agents?
         User.all_online_ids & User.all_admin_ids
       else
