@@ -1,11 +1,11 @@
 class VoiceThread
 
   def self.async(&block)
-    Thread.new { with_db { yield block } }
+    Thread.new { with_sql { yield block } }
   end
 
 
-  def self.with_db(&block)
+  def self.with_sql(&block)
     ActiveRecord::Base.connection_pool.reap
     yield block
   rescue Exception => e

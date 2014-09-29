@@ -5,7 +5,7 @@ class Agent
 
 
   def handle_message
-    VoiceThread.with_db {
+    VoiceThread.with_sql {
       if user = User.where(name: name).first
         user.send_user_update_to_clients
       end
