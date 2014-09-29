@@ -4,13 +4,14 @@
   height: 69px;
 
   input {
-    margin-top: 15px;
-    width: calc(50% - 8px);
+    width: calc(40% - 8px);
+    margin: 15px 16px 0 0;
     float: left;
   }
 
-  input:first-child {
-    margin-right: 16px;
+  input:last-child {
+    width: calc(20% - 16px);
+    margin-right: 0;
   }
 }
 
@@ -19,14 +20,12 @@
   overflow-y: scroll;
   width: 978px;
 
-  // TODO remove once obsolete:
-  > .panel {
+  .search_result {
     margin: 10px 0;
   }
 
-  // TODO remove once obsolete:
   ul {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e8e8e8;
     padding: 10px 0;
     margin: 0;
 
@@ -35,10 +34,41 @@
     }
   }
 
-  // TODO remove once obsolete:
   ul, li, p {
     font-size: 12px;
     margin: 0;
+  }
+
+  li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 20px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  li.col1 {
+    width: 130px;
+  }
+
+  li.col2 {
+    width: 28px;
+  }
+
+  li.col3 {
+    width: 230px;
+
+    > * {
+      display: inline;
+    }
+  }
+
+  li.col4 {
+    width: 420px;
+  }
+
+  li:last-child {
+    margin-right: 0;
   }
 
   p {
@@ -47,29 +77,72 @@
 
   h6 {
     border-bottom: 1px solid #999;
-    margin-bottom: 16px;
+    margin: 30px 0 10px 0;
   }
 
-  .clear {
-    clear: both;
+  span.tag {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 6px;
+    padding: 0px 4px;
+    font-size: 10px;
+  }
+
+  span.caller-ids {
+    margin: -9px 8px 0 0;
+    float: right;
+
+    p {
+      border: 1px solid #ccc;
+      background-color: #eee;
+      border-radius: 4px;
+      margin-left: 10px;
+      padding: 1px 6px;
+      display: inline;
+      font-size: 12px;
+    }
+  }
+
+  i.fa {
+    font-size: 14px;
+    color: #888;
   }
 }
 
 #customer_search_examples {
   transition: opacity linear 1000ms;
   background-color: #fff;
-  padding: 40px 0 0 0;
+  padding: 5px 0 0 0;
   overflow: hidden;
   border-top: 0;
   border: 0;
 
+  p {
+    font-size: 13px;
+    color: #666;
+  }
+
   table {
+    border-spacing: 0;
     margin-top: 20px;
+    border: 0;
 
     td {
       font-size: 12px;
       color: #555;
     }
+  }
+
+  .col1 {
+    width: 565px;
+    float: left;
+  }
+
+  .col2 {
+    margin-left: 30px;
+    width: 375px;
+    float: left;
   }
 }
 

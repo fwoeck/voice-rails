@@ -124,6 +124,7 @@ env.i18n =
       an_email_address: 'An e-mail address..'
       enter_entry_tags: 'Enter some tags..'
       enter_remarks:    'Enter remarks for this call..'
+      enter_timespan:   'Enter a timespan..'
       find_an_agent:    'Find an agent..'
       find_calls:       'Enter call specific terms..'
       find_customers:   'Enter customer related terms..'

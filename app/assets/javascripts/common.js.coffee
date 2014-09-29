@@ -1,5 +1,14 @@
 window.app = {
 
+  # FIXME When agents call themselves internally, the
+  #       "caller" can appear as "asterisk":
+  #
+  sanitizeCallerName: (call) ->
+    name = app.getAgentFrom call.caller.replace('SIP/', '').replace(/@.+$/, '')
+    name = app.getAgentFrom(call.visibleNameCaller) if name == 'asterisk'
+    name
+
+
   setCurrentAgentForm: (el) ->
     return unless (av = Voice.get 'agentsView')
 
@@ -147,6 +156,10 @@ window.app = {
         "</div>" +
         "<div class='td space'>#{env.languages[lang]}</div>"
       )
+
+
+  setupMoment: ->
+    moment.locale(env.locale)
 
 
   setupAbide: ->

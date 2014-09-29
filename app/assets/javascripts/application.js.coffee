@@ -13,6 +13,7 @@
 #= require raphael
 #= require justgage
 #= require moment
+#= require moment.de
 #= require common
 #= require connections
 #= require js-phone
@@ -38,6 +39,7 @@ app.aggregateSkillSelection()
 app.aggregateLanguageSelection()
 app.aggregateRoleSelection()
 
+app.setupMoment()
 app.setupAbide()
 
 window.Voice = Ember.Application.create(

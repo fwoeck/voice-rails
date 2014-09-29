@@ -1,0 +1,9 @@
+.search_result
+  h6: = link-to 'customer' content.id
+    = unbound customerHeader content
+    span.caller-ids
+      each cid in content.callerIds
+        = render 'hyper_text' cid
+
+  each entry in content.orderedEntries
+    = render 'search_result_entry' entry
