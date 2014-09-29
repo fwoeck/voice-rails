@@ -48,13 +48,15 @@ class Call
 
 
   def handle_message
-    uids = if hide_from_agents?
-      User.all_online_ids & User.all_admin_ids
-    else
-      User.all_online_ids
-    end
+    VoiceThread.with_db {
+      uids = if hide_from_agents?
+        User.all_online_ids & User.all_admin_ids
+      else
+        User.all_online_ids
+      end
 
-    send_call_update_to_clients(uids)
+      send_call_update_to_clients(uids)
+    }
   end
 
 
