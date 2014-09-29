@@ -44,7 +44,27 @@
     white-space: nowrap;
     margin-right: 20px;
     overflow: hidden;
-    width: 178px;
+    cursor: pointer;
+  }
+
+  li.col1 {
+    width: 130px;
+  }
+
+  li.col2 {
+    width: 28px;
+  }
+
+  li.col3 {
+    width: 230px;
+
+    > * {
+      display: inline;
+    }
+  }
+
+  li.col4 {
+    width: 420px;
   }
 
   li:last-child {
@@ -58,6 +78,35 @@
   h6 {
     border-bottom: 1px solid #999;
     margin: 30px 0 10px 0;
+  }
+
+  span.tag {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 6px;
+    padding: 0px 4px;
+    font-size: 10px;
+  }
+
+  span.caller-ids {
+    margin: -9px 8px 0 0;
+    float: right;
+
+    p {
+      border: 1px solid #ccc;
+      background-color: #eee;
+      border-radius: 4px;
+      margin-left: 10px;
+      padding: 1px 6px;
+      display: inline;
+      font-size: 12px;
+    }
+  }
+
+  i.fa {
+    font-size: 14px;
+    color: #888;
   }
 }
 

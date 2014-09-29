@@ -75,10 +75,24 @@ Ember.Handlebars.helper('printAD', (data, val1, val2, options) ->
   app.renderStatsEntry(val, 10, 20)
 )
 
-Ember.Handlebars.helper('printLanguageHeader', (language, languages, options) ->
+Ember.Handlebars.helper('languageHeader', (language, languages, options) ->
   header = languages.sort().map( (lang) ->
     "<a class='#{if lang == language then 'active' else ''}' href='#'>#{lang.toUpperCase()}</a>"
   ).join(' &bull; ')
 
   new Ember.Handlebars.SafeString header
+)
+
+Ember.Handlebars.helper('customerHeader', (cust, options) ->
+  return "" unless cust
+  name  = cust.get('fullName')
+  name  = null unless name
+
+  email = cust.get('email')
+  email = null unless email
+
+  cid   = cust.get('callerIds.firstObject')
+  els   = [name, email].compact()
+
+  if els.length then els.join(' / ') else cid
 )

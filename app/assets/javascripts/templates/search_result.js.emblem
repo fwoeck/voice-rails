@@ -1,10 +1,9 @@
 .search_result
   h6: = link-to 'customer' content.id
-    | #{content.email} / #{content.fullName}
+    = unbound customerHeader content
+    span.caller-ids
+      each cid in content.callerIds
+        = render 'hyper_text' cid
+
   each entry in content.orderedEntries
-    ul.no-bullet.inline-list.inline-list
-      li = unbound momentL entry.createdAt
-      li = unbound entry.callId
-      li = render 'hyper_text' entry.callerId
-      li = unbound entry.tags
-      li = unbound entry.remarks
+    = render 'search_result_entry' entry

@@ -7,7 +7,7 @@ each lang in languages
     h5: span.header click='stepLang target=view'
       i.fa.fa-area-chart.header
       = t 'headers.details_for'
-      span.language = unbound printLanguageHeader lang languages
+      span.language = unbound languageHeader lang languages
 
     table#stat_details
       thead: tr
