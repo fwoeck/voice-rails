@@ -8,8 +8,7 @@ Voice.AgentBridgeView = Ember.View.extend(DragNDrop.Dragable, {
 
 
   willDestroyElement: ->
-    tooltip = @$('span.has-tip').attr('data-selector')
-    ($ "span.tooltip[data-selector='#{tooltip}']").remove()
+    app.cleanupTooltips(@)
 
 
   elId: ->
