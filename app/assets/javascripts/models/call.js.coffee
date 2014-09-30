@@ -46,7 +46,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
   readyForWipe: ->
     if (hungupAt = @get 'hungupAt')
-      (new Date - hungupAt > 3000) && @isForeignCall()
+      !@get('isDeleted') && (new Date - hungupAt > 3000) && @isForeignCall()
 
 
   isForeignCall: ->

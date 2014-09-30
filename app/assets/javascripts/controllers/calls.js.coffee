@@ -3,9 +3,12 @@ Voice.CallsController = Ember.ArrayController.extend({
   init: ->
     @_super()
     @bundlePairs()
-    # FIXME Check, if interval is already active:
-    #
-    window.setInterval (=> @wipeHungupCalls()), 3000
+    @setupCallWiper()
+
+
+  setupCallWiper: ->
+    unless @timer
+      @timer = window.setInterval (=> @wipeHungupCalls()), 3000
 
 
   wipeHungupCalls: ->
