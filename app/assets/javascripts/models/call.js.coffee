@@ -11,6 +11,7 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
   allCallsBinding: 'Voice.allCalls'
   allUsersBinding: 'Voice.allUsers'
 
+  removing:      null
   origin:        null
   bridge:        null
 
@@ -45,7 +46,8 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
 
   removeAfterHangup: (->
-    if @get('hungup') && @isForeignCall()
+    if @get('hungup') && !@get('removing') && @isForeignCall()
+      @set 'removing', true
       Ember.run.later @, @remove, 3000
   ).observes('hungup')
 

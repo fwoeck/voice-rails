@@ -4,6 +4,9 @@ Voice.HistoryEntryView = Ember.View.extend({
 
 
   didInsertElement: ->
+    # FIXME This will become expensive for high call counts.
+    #       Can we lazy-init this, e.g. on mouse-enter?
+    #
     mailbox = @get 'controller.content.mailbox'
     @setupJplayer(mailbox) if mailbox
 

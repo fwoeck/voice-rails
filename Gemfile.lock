@@ -52,7 +52,7 @@ GEM
     bundler-unload (1.0.2)
     bunny (1.4.1)
       amq-protocol (>= 1.9.2)
-    byebug (3.4.2)
+    byebug (3.5.1)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)

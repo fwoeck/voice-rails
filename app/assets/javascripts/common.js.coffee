@@ -1,5 +1,10 @@
 window.app = {
 
+  cleanupTooltips: (self) ->
+    tooltip = self.$('span.has-tip').attr('data-selector')
+    ($ "span.tooltip[data-selector='#{tooltip}']").remove()
+
+
   # FIXME When agents call themselves internally, the
   #       "caller" can appear as "asterisk":
   #
