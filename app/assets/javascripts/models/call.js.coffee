@@ -90,13 +90,19 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
     else
       @isInbound()
 
-    if @get('matchesFilter') != result
-       @set 'matchesFilter', result
+    Ember.run.scheduleOnce 'afterRender', @, (=>
+      @writeFilterValue result
+    )
   ).observes(
     'hungup', 'agentCallLeg', 'language' ,'skill'
     'Voice.currentUser.{languages,skills}.[]',
     'Voice.hideForeignCalls'
   )
+
+
+  writeFilterValue: (result) ->
+    if @get('matchesFilter') != result
+       @set 'matchesFilter', result
 
 
   matchesCU: ->
