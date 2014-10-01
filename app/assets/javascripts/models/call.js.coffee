@@ -11,7 +11,6 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
   allCallsBinding: 'Voice.allCalls'
   allUsersBinding: 'Voice.allUsers'
 
-  removing:      null
   origin:        null
   bridge:        null
 
@@ -45,11 +44,9 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
     $.post("#{env.apiVersion}/calls/#{callId}", {'_method': 'DELETE'})
 
 
-  removeAfterHangup: (->
-    if @get('hungup') && !@get('removing') && @isForeignCall()
-      @set 'removing', true
-      Ember.run.later @, @remove, 3000
-  ).observes('hungup')
+  readyForWipe: ->
+    if (hungupAt = @get 'hungupAt')
+      !@get('isDeleted') && (new Date - hungupAt > 3000) && @isForeignCall()
 
 
   isForeignCall: ->
@@ -93,13 +90,19 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
     else
       @isInbound()
 
-    if @get('matchesFilter') != result
-       @set 'matchesFilter', result
+    Ember.run.scheduleOnce 'afterRender', @, (=>
+      @writeFilterValue result
+    )
   ).observes(
     'hungup', 'agentCallLeg', 'language' ,'skill'
     'Voice.currentUser.{languages,skills}.[]',
     'Voice.hideForeignCalls'
   )
+
+
+  writeFilterValue: (result) ->
+    if @get('matchesFilter') != result
+       @set 'matchesFilter', result
 
 
   matchesCU: ->

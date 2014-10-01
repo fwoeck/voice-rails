@@ -3,6 +3,17 @@ Voice.CallsController = Ember.ArrayController.extend({
   init: ->
     @_super()
     @bundlePairs()
+    @setupCallWiper()
+
+
+  setupCallWiper: ->
+    unless @timer
+      @timer = window.setInterval (=> @wipeHungupCalls()), 3000
+
+
+  wipeHungupCalls: ->
+    @get('model').forEach (call) ->
+      call.remove() if call.readyForWipe()
 
 
   bundlePairs: ( ->
