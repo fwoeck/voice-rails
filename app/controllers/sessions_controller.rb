@@ -10,8 +10,8 @@ class SessionsController < Devise::SessionsController
   private
 
   def store_current_session_token
-    Redis.current.set(current_user.token_keyname,
+    RPool.with { |con| con.set(current_user.token_keyname,
       user_session_token, {ex: 1.week}
-    )
+    ) }
   end
 end

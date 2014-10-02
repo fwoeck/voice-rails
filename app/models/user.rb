@@ -34,12 +34,12 @@ class User < ActiveRecord::Base
 
 
   def skills
-    @memo_skills ||= Redis.current.smembers(keyname_for :skill).sort
+    @memo_skills ||= RPool.with { |con| con.smembers(keyname_for :skill) }.sort
   end
 
 
   def languages
-    @memo_languages ||= Redis.current.smembers(keyname_for :language).sort
+    @memo_languages ||= RPool.with { |con| con.smembers(keyname_for :language) }.sort
   end
 
 
@@ -65,21 +65,27 @@ class User < ActiveRecord::Base
 
   def availability
     @memo_availability ||= (
-      Redis.current.get(availability_keyname) || availability_default
+      RPool.with { |con|
+        con.get(availability_keyname)
+      } || availability_default
     )
   end
 
 
   def activity
     @memo_activity ||= (
-      Redis.current.get(activity_keyname) || activity_default
+      RPool.with { |con|
+        con.get(activity_keyname)
+      } || activity_default
     )
   end
 
 
   def visibility
     @memo_visibility ||= (
-      Redis.current.sismember(User.online_users_keyname, id) ? 'online' : 'offline'
+      RPool.with { |con|
+        con.sismember(User.online_users_keyname, id)
+      } ? 'online' : 'offline'
     )
   end
 
@@ -111,7 +117,9 @@ class User < ActiveRecord::Base
 
 
     def all_online_ids
-      Redis.current.smembers(online_users_keyname).map(&:to_i)
+      RPool.with { |con|
+        con.smembers(online_users_keyname)
+      }.map(&:to_i)
     end
 
 

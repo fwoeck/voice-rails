@@ -16,7 +16,7 @@ module UpdateFields
 
   def set_availability(key)
     check_for_validity(:availability, key)
-    Redis.current.set(availability_keyname, key)
+    RPool.with { |con| con.set(availability_keyname, key) }
 
     @memo_availability = nil
     notify_ahn_about_update(:availability)
@@ -57,7 +57,7 @@ module UpdateFields
     key = _key.to_s
     check_for_validity(field, key)
 
-    Redis.current.send(sym, keyname_for(field), key)
+    RPool.with { |con| con.send(sym, keyname_for(field), key) }
     instance_variable_set("@memo_#{field}s", nil)
     notify_ahn_about_update(field)
   end

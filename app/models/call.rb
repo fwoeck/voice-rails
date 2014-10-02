@@ -68,10 +68,10 @@ class Call
 
 
   def self.all(unscoped=true)
-    call_keys = Redis.current.keys(call_pattern)
+    call_keys = RPool.with { |con| con.keys(call_pattern) }
     return [] if call_keys.empty?
 
-    Redis.current.mget(*call_keys).map { |call|
+    RPool.with { |con| con.mget(*call_keys) }.map { |call|
       Marshal.load(call || "\x04\b0")
     }.compact.select { |call|
       call.visible_to_client?(unscoped)
@@ -92,7 +92,7 @@ class Call
 
   def self.find(tcid)
     return unless tcid
-    call = Redis.current.get(call_keyname tcid)
+    call = RPool.with { |con| con.get(call_keyname tcid) }
     Marshal.load(call) if call
   end
 end
