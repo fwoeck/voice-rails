@@ -25,7 +25,7 @@ describe SessionsController, type: :controller do
       #         def current_token_valid?; ...; end
       #       end
       #
-      expect(Redis.current.get("test.token.#{user.id}")).to eq(token)
+      expect(RPool.with { |con| con.get("test.token.#{user.id}") }).to eq(token)
     end
 
     it "it expires authenticity token after loggin out" do
@@ -45,7 +45,7 @@ describe SessionsController, type: :controller do
 
       # FIXME See comment above
       #
-      expect(Redis.current.get("test.token.#{user.id}")).to eq(token_2)
+      expect(RPool.with { |con| con.get("test.token.#{user.id}") }).to eq(token_2)
     end
   end
 end
