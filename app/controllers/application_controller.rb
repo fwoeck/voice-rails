@@ -3,8 +3,9 @@ RequestStruct = Struct.new(:obj, :par, :cond)
 
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
   before_action :authenticate_user!, except: [:index]
+  before_filter :set_csp
 
 
   def index
@@ -28,6 +29,24 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+
+  # FIXME The presence of "unsafe-..." mitigates the purpose,
+  #       so we have to restrict that. Further reading:
+  #
+  #       http://www.w3.org/TR/CSP/
+  #       https://github.com/blog/1477-content-security-policy
+  #       https://developer.chrome.com/extensions/contentSecurityPolicy
+  #
+  CSP_HEADER = [
+    "default-src *;",
+    "script-src 'self' https://#{WimConfig.hostname} 'unsafe-inline' 'unsafe-eval';",
+    "style-src 'self' https://#{WimConfig.hostname} https://fonts.googleapis.com 'unsafe-inline';"
+  ].join
+
+  def set_csp
+    response.headers['Content-Security-Policy'] = CSP_HEADER
+  end
 
 
   def cu_is_admin?

@@ -1,5 +1,10 @@
 window.app = {
 
+  skipTransition: (e) ->
+    t = $(e.target)
+    t && (t.is('input') || t.is('textarea'))
+
+
   cleanupTooltips: (self) ->
     tooltip = self.$('span.has-tip').attr('data-selector')
     ($ "span.tooltip[data-selector='#{tooltip}']").remove()
