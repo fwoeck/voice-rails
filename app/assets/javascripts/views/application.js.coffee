@@ -11,6 +11,7 @@ Voice.ApplicationView = Ember.View.extend({
     app.initFoundation()
 
     window.onbeforeunload = ->
+      window.clearTimeout(env.serverTimeout)
       env.sseSource.close()
       phone.app.logoff()
 })

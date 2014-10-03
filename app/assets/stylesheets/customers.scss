@@ -21,6 +21,7 @@
   width: 978px;
 
   .search_result {
+    width: calc(100% - 16px);
     margin: 10px 0;
   }
 
@@ -64,7 +65,7 @@
   }
 
   li.col4 {
-    width: 420px;
+    width: 500px;
   }
 
   li:last-child {
@@ -90,7 +91,7 @@
   }
 
   span.caller-ids {
-    margin: -9px 8px 0 0;
+    margin: -4px 0 0 0;
     float: right;
 
     p {
