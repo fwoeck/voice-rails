@@ -85,15 +85,15 @@ Voice.ApplicationRoute = Ember.Route.extend({
       @silence(e)
 
     showDashboard: (e) ->
-      Voice.aR.transitionTo('/')
+      Voice.aR.transitionTo('/') unless app.skipTransition(e)
       @silence(e)
 
     toggleStats: (e) ->
-      app.toggleStatsView()
+      app.toggleStatsView() unless app.skipTransition(e)
       @silence(e)
 
     toggleAgents: (e) ->
-      app.toggleAgentView()
+      app.toggleAgentView() unless app.skipTransition(e)
       @silence(e)
 
     toggleForeignCalls: (e) ->
