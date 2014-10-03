@@ -9,10 +9,20 @@ class Call
   include Keynames
 
 
-  # TODO We have to restrict access here:
+  # FIXME This depends on the call_tag format,
+  #       which might change for external reasons:
   #
-  def is_owned_by?(user)
-    true
+  def belongs_to?(user)
+    caller_id == user.name || extension == user.name ||
+      call_tag && call_tag.include?("SIP/#{user.name}-")
+  end
+
+
+  # FIXME See above.
+  #
+  def related_names
+    [ caller_id, extension, (call_tag || '').scan(%r{SIP/(\d+)-})
+    ].flatten.uniq.compact.select { |name| name[/^\d\d\d\d?$/] }.sort
   end
 
 
@@ -37,24 +47,15 @@ class Call
   end
 
 
-  def hide_from_agents?
-    call_tag.blank? && (language.blank? || skill.blank?)
-  end
-
-
-  def visible_to_client?(unscoped)
-    !hungup && (unscoped || !hide_from_agents?)
+  def visible_to_client?(user)
+    belongs_to?(user) ||
+      !hungup && User.ids_scoped_for(self).include?(user.id)
   end
 
 
   def handle_message
     VoiceThread.async {
-      uids = if hide_from_agents?
-        User.all_online_ids & User.all_admin_ids
-      else
-        User.all_online_ids
-      end
-
+      uids = User.all_online_ids & (User.ids_scoped_for(self) | User.related_ids_for(self))
       send_call_update_to_clients(uids)
     }
   end
@@ -67,14 +68,14 @@ class Call
   end
 
 
-  def self.all(unscoped=true)
+  def self.all_for(user)
     call_keys = RPool.with { |con| con.keys(call_pattern) }
     return [] if call_keys.empty?
 
     RPool.with { |con| con.mget(*call_keys) }.map { |call|
       Marshal.load(call || "\x04\b0")
     }.compact.select { |call|
-      call.visible_to_client?(unscoped)
+      call.visible_to_client?(user)
     }
   end
 
