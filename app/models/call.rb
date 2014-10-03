@@ -55,7 +55,7 @@ class Call
 
   def handle_message
     VoiceThread.async {
-      uids = User.all_online_ids & (User.ids_scoped_for(self) | User.related_ids_for(self))
+      uids = User.get_online_user_ids_for(self)
       send_call_update_to_clients(uids)
     }
   end
@@ -68,32 +68,35 @@ class Call
   end
 
 
-  def self.all_for(user)
-    call_keys = RPool.with { |con| con.keys(call_pattern) }
-    return [] if call_keys.empty?
+  class << self
 
-    RPool.with { |con| con.mget(*call_keys) }.map { |call|
-      Marshal.load(call || "\x04\b0")
-    }.compact.select { |call|
-      call.visible_to_client?(user)
-    }
-  end
+    def all_for(user)
+      call_keys = RPool.with { |con| con.keys(call_pattern) }
+      return [] if call_keys.empty?
 
-
-  def self.originate(params)
-    AmqpManager.ahn_publish(
-      AhnRpc.new.tap { |c|
-        c.to      =  params[:to]
-        c.from    =  params[:from]
-        c.command = :originate
+      RPool.with { |con| con.mget(*call_keys) }.map { |call|
+        Marshal.load(call || "\x04\b0")
+      }.compact.select { |call|
+        call.visible_to_client?(user)
       }
-    )
-  end
+    end
 
 
-  def self.find(tcid)
-    return unless tcid
-    call = RPool.with { |con| con.get(call_keyname tcid) }
-    Marshal.load(call) if call
+    def originate(params)
+      AmqpManager.ahn_publish(
+        AhnRpc.new.tap { |c|
+          c.to      =  params[:to]
+          c.from    =  params[:from]
+          c.command = :originate
+        }
+      )
+    end
+
+
+    def find(tcid)
+      return unless tcid
+      call = RPool.with { |con| con.get(call_keyname tcid) }
+      Marshal.load(call) if call
+    end
   end
 end

@@ -115,6 +115,11 @@ class User < ActiveRecord::Base
 
   class << self
 
+    def get_online_user_ids_for(call)
+      all_online_ids & (ids_scoped_for(call) | related_ids_for(call))
+    end
+
+
     def all_online_ids
       RPool.with { |con|
         con.smembers(online_users_keyname)
