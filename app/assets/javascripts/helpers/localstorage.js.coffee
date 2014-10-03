@@ -1,5 +1,5 @@
 app.defaultUserPrefs =
-  useWebRtc:        true
+  useWebRtc:        false
   autoLogout:       60
   useAutoReady:     true
   hideForeignCalls: false
