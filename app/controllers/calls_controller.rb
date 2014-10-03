@@ -1,7 +1,7 @@
 class CallsController < ApplicationController
 
   def index
-    render json: Call.all(cu_is_admin?), each_serializer: CallSerializer
+    render json: Call.all_for(current_user), each_serializer: CallSerializer
   end
 
 
@@ -13,7 +13,7 @@ class CallsController < ApplicationController
 
   def hangup
     call = Call.find(params[:id])
-    call.hangup if call && call.is_owned_by?(current_user)
+    call.hangup if call && call.belongs_to?(current_user)
 
     render nothing: true
   end
@@ -21,7 +21,7 @@ class CallsController < ApplicationController
 
   def transfer
     call = Call.find(params[:id])
-    if call && call.is_owned_by?(current_user)
+    if call && call.belongs_to?(current_user)
       call.transfer_to(params[:to])
     end
 

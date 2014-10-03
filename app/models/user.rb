@@ -107,14 +107,13 @@ class User < ActiveRecord::Base
   end
 
 
+  def matches_requirements?(lang, skill)
+    return false if lang.blank? || skill.blank?
+    languages.include?(lang) && skills.include?(skill)
+  end
+
+
   class << self
-
-    def all_admin_ids
-      Rails.cache.fetch('all_admin_ids', expires: 1.minute) {
-        User.with_role(:admin).pluck(:id)
-      }
-    end
-
 
     def all_online_ids
       RPool.with { |con|
@@ -181,6 +180,32 @@ class User < ActiveRecord::Base
 
     def get_random_secret
       (0..5).each_with_object('') { |n, pass| pass << rand(9).to_s }
+    end
+
+
+    def related_ids_for(call)
+      return [] if (names = call.related_names).empty?
+
+      Rails.cache.fetch("uids_for_names_#{names.join '_'}", expires: 1.minute) {
+        User.where(name: names).pluck(:id)
+      }
+    end
+
+
+    def ids_scoped_for(call)
+      lang  = call.language
+      skill = call.skill
+
+      Rails.cache.fetch("uids_for_#{lang}_#{skill}", expires: 1.minute) {
+        all_matching_user_ids(lang, skill)
+      }
+    end
+
+
+    def all_matching_user_ids(lang, skill)
+      all.select { |user|
+        user.has_role?(:admin) || user.matches_requirements?(lang, skill)
+      }.map(&:id)
     end
   end
 

@@ -34,5 +34,7 @@ module Voice
     config.generators do |g|
       g.orm :active_record
     end
+
+    config.cache_store = :memory_store
   end
 end
