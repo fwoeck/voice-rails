@@ -1,12 +1,13 @@
 class RemoteRequest
 
+  Result   = Struct.new(:value)
   Registry = ThreadSafe::Cache.new
   attr_accessor :id, :verb, :klass, :params, :req_from, :res_to, :value, :status, :error
 
 
   def handle_message
     future = Registry[id]
-    future << self if future
+    future << Result.new(self) if future
   end
 
 

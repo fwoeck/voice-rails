@@ -3,6 +3,7 @@ Voice.CustomerRoute = Ember.Route.extend({
   deactivate: ->
     @store.unloadAll('customer')
     @store.unloadAll('crmTicket')
+    @store.unloadAll('historyEntry')
 
 
   model: (params) ->
