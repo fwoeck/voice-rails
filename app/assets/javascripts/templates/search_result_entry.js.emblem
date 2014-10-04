@@ -7,9 +7,21 @@ ul.no-bullet.inline-list.inline-list
   li.col3
     each tag in content.tags
       span.tag = unbound tag
+    else
+      span.tag.empty
 
   li.col4
     if mailbox
       = mailbox-player mailbox=mailbox
     else
       = render 'hyper_text' remarks
+
+  li.col5
+    a href="#" data-dropdown="hover1" data-options="align:left"
+      i.fa.fa-pencil-square-o
+
+    ul#hover1.f-dropdown data-dropdown-content=""
+      li: a href="#" Mark as open
+      li: a href="#" Mark as solved
+      li: a href="#" Mark as closed
+      li: a href="#" Mark as pending

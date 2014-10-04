@@ -24,8 +24,12 @@ $wimdu-yellow: #fbbb13;
 $wimdu-blue: #006cb7;
 
 $anchor-font-color: $primary-color;
+$anchor-font-color-hover: #000;
 $tabs-navigation-padding: 4px;
 
 $tooltip-padding: rem-calc(8);
 $tooltip-font-size: rem-calc(12);
 $tooltip-font-weight: $font-weight-normal;
+
+$f-dropdown-border-color: #999;
+$f-dropdown-triangle-side-offset: 4px;

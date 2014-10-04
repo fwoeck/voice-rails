@@ -102,10 +102,10 @@ env.i18n =
       details_for:      'Details for'
       help:             'Help'
       inbound_calls:    'Inbound Calls'
+      media_player:     'Show media player.'
       my_settings:      'My Settings'
       new_agent:        'Add an Agent'
       team_chat:        'Team Chat'
-      play_mailbox:     'Show mailbox player'
       use_auto_ready:   'Use auto-ready'
       use_web_phone:    'Use the web-phone'
     calls:

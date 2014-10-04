@@ -10,4 +10,4 @@ if playerReady
     span.jp-duration
 else
   span.jp-tooltip
-    = t 'headers.play_mailbox'
+    = t 'headers.media_player'

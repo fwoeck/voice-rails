@@ -65,11 +65,34 @@
   }
 
   li.col4 {
-    width: 500px;
+    width: 445px;
+
+    > div {
+      float: left;
+    }
   }
 
-  li:last-child {
+  li.col5 {
     margin-right: 0;
+    width: 40px;
+
+    & > a {
+      float: right;
+    }
+
+    ul, li {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul {
+      width: 120px;
+      border: 1px solid $f-dropdown-border-color;
+    }
+
+    i.fa-pencil-square-o {
+      font-size: 14px;
+    }
   }
 
   p {
@@ -88,6 +111,11 @@
     border-radius: 8px;
     margin-right: 6px;
     font-size: 10px;
+  }
+
+  span.tag.empty {
+    background-color: transparent;
+    border: 0;
   }
 
   span.caller-ids {
