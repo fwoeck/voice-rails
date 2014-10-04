@@ -1,0 +1,13 @@
+if playerReady
+  div id=mailboxPlayer
+
+  div id=mailboxContainer
+    span.jp-stop:  i.fa.fa-stop
+    span.jp-pause: i.fa.fa-pause
+    span.jp-play:  i.fa.fa-play
+
+    span.jp-current-time
+    span.jp-duration
+else
+  span.jp-tooltip
+    = t 'headers.play_mailbox'

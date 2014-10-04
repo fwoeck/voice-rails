@@ -1,11 +1,15 @@
-ul.no-bullet.inline-list.inline-list click=gotoCustomer
+ul.no-bullet.inline-list.inline-list
   li.col1 = unbound momentL content.createdAt
 
-  li.col2: span.has-tip.radius data-tooltip="" title="#{unbound content.callId}"
+  li.col2: span.has-tip.radius data-tooltip="" title="#{unbound agentFor content.userId}<br />#{unbound content.callId}"
     i.fa.fa-info-circle
 
   li.col3
     each tag in content.tags
       span.tag = unbound tag
 
-  li.col4 = unbound content.remarks
+  li.col4
+    if mailbox
+      = mailbox-player mailbox=mailbox
+    else
+      = render 'hyper_text' remarks

@@ -218,7 +218,7 @@ window.app = {
   getAgent: (userId) ->
     return "" unless userId
 
-    agent = Voice.store.getById('user', userId)
+    agent = Voice.store.getById('user', +userId)
     @renderAgentName(agent, "Agent ##{userId}")
 
 
