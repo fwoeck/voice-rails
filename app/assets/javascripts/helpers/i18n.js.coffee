@@ -72,6 +72,7 @@ env.i18n =
       line:             'Line'
       logout:           'Logout'
       mailbox:          'Mailbox'
+      mark_as:          'Mark as'
       old_password:     'Old Password'
       password:         'New Password'
       confirmation:     'Password Confirmation'

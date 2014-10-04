@@ -1,5 +1,5 @@
 Voice.TeamChatController = Ember.ArrayController.extend({
 
-  needs: ['chatMessages']
+  needs:       ['chatMessages']
   modelBinding: 'controllers.chatMessages'
 })

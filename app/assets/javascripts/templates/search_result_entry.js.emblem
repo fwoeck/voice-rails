@@ -1,11 +1,11 @@
 ul.no-bullet.inline-list.inline-list
-  li.col1 = unbound momentL content.createdAt
+  li.col1 = unbound momentL createdAt
 
-  li.col2: span.has-tip.radius data-tooltip="" title="#{unbound agentFor content.userId}<br />#{unbound content.callId}"
+  li.col2: span.has-tip.radius data-tooltip="" title="#{unbound agentFor userId}<br />#{unbound callId}"
     i.fa.fa-info-circle
 
   li.col3
-    each tag in content.tags
+    each tag in tags
       span.tag = unbound tag
     else
       span.tag.empty
@@ -17,11 +17,4 @@ ul.no-bullet.inline-list.inline-list
       = render 'hyper_text' remarks
 
   li.col5
-    a href="#" data-dropdown="hover1" data-options="align:left"
-      i.fa.fa-pencil-square-o
-
-    ul#hover1.f-dropdown data-dropdown-content=""
-      li: a href="#" Mark as open
-      li: a href="#" Mark as solved
-      li: a href="#" Mark as closed
-      li: a href="#" Mark as pending
+    = status-dropdown entry=content

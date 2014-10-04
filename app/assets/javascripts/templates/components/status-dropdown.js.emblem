@@ -1,0 +1,9 @@
+a href="#" data-dropdown=dropdownId data-options="align:left"
+  i.fa.fa-pencil-square-o
+
+ul.f-dropdown id=dropdownId data-dropdown-content=""
+  each tag in defaultTags
+    li: a href="#" click="markAs tag"
+      = t 'domain.mark_as'
+      '
+      = tag
