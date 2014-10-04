@@ -1,6 +1,9 @@
 #hidden_tabindex: input tabindex='3'
 = render 'dialog'
 
+if iAmTalking
+  #i_am_talking click=hangupCall
+
 #main.row
   = partial 'navigation'
   = outlet

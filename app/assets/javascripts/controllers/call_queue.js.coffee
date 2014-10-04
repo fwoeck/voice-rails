@@ -8,12 +8,6 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   hideForeignCallsBinding: 'Voice.hideForeignCalls'
 
 
-  actions:
-    hangupCall: ->
-      app.hangupCurrentCall()
-      return false
-
-
   filteredCalls: Ember.computed.filterBy 'content',       'matchesFilter', true
   sortedCalls:   Ember.computed.sort     'filteredCalls', 'callSorting'
 
@@ -31,12 +25,6 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   persistHideForeignCalls: (->
     app.storeLocalKey('hideForeignCalls', @get 'hideForeignCalls')
   ).observes('hideForeignCalls')
-
-
-  talking: ( ->
-    cc = Voice.get('currentCall')
-    cc && !cc.get('hungup')
-  ).property('Voice.currentCall.hungup')
 
 
   waitingCalls: Ember.computed.filter('filteredCalls',

@@ -124,6 +124,15 @@ form#new_user {
   z-index: 0;
 }
 
+#i_am_talking {
+  border-right: 50px solid rgba(0, 0, 0, 0);
+  border-top: 50px solid $wimdu-yellow;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 10;
+}
+
 #ember_main {
   position: relative;
   overflow: hidden;

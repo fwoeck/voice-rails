@@ -319,7 +319,6 @@ window.app = {
 
   callQueueToggle: ->
     ($ '#call_queue > h5').click (evt) ->
-      return if evt.target.className.match('talking')
       app.toggleCallQueue()
 
 
