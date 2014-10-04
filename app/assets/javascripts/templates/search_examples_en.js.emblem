@@ -30,16 +30,16 @@
         td entries that contain the word "melissa"
       tr
         td anna*
-        td entries that start with "anna", like "anna", "annabel" but not "hanna"
-      tr
-        td *anna
-        td entries that end with "anna", like "hanna"
+        td entries that start with "anna", like "anna", "annabel"
       tr
         td anna gmail
         td entries that contain the words "anna" and/or "gmail"
       tr
         td anna AND gmail
         td entries that contain both "anna" and "gmail"
+      tr
+        td anna NOT gmail
+        td entries that contain "anna" but not "gmail"
       tr
         td "anna schwartz"
         td entries that contain the exact phrase "anna schwartz"
