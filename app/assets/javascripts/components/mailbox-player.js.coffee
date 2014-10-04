@@ -15,12 +15,12 @@ Voice.MailboxPlayerComponent = Ember.Component.extend(
     container = @get 'mailboxContainer'
 
     ($ "##{player}").jPlayer({
-      volume: 1.0
-      muted: false
-      supplied: 'mp3'
-      solution: 'html'
-      errorAlerts: false
-      preload: 'metadata'
+      muted:         false
+      volume:        1.0
+      preload:       'metadata'
+      supplied:      'mp3'
+      solution:      'html'
+      errorAlerts:   false
       warningAlerts: false
       cssSelectorAncestor: "##{container}"
       ready: ->
