@@ -124,6 +124,15 @@ form#new_user {
   z-index: 0;
 }
 
+#i_am_talking {
+  border-right: 50px solid rgba(0, 0, 0, 0);
+  border-top: 50px solid $wimdu-yellow;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 10;
+}
+
 #ember_main {
   position: relative;
   overflow: hidden;
@@ -266,7 +275,42 @@ tr.dirty input, input.dirty, textarea.dirty {
   background-color: $wimdu-yellow-light !important;
 }
 
-span.link {
+span.jp-duration {
+  margin-right: 4px;
+}
+
+span.jp-current-time {
+  margin-left: -2px;
+}
+
+span.link, span.jp-tooltip {
+  transition: color linear 300ms;
   color: $primary-color;
   cursor: pointer;
+}
+
+span.link:hover {
+  color: #000;
+}
+
+span.jp-duration, span.jp-current-time {
+  display: inline-block;
+  color: $primary-color;
+  width: 36px;
+}
+
+span.jp-play, span.jp-stop, span.jp-pause {
+  display: inline-block;
+  width: 20px;
+
+  i {
+    transition: color linear 300ms;
+    color: $primary-color;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  i:hover {
+    color: #000;
+  }
 }

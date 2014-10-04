@@ -15,6 +15,29 @@ Voice.HistoryEntry = DS.Model.extend(Voice.Resetable, {
     @get('tags').find (tag) ->
       return tag if dt.indexOf(tag) > -1
   ).property('tags.[]')
+
+
+  addToTags: (tag) ->
+    tags = @get('tags')
+
+    unless tags.indexOf(tag) > -1
+      @removeDefaultTags(tag)
+      tags.addObject(tag)
+      @save()
+
+
+  removeDefaultTags: (tag) ->
+    dt   = Voice.HistoryEntry.defaultTags
+    tags = @get('tags')
+
+    if dt.indexOf(tag) > -1
+      dt.forEach (dt) -> tags.removeObject(dt)
+
+
+  removeFromTags: (tag) ->
+    tags = @get('tags')
+    tags.removeObject(tag)
+    @save()
 })
 
 

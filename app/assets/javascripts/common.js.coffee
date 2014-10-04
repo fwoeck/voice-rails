@@ -218,7 +218,7 @@ window.app = {
   getAgent: (userId) ->
     return "" unless userId
 
-    agent = Voice.store.getById('user', userId)
+    agent = Voice.store.getById('user', +userId)
     @renderAgentName(agent, "Agent ##{userId}")
 
 
@@ -319,7 +319,6 @@ window.app = {
 
   callQueueToggle: ->
     ($ '#call_queue > h5').click (evt) ->
-      return if evt.target.className.match('talking')
       app.toggleCallQueue()
 
 

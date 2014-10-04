@@ -10,13 +10,7 @@ else
 
 if mailbox
   td.mailbox
-    div id=mailboxPlayer
-    div id=mailboxContainer
-      span.jp-current-time
-      span.jp-duration
-      span.jp-stop: i.fa.fa-stop
-      span.jp-pause: i.fa.fa-pause
-      span.jp-play: i.fa.fa-play
+    = mailbox-player mailbox=mailbox
 else
   td.w46 = remarks
 

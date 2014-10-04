@@ -5,13 +5,6 @@
   z-index: 15;
   top: 420px;
   bottom: 0;
-
-  i.header.talking:before {
-    background-color: $warning-color;
-    padding: 3px 4px 3px 5px;
-    border-radius: 1000px;
-    margin: 0 0 0 -3px;
-  }
 }
 
 #call_queue.lifted {

@@ -45,7 +45,7 @@
     white-space: nowrap;
     margin-right: 20px;
     overflow: hidden;
-    cursor: pointer;
+    cursor: default;
   }
 
   li.col1 {
@@ -65,11 +65,34 @@
   }
 
   li.col4 {
-    width: 500px;
+    width: 445px;
+
+    > div {
+      float: left;
+    }
   }
 
-  li:last-child {
+  li.col5 {
     margin-right: 0;
+    width: 40px;
+
+    & > div {
+      float: right;
+    }
+
+    ul, li {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul {
+      width: 120px;
+      border: 1px solid $f-dropdown-border-color;
+    }
+
+    i.fa-pencil-square-o {
+      font-size: 14px;
+    }
   }
 
   p {
@@ -83,11 +106,16 @@
 
   span.tag {
     background-color: #f8f8f8;
+    padding: 0px 6px 1px 6px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
     margin-right: 6px;
-    padding: 0px 4px;
     font-size: 10px;
+  }
+
+  span.tag.empty {
+    background-color: transparent;
+    border: 0;
   }
 
   span.caller-ids {
@@ -105,7 +133,7 @@
     }
   }
 
-  i.fa {
+  i.fa-info-circle {
     font-size: 14px;
     color: #888;
   }

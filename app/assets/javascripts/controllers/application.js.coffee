@@ -12,6 +12,10 @@ Voice.ApplicationController = Ember.Controller.extend({
       app.showShortcutList()
       false
 
+    hangupCall: ->
+      app.hangupCurrentCall()
+      false
+
 
   displayBrowserWarning: ->
     unless @browserIsSupported()
@@ -29,4 +33,10 @@ Voice.ApplicationController = Ember.Controller.extend({
   setCurrentPath: (->
     Voice.set 'currentPath', @get('currentPath')
   ).observes('currentPath')
+
+
+  iAmTalking: ( ->
+    cc = Voice.get('currentCall')
+    cc && !cc.get('hungup')
+  ).property('Voice.currentCall.hungup')
 })

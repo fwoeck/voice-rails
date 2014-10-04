@@ -6,7 +6,7 @@ Voice.CurrentTagsView = Ember.View.extend({
 
   actions:
     removeTag: (tag) ->
-      @removeFromTags(tag)
+      @get('controller.content').removeFromTags(tag)
       false
 
 
@@ -40,34 +40,10 @@ Voice.CurrentTagsView = Ember.View.extend({
   commitInput: (tag) ->
     if @get('tagList').indexOf(tag) > -1
       @$('.typeahead').typeahead('close')
-      @addToTags(tag)
+      @get('controller.content').addToTags(tag)
       return true
     else
       return false
-
-
-  removeDefaultTags: (tag) ->
-    tags = @get('controller.content.tags')
-    if @defaultTags.indexOf(tag) > -1
-      @defaultTags.forEach (dt) -> tags.removeObject(dt)
-
-
-  removeFromTags: (tag) ->
-    entry = @get('controller.content')
-    tags  = entry.get('tags')
-
-    tags.removeObject(tag)
-    entry.save()
-
-
-  addToTags: (tag) ->
-    entry = @get('controller.content')
-    tags  = entry.get('tags')
-
-    unless tags.indexOf(tag) > -1
-      @removeDefaultTags(tag)
-      tags.addObject(tag)
-      entry.save()
 
 
   clearInput: ->
