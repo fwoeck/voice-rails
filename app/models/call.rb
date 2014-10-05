@@ -1,5 +1,6 @@
 class Call
 
+  Nil    = "\x04\b0"
   FORMAT = %w{call_id call_tag origin_id language skill extension caller_id hungup called_at mailbox queued_at hungup_at dispatched_at}
            .map(&:to_sym)
 
@@ -20,7 +21,7 @@ class Call
 
   # FIXME See above.
   #
-  def related_names
+  def related_agent_names
     [ caller_id, extension, (call_tag || '').scan(%r{SIP/(\d+)-})
     ].flatten.uniq.compact.select { |name| name[/^\d\d\d\d?$/] }.sort
   end
@@ -75,7 +76,7 @@ class Call
       return [] if call_keys.empty?
 
       RPool.with { |con| con.mget(*call_keys) }.map { |call|
-        Marshal.load(call || "\x04\b0")
+        Marshal.load(call || Nil)
       }.compact.select { |call|
         call.visible_to_client?(user)
       }
