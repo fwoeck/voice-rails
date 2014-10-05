@@ -76,12 +76,20 @@
 
   .td {
     padding: 6px 8px;
+    cursor: default;
     height: 33px;
     float: left;
   }
 
   .td.space {
-    padding: 6px 12px 6px 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 6px 4px;
     width: 160px;
+  }
+
+  .switch input {
+    cursor: pointer;
   }
 }

@@ -76,6 +76,6 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     avail = cont.get('availability')
     name  = (if cont.get('isCallable') then avail else act)
 
-    i18n.status[name]
+    i18n.status[name] + '.'
   ).property('content.{availability,isCallable}')
 })

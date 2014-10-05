@@ -80,5 +80,5 @@
         = t 'domain.clear'
 
       button.tiny.icon type='submit' click=safeRecord
-        = t 'domain.save_changes'
+        = t 'domain.save_profile'
         i.fa.fa-refresh

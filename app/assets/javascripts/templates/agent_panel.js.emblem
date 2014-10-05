@@ -10,7 +10,7 @@
 
   ul.col2
     li
-      .space #{t 'domain.languages'}:
+      .space #{t 'domain.language'}:
       = displayLangs
     li
       .space #{t 'domain.skills'}:

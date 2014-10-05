@@ -33,7 +33,6 @@ Voice.ApplicationRoute = Ember.Route.extend({
     'ctrl+a': 'toggleAgents'
     'ctrl+d': 'showDashboard'
     'ctrl+i': 'showHelpDialog'
-    'ctrl+j': 'toggleForeignCalls'
     'ctrl+f': 'activateSearch'
     'ctrl+m': 'activateChat'
     'ctrl+r': 'setReady'
@@ -94,10 +93,6 @@ Voice.ApplicationRoute = Ember.Route.extend({
 
     toggleAgents: (e) ->
       app.toggleAgentView() unless app.skipTransition(e)
-      @silence(e)
-
-    toggleForeignCalls: (e) ->
-      Voice.toggleProperty('hideForeignCalls')
       @silence(e)
 
     activateSearch: (e) ->

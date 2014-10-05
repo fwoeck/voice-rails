@@ -1,7 +1,7 @@
 table.tickets_table
   colgroup
-    col.w18
-    col.w24
+    col.w20
+    col.w22
     col.w46
     col.w12
   thead

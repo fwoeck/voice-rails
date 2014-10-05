@@ -1,0 +1,64 @@
+#customer_search_examples.panel.hidden
+  h6 How to use the customer search
+
+  .col1
+    p
+      ' Enter terms or phrases to filter the database for customer- or call-specific fields.
+      br
+      ' Use either one of the fields or both to see their common matches.
+
+    p Words are case insensitive, but logical operators have to be typed uppercase.
+
+    p
+      ' The call search works accordingly, but for call details like remarks.
+      br
+      ' See a list of the indexed fields for customers and calls below.
+
+  .col2
+    p You can look for specific content by prefixing the search term with a field name, e.g. "email: *gmail.com".
+
+    p Use digits with m/h/d/w/M to look only for calls from within the given timespan, e.g. "5d" for the last five days.
+
+  table.col1
+    thead
+      tr
+        td Customer input field
+        td Matching customers
+    tbody
+      tr
+        td melissa
+        td entries that contain the word "melissa"
+      tr
+        td anna*
+        td entries that start with "anna", like "anna", "annabel"
+      tr
+        td anna gmail
+        td entries that contain the words "anna" and/or "gmail"
+      tr
+        td anna AND gmail
+        td entries that contain both "anna" and "gmail"
+      tr
+        td anna NOT gmail
+        td entries that contain "anna" but not "gmail"
+      tr
+        td "anna schwartz"
+        td entries that contain the exact phrase "anna schwartz"
+
+  table.col2
+    thead
+      tr
+        td Indexed customer fields
+        td Indexed call fields
+    tbody
+      tr
+        td email
+        td tags
+      tr
+        td caller_ids
+        td call_id
+      tr
+        td full_name
+        td remarks
+      tr
+        td crm_user_id
+        td caller_id

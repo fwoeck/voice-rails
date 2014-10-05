@@ -2,7 +2,7 @@
   h5
     i.header.fa.fa-cogs
     span.header = t 'headers.my_settings'
-    span.stats = currentStatusLine
+    span.stats  = currentStatusLine
 
   #my_settings_mask
 
