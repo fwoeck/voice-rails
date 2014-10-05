@@ -243,7 +243,7 @@ env.i18n =
       requested_skill:  'Gewählter Dienst'
       save_record:      'Speichern'
       save_profile:     'Profil Speichern'
-      sip_extension:    'SIP-Durchwahl'
+      sip_extension:    'SIP-Benutzer'
       sip_secret:       'SIP-Passwort'
       skills:           'Dienst'
       user:             'Benutzer'
