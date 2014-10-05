@@ -14,6 +14,14 @@ module UpdateFields
   end
 
 
+  def update_attributes_from(p)
+    update_availability_from(p)
+    update_languages_from(p)
+    update_skills_from(p)
+    update_fields_from(p)
+  end
+
+
   def set_availability(key)
     check_for_validity(:availability, key)
     RPool.with { |con| con.set(availability_keyname, key) }

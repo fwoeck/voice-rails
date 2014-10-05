@@ -1,21 +1,25 @@
 #agent_table, #new_agent, #my_config {
   border-bottom: 1px solid #eee;
   position: relative;
-  height: 43px;
+  height: 41px;
   padding: 0;
+}
+
+#my_config {
+  height: 43px;
 }
 
 #agent_table {
   span.search {
     position: absolute;
-    right: 2px;
+    right: 0;
     top: 4px;
   }
 
   span.search input {
     padding: 1px 5px 0px 5px;
     line-height: 17px;
-    margin: 6px 0 0 0;
+    margin: 4px 0 0 0;
     font-size: 12px;
     height: 24px;
     width: 200px;
@@ -24,6 +28,7 @@
 
 .agent_form_wrapper {
   transition: height ease 300ms;
+  width: calc(100% + 4px);
   overflow: hidden;
   clear: both;
   height: 0;
@@ -40,10 +45,10 @@
 
 #agent_table_wrapper {
   transition: top ease 300ms;
+  padding: 15px 4px 0 0;
   overflow-y: scroll;
   position: absolute;
-  padding-top: 15px;
-  width: 978px;
+  width: 986px;
   top: 460px;
   bottom: 0;
 
@@ -105,12 +110,12 @@
     }
 
     ul.col1 {
-      width: 258px;
+      width: 259px;
     }
 
 
     ul.col2 {
-      width: 306px;
+      width: 307px;
     }
 
 
@@ -119,7 +124,7 @@
       margin: 0;
 
       .space {
-        width: 50px;
+        width: 55px;
       }
     }
 
@@ -132,7 +137,7 @@
     .space {
       display: inline-block;
       color: #888;
-      width: 80px;
+      width: 75px;
     }
 
     li {
@@ -163,6 +168,7 @@
   .agent_form_wrapper {
     transition: height ease 500ms;
     margin-top: -10px;
+    width: 100%;
     float: left;
 
     img.avatar {
@@ -180,16 +186,6 @@
 
     legend {
       display: none;
-    }
-  }
-}
-
-@-moz-document url-prefix() {
-  #agent_table_wrapper {
-    width: 986px;
-
-    .agent i.fa {
-      line-height: 17px;
     }
   }
 }
@@ -251,7 +247,7 @@ form.agent_form {
   }
 
   label.spaced {
-    margin: 52px 0 0 95px;
+    margin: 52px 0 0 96px;
   }
 
   input, select {
@@ -269,16 +265,31 @@ form.agent_form {
   }
 
   select {
-    padding: 7px 5px 4px 5px;
     line-height: 18px;
     height: 89px;
+    padding: 0;
 
     option {
-      padding: 0 2px 1px 2px;
+      padding: 3px 5px;
     }
   }
 
   select[size], select[multiple] {
     background-image: none;
+  }
+}
+
+@-moz-document url-prefix() {
+  #agent_table_wrapper {
+    width: 986px;
+
+    .agent i.fa {
+      line-height: 17px;
+    }
+  }
+
+  form.agent_form label.spaced {
+    margin: 52px 0 0 94px;
+    padding-right: 19px;
   }
 }

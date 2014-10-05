@@ -64,7 +64,7 @@ module UserNetworking
 
 
     def related_ids_for(call)
-      return [] if (names = call.related_names).empty?
+      return [] if (names = call.related_agent_names).empty?
 
       Rails.cache.fetch("uids_for_names_#{names.join '_'}", expires: 1.minute) {
         User.where(name: names).pluck(:id)

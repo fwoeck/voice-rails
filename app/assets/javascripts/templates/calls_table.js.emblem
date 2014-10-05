@@ -1,15 +1,9 @@
 table#callstats_table
   tbody
     tr.thead
-      td.split
-        = t 'headers.inbound_calls'
-        span.matches
-          label
-            = t 'calls.hide_foreign'
-            ' &nbsp;
-            = input type='checkbox' checked=hideForeignCalls
-      td.split
-        = t 'headers.connected_agents'
+      td.split: = t 'headers.inbound_calls'
+      td.split: = t 'headers.connected_agents'
+
     each call in sortedCalls
       tr
         td.split = render 'inbound_call' call

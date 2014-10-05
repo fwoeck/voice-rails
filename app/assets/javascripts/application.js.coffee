@@ -15,9 +15,10 @@
 #= require justgage
 #= require moment
 #= require moment.de
+#= require i18n
 #= require common
 #= require connections
-#= require js-phone
+#= require jsphone
 #= require handlebars
 #= require ember
 #= require ember-data

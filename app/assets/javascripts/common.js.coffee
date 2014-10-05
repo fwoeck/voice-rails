@@ -138,7 +138,7 @@ window.app = {
         "    <label for='#{avail}'></label>" +
         "  </div>" +
         "</div>" +
-        "<div class='td space'>#{env.availability[avail]}</div>"
+        "<div class='td space'>#{env.i18n[env.locale].status[avail]}</div>"
       )
 
 
@@ -151,7 +151,7 @@ window.app = {
         "    <label for='#{skill}'></label>" +
         "  </div>" +
         "</div>" +
-        "<div class='td space'>#{env.skills[skill]}</div>"
+        "<div class='td space'>#{env.i18n[env.locale].skills[skill]}</div>"
       )
 
 

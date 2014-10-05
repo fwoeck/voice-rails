@@ -6,4 +6,4 @@ ul.f-dropdown id=dropdownId data-dropdown-content=""
     li: a href="#" click="markAs tag"
       = t 'domain.mark_as'
       '
-      = tag
+      strong = tag
