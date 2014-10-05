@@ -1,15 +1,24 @@
 #center_column.large-12.medium-12.columns
-  h5.silent
-    i.header.fa.fa-tags
-    span.header = t 'headers.customer_history'
 
-  #customer_search
-    = view Voice.CustomerSearch value=c
-    = view Voice.HistorySearch value=h
-    = view Voice.SearchLimit value=t
+  #new_customers
+    h5
+      i.header.fa.fa-child
+      span.header = t 'headers.new_customers'
 
-  #customer_search_results.bottom-mask
-    each result in searchResults
-      = render 'search_result' result
-    else
-      = view Voice.SearchExamples
+  #new_customers_body
+
+  #customer_history
+    h5
+      i.header.fa.fa-tags
+      span.header = t 'headers.customer_history'
+
+    #customer_search
+      = view Voice.CustomerSearch value=c
+      = view Voice.HistorySearch value=h
+      = view Voice.SearchLimit value=t
+
+    #customer_search_results.bottom-mask
+      each result in searchResults
+        = render 'search_result' result
+      else
+        = view Voice.SearchExamples

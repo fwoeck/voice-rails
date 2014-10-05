@@ -106,6 +106,7 @@ env.i18n =
       media_player:     'Show media player.'
       my_settings:      'My Settings'
       new_agent:        'Add an Agent'
+      new_customers:    'New Customers'
       team_chat:        'Team Chat'
       use_auto_ready:   'Use auto-ready'
       use_web_phone:    'Use the web-phone'
