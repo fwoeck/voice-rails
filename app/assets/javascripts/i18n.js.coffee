@@ -187,7 +187,7 @@ env.i18n =
     skills:
       new_booking:      'Neue Buchung'
       ext_booking:      'Bestehende Buchung'
-      payment:          'Rechnung & Zahlung'
+      payment:          'Rechnungen & Zahlung'
       other:            'Andere Anliegen'
     status:
       away:             'Ich bin abwesend'
