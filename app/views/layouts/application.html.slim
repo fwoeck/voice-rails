@@ -17,7 +17,7 @@ html
     = javascript_include_tag 'vendor/modernizr'
     = csrf_meta_tags
 
-  body
+  body class="#{user_locale}"
     #version_tag = WimVersion
     video#localVideo  autoplay='' style='display: none'
     video#remoteVideo autoplay='' style='display: none'
@@ -27,7 +27,6 @@ html
 
     javascript:
       window.env = {
-        locale:       "de",
         messages:      [],
         sseErrors:     0,
         chromeVers:    37,
@@ -35,6 +34,7 @@ html
         debug:         false,
         apiVersion:   "/api/1",
         railsEnv:     "#{Rails.env}",
+        locale:       "#{user_locale}",
         sipAgent:     "#{current_user.try(:name)}",
         sipSecret:    "#{current_user.try(:secret)}",
         sipHost:      "#{WimConfig.sip_host}",
@@ -44,6 +44,7 @@ html
         crmUserUrl:   "#{WimConfig.crm_user_url}",
         rrdSource:    "#{WimConfig.stats_image_url}",
         sslEnabled:    #{Rails.env.test? ? 'false' : 'true'},
+        uiLocales:     #{WimConfig.ui_locales.to_json.html_safe},
         defaultTags:   #{WimConfig.default_tags.to_json.html_safe},
         availability:  #{WimConfig.availability.to_json.html_safe},
         visibility:    #{WimConfig.visibility.to_json.html_safe},

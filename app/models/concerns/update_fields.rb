@@ -110,14 +110,23 @@ module UpdateFields
 
 
   def update_fields_from(p)
-    self.name       = p.fetch(:name,       name)
-    self.full_name  = p.fetch(:full_name,  full_name)
-    self.crmuser_id = p.fetch(:crmuser_id, crmuser_id)
+    [:name, :locale, :full_name, :crmuser_id].each { |sym|
+      bulk_update(sym, p)
+    }
 
-    self.secret     = p[:secret] unless p[:secret].blank?
-    self.password   = p[:password] unless p[:password].blank?
-    self.password_confirmation = p[:confirmation] unless p[:confirmation].blank?
-
+    update_passwords(p)
     save!
+  end
+
+
+  def update_passwords(p)
+    self.secret   = p[:secret]   unless p[:secret].blank?
+    self.password = p[:password] unless p[:password].blank?
+    self.password_confirmation = p[:confirmation] unless p[:confirmation].blank?
+  end
+
+
+  def bulk_update(sym, p)
+    self.send "#{sym}=", p.fetch(sym, self.send(sym))
   end
 end

@@ -52,7 +52,7 @@ Ember.Handlebars.helper('agentFor', (value, options) ->
 )
 
 Ember.Handlebars.helper('printSkill', (value, options) ->
-  env.skills[value]
+  env.skills[value][env.locale]
 )
 
 Ember.Handlebars.helper('printQC', (data, val1, val2, tr, options) ->

@@ -3,18 +3,24 @@
     fieldset
       legend = t 'headers.agent_profile'
 
-      if gravatarUrl
-        img.avatar width="52px" height="52px" src=gravatarUrl
-      else
-        span.avatar
+      .small-2.left
+        if gravatarUrl
+          img.avatar width="52px" height="52px" src=gravatarUrl
+        else
+          span.avatar
 
-      label.small-2.spaced
+      label.small-2
         .field
           = t 'domain.crmuser_id'
           = input value=crmuserId pattern='number' maxlength='10'
           small.error = t 'errors.crmuser_format'
 
-      label.select.small-4
+      label.small-2
+        .field.dropdown
+          = t 'domain.ui_locale'
+          = view Ember.Select content=uiLocales value=locale
+
+      label.select.small-2
         = t 'domain.skills'
         = view Ember.Select multiple="true" content=skillSelection optionValuePath='content.id' optionLabelPath='content.name' selection=skillArray
 
