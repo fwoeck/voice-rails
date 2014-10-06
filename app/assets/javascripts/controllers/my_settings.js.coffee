@@ -40,17 +40,8 @@ Voice.MySettingsController = Ember.ObjectController.extend({
     value = @get 'useWebRtc'
     if value != app.loadLocalKey('useWebRtc')
       app.storeLocalKey('useWebRtc', value)
-      Ember.run.later @, (-> @showReloadDialog value), 500
+      app.showReloadDialog()
   ).observes('useWebRtc')
-
-
-  showReloadDialog: (value) ->
-    app.dialog(
-      i18n.dialog.reload_necessary, 'question',
-      i18n.dialog.reload, i18n.dialog.cancel
-    ).then (->
-      window.location.reload()
-    ), (->)
 
 
   saveOnUpdate: (->

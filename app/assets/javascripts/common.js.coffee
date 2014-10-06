@@ -1,5 +1,16 @@
 window.app = {
 
+  showReloadDialog: ->
+    Ember.run.later app, (->
+      app.dialog(
+        i18n.dialog.reload_necessary, 'question',
+        i18n.dialog.reload, i18n.dialog.cancel
+      ).then (->
+        window.location.reload()
+      ), (->)
+    ), 500
+
+
   skipTransition: (e) ->
     t = $(e.target)
     t && (t.is('input') || t.is('textarea'))
@@ -63,7 +74,7 @@ window.app = {
 
   aggregateSkillSelection: ->
     env.skillSelection = Ember.keys(env.skills).sort().reduce(
-      ((arr, key) -> arr.concat({id: key, name: env.skills[key]})), []
+      ((arr, key) -> arr.concat({id: key, name: env.skills[key][env.locale]})), []
     )
 
 
@@ -151,7 +162,7 @@ window.app = {
         "    <label for='#{skill}'></label>" +
         "  </div>" +
         "</div>" +
-        "<div class='td space'>#{env.i18n[env.locale].skills[skill]}</div>"
+        "<div class='td space'>#{env.skills[skill][env.locale]}</div>"
       )
 
 

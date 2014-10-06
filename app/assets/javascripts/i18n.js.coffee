@@ -16,7 +16,7 @@ env.i18n =
       ok:               'Ok'
       outgoing_call:    'Do you want to call<br /><strong>NAME</strong>?'
       no_hungup_call:   'This is only available after you finished a call.'
-      reload_necessary: 'We need to reload the browser window to activate this setting.'
+      reload_necessary: 'We need to reload the browser window to activate the new settings.'
       reload:           'Reload'
       shortcut_header:  'Keyboard shortcuts'
       take_call:        'Take call'
@@ -27,15 +27,11 @@ env.i18n =
       agent_is:         'agent is'
       agents_are:       'agents are'
       available:        'available'
-    skills:
-      new_booking:      'New booking'
-      ext_booking:      'Existing booking'
-      payment:          'Invoices & payment'
-      other:            'General inquiries'
     status:
       away:             'I\'m away from desk'
       busy:             'I\'m currently busy'
       ready:            'I\'m ready to take calls'
+      silent:           'I\'m silent'
       ringing:          'I\'m receiving a call'
       talking:          'I\'m currently talking'
     customers:
@@ -89,6 +85,7 @@ env.i18n =
       sip_extension:    'SIP Extension'
       sip_secret:       'SIP Password'
       skills:           'Skills'
+      ui_locale:        'Browser Locale'
       user:             'user'
       crmuser_id:       "#{env.crmProvider} Id"
     headers:
@@ -184,15 +181,11 @@ env.i18n =
       agent_is:         'Agent ist'
       agents_are:       'Agenten sind'
       available:        'verfügbar'
-    skills:
-      new_booking:      'Neue Buchung'
-      ext_booking:      'Bestehende Buchung'
-      payment:          'Rechnungen & Zahlung'
-      other:            'Andere Anliegen'
     status:
       away:             'Ich bin abwesend'
       busy:             'Ich bin beschäftigt'
       ready:            'Ich nehme Anrufe an'
+      silent:           'Ich spreche nicht'
       ringing:          'Ich werde grade angerufen'
       talking:          'Ich spreche grade'
     customers:
@@ -246,6 +239,8 @@ env.i18n =
       sip_extension:    'SIP-Benutzer'
       sip_secret:       'SIP-Passwort'
       skills:           'Dienst'
+      ui_locale:        'Browsersprache'
+      user:             'user'
       user:             'Benutzer'
       crmuser_id:       "#{env.crmProvider} Id"
     headers:

@@ -2,6 +2,7 @@ Voice.AgentForm = Ember.Mixin.create({
 
   needs:         ['agents', 'users']
   formEl:        null
+  uiLocales:     env.uiLocales
   roleArray:     []
   skillArray:    []
   languageArray: []
@@ -77,6 +78,7 @@ Voice.AgentForm = Ember.Mixin.create({
       @set 'model', @store.createRecord(Voice.User)
     else
       model.rollback()
+      model.reloadOnLocaleUpdate()
 
 
   resetForm: ->

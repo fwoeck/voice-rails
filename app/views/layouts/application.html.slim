@@ -44,6 +44,7 @@ html
         crmUserUrl:   "#{WimConfig.crm_user_url}",
         rrdSource:    "#{WimConfig.stats_image_url}",
         sslEnabled:    #{Rails.env.test? ? 'false' : 'true'},
+        uiLocales:     #{WimConfig.ui_locales.to_json.html_safe},
         defaultTags:   #{WimConfig.default_tags.to_json.html_safe},
         availability:  #{WimConfig.availability.to_json.html_safe},
         visibility:    #{WimConfig.visibility.to_json.html_safe},

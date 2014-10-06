@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
 
 
   validates :name,       numericality: {only_integer: true},
-                         length: { is: 3 },
                          allow_blank: true,
-                         uniqueness: true
+                         uniqueness: true,
+                         length: {is: 3}
 
   validates :secret,     numericality: {only_integer: true},
                          allow_blank: true
@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
                          inclusion: {in: ['en', 'de']}
 
   validates :crmuser_id, numericality: {only_integer: true},
-                         length: { is: 9 },
-                         allow_blank: true
+                         allow_blank: true,
+                         length: {is: 9}
 
 
   def set_admin_prefs(c = WimConfig)

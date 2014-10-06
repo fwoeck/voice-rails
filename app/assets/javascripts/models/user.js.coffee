@@ -5,6 +5,7 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
   roles:         DS.attr 'array'
   skills:        DS.attr 'array'
   secret:        DS.attr 'string'
+  locale:        DS.attr 'string'
   password:      DS.attr 'string'
   fullName:      DS.attr 'string'
   activity:      DS.attr 'string'
@@ -68,4 +69,9 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
   isCallable: (->
     @get('activity') == 'silent' && @get('visibility') == 'online'
   ).property('activity', 'visibility')
+
+
+  reloadOnLocaleUpdate: ->
+    if @ == Voice.get('currentUser') && @get('locale') != env.locale
+      app.showReloadDialog()
 })

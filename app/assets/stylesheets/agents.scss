@@ -122,10 +122,6 @@
     ul.col3 {
       width: 210px;
       margin: 0;
-
-      .space {
-        width: 55px;
-      }
     }
 
     ul.col4 {
@@ -137,7 +133,6 @@
     .space {
       display: inline-block;
       color: #888;
-      width: 75px;
     }
 
     li {
@@ -187,6 +182,26 @@
     legend {
       display: none;
     }
+  }
+}
+
+body.en #agent_table_wrapper .agent {
+  .space {
+    width: 70px;
+  }
+
+  ul.col3 .space {
+    width: 45px;
+  }
+}
+
+body.de #agent_table_wrapper .agent {
+  .space {
+    width: 60px;
+  }
+
+  ul.col3 .space {
+    width: 55px;
   }
 }
 
@@ -246,10 +261,6 @@ form.agent_form {
     float: left;
   }
 
-  label.spaced {
-    margin: 52px 0 0 96px;
-  }
-
   input, select {
     margin: 0;
   }
@@ -270,8 +281,16 @@ form.agent_form {
     padding: 0;
 
     option {
+      text-overflow: ellipsis;
+      overflow: hidden;
       padding: 3px 5px;
+      font-size: 13px;
     }
+  }
+
+  .dropdown select {
+    height: 37px;
+    padding: 8px;
   }
 
   select[size], select[multiple] {
@@ -286,10 +305,5 @@ form.agent_form {
     .agent i.fa {
       line-height: 17px;
     }
-  }
-
-  form.agent_form label.spaced {
-    margin: 52px 0 0 94px;
-    padding-right: 19px;
   }
 }
