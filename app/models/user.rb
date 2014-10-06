@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
                          email: true
 
   validates :locale,     presence: true,
-                         inclusion: {in: ['en', 'de']}
+                         inclusion: {in: WimConfig.ui_locales}
 
   validates :crmuser_id, numericality: {only_integer: true},
                          allow_blank: true,
