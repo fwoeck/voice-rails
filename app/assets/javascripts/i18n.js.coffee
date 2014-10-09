@@ -186,7 +186,7 @@ env.i18n =
       away:             'Ich bin abwesend'
       busy:             'Ich bin beschäftigt'
       ready:            'Ich nehme Anrufe an'
-      silent:           'Ich spreche nicht'
+      silent:           'Ich bin still'
       ringing:          'Ich werde grade angerufen'
       talking:          'Ich spreche grade'
       unknown:          'Bereitschaft unbekannt'
