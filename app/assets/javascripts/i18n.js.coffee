@@ -34,6 +34,7 @@ env.i18n =
       silent:           'I\'m silent'
       ringing:          'I\'m receiving a call'
       talking:          'I\'m currently talking'
+      unknown:          'Availability unknown'
     customers:
       customer_is:      'customer is'
       customers_are:    'customers are'
@@ -188,6 +189,7 @@ env.i18n =
       silent:           'Ich spreche nicht'
       ringing:          'Ich werde grade angerufen'
       talking:          'Ich spreche grade'
+      unknown:          'Bereitschaft unbekannt'
     customers:
       customer_is:      'Kunde ist'
       customers_are:    'Kunden sind'
