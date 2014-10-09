@@ -136,7 +136,7 @@ env.i18n =
       optional_text:    'Enter optional text..'
       refresh_tickets:  "Refresh this customer's #{env.crmProvider} tickets"
       the_full_name:    'The full name..'
-      the_user_id:      'The user\'s Id..'
+      the_user_id:      'User Id..'
       type_a_number:    'Type a number..'
       type_here:        'Type here..'
     errors:
@@ -292,7 +292,7 @@ env.i18n =
       optional_text:    'Optionalen Text eingeben..'
       refresh_tickets:  "#{env.crmProvider}-Tickets dieses Kunden neu laden"
       the_full_name:    'Der ganze Name..'
-      the_user_id:      'Die Benutzer-Id..'
+      the_user_id:      'Benutzer-Id..'
       type_a_number:    'Tippen Sie eine Zahl..'
       type_here:        'Tippen Sie hier..'
     errors:
