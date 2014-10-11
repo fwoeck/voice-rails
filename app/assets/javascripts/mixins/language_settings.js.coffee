@@ -5,7 +5,7 @@ Voice.LanguageSettings = Ember.Mixin.create({
       key = "language#{lang.toUpperCase()}"
       val = @langIsSet(lang)
       @set(key, val) if @get(key) != val
-  ).observes('languages')
+  ).observes('languages.[]')
 
 
   langIsSet: (lang) ->
