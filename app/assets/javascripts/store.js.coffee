@@ -1,7 +1,6 @@
-Voice.ApplicationStore = DS.Store.extend()
-
+Voice.ApplicationStore   = DS.Store.extend()
 Voice.ApplicationAdapter = DS.ActiveModelAdapter.extend(
-  namespace: 'api/1'
+  namespace: env.apiVersion
 
   ajaxError: (jqXHR) ->
     error = @_super(jqXHR)
@@ -9,41 +8,38 @@ Voice.ApplicationAdapter = DS.ActiveModelAdapter.extend(
     app.showDefaultError i18n.errors.ajax_error.replace('MSG', msg)
 )
 
-Voice.ApplicationSerializer = DS.ActiveModelSerializer.extend()
 
+Voice.ApplicationSerializer = DS.ActiveModelSerializer.extend()
 Voice.aS = Voice.ApplicationSerializer.create(container: Voice.__container__)
 
 
-DS.ArrayTransform = DS.Transform.extend(
-
-  deserialize: (serialized) ->
-    (if (Ember.typeOf(serialized) is 'array') then serialized else [])
-
-  serialize: (deserialized) ->
-    type = Ember.typeOf(deserialized)
-    if type is 'array'
-      deserialized
-    else if type is 'string'
-      deserialized.split(',').map (item) -> jQuery.trim item
+Voice.ObjectTransform = DS.Transform.extend(
+  deserialize: (value) ->
+    unless $.isPlainObject(value)
+      new Ember.Object()
     else
-      []
-)
-Voice.register 'transform:array', DS.ArrayTransform
+      value
 
-
-DS.ObjectTransform = DS.Transform.extend(
-
-  deserialize: (serialized) ->
-    (if (Ember.typeOf(serialized) is 'object') then serialized else {})
-
-  serialize: (deserialized) ->
-    type = Ember.typeOf(deserialized)
-    if type is 'object'
-      deserialized
-    else if type is 'string'
-      new Ember.Object(JSON.parse deserialized)
+  serialize: (value) ->
+    unless $.isPlainObject(value)
+      new Ember.Object()
     else
-      {}
+      value
 )
 
-Voice.register 'transform:object', DS.ObjectTransform
+Voice.ArrayTransform = DS.Transform.extend(
+  deserialize: (value) ->
+    if Ember.isArray(value)
+      Em.A value
+    else
+      Em.A()
+
+  serialize: (value) ->
+    if Ember.isArray(value)
+      Em.A value
+    else
+      Em.A()
+)
+
+Voice.register 'transform:array',  Voice.ArrayTransform
+Voice.register 'transform:object', Voice.ObjectTransform
