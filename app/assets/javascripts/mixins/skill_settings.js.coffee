@@ -5,7 +5,7 @@ Voice.SkillSettings = Ember.Mixin.create({
       key = "skill#{skill.toUpperCase()}"
       val = @skillIsSet(skill)
       @set(key, val) if @get(key) != val
-  ).observes('skills')
+  ).observes('skills.[]')
 
 
   skillIsSet: (skill) ->

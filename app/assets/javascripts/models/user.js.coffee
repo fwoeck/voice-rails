@@ -52,18 +52,18 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
 
   displayLangs: (->
     @get('languages').map((l) -> l.toUpperCase()).join(', ')
-  ).property('languages')
+  ).property('languages.[]')
 
 
   displaySkills: (->
     @get('skills').map((l) -> l.capitalize())
                   .join(', ').replace(/_booking/g, 'Book')
-  ).property('skills')
+  ).property('skills.[]')
 
 
   displayRoles: (->
     @get('roles').map((l) -> l.capitalize()).join(', ')
-  ).property('roles')
+  ).property('roles.[]')
 
 
   isCallable: (->
