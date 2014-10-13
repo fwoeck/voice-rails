@@ -26,7 +26,7 @@ Voice.Customer = DS.Model.extend(Voice.Resetable, {
 
 
   crmTickets: (->
-    return [] unless (zid = @get 'crmuserId')
+    return [] unless env.crmActive && (zid = @get 'crmuserId')
     app.ticketSpinnerOn()
 
     reload = @get('forceReload')

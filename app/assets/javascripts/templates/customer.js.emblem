@@ -2,4 +2,5 @@
 
 = partial 'history_table'
 
-= partial 'tickets_table'
+if crmActive
+  = partial 'tickets_table'

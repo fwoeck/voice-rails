@@ -9,13 +9,14 @@ table.customer_table
         label
           = t 'domain.email'
           = input type='text' value=email placeholder=emailAddressPlaceholder
-      td.space15
-        label
-          = t 'domain.crmuser_id'
-          unless crmuserId
-            ' &nbsp;
-            i.fa.fa-plus-circle.crmuser title="#{t 'crmuser.request_new_user'}" click=syncCrm
-          = input type='text' value=crmuserId placeholder=userIdPlaceholder
+      if crmActive
+        td.space15
+          label
+            = t 'domain.crmuser_id'
+            unless crmuserId
+              ' &nbsp;
+              i.fa.fa-plus-circle.crmuser title="#{t 'crmuser.request_new_user'}" click=syncCrm
+            = input type='text' value=crmuserId placeholder=userIdPlaceholder
       td.space15
         label
           | &nbsp;
