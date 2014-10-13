@@ -6,7 +6,7 @@ Voice.CurrentEntryController = Ember.ObjectController.extend({
 
   actions:
     toCrmTicket: ->
-      @createCrmTicket()
+      @createCrmTicket() if env.crmActive
       false
 
 
@@ -25,6 +25,8 @@ Voice.CurrentEntryController = Ember.ObjectController.extend({
 
 
   crmuserIsActive: (->
+    return false unless env.crmActive
+
     !!Voice.get('currentUser.crmuserId') &&
       !!@get('customer.crmuserId') && !!@get('content.remarks')
   ).property(

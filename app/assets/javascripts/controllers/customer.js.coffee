@@ -39,10 +39,20 @@ Voice.CustomerController = Ember.ObjectController.extend({
   userIdPlaceholder: (->
     i18n.placeholder.the_user_id
   ).property()
+
+
+  crmActive: (->
+    env.crmActive
+  ).property()
 })
 
 
 Voice.CurrentCustomerController = Voice.CustomerController.extend({
 
   modelBinding: 'Voice.currentCustomer'
+
+
+  crmActive: (->
+    env.crmActive
+  ).property()
 })
