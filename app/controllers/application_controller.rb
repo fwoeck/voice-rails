@@ -56,17 +56,16 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def handle_client_request(req, &block)
-    if req.cond
-      begin
-        block.call
-        ser = (req.obj.class.name + 'Serializer').constantize
-        render json: req.obj, serializer: ser
-      rescue ActiveRecord::RecordInvalid => e
-        render json: {errors: [e.message]}, status: 422
-      end
+  def serializer_for(req)
+    (req.obj.class.name + 'Serializer').constantize
+  end
+
+
+  def render_result_for(object)
+    if object
+      render json: object, serializer: serializer_for(RequestStruct.new object, nil, nil)
     else
-      render json: {}, status: 403
+      render nothing: true, status: 404
     end
   end
 end

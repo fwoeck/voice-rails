@@ -56,4 +56,18 @@ class UsersController < ApplicationController
   def cu_can_update?(user)
     self_update?(user) || cu_is_admin?
   end
+
+
+  def handle_client_request(req, &block)
+    if req.cond
+      begin
+        block.call
+        render json: req.obj, serializer: serializer_for(req)
+      rescue ActiveRecord::RecordInvalid => e
+        render json: {errors: [e.message]}, status: 422
+      end
+    else
+      render nothing: true, status: 403
+    end
+  end
 end

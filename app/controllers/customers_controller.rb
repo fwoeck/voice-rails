@@ -6,18 +6,12 @@ class CustomersController < ApplicationController
 
 
   def show
-    if (cust = Customer.rpc_find params[:id])
-      render json: cust, serializer: CustomerSerializer
-    else
-      render nothing: true, status: 404
-    end
+    render_result_for Customer.rpc_find(params[:id])
   end
 
 
   def get_crm_tickets
-    tickets = CrmTicket.rpc_fetch(params[:requester_id], params[:reload] == 'true')
-
-    if tickets
+    if tickets = CrmTicket.rpc_fetch(params[:requester_id], force_reload?)
       render json: tickets, each_serializer: CrmTicketSerializer, root: :crm_tickets
     else
       render nothing: true, status: 404
@@ -26,13 +20,7 @@ class CustomersController < ApplicationController
 
 
   def create_crm_ticket
-    ticket = CrmTicket.rpc_create(params[:crm_ticket], current_user.crmuser_id)
-
-    if ticket
-      render json: ticket, serializer: CrmTicketSerializer
-    else
-      render nothing: true, status: 404
-    end
+    render_result_for CrmTicket.rpc_create(params[:crm_ticket], current_user.crmuser_id)
   end
 
 
@@ -41,11 +29,7 @@ class CustomersController < ApplicationController
     par = params[:history_entry]
     par[:user_id] = current_user.id
 
-    if (entry = Customer.rpc_update_history_with hid, par)
-      render json: entry, serializer: HistoryEntrySerializer
-    else
-      render nothing: true, status: 404
-    end
+    render_result_for Customer.rpc_update_history_with(hid, par)
   end
 
 
@@ -53,15 +37,16 @@ class CustomersController < ApplicationController
     cid = params[:id]
     par = params[:customer]
 
-    if (cust = Customer.rpc_update_with cid, par)
-      render json: cust, serializer: CustomerSerializer, root: :customer
-    else
-      render nothing: true, status: 404
-    end
+    render_result_for Customer.rpc_update_with(cid, par)
   end
 
 
   private
+
+  def force_reload?
+    params[:reload] == 'true'
+  end
+
 
   def fetch_customers
     if params[:caller_id]
