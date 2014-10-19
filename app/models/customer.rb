@@ -29,6 +29,7 @@ class Customer
       params = {
         entry_id:    hid,
         tags:        par[:tags],
+        user_id:     par[:user_id],
         remarks:     par[:remarks],
         customer_id: par[:customer_id],
       }
