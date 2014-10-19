@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
 
   def render_result_for(object)
     if object
-      render json: object, serializer: serializer_for(RequestStruct.new object, nil, nil)
+      render json: object, serializer: serializer_for(OpenStruct.new obj: object)
     else
       render nothing: true, status: 404
     end
