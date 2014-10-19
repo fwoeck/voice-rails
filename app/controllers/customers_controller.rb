@@ -65,17 +65,22 @@ class CustomersController < ApplicationController
 
   def fetch_customers
     if params[:caller_id]
-      opts = {caller_ids: params[:caller_id]}
-      Customer.rpc_where(opts)
+      Customer.rpc_where(opts_for_call)
     elsif request_is_search?
-      opts = {
-        c: params[:c], h: params[:h],
-        t: params[:t], s: 100
-      }
-      Customer.rpc_search(opts)
+      Customer.rpc_search(opts_for_search)
     else
       []
     end
+  end
+
+
+  def opts_for_call
+    {caller_ids: params[:caller_id]}
+  end
+
+
+  def opts_for_search
+    {c: params[:c], h: params[:h], t: params[:t], s: 100}
   end
 
 
