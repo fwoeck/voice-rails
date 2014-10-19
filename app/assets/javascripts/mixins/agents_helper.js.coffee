@@ -1,8 +1,20 @@
 Voice.AgentsHelper = Ember.Mixin.create({
 
-  pattern: ''
-  needs: ['calls', 'users']
+  pattern:      ''
+  needs:       ['calls', 'users']
   modelBinding: 'controllers.users.allAgents'
+  patternTimer:  null
+
+
+  observePattern: (->
+    Ember.run.cancel(@patternTimer) if @patternTimer
+    @patternTimer = Ember.run.later @, @updateMatches, 500
+  ).observes('pattern')
+
+
+  updateMatches: ->
+    @patternTimer = null
+    @notifyPropertyChange('matchingAgents')
 
 
   matchingAgents: (->
@@ -12,5 +24,5 @@ Voice.AgentsHelper = Ember.Mixin.create({
 
     return agents unless pattern
     agents.filter (agent) -> agent.matchesSearch(pattern)
-  ).property('pattern', 'content.@each.{fullName,email,name}')
+  ).property()
 })
