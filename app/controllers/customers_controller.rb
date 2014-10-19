@@ -37,13 +37,15 @@ class CustomersController < ApplicationController
 
 
   def update_history
-    hid  = params[:id]
-    par  = params[:history_entry]
-
+    hid = params[:id]
+    par = params[:history_entry]
     par[:user_id] = current_user.id
-    stat = Customer.rpc_update_history_with(hid, par) ? 200 : 404
 
-    render json: {}, status: stat
+    if (entry = Customer.rpc_update_history_with hid, par)
+      render json: entry, serializer: HistoryEntrySerializer
+    else
+      render nothing: true, status: 404
+    end
   end
 
 
