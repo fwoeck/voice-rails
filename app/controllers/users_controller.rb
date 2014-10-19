@@ -11,9 +11,7 @@ class UsersController < ApplicationController
 
 
   def create
-    r = RequestStruct.new(
-      nil, par = params[:user], par && cu_is_admin?
-    )
+    r = request_for_create
 
     handle_client_request(r) do
       r.obj = User.create_from(r.par)
@@ -23,10 +21,7 @@ class UsersController < ApplicationController
 
 
   def update
-    r = RequestStruct.new(
-      user = User.find(params[:id]), par = params[:user],
-      par && cu_can_update?(user)
-    )
+    r = request_for_update
 
     handle_client_request(r) do
       r.obj.update_attributes_from(r.par)
@@ -36,6 +31,21 @@ class UsersController < ApplicationController
   end
 
   private
+
+
+  def request_for_create
+    @memo_request ||= RequestStruct.new(
+      nil, par = params[:user], par && cu_is_admin?
+    )
+  end
+
+
+  def request_for_update
+    @memo_request ||= RequestStruct.new(
+      user = User.find(params[:id]), par = params[:user],
+      par && cu_can_update?(user)
+    )
+  end
 
 
   def self_update?(user)

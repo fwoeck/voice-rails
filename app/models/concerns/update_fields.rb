@@ -7,10 +7,7 @@ module UpdateFields
     new_roles = (p[:roles] || []).sort
     new_roles = (['admin'] + new_roles).uniq if as_admin
 
-    if old_roles != new_roles
-      (old_roles - new_roles).each { |r| remove_role(r.to_sym) }
-      (new_roles - old_roles).each { |r| add_role(r.to_sym) }
-    end
+    sync_roles_with(old_roles, new_roles)
   end
 
 
@@ -51,6 +48,14 @@ module UpdateFields
 
   private
 
+  def sync_roles_with(old_roles, new_roles)
+    return if old_roles == new_roles
+
+    (old_roles - new_roles).each { |r| remove_role(r.to_sym) }
+    (new_roles - old_roles).each { |r| add_role(r.to_sym) }
+  end
+
+
   def set_field(field, key)
     update_field(:sadd, field, key)
   end
@@ -88,24 +93,29 @@ module UpdateFields
 
 
   def update_languages_from(p)
-    old_langs = languages
-    new_langs = (p[:languages] || []).sort
-
-    if old_langs != new_langs
-      (old_langs - new_langs).each { |l| unset_language(l) }
-      (new_langs - old_langs).each { |l| set_language(l) }
-    end
+    update_field_from(p, :language)
   end
 
 
   def update_skills_from(p)
-    old_skills = skills
-    new_skills = (p[:skills] || []).sort
+    update_field_from(p, :skill)
+  end
 
-    if old_skills != new_skills
-      (old_skills - new_skills).each { |s| unset_skill(s) }
-      (new_skills - old_skills).each { |s| set_skill(s) }
-    end
+
+  def update_field_from(p, field)
+    fields = "#{field}s".to_sym
+    old_f  = self.send(fields)
+    new_f  = (p[fields] || []).sort
+
+    sync_field_with(old_f, new_f, field)
+  end
+
+
+  def sync_field_with(old_f, new_f, field)
+    return if old_f == new_f
+
+    (old_f - new_f).each { |f| self.send("unset_#{field}", f) }
+    (new_f - old_f).each { |f| self.send(  "set_#{field}", f) }
   end
 
 

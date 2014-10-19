@@ -12,8 +12,6 @@ class ChatMessage
   after_save :send_chat_update_to_clients
 
 
-  # TODO Implement personal messages:
-  #
   def send_chat_update_to_clients
     AmqpManager.push_publish(
       user_ids: User.all_online_ids, data: ChatMessageSerializer.new(self)

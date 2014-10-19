@@ -37,11 +37,15 @@ class CustomersController < ApplicationController
 
 
   def update_history
-    hid  = params[:id]
-    par  = params[:history_entry]
-    stat = Customer.rpc_update_history_with(hid, par) ? 200 : 404
+    hid = params[:id]
+    par = params[:history_entry]
+    par[:user_id] = current_user.id
 
-    render json: {}, status: stat
+    if (entry = Customer.rpc_update_history_with hid, par)
+      render json: entry, serializer: HistoryEntrySerializer
+    else
+      render nothing: true, status: 404
+    end
   end
 
 
@@ -61,17 +65,22 @@ class CustomersController < ApplicationController
 
   def fetch_customers
     if params[:caller_id]
-      opts = {caller_ids: params[:caller_id]}
-      Customer.rpc_where(opts)
+      Customer.rpc_where(opts_for_call)
     elsif request_is_search?
-      opts = {
-        c: params[:c], h: params[:h],
-        t: params[:t], s: 100
-      }
-      Customer.rpc_search(opts)
+      Customer.rpc_search(opts_for_search)
     else
       []
     end
+  end
+
+
+  def opts_for_call
+    {caller_ids: params[:caller_id]}
+  end
+
+
+  def opts_for_search
+    {c: params[:c], h: params[:h], t: params[:t], s: 100}
   end
 
 
