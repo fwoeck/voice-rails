@@ -157,7 +157,7 @@ env.i18n =
   de:
     dialog:
       agent_created:    'Sie haben den Benutzer<br /><strong>NAME</strong> hinzugefügt.'
-      browser_warning:  'Derzeit werden nur Chrome CHROME+ und Firefox FIREFOX+ als Browser unterstützt. Diese Plattform funktioniert ggf. fehlerhaft.'
+      browser_warning:  'Derzeit werden nur Chrome CHROME+ und Firefox FIREFOX+ als Browser unterstützt. Diese Plattform arbeitet eventuell fehlerhaft.'
       cancel:           'Abbruch'
       dial_now:         'Jetzt wählen'
       enter_number:     'Bitte geben Sie eine Nummer ein:'

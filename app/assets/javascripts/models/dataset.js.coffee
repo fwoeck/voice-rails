@@ -14,8 +14,6 @@ Voice.Dataset = DS.Model.extend(Voice.Resetable, {
 
 
   triggerStatsUpdate: ->
-    @notifyPropertyChange('queuedCalls')
-    @notifyPropertyChange('dispatchedCalls')
-    @notifyPropertyChange('averageDelay')
-    @notifyPropertyChange('maxDelay')
+    ['queuedCalls', 'dispatchedCalls', 'averageDelay', 'maxDelay'
+    ].forEach (value) => @notifyPropertyChange(value)
 })

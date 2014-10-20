@@ -27,32 +27,32 @@ html
 
     javascript:
       window.env = {
-        messages:      [],
         sseErrors:     0,
-        chromeVers:    37,
-        firefoxVers:   32,
+        messages:      [],
+        chromeVers:    38,
+        firefoxVers:   33,
         debug:         false,
         apiVersion:   "api/1",
         railsEnv:     "#{Rails.env}",
         locale:       "#{user_locale}",
-        sipAgent:     "#{current_user.try(:name)}",
-        sipSecret:    "#{current_user.try(:secret)}",
         sipHost:      "#{WimConfig.sip_host}",
-        userId:        #{current_user.try(:id) || 'null'},
+        crmUserUrl:   "#{WimConfig.crm_user_url}",
+        crmProvider:  "#{WimConfig.crm_provider}",
+        sslEnabled:    #{(!Rails.env.test?).to_s},
+        sipAgent:     "#{current_user.try(:name)}",
         sessionToken: "#{form_authenticity_token}",
         crmActive:     #{WimConfig.crm_active.to_s},
-        crmProvider:  "#{WimConfig.crm_provider}",
-        crmUserUrl:   "#{WimConfig.crm_user_url}",
+        sipSecret:    "#{current_user.try(:secret)}",
         rrdSource:    "#{WimConfig.stats_image_url}",
-        sslEnabled:    #{(!Rails.env.test?).to_s},
-        uiLocales:     #{WimConfig.ui_locales.to_json.html_safe},
-        defaultTags:   #{WimConfig.default_tags.to_json.html_safe},
-        availability:  #{WimConfig.availability.to_json.html_safe},
-        visibility:    #{WimConfig.visibility.to_json.html_safe},
-        languages:     #{WimConfig.languages.to_json.html_safe},
-        activity:      #{WimConfig.activity.to_json.html_safe},
+        userId:        #{current_user.try(:id) || 'null'},
+        roles:         #{WimConfig.roles.to_json.html_safe},
         skills:        #{WimConfig.skills.to_json.html_safe},
-        roles:         #{WimConfig.roles.to_json.html_safe}
+        activity:      #{WimConfig.activity.to_json.html_safe},
+        languages:     #{WimConfig.languages.to_json.html_safe},
+        uiLocales:     #{WimConfig.ui_locales.to_json.html_safe},
+        visibility:    #{WimConfig.visibility.to_json.html_safe},
+        defaultTags:   #{WimConfig.default_tags.to_json.html_safe},
+        availability:  #{WimConfig.availability.to_json.html_safe}
       }
 
     = javascript_include_tag 'application'

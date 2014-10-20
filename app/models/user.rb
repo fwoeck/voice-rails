@@ -19,23 +19,20 @@ class User < ActiveRecord::Base
 
 
   validates :name,       numericality: {only_integer: true},
-                         allow_blank: true,
-                         uniqueness: true,
+                         allow_blank: true, uniqueness: true,
                          length: {is: 3}
 
   validates :secret,     numericality: {only_integer: true},
                          allow_blank: true
 
-  validates :email,      presence: true,
-                         uniqueness: true,
+  validates :email,      presence: true, uniqueness: true,
                          email: true
 
-  validates :locale,     presence: true,
+  validates :locale,     allow_blank: true,
                          inclusion: {in: WimConfig.ui_locales}
 
   validates :crmuser_id, numericality: {only_integer: true},
-                         allow_blank: true,
-                         length: {is: 9}
+                         allow_blank: true, length: {is: 9}
 
 
   def set_admin_prefs(c = WimConfig)
