@@ -40,7 +40,8 @@ Voice.CallsController = Ember.ArrayController.extend({
 
       Ember.run.later @, (->
         Voice.set('currentCall', call)
-      ), 1000
+      ), 2000 # FIXME This delay allows VC to create a new history entry,
+              #       before the customer is fetched. Can we improve that?
 
 
   callIsNewCurrent: (call) ->
