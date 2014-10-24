@@ -60,17 +60,6 @@ platforms :jruby do
   gem 'activerecord-jdbcmysql-adapter'
 end
 
-platforms :rbx do
-  gem 'rubysl',                  require: false
-
-  group :development, :test do
-    gem 'rubinius-coverage',     require: false
-    gem 'rubinius-compiler',     require: false
-    gem 'rubinius-debugger',     require: false
-    gem 'rubinius-profiler',     require: false
-  end
-end
-
 platforms :ruby do
   gem 'oj'
   gem 'mysql2'

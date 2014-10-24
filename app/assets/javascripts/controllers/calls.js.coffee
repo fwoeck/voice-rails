@@ -36,10 +36,11 @@ Voice.CallsController = Ember.ArrayController.extend({
   setCurrentCall: (call) ->
     if @callIsNewCurrent(call)
       app.closeCurrentCall()
+      app.setAvailability('busy')
 
-      Ember.run.next ->
-        app.setAvailability('busy')
+      Ember.run.later @, (->
         Voice.set('currentCall', call)
+      ), 1000
 
 
   callIsNewCurrent: (call) ->
