@@ -18,18 +18,13 @@ Voice.CallsController = Ember.ArrayController.extend({
 
   bundlePairs: ( ->
     @get('model').forEach (bridge) =>
-      ctag = bridge.get('callTag')
-      oId  = bridge.get('originId')
-      return unless ctag && oId
+      oId = bridge.get('originId')
+      return unless oId
 
-      origin = @store.getById('call', oId)
-      @connectBridgeTo(origin, bridge)
-      @setCurrentCall(bridge) if @tagMatches(origin, ctag)
-  ).observes('model.@each.{callTag,originId}')
-
-
-  tagMatches: (origin, ctag) ->
-    origin && origin.get('callTag') == ctag
+      if (origin = @store.getById 'call', oId)
+        @connectBridgeTo(origin, bridge)
+        @setCurrentCall(bridge)
+  ).observes('model.@each.originId')
 
 
   connectBridgeTo: (origin, bridge) ->
@@ -39,7 +34,17 @@ Voice.CallsController = Ember.ArrayController.extend({
 
 
   setCurrentCall: (call) ->
-    if !call.get('hungup') && call.get('myCallLeg')
-      Voice.set('currentCall', call)
+    if @callIsNewCurrent(call)
+      app.closeCurrentCall()
       app.setAvailability('busy')
+
+      Ember.run.later @, (->
+        Voice.set('currentCall', call)
+      ), 2000 # FIXME This delay allows VC to create a new history entry,
+              #       before the customer is fetched. Can we improve that?
+
+
+  callIsNewCurrent: (call) ->
+    call != Voice.get('currentCall') &&
+      call.get('myCallLeg') && !call.get('hungup')
 })

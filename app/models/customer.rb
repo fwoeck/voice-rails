@@ -55,5 +55,16 @@ class Customer
     def rpc_search(*args)
       RemoteRequest.rpc_to_custom(self.name, :search, args)
     end
+
+
+    def create_fake
+      raise unless Rails.env.development?
+
+      rpc_create(
+        full_name:  (fn = Faker::Name.name),
+        caller_ids: ["0#{Faker::Number.number(8 + rand(4))}"],
+        email:      Faker::Internet.email.sub(/^[^@]+/, fn.downcase.gsub(' ', '-'))
+      )
+    end
   end
 end
