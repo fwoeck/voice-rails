@@ -111,8 +111,6 @@ window.app = {
 
       if app.loadLocalKey('useAutoReady')
         app.setAvailability('ready')
-    else
-      app.showDefaultError(i18n.dialog.no_hungup_call)
 
   
   hangupCurrentCall: ->
