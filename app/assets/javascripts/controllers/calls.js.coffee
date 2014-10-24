@@ -18,18 +18,13 @@ Voice.CallsController = Ember.ArrayController.extend({
 
   bundlePairs: ( ->
     @get('model').forEach (bridge) =>
-      ctag = bridge.get('callTag')
-      oId  = bridge.get('originId')
-      return unless ctag && oId
+      oId = bridge.get('originId')
+      return unless oId
 
-      origin = @store.getById('call', oId)
-      @connectBridgeTo(origin, bridge)
-      @setCurrentCall(bridge) if @tagMatches(origin, ctag)
-  ).observes('model.@each.{callTag,originId}')
-
-
-  tagMatches: (origin, ctag) ->
-    origin && origin.get('callTag') == ctag
+      if (origin = @store.getById 'call', oId)
+        @connectBridgeTo(origin, bridge)
+        @setCurrentCall(bridge)
+  ).observes('model.@each.originId')
 
 
   connectBridgeTo: (origin, bridge) ->
