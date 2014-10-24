@@ -84,7 +84,7 @@ class AmqpManager
       #
       Celluloid.logger = nil
 
-      Celluloid::Actor[:amqp] = AmqpManager.pool
+      Celluloid::Actor[:amqp] = AmqpManager.pool(size: 32)
       @@manager ||= new.tap { |m| m.start }
     end
 
