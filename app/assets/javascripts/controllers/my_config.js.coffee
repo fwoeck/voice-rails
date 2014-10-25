@@ -1,6 +1,6 @@
 Voice.MyConfigController = Ember.ObjectController.extend(Voice.AgentForm, {
 
-  modelBinding: 'Voice.currentUser'
-  agentIsNew:    false
-  cuIsAdmin:     false
+  modelBinding: Ember.Binding.oneWay 'Voice.currentUser'
+  agentIsNew:   false
+  cuIsAdmin:    false
 })

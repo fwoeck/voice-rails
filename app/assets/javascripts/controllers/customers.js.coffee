@@ -1,7 +1,8 @@
 Voice.CustomersController = Ember.ArrayController.extend({
 
   needs:                ['search_results']
-  searchResultsBinding: 'controllers.search_results.content'
+  customerBinding:      Ember.Binding.oneWay 'Voice.allCustomers.firstObject'
+  searchResultsBinding: Ember.Binding.oneWay 'controllers.search_results.content'
 
   openRequest: false
   queryParams: ['c', 'h', 't']
@@ -16,10 +17,10 @@ Voice.CustomersController = Ember.ArrayController.extend({
 
 
   setCurrentCustomer: (->
-    customer = Voice.get('allCustomers.firstObject')
-    if customer != Voice.get('currentCustomer')
-      Voice.set('currentCustomer', customer)
-  ).observes('Voice.allCustomers.firstObject')
+    cust = @get('customer')
+    if cust != Voice.get('currentCustomer')
+      Voice.set('currentCustomer', cust)
+  ).observes('customer')
 
 
   startSearch: ->

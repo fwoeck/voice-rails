@@ -1,6 +1,7 @@
 class Customer
 
   include Mongoid::Document
+  include CustomerFakes
 
   field :email,      type: String,   default: ""
   field :full_name,  type: String,   default: ""
@@ -31,7 +32,7 @@ class Customer
         tags:        par[:tags],
         user_id:     par[:user_id],
         remarks:     par[:remarks],
-        customer_id: par[:customer_id],
+        customer_id: par[:customer_id]
       }
       RemoteRequest.rpc_to_custom(self.name, :update_history_with, [params])
     end
@@ -54,17 +55,6 @@ class Customer
 
     def rpc_search(*args)
       RemoteRequest.rpc_to_custom(self.name, :search, args)
-    end
-
-
-    def create_fake
-      raise unless Rails.env.development?
-
-      rpc_create(
-        full_name:  (fn = Faker::Name.name),
-        caller_ids: ["0#{Faker::Number.number(8 + rand(4))}"],
-        email:      Faker::Internet.email.sub(/^[^@]+/, fn.downcase.gsub(' ', '-'))
-      )
     end
   end
 end

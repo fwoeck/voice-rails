@@ -27,16 +27,22 @@ class Agent
 
     def create_fake
       raise unless Rails.env.development?
+      fn = Faker::Name.name
 
       User.create_from(
+        full_name:    fn,
         roles:        ['agent'],
         password:     'P4ssw0rd',
         confirmation: 'P4ssw0rd',
+        email:        email_for(fn),
         languages:    samples_for(:langs),
-        skills:       samples_for(:skills),
-        full_name:    (fn = Faker::Name.name),
-        email:        fn.downcase.gsub(' ', '-') + '@mail.com'
+        skills:       samples_for(:skills)
       )
+    end
+
+
+    def email_for(fn)
+      fn.downcase.gsub(' ', '-').gsub(/[.']/, '') + '@mail.com'
     end
 
 

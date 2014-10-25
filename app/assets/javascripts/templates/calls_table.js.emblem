@@ -1,7 +1,13 @@
 table#callstats_table
   tbody
     tr.thead
-      td.split: = t 'headers.inbound_calls'
+      td.split
+        = t 'headers.inbound_calls'
+        span.filter
+          = t 'headers.show_dispatched'
+          ' &nbsp;
+          = input type='checkbox' checked=showDispatchedCalls
+
       td.split: = t 'headers.connected_agents'
 
     each call in sortedCalls

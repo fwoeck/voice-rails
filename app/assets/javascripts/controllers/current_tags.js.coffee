@@ -1,5 +1,5 @@
 Voice.CurrentTagsController = Ember.ObjectController.extend({
 
-  customerBinding: 'Voice.currentCustomer'
-  modelBinding:    'customer.orderedEntries.firstObject'
+  customerBinding: Ember.Binding.oneWay 'Voice.currentCustomer'
+  modelBinding:    Ember.Binding.oneWay 'customer.orderedEntries.firstObject'
 })

@@ -49,7 +49,7 @@ Voice.CustomerController = Ember.ObjectController.extend({
 
 Voice.CurrentCustomerController = Voice.CustomerController.extend({
 
-  modelBinding: 'Voice.currentCustomer'
+  modelBinding: Ember.Binding.oneWay 'Voice.currentCustomer'
 
 
   crmActive: (->

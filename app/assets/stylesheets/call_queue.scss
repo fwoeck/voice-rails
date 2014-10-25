@@ -91,27 +91,13 @@ table#callstats_table {
     height: 0;
   }
 
-  span.matches {
+  span.filter {
+    font-weight: normal;
     position: absolute;
-    right: 8px;
-    top: 1px;
-  }
-
-  span.matches label {
-    padding-right: 15px;
-    position: relative;
-    line-height: 34px;
-    font-size: 12px;
-    height: 34px;
-
-    input {
-      position: absolute;
-      height: 12px;
-      width: 12px;
-      top: 11px;
-      margin: 0;
-      right: 0;
-    }
+    line-height: 35px;
+    font-size: 11px;
+    right: 10px;
+    top: 0;
   }
 }
 

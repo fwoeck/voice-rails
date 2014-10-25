@@ -1,7 +1,7 @@
 Voice.MySettingsController = Ember.ObjectController.extend({
 
   needs: ['users']
-  modelBinding: 'Voice.currentUser'
+  modelBinding: Ember.Binding.oneWay 'Voice.currentUser'
 
 
   init: ->
@@ -58,7 +58,7 @@ Voice.MySettingsController = Ember.ObjectController.extend({
       cu.save().then ->
         Ember.run.later @, (->
           self.set('lockedForUpdate', false)
-        ), 300
+        ), 200
 
 
   currentStatusLine: (->

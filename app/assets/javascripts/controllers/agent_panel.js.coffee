@@ -1,6 +1,6 @@
 Voice.AgentPanelController = Ember.ObjectController.extend({
 
-  cuIsAdminBinding: 'controllers.users.cuIsAdmin'
+  cuIsAdminBinding: Ember.Binding.oneWay 'controllers.users.cuIsAdmin'
   formIsActive:     false
   needs:            ['users']
 
