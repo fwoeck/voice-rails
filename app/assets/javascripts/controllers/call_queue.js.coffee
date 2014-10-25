@@ -5,6 +5,7 @@ Voice.CallQueueController = Ember.ArrayController.extend({
   modelBinding:       Ember.Binding.oneWay 'controllers.calls.content'
   currentCallBinding: Ember.Binding.oneWay 'Voice.currentCall'
 
+  showDispatchedCallsBinding: 'Voice.showDispatchedCalls'
 
   filteredCalls: Ember.computed.filterBy 'content',       'matchesFilter', true
   sortedCalls:   Ember.computed.sort     'filteredCalls', 'callSorting'

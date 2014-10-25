@@ -4,8 +4,6 @@
     span.header = t 'headers.current_calls'
     span.stats  = currentStatusLine
 
-  span.matches
-
   #call_queue_body.bottom-mask
     if currentCall.origin
       = render 'current_call' currentCall
