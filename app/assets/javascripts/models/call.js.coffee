@@ -8,24 +8,24 @@ Voice.CompCall = Ember.Mixin.create({
 
 Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, {
 
-  allCallsBinding: 'Voice.allCalls'
-  allUsersBinding: 'Voice.allUsers'
+  showDispatchedCallsBinding: Ember.Binding.oneWay 'Voice.showDispatchedCalls'
+  allUsersBinding:            Ember.Binding.oneWay 'Voice.allUsers'
 
-  origin:        null
-  bridge:        null
+  origin:       null
+  bridge:       null
 
-  skill:         DS.attr 'string'
-  hungup:        DS.attr 'boolean'
-  callTag:       DS.attr 'string'
-  mailbox:       DS.attr 'string'
-  calledAt:      DS.attr 'date'
-  callerId:      DS.attr 'string'
-  hungupAt:      DS.attr 'date'
-  language:      DS.attr 'string'
-  originId:      DS.attr 'string'
-  queuedAt:      DS.attr 'date'
-  extension:     DS.attr 'string'
-  dispatchedAt:  DS.attr 'date'
+  skill:        DS.attr 'string'
+  hungup:       DS.attr 'boolean'
+  callTag:      DS.attr 'string'
+  mailbox:      DS.attr 'string'
+  calledAt:     DS.attr 'date'
+  callerId:     DS.attr 'string'
+  hungupAt:     DS.attr 'date'
+  language:     DS.attr 'string'
+  originId:     DS.attr 'string'
+  queuedAt:     DS.attr 'date'
+  extension:    DS.attr 'string'
+  dispatchedAt: DS.attr 'date'
 
 
   init: ->
@@ -85,12 +85,10 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
 
   updateMatchesFilter: (->
-    result = @isInbound()
-
     Ember.run.scheduleOnce 'afterRender', @, (=>
-      @writeFilterValue result
+      @writeFilterValue @get('visibleInQueue')
     )
-  ).observes('hungup', 'agentCallLeg')
+  ).observes('visibleInQueue')
 
 
   writeFilterValue: (result) ->
@@ -98,8 +96,13 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
       @set 'matchesFilter', result
 
 
-  isInbound: ->
-    !@get('hungup') && !@get('agentCallLeg')
+  visibleInQueue: (->
+    !@get('hungup') && !@get('agentCallLeg') && (
+      @get('showDispatchedCalls') || !@get('bridge')
+    )
+  ).property(
+    'hungup', 'agentCallLeg', 'showDispatchedCalls', 'bridge'
+  )
 })
 
 

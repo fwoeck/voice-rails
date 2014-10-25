@@ -17,7 +17,6 @@ Voice.ApplicationRoute = Ember.Route.extend({
     @controllerFor('customers').set    'model', @store.all('customer')
     @controllerFor('chatMessages').set 'model', @store.all('chatMessage')
 
-    Voice.set 'allCalls',     @store.all('call')
     Voice.set 'allUsers',     @store.all('user')
     Voice.set 'allCustomers', @store.all('customer')
     Voice.set 'currentUser',  @store.getById('user', env.userId)
