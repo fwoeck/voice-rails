@@ -1,7 +1,7 @@
 Voice.StatsController = Ember.ArrayController.extend({
 
   needs:             ['datasets']
-  dataBinding:        'controllers.datasets.content.firstObject'
+  dataBinding:         Ember.Binding.oneWay 'controllers.datasets.content.firstObject'
   statsPausedBinding: 'Voice.statsPaused'
   rrdSource:          ''
 

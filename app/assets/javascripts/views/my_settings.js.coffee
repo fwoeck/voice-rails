@@ -1,5 +1,5 @@
 Voice.MySettingsView = Ember.View.extend({
 
-  classNameBindings:     ['lockedForUpdate']
-  lockedForUpdateBinding: 'controller.lockedForUpdate'
+  classNameBindings:      ['lockedForUpdate']
+  lockedForUpdateBinding: Ember.Binding.oneWay 'controller.lockedForUpdate'
 })

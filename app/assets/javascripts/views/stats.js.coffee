@@ -1,8 +1,8 @@
 Voice.StatsView = Ember.View.extend({
 
-  dataBinding:        'controller.content.firstObject'
+  dataBinding:         Ember.Binding.oneWay 'controller.content.firstObject'
+  statsPausedBinding:  Ember.Binding.oneWay 'controller.statsPaused'
   rrdSourceBinding:   'controller.rrdSource'
-  statsPausedBinding: 'controller.statsPaused'
   statsLangBinding:   'Voice.statsLang'
 
 

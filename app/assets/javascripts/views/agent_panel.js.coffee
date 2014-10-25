@@ -1,7 +1,7 @@
 Voice.AgentPanelView = Ember.View.extend({
 
-  agentsViewBinding: 'Voice.agentsView'
-  slideTimer:         null
+  agentsViewBinding: Ember.Binding.oneWay 'Voice.agentsView'
+  slideTimer:        null
 
 
   actions:

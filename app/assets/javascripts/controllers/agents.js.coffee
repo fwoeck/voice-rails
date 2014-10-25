@@ -1,5 +1,5 @@
 Voice.AgentsController = Ember.ArrayController.extend({
 
   needs:            ['users']
-  cuIsAdminBinding: 'controllers.users.cuIsAdmin'
+  cuIsAdminBinding: Ember.Binding.oneWay 'controllers.users.cuIsAdmin'
 })

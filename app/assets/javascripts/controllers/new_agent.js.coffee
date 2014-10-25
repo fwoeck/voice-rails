@@ -1,8 +1,8 @@
 Voice.NewAgentController = Ember.ObjectController.extend(Voice.AgentForm, {
 
-  modelBinding: 'controllers.agents.newAgent'
-  agentIsNew:    true
-  cuIsAdmin:     true
+  modelBinding: Ember.Binding.oneWay 'controllers.agents.newAgent'
+  agentIsNew:   true
+  cuIsAdmin:    true
 
 
   saveAgentData: (el) ->

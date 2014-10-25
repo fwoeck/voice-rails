@@ -1,9 +1,9 @@
 Voice.AgentsHelper = Ember.Mixin.create({
 
   pattern:      ''
-  needs:       ['calls', 'users']
-  modelBinding: 'controllers.users.allAgents'
-  patternTimer:  null
+  needs:        ['calls', 'users']
+  modelBinding: Ember.Binding.oneWay 'controllers.users.allAgents'
+  patternTimer: null
 
 
   observePattern: (->
