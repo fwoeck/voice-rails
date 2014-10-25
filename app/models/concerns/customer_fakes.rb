@@ -16,7 +16,9 @@ module CustomerFakes
 
 
     def fake_email_for(fn)
-      Faker::Internet.email.sub /^[^@]+/, fn.downcase.gsub(' ', '-')
+      Faker::Internet.email.sub(
+        /^[^@]+/, fn.downcase.gsub(' ', '-').gsub(/[.']/, '')
+      )
     end
 
 
@@ -27,11 +29,6 @@ module CustomerFakes
 
     def fake_caller_id
       "0#{Faker::Number.number(8 + rand(4))}"
-    end
-
-
-    def email_for(fn)
-      fn.downcase.gsub(' ', '-').gsub(/[.']/, '') + '@mail.com'
     end
   end
 end
