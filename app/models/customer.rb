@@ -32,7 +32,7 @@ class Customer
         tags:        par[:tags],
         user_id:     par[:user_id],
         remarks:     par[:remarks],
-        customer_id: par[:customer_id],
+        customer_id: par[:customer_id]
       }
       RemoteRequest.rpc_to_custom(self.name, :update_history_with, [params])
     end
