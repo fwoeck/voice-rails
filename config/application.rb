@@ -6,6 +6,11 @@ require 'json'
 require 'base64'
 require 'rails/all'
 
+# See https://github.com/celluloid/timers/issues/20
+#     method 'old_init' not defined in SortedSet:
+require 'set'
+SortedSet.new
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
