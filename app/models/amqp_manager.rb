@@ -39,6 +39,8 @@ class AmqpManager
 
   def push_publish(payload)
     push_xchange.publish(MultiJson.dump(payload), routing_key: 'voice.push')
+  rescue => e
+    Rails.logger.error "#{e.message} :: #{payload}"
   end
 
 
@@ -80,8 +82,8 @@ class AmqpManager
 
     def start
       return if defined?(@@manager)
-      Celluloid.logger = nil
 
+    # Celluloid.logger = nil
       Celluloid::Actor[:amqp] = AmqpManager.pool(size: 32)
       @@manager = new.tap { |m| m.start }
     end
