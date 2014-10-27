@@ -15,11 +15,11 @@ table.callstats_table
           i.fa.fa-info-circle
     tr
       td &nbsp;
-      td &nbsp;
-    tr
-      td &nbsp;
-      td &nbsp;
-    tr
-      td &nbsp;
-      td.strong
+      td: span.strong
         | #{agent.name} / #{agent.fullName}
+    tr
+      td &nbsp;
+      td &nbsp;
+    tr
+      td &nbsp;
+      td &nbsp;

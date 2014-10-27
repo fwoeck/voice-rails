@@ -100,17 +100,24 @@ window.app = {
     )
 
 
-  closeCurrentCall: ->
+  closeCurrentCall: (force=false) ->
     cc = Voice.get('currentCall')
     co = cc?.get('origin')
 
-    if cc && cc.get('hungup')
-      Voice.set('currentCall', null)
-      cc.remove()
-      co.remove() if co && co.get('hungup')
+    if cc && (force || cc.get 'hungup')
+      @removeCurrentCall(cc, co, force)
+      @restoreReadyState()
 
-      if app.loadLocalKey('useAutoReady')
-        app.setAvailability('ready')
+
+  removeCurrentCall: (cc, co, force) ->
+    Voice.set('currentCall', null)
+    cc.remove()
+    co.remove() if co && (force || co.get 'hungup')
+
+
+  restoreReadyState: ->
+    if app.loadLocalKey('useAutoReady')
+      app.setAvailability('ready')
 
   
   hangupCurrentCall: ->
