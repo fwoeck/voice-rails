@@ -172,12 +172,16 @@ table.callstats_table {
     color: #000;
   }
 
-  td.strong {
+  span.strong {
     text-overflow: ellipsis;
     white-space: nowrap;
-    line-height: 12px;
+    line-height: 18px;
+    margin-top: -2px;
     overflow: hidden;
     font-size: 14px;
+    display: block;
+    height: 18px;
+    width: 200px;
     color: #888;
   }
 
