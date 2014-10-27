@@ -12,6 +12,11 @@ Voice.AgentsHelper = Ember.Mixin.create({
   ).observes('pattern')
 
 
+  observeAgents: (->
+    @notifyPropertyChange('matchingAgents')
+  ).observes('model.[]')
+
+
   updateMatches: ->
     @patternTimer = null
     @notifyPropertyChange('matchingAgents')
