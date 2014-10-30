@@ -18,13 +18,18 @@ Voice.CallsController = Ember.ArrayController.extend({
 
   bundlePairs: ( ->
     @get('model').forEach (bridge) =>
-      oId = bridge.get('originId')
-      return unless oId
+      cTag = bridge.get('callTag')
+      oId  = bridge.get('originId')
+      return unless oId && cTag
 
       if (origin = @store.getById 'call', oId)
         @connectBridgeTo(origin, bridge)
-        @setCurrentCall(bridge)
-  ).observes('model.@each.originId')
+        @setCurrentCall(bridge) if @tagMatches(origin, cTag)
+  ).observes('model.@each.callTag')
+
+
+  tagMatches: (origin, cTag) ->
+    origin && origin.get('callTag') == cTag
 
 
   connectBridgeTo: (origin, bridge) ->
@@ -40,8 +45,7 @@ Voice.CallsController = Ember.ArrayController.extend({
 
       Ember.run.later @, (->
         Voice.set('currentCall', call)
-      ), 2000 # FIXME This delay allows VC to create a new history entry,
-              #       before the customer is fetched. Can we improve that?
+      ), 500
 
 
   callIsNewCurrent: (call) ->
