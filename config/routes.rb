@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   get      'app'                 => 'application#ember_index'
   get      'app/*any'            => 'application#ember_index'
 
-  if Rails.env.development?
+# if Rails.env.development? # TODO Re-enable guard
     get    'seed/agents'         => 'seeds#agents'
     get    'seed/customers'      => 'seeds#customers'
-  end
+# end
 
   scope '/api/1' do
 

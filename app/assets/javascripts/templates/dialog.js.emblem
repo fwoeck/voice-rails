@@ -8,13 +8,13 @@ if isActive
         form.text data-abide="" novalidate="" submit='noop'
 
           if validatesNumber
-            label: Ember.TextField type='text' name='dialog' maxlength='32' tabindex='2' value=text placeholder=placeholderNumber pattern='number'
+            label: view 'text_field' type='text' name='dialog' maxlength='32' tabindex='2' value=text placeholder=placeholderNumber pattern='number'
             small.error = t 'errors.number_format'
           else
             if inputIsOptional
-              label: Ember.TextField type='text' name='dialog' maxlength='256' tabindex='2' value=text placeholder=placeholderOptional
+              label: view 'text_field' type='text' name='dialog' maxlength='256' tabindex='2' value=text placeholder=placeholderOptional
             else
-              label: Ember.TextField type='text' name='dialog' required='' maxlength='256' tabindex='2' value=text placeholder=placeholderHere
+              label: view 'text_field' type='text' name='dialog' required='' maxlength='256' tabindex='2' value=text placeholder=placeholderHere
               small.error = t 'errors.must_be_text'
 
       if requiresDecision

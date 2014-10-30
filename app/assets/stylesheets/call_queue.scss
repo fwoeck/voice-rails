@@ -78,8 +78,8 @@ table#callstats_table {
   td.split {
     padding: 9px 10px;
     line-height: 18px;
+    min-width: 357px;
     height: 86px;
-    width: 357px;
   }
 
   #customer {
@@ -96,6 +96,7 @@ table#callstats_table {
     position: absolute;
     line-height: 35px;
     font-size: 11px;
+    height: 30px;
     right: 10px;
     top: 0;
   }

@@ -1,11 +1,8 @@
 Voice.AgentForm = Ember.Mixin.create({
 
-  needs:         ['agents', 'users']
-  formEl:        null
-  uiLocales:     env.uiLocales
-  roleArray:     []
-  skillArray:    []
-  languageArray: []
+  needs:     ['agents', 'users']
+  formEl:    null
+  uiLocales: env.uiLocales
 
 
   actions:
@@ -25,7 +22,14 @@ Voice.AgentForm = Ember.Mixin.create({
 
   init: ->
     @_super()
+    @initAttributeArrays()
     @setAttributeArrays()
+
+
+  initAttributeArrays: ->
+    @set 'roleArray',     Ember.A()
+    @set 'skillArray',    Ember.A()
+    @set 'languageArray', Ember.A()
 
 
   validateForm: ->

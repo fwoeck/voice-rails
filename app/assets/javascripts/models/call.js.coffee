@@ -85,13 +85,12 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
 
   updateMatchesFilter: (->
-    Ember.run.scheduleOnce 'afterRender', @, (=>
-      @writeFilterValue @get('visibleInQueue')
-    )
+    Ember.run.scheduleOnce 'afterRender', @, @writeFilterValue
   ).observes('visibleInQueue')
 
 
-  writeFilterValue: (result) ->
+  writeFilterValue: ->
+    result = @get('visibleInQueue')
     if @get('matchesFilter') != result
       @set 'matchesFilter', result
 

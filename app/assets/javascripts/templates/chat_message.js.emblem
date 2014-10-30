@@ -2,6 +2,6 @@
   .header
     span.from #{unbound fromName}
     br
-    span.created-at = view Ember.CreatedAt
+    span.created-at = view 'created_at'
   .body
     = render 'hyper_text' model.content

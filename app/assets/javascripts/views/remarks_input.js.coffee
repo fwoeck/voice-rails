@@ -1,4 +1,4 @@
-Ember.RemarksInput = Ember.TextArea.extend({
+Voice.RemarksInputView = Ember.TextArea.extend({
 
   classNameBindings: ['dirty']
   maxlength:          '1000'

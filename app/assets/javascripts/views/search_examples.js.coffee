@@ -1,4 +1,4 @@
-Voice.SearchExamples = Ember.View.extend({
+Voice.SearchExamplesView = Ember.View.extend({
 
   templateName: (->
     "search_examples_#{env.locale}"

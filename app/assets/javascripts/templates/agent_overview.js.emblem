@@ -3,8 +3,9 @@
     i.header.fa.fa-compass
     span.header = t 'headers.agent_overview'
     span.stats  = currentStatusLine
+
   span.search
-    Voice.AgentSearch value=pattern
+    view 'agent_search' value=pattern
 
   #agent_overview_body.bottom-mask
     each matchingAgents

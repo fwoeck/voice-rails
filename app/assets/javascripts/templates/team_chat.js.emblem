@@ -3,7 +3,7 @@
     i.header.fa.fa-comments
     = t 'headers.team_chat'
 
-  = view Ember.ChatInput
+  = view 'chat_input'
 
 #team_chat.large-12.medium-12.columns.bottom-mask
   each cm in content

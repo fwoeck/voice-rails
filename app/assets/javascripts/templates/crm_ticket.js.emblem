@@ -1,4 +1,4 @@
-td = view Ember.CreatedAt
+td = view 'created_at'
 td = unbound crmuserUser submitterId
 td.w46: span.has-tip.tip-top data-tooltip="" title="#{unbound description}"
   a target="_blank" href="#{unbound url}" = subject
