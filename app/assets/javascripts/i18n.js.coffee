@@ -175,7 +175,7 @@ env.i18n =
       reload_necessary: 'Um diese Einstellung zu aktivieren, muss der Browser neu geladen werden.'
       reload:           'Neu laden'
       shortcut_header:  'Tastaturkürzel'
-      take_call:        'Anruf annehmen'
+      take_call:        'Annehmen'
       transfer_call:    'Möchten Sie diesen Anruf zu<br /><strong>AGENT</strong> durchstellen?'
       transfer:         'Durchstellen'
       yes:              'Ja'
