@@ -20,6 +20,7 @@ gem 'connection_pool'
 gem 'rubygems-bundler',          require: false
 gem 'active_model_serializers'
 
+gem 'faker'                      # TODO move to dev-group again
 gem 'uglifier'
 gem 'sprockets'
 gem 'sass-rails'
@@ -31,7 +32,6 @@ gem 'font-awesome-rails'
 
 group :test, :development do
   gem 'pry'
-  gem 'faker'
   gem 'listen',                  require: false
   gem 'rb-inotify',              require: false
   gem 'qunit-rails'

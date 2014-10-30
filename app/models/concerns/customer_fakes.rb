@@ -4,7 +4,7 @@ module CustomerFakes
   module ClassMethods
 
     def create_fake
-      raise unless Rails.env.development?
+    # raise unless Rails.env.development?
       fn = Faker::Name.name
 
       rpc_create(
