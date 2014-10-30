@@ -1,6 +1,8 @@
 Voice.ApplicationController = Ember.Controller.extend({
 
-  needs: ['calls', 'users', 'chatMessages']
+  needs:              ['calls', 'users', 'chatMessages']
+  currentUserBinding: Ember.Binding.oneWay 'Voice.currentUser'
+
 
   init: ->
     @_super()
@@ -15,6 +17,16 @@ Voice.ApplicationController = Ember.Controller.extend({
     hangupCall: ->
       app.hangupCurrentCall()
       false
+
+
+  extension: (->
+    @get 'currentUser.name'
+  ).property('currentUser.name')
+
+
+  displayName: (->
+    @get 'currentUser.displayName'
+  ).property('currentUser.displayName')
 
 
   displayBrowserWarning: ->

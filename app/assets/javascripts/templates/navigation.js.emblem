@@ -1,5 +1,5 @@
 #logout_link
-  ' #{Voice.currentUser.name} / #{Voice.currentUser.displayName} &mdash;
+  ' #{extension} / #{displayName} &mdash;
   a data-method='delete' href='/auth/logout' rel='nofollow'
     = t 'domain.logout'
 
