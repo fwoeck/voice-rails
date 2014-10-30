@@ -25,7 +25,7 @@ Voice.CallsController = Ember.ArrayController.extend({
       if (origin = @store.getById 'call', oId)
         @connectBridgeTo(origin, bridge)
         @setCurrentCall(bridge) if @tagMatches(origin, cTag)
-  ).observes('model.@each.callTag')
+  ).observes('model.@each.{originId,callTag}')
 
 
   tagMatches: (origin, cTag) ->
