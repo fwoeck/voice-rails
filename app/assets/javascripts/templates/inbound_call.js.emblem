@@ -9,10 +9,10 @@ table.callstats_table
     tr
       if queuedAt
         td = t 'domain.queued_at'
-        td = view Ember.QueuedAt
+        td = view 'queued_at'
       else
         td = t 'domain.called_at'
-        td = view Ember.CalledAt
+        td = view 'called_at'
     tr
       td = t 'domain.language_choice'
       td = upcase language

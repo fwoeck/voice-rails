@@ -1,4 +1,4 @@
-Ember.RadioButton = Ember.View.extend({
+Voice.RadioButtonView = Ember.View.extend({
 
   attributeBindings: ['name', 'type', 'value', 'checked:checked:']
   tagName:            'input'
@@ -14,7 +14,7 @@ Ember.RadioButton = Ember.View.extend({
 })
 
 
-Ember.CheckMark = Ember.View.extend({
+Voice.CheckmarkView = Ember.View.extend({
 
   attributeBindings: ['name', 'type', 'value', 'checked:checked:']
   tagName:            'input'
@@ -30,7 +30,7 @@ Ember.CheckMark = Ember.View.extend({
 })
 
 
-Ember.FromNow = Ember.View.extend({
+Voice.FromNowView = Ember.View.extend({
 
   tagName: 'span'
 
@@ -45,27 +45,27 @@ Ember.FromNow = Ember.View.extend({
 })
 
 
-Ember.CreatedAt = Ember.FromNow.extend({
+Voice.CreatedAtView = Voice.FromNowView.extend({
   template: Ember.Handlebars.compile("{{unbound fromNow createdAt}}")
 })
 
 
-Ember.QueuedAt = Ember.FromNow.extend({
+Voice.QueuedAtView = Voice.FromNowView.extend({
   template: Ember.Handlebars.compile("{{unbound fromNow queuedAt}}")
 })
 
 
-Ember.CalledAt = Ember.FromNow.extend({
+Voice.CalledAtView = Voice.FromNowView.extend({
   template: Ember.Handlebars.compile("{{unbound fromNow calledAt}}")
 })
 
 
-Ember.PassConf = Ember.TextField.extend({
+Voice.PassConfView = Ember.TextField.extend({
   attributeBindings: ['name', 'type', 'value', 'data-equalto', 'pattern']
 })
 
 
-Voice.TextField = Ember.TextField.extend({
+Voice.TextFieldView = Ember.TextField.extend({
 
   keyUp: (evt) ->
     switch evt.which
@@ -77,7 +77,7 @@ Voice.TextField = Ember.TextField.extend({
 })
 
 
-Voice.AgentSearch = Voice.TextField.extend({
+Voice.AgentSearchView = Voice.TextFieldView.extend({
 
   type:      'text'
   name:      'agent_search'

@@ -150,7 +150,7 @@ window.app = {
       Ember.TEMPLATES["availability/#{avail}"] = Ember.Handlebars.compile(
         "<div class='td'>" +
         "  <div class='switch tiny'>" +
-        "    {{view Ember.RadioButton name='Availability' selection=availability value='#{avail}'}}" +
+        "    {{view 'radio_button' name='Availability' selection=availability value='#{avail}'}}" +
         "    <label for='#{avail}'></label>" +
         "  </div>" +
         "</div>" +
@@ -163,7 +163,7 @@ window.app = {
       Ember.TEMPLATES["skills/#{skill}"] = Ember.Handlebars.compile(
         "<div class='td'>" +
         "  <div class='switch tiny'>" +
-        "    {{view Ember.CheckMark selection=skill#{skill.toUpperCase()}}}" +
+        "    {{view 'checkmark' selection=skill#{skill.toUpperCase()}}}" +
         "    <label for='#{skill}'></label>" +
         "  </div>" +
         "</div>" +
@@ -176,7 +176,7 @@ window.app = {
       Ember.TEMPLATES["languages/#{lang}"] = Ember.Handlebars.compile(
         "<div class='td'>" +
         "  <div class='switch tiny'>" +
-        "    {{view Ember.CheckMark selection=language#{lang.toUpperCase()}}}" +
+        "    {{view 'checkmark' selection=language#{lang.toUpperCase()}}}" +
         "    <label for='#{lang}'></label>" +
         "  </div>" +
         "</div>" +

@@ -1,4 +1,4 @@
-Ember.HistoryTagsInput = Ember.TextField.extend({
+Voice.HistoryTagsInputView = Ember.TextField.extend({
 
   classNameBindings: [':typeahead']
 

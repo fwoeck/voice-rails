@@ -1,4 +1,4 @@
-Ember.ChatInput = Ember.TextField.extend({
+Voice.ChatInputView = Ember.TextField.extend({
 
   name:      'chat_message'
   maxlength: '150'

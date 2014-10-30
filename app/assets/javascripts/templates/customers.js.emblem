@@ -13,12 +13,12 @@
       span.header = t 'headers.customer_history'
 
     #customer_search
-      = view Voice.CustomerSearch value=c
-      = view Voice.HistorySearch value=h
-      = view Voice.SearchLimit value=t
+      = view 'customer_search' value=c
+      = view 'history_search' value=h
+      = view 'search_limit' value=t
 
     #customer_search_results.bottom-mask
       each result in searchResults
         = render 'search_result' result
       else
-        = view Voice.SearchExamples
+        = view 'search_examples'

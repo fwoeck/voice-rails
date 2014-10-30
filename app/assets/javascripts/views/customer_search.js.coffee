@@ -21,7 +21,7 @@ Voice.GeneralSearch = Ember.TextField.extend({
 })
 
 
-Voice.CustomerSearch = Voice.GeneralSearch.extend({
+Voice.CustomerSearchView = Voice.GeneralSearch.extend({
 
   name: 'customer_search'
 
@@ -34,7 +34,7 @@ Voice.CustomerSearch = Voice.GeneralSearch.extend({
 })
 
 
-Voice.HistorySearch = Voice.GeneralSearch.extend({
+Voice.HistorySearchView = Voice.GeneralSearch.extend({
 
   name: 'history_search'
 
@@ -44,7 +44,7 @@ Voice.HistorySearch = Voice.GeneralSearch.extend({
 })
 
 
-Voice.SearchLimit = Voice.GeneralSearch.extend({
+Voice.SearchLimitView = Voice.GeneralSearch.extend({
 
   name: 'search_limit'
 

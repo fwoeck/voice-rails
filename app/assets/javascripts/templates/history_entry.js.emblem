@@ -1,4 +1,4 @@
-td = view Ember.CreatedAt
+td = view 'created_at'
 
 if userId
   td = unbound agentFor userId
