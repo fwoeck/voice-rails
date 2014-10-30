@@ -5,11 +5,9 @@ class Agent
 
 
   def handle_message
-    VoiceThread.async {
-      if user = User.where(name: name).first
-        user.send_user_update_to_clients
-      end
-    }
+    if (user = User.where(name: name).first)
+      user.send_user_update_to_clients
+    end
   end
 
 
