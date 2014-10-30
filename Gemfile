@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '= 4.1.6'
 
-gem 'puma',                      require: false
+gem 'puma', '2.9.1',             require: false
 gem 'hirb',                      require: false
 gem 'rake',                      require: false
 gem 'redis'
