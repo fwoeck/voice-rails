@@ -6,13 +6,11 @@ class VoiceThread
 
 
   def self.with_sql(&block)
-    # Caution! This causes havoc with mri:
-    #   ActiveRecord::Base.connection_pool.reap
-    yield block
+    ActiveRecord::Base.connection_pool.with_connection {
+      yield block
+    }
   rescue Exception => e
-    raise e
-  ensure
-    ActiveRecord::Base.connection.close if ActiveRecord::Base.connection
-    ActiveRecord::Base.clear_active_connections!
+    Rails.logger.error e.message
+    ActiveRecord::Base.connection.try(:close)
   end
 end
