@@ -25,7 +25,9 @@ class AmqpManager
 
     class_eval %Q"
       def #{name}_publish(payload)
-        #{name}_xchange.publish(Marshal.dump(payload), routing_key: 'voice.#{name}')
+        VoiceThread.with_sql {
+          #{name}_xchange.publish(Marshal.dump(payload), routing_key: 'voice.#{name}')
+        }
       end
     "
 
@@ -38,9 +40,9 @@ class AmqpManager
 
 
   def push_publish(payload)
-    push_xchange.publish(MultiJson.dump(payload), routing_key: 'voice.push')
-  rescue => e
-    Rails.logger.error "#{e.message} :: #{payload}"
+    VoiceThread.with_sql {
+      push_xchange.publish(MultiJson.dump(payload), routing_key: 'voice.push')
+    }
   end
 
 
