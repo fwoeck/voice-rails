@@ -15,7 +15,6 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
   bridge:       null
 
   skill:        DS.attr 'string'
-  hungup:       DS.attr 'boolean'
   callTag:      DS.attr 'string'
   mailbox:      DS.attr 'string'
   calledAt:     DS.attr 'date'
@@ -96,11 +95,11 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 
 
   visibleInQueue: (->
-    !@get('hungup') && !@get('agentCallLeg') && (
+    !@get('hungupAt') && !@get('agentCallLeg') && (
       @get('showDispatchedCalls') || !@get('bridge')
     )
   ).property(
-    'hungup', 'agentCallLeg', 'showDispatchedCalls', 'bridge'
+    'hungupAt', 'agentCallLeg', 'showDispatchedCalls', 'bridge'
   )
 })
 

@@ -104,7 +104,7 @@ window.app = {
     cc = Voice.get('currentCall')
     co = cc?.get('origin')
 
-    if cc && (force || cc.get 'hungup')
+    if cc && (force || cc.get 'hungupAt')
       @removeCurrentCall(cc, co, force)
       @restoreReadyState()
 
@@ -112,7 +112,7 @@ window.app = {
   removeCurrentCall: (cc, co, force) ->
     Voice.set('currentCall', null)
     cc.remove()
-    co.remove() if co && (force || co.get 'hungup')
+    co.remove() if co && (force || co.get 'hungupAt')
 
 
   restoreReadyState: ->
@@ -122,7 +122,7 @@ window.app = {
   
   hangupCurrentCall: ->
     cc = Voice.get('currentCall')
-    app.hangupCall(cc) if cc && !cc.get('hungup')
+    app.hangupCall(cc) if cc && !cc.get('hungupAt')
 
 
   hangupCall: (call) ->

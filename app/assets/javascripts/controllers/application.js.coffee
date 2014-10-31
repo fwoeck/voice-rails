@@ -49,6 +49,6 @@ Voice.ApplicationController = Ember.Controller.extend({
 
   iAmTalking: ( ->
     cc = Voice.get('currentCall')
-    cc && !cc.get('hungup')
-  ).property('Voice.currentCall.hungup')
+    cc && !cc.get('hungupAt')
+  ).property('Voice.currentCall.hungupAt')
 })

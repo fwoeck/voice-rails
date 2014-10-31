@@ -1,7 +1,7 @@
 class Call
 
   Nil    = "\x04\b0"
-  FORMAT = %w{call_id call_tag origin_id language skill extension caller_id hungup called_at mailbox queued_at hungup_at dispatched_at}
+  FORMAT = %w{call_id call_tag origin_id language skill extension caller_id called_at mailbox queued_at hungup_at dispatched_at}
            .map(&:to_sym)
 
   attr_accessor *FORMAT
@@ -50,7 +50,7 @@ class Call
 
   def visible_to_client?(user)
     belongs_to?(user) ||
-      !hungup && User.ids_scoped_for(self).include?(user.id)
+      !hungup_at && User.ids_scoped_for(self).include?(user.id)
   end
 
 

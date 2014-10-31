@@ -50,5 +50,5 @@ Voice.CallsController = Ember.ArrayController.extend({
 
   callIsNewCurrent: (call) ->
     call != Voice.get('currentCall') &&
-      call.get('myCallLeg') && !call.get('hungup')
+      call.get('myCallLeg') && !call.get('hungupAt')
 })

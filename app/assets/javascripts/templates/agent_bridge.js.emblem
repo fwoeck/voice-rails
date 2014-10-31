@@ -3,7 +3,7 @@ table.callstats_table
     tr
       td width="40%"
         ' &nbsp;
-        if hungup
+        if hungupAt
           i.fa.fa-phone.connection
         else
           i draggable="true" class={myCallLeg :fa :fa-phone :connection} click=hangupCall

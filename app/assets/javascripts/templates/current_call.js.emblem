@@ -1,7 +1,7 @@
 table#callstats_table
   tbody
     tr.thead
-      if model.hungup
+      if model.hungupAt
         td.split colspan="2"
           = t 'calls.hungup_call_to'
           '
