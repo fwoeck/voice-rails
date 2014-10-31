@@ -6,11 +6,5 @@ class UserSerializer < ActiveModel::Serializer
 
   def roles
     object.role_summary
-  rescue => e
-    # FIXME With jruby, we see these now and then:
-    #       undefined method `reverse' for nil:NilClass
-    #
-    Rails.logger.error e.message
-    ['agent']
   end
 end
