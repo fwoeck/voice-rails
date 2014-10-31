@@ -47,6 +47,13 @@ class User < ActiveRecord::Base
   end
 
 
+  def receives_all_events?
+    Rails.cache.fetch("receives_all_events_#{self.id}", expires_in: 1.minute) {
+      self.has_role?(:admin)
+    }
+  end
+
+
   def matches_requirements?(lang, skill)
     return false if lang.blank? || skill.blank?
     languages.include?(lang) && skills.include?(skill)
