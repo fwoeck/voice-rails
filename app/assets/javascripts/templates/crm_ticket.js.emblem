@@ -1,5 +1,8 @@
-td = view 'created_at'
-td = unbound crmuserUser submitterId
-td.w46: span.has-tip.tip-top data-tooltip="" title="#{unbound description}"
+td.w19 = view 'created_at'
+
+td.w22 = unbound crmuserUser submitterId
+
+td.w47: span.has-tip.tip-top data-tooltip="" title="#{unbound description}"
   a target="_blank" href="#{unbound url}" = subject
+
 td.status: span = status

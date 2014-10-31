@@ -1,18 +1,18 @@
-td = view 'created_at'
+td.w19 = view 'created_at'
 
 if userId
-  td = unbound agentFor userId
+  td.w22 = unbound agentFor userId
 else
-  td
+  td.w22
     = t 'domain.mailbox'
     ' &nbsp;
     i.fa.fa-volume-up
 
 if mailbox
-  td.mailbox
+  td.w47.mailbox
     = mailbox-player mailbox=mailbox
 else
-  td.w46 = remarks
+  td.w47 = remarks
 
 td.status
   if status

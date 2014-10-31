@@ -1,8 +1,8 @@
 table.history_table
   colgroup
-    col.w20
+    col.w19
     col.w22
-    col.w46
+    col.w47
     col.w12
   thead
     tr

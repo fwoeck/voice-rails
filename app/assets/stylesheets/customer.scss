@@ -42,24 +42,28 @@ table.history_table {
   width: calc(100% - 8px);
   margin: 4px;
 
-  col.w20 {
-    width: 20%;
+  col.w12 {
+    width: 12%;
+  }
+
+  col.w19 {
+    width: 19%;
   }
 
   col.w22 {
     width: 22%;
   }
 
-  col.w46 {
-    width: 46%;
+  col.w47 {
+    width: 47%;
   }
 
-  td.w46 {
-    max-width: 315px;
+  td.w22 {
+    max-width: 152px;
   }
 
-  col.w12 {
-    width: 12%;
+  td.w47 {
+    max-width: 322px;
   }
 
   thead td {
