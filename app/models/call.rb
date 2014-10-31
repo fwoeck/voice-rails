@@ -55,8 +55,10 @@ class Call
 
 
   def handle_message
-    uids = User.get_online_user_ids_for(self)
-    send_call_update_to_clients(uids)
+    VoiceThread.async {
+      uids = User.get_online_user_ids_for(self)
+      send_call_update_to_clients(uids)
+    }
   end
 
 
