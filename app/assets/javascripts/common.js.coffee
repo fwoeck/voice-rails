@@ -260,7 +260,7 @@ window.app = {
       app.dialog(i18n.dialog.no_messages, 'error').then (->
         app.logout()
       )
-    ), 12000
+    ), 15000
 
 
   logout: ->

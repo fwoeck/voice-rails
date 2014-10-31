@@ -84,7 +84,7 @@ module UserNetworking
 
     def all_matching_user_ids(lang, skill)
       all.select { |user|
-        user.has_role?(:admin) || user.matches_requirements?(lang, skill)
+        user.receives_all_events? || user.matches_requirements?(lang, skill)
       }.map(&:id)
     end
   end
