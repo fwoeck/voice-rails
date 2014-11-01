@@ -50,7 +50,7 @@ GEM
     bson (2.3.0-java)
     builder (3.2.2)
     bundler-unload (1.0.2)
-    bunny (1.6.0)
+    bunny (1.5.1)
       amq-protocol (>= 1.9.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -337,7 +337,7 @@ DEPENDENCIES
   active_model_serializers
   activerecord-jdbc-adapter
   activerecord-jdbcmysql-adapter
-  bunny
+  bunny (= 1.5.1)
   byebug
   capybara-screenshot
   celluloid
