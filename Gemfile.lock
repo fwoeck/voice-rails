@@ -50,7 +50,7 @@ GEM
     bson (2.3.0-java)
     builder (3.2.2)
     bundler-unload (1.0.2)
-    bunny (1.5.1)
+    bunny (1.6.0)
       amq-protocol (>= 1.9.2)
     byebug (3.5.1)
       columnize (~> 0.8)

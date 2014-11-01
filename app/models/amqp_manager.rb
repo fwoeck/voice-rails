@@ -76,23 +76,23 @@ class AmqpManager
     rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
     rails_queue.subscribe do |delivery_info, metadata, payload|
       Marshal.load(payload).handle_message
-    end
+    end if ENV['SUBSCRIBE_AMQP']
   end
 
 
   class << self
 
     def start
-      return if defined?(@@manager) || ENV['SUBSCRIBE_AMQP'].blank?
+      return if defined?(@@manager)
 
-      Celluloid.logger = Rails.logger
+      Celluloid.logger = ENV['SUBSCRIBE_AMQP'] ? Rails.logger : nil
       Celluloid::Actor[:amqp] = AmqpManager.pool(size: 32)
       @@manager = new.tap { |m| m.start }
     end
 
 
     def shutdown
-      @@manager.shutdown if defined?(@@manager)
+      @@manager.shutdown
     end
   end
 end
