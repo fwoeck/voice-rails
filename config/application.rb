@@ -36,5 +36,6 @@ module Voice
     end
 
     config.cache_store = :memory_store
+    config.action_dispatch.perform_deep_munge = false
   end
 end
