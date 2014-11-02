@@ -127,7 +127,7 @@ GEM
       sass (>= 3.2.0)
     git-smart (0.1.10)
       colorize
-    guard (2.7.0)
+    guard (2.7.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
