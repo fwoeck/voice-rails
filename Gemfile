@@ -17,7 +17,6 @@ gem 'slim-rails'
 gem 'redis-rails'
 gem 'thread_safe'
 gem 'connection_pool'
-gem 'rubygems-bundler',          require: false
 gem 'active_model_serializers'
 
 gem 'faker'                      # TODO move to dev-group again
