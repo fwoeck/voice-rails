@@ -49,7 +49,6 @@ GEM
     bson (2.3.0)
     bson (2.3.0-java)
     builder (3.2.2)
-    bundler-unload (1.0.2)
     bunny (1.5.1)
       amq-protocol (>= 1.9.2)
     byebug (3.5.1)
@@ -80,7 +79,6 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colored (1.2)
-    colorize (0.7.3)
     columnize (0.8.9)
     connection_pool (2.0.0)
     database_cleaner (1.3.0)
@@ -112,7 +110,6 @@ GEM
     emblem-source (0.3.17)
     erubis (2.7.0)
     execjs (2.2.2)
-    executable-hooks (1.3.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     faker (1.4.3)
@@ -125,9 +122,7 @@ GEM
     foundation-rails (5.4.5.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
-    git-smart (0.1.10)
-      colorize
-    guard (2.7.0)
+    guard (2.7.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
@@ -153,9 +148,9 @@ GEM
     jruby-openssl (0.9.5-java)
     json (1.8.1)
     json (1.8.1-java)
-    launchy (2.4.2)
+    launchy (2.4.3)
       addressable (~> 2.3)
-    launchy (2.4.2-java)
+    launchy (2.4.3-java)
       addressable (~> 2.3)
       spoon (~> 0.0.1)
     listen (2.7.11)
@@ -183,7 +178,7 @@ GEM
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     nokogiri (1.6.3.1-java)
-    oj (2.10.4)
+    oj (2.11.0)
     optionable (0.2.0)
     origin (2.1.1)
     orm_adapter (0.5.0)
@@ -269,9 +264,6 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    rubygems-bundler (1.4.4)
-      bundler-unload (>= 1.0.2)
-      executable-hooks (>= 1.3.2)
     rubyzip (1.1.6)
     sass (3.2.19)
     sass-rails (4.0.4)
@@ -351,7 +343,6 @@ DEPENDENCIES
   faker
   font-awesome-rails
   foundation-rails
-  git-smart
   guard-rspec
   guard-spring
   hirb
@@ -373,7 +364,6 @@ DEPENDENCIES
   redis-rails
   rolify
   rspec-rails
-  rubygems-bundler
   sass-rails
   selenium-webdriver
   slim-rails
