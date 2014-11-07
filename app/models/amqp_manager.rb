@@ -1,7 +1,8 @@
 class AmqpManager
   include Celluloid
 
-  TOPICS = [:rails, :push, :custom, :ahn, :numbers]
+  USE_JRB = RUBY_PLATFORM =~ /java/
+  TOPICS  = [:rails, :push, :custom, :ahn, :numbers]
 
 
   TOPICS.each { |name|
@@ -58,7 +59,7 @@ class AmqpManager
 
 
   def establish_connection
-    if RUBY_PLATFORM =~ /java/
+    if USE_JRB
       establish_marchhare_connection
     else
       establish_bunny_connection
@@ -95,8 +96,8 @@ class AmqpManager
     return if Rails.env.test?
 
     rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
-    rails_queue.subscribe do |delivery_info, metadata, payload|
-      Marshal.load(payload).handle_message
+    rails_queue.subscribe(blocking: false) do |headers, _p1, _p2|
+      Marshal.load(USE_JRB ? _p1 : _p2).handle_message
     end if ENV['SUBSCRIBE_AMQP']
   end
 
