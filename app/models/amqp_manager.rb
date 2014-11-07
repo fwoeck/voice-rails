@@ -58,12 +58,33 @@ class AmqpManager
 
 
   def establish_connection
+    if RUBY_PLATFORM =~ /java/
+      establish_marchhare_connection
+    else
+      establish_bunny_connection
+    end
+  end
+
+
+  def establish_bunny_connection
     @@connection = Bunny.new(
       host:     WimConfig.rabbit_host,
       user:     WimConfig.rabbit_user,
       password: WimConfig.rabbit_pass
     ).tap { |c| c.start }
   rescue Bunny::TCPConnectionFailed
+    sleep 1
+    retry
+  end
+
+
+  def establish_marchhare_connection
+    @@connection = MarchHare.connect(
+      host:     WimConfig.rabbit_host,
+      user:     WimConfig.rabbit_user,
+      password: WimConfig.rabbit_pass
+    )
+  rescue MarchHare::ConnectionRefused
     sleep 1
     retry
   end
