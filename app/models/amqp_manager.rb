@@ -96,8 +96,8 @@ class AmqpManager
     return if Rails.env.test?
 
     rails_queue.bind(rails_xchange, routing_key: 'voice.rails')
-    rails_queue.subscribe(blocking: false) do |headers, _p1, _p2|
-      Marshal.load(USE_JRB ? _p1 : _p2).handle_message
+    rails_queue.subscribe(blocking: false) do |*args|
+      Marshal.load(USE_JRB ? args[1] : args[2]).handle_message
     end if ENV['SUBSCRIBE_AMQP']
   end
 
