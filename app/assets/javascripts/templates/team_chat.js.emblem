@@ -1,14 +1,15 @@
-#chat_header.large-12.medium-12.columns
+#chat_header.large-12.medium-12
   h5
     i.header.fa.fa-comments
     = t 'headers.team_chat'
 
   = view 'chat_input'
 
-#team_chat.large-12.medium-12.columns.bottom-mask
-  each cm in content
-    = render 'chat_message' cm
-  else
-    .message
-      .body.empty
-        p == t 'placeholder.no_recent_messg'
+#team_chat.large-12.medium-12.bottom-mask
+  .jspContainer: .jspPane
+    each cm in content
+      = render 'chat_message' cm
+    else
+      .message
+        .body.empty
+          p == t 'placeholder.no_recent_messg'

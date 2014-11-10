@@ -20,17 +20,12 @@
 }
 
 #call_queue_body {
-  border-top: 1px solid #eee;
-  padding: 10px 8px 0 0;
+  border-top: 1px solid #ddd;
   position: absolute;
-  overflow-y: scroll;
+  overflow: hidden;
   width: 734px;
   bottom: 0;
   top: 40px;
-}
-
-@-moz-document url-prefix() {
-  width: 742px;
 }
 
 table#callstats_table {
@@ -39,7 +34,11 @@ table#callstats_table {
   border: 1px solid #ddd;
   background-color: #ccc;
   border-spacing: 1px;
-  width: 100%;
+  width: 719px;
+
+  .w50 {
+    width: 357px;
+  }
 
   tr {
     background-color: #f6f6f6;
@@ -93,12 +92,12 @@ table#callstats_table {
 
   span.filter {
     font-weight: normal;
-    position: absolute;
-    line-height: 35px;
     font-size: 11px;
-    height: 30px;
-    right: 10px;
-    top: 0;
+    float: right;
+
+    input {
+      margin: 0;
+    }
   }
 }
 

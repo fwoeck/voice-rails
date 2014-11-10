@@ -5,7 +5,9 @@
     span.stats  = currentStatusLine
 
   #call_queue_body.bottom-mask
-    if currentCall.origin
-      = render 'current_call' currentCall
-    else
-      = partial 'calls_table'
+    .jspContainer: .jspPane
+      .spacer-10
+      if currentCall.origin
+        = render 'current_call' currentCall
+      else
+        = partial 'calls_table'

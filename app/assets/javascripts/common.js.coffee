@@ -64,12 +64,11 @@ window.app = {
 
   toggleAgentTable: (curF) ->
     tableId = '#agent_table_wrapper'
-    table   = ($ tableId)
 
-    if !curF || curF.find(tableId).length || table.find(curF).length
-      table.addClass('expanded')
+    if !curF || curF.find(tableId).length || ($ tableId).find(curF).length
+      ($ tableId).addClass('expanded')
     else
-      table.removeClass('expanded')
+      ($ tableId).removeClass('expanded')
 
 
   aggregateSkillSelection: ->
@@ -184,6 +183,11 @@ window.app = {
       )
 
 
+  bindWindowResize: ->
+    ($ window).resize ->
+      app.resetScrollPanes()
+
+
   setupMoment: ->
     moment.locale(env.locale)
 
@@ -276,6 +280,7 @@ window.app = {
 
   setupDashboard: ->
     @agentOverviewToggle()
+    @invokeJScrollPane()
     @mySettingsToggle()
     @callQueueToggle()
     @setupLabelInputs()
@@ -469,4 +474,32 @@ window.app = {
       env.callDialogActive = false
       phone.app.hangup(par.call.id)
     )
+
+
+  resetScrollPanes: ->
+    Ember.run.next ->
+      Ember.run.scheduleOnce 'afterRender', app, app.resetScrollPanesDelayed
+
+
+  resetScrollPanesDelayed: ->
+    Ember.run.later app, app.invokeJScrollPane, 500
+
+
+  jsp: {}
+
+
+  invokeJScrollPane: ->
+    app.jsp.tch = ($ '#team_chat').jScrollPane().data('jsp')
+    app.jsp.cqb = ($ '#call_queue_body').jScrollPane().data('jsp')
+    app.jsp.atw = ($ '#agent_table_wrapper').jScrollPane().data('jsp')
+    app.jsp.aob = ($ '#agent_overview_body').jScrollPane().data('jsp')
+    app.jsp.csr = ($ '#customer_search_results').jScrollPane().data('jsp')
+
+
+  removeJScrollPane: ->
+    app.jsp.tch?.destroy()
+    app.jsp.cqb?.destroy()
+    app.jsp.atw?.destroy()
+    app.jsp.aob?.destroy()
+    app.jsp.csr?.destroy()
 }

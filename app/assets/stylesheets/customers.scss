@@ -1,5 +1,5 @@
 #new_customers_body {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd;
   top: 40px;
 }
 
@@ -21,7 +21,7 @@
 
 #customer_search {
   border-bottom: 1px solid #d8d8d8;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd;
   margin-right: 16px;
   height: 69px;
 
@@ -39,7 +39,7 @@
 
 #customer_search_results {
   height: calc(100% - 111px);
-  overflow-y: scroll;
+  overflow: hidden;
   width: 986px;
 
   .search_result {
@@ -123,7 +123,7 @@
 
   h6 {
     border-bottom: 1px solid #999;
-    margin: 30px 8px 10px 0;
+    margin: 30px 16px 10px 0;
   }
 
   span.tag {

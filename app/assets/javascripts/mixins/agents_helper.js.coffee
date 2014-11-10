@@ -19,13 +19,19 @@ Voice.AgentsHelper = Ember.Mixin.create({
 
   updateMatches: ->
     @patternTimer = null
+    app.resetScrollPanes()
+    app.removeJScrollPane()
     @notifyPropertyChange('matchingAgents')
+
+
+  sortedAgents: ->
+    @get('content').sort (a, b) ->
+      Ember.compare a.get('fullName'), b.get('fullName')
 
 
   matchingAgents: (->
     pattern = @get('pattern').toLowerCase()
-    agents  = @get('content').sort (a, b) ->
-      Ember.compare a.get('fullName'), b.get('fullName')
+    agents  = @sortedAgents()
 
     return agents unless pattern
     agents.filter (agent) -> agent.matchesSearch(pattern)
