@@ -17,16 +17,15 @@ class ChatMessagesController < ApplicationController
   private
 
   def opts_for_create
-    OpenStruct.new.tap { |o|
-      o.created_at = Time.now.utc
-      o.from       = current_user.email
-      o.to         = (params[:chat_message][:to] || "").downcase.strip
-      o.content    = (params[:chat_message][:content] || "").strip.truncate(150)
+    { created_at: Time.now.utc,
+      from:       current_user.email,
+      to:         (params[:chat_message][:to] || "").downcase.strip,
+      content:    (params[:chat_message][:content] || "").strip.truncate(150)
     }
   end
 
 
   def message_is_valid?(o)
-    !o.content.blank? && (o.to.blank? || User.where(email: o.to).count == 1)
+    !o[:content].blank? && (o[:to].blank? || User.where(email: o[:to]).count == 1)
   end
 end
