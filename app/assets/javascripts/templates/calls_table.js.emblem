@@ -6,7 +6,7 @@ table#callstats_table
     tr.thead
       td.split
         = t 'headers.inbound_calls'
-        span.filter
+        span.filter: label
           = t 'headers.show_dispatched'
           ' &nbsp;
           = input type='checkbox' checked=showDispatchedCalls

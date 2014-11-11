@@ -91,13 +91,19 @@ table#callstats_table {
   }
 
   span.filter {
-    font-weight: normal;
-    font-size: 11px;
     float: right;
 
     input {
-      vertical-align: baseline;
+      position: absolute;
+      right: 9px;
       margin: 0;
+      top: 12px;
+    }
+
+    label {
+      padding-right: 15px;
+      line-height: 17px;
+      font-size: 11px;
     }
   }
 }
