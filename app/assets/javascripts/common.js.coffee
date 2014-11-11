@@ -290,11 +290,13 @@ window.app = {
 
 
   showAgentOverview: ->
+    app.resetScrollPanes()
     ($ '#call_queue').removeClass('expanded')
 
 
   toggleAgentOverview: ->
     app.hideTooltips()
+    app.resetScrollPanes()
     ($ '#call_queue').toggleClass('expanded')
 
 
@@ -304,6 +306,7 @@ window.app = {
 
   toggleSettings: ->
       app.hideTooltips()
+      app.resetScrollPanes()
       ($ '#my_settings').toggleClass('expanded')
       ($ '#call_queue').toggleClass('lifted')
 
@@ -333,6 +336,7 @@ window.app = {
 
   toggleCallQueue: ->
     app.hideTooltips()
+    app.resetScrollPanes()
     ($ '#call_queue').addClass('expanded').addClass('lifted')
     ($ '#my_settings').removeClass('expanded')
 
