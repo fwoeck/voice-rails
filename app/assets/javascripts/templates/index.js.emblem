@@ -3,5 +3,5 @@
   = render 'agent_overview' users
   = render 'call_queue' calls
 
-#right_column.large-3.medium-3.right.hide-for-small
+#right_column.columns.large-3.medium-3.right.hide-for-small
   = render 'team_chat' chatMessages

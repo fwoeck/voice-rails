@@ -4,6 +4,8 @@
 #= require jquery.json.js
 #= require jquery.jplayer
 #= require jquery.websocket
+#= require jquery.mousewheel
+#= require voice.jscrollpane
 #= require foundation/foundation
 #= require foundation/foundation.tab
 #= require foundation/foundation.abide
@@ -41,6 +43,7 @@ app.aggregateSkillSelection()
 app.aggregateLanguageSelection()
 app.aggregateRoleSelection()
 
+app.bindWindowResize()
 app.setupMoment()
 app.setupAbide()
 

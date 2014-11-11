@@ -64,12 +64,11 @@ window.app = {
 
   toggleAgentTable: (curF) ->
     tableId = '#agent_table_wrapper'
-    table   = ($ tableId)
 
-    if !curF || curF.find(tableId).length || table.find(curF).length
-      table.addClass('expanded')
+    if !curF || curF.find(tableId).length || ($ tableId).find(curF).length
+      ($ tableId).addClass('expanded')
     else
-      table.removeClass('expanded')
+      ($ tableId).removeClass('expanded')
 
 
   aggregateSkillSelection: ->
@@ -182,6 +181,11 @@ window.app = {
         "</div>" +
         "<div class='td space'>#{env.languages[lang]}</div>"
       )
+
+
+  bindWindowResize: ->
+    ($ window).resize ->
+      app.resetScrollPanes()
 
 
   setupMoment: ->
@@ -469,4 +473,32 @@ window.app = {
       env.callDialogActive = false
       phone.app.hangup(par.call.id)
     )
+
+
+  resetScrollPanes: ->
+    Ember.run.next ->
+      Ember.run.scheduleOnce 'afterRender', app, app.resetScrollPanesDelayed
+
+
+  resetScrollPanesDelayed: ->
+    Ember.run.later app, app.invokeJScrollPane, 500
+
+
+  jsp:     {}
+  jspKeys: [
+    '#team_chat',
+    '#call_queue_body',
+    '#agent_table_wrapper',
+    '#agent_overview_body',
+    '#customer_search_results'
+  ]
+
+
+  invokeJScrollPane: ->
+    app.jspKeys.forEach (key) ->
+      app.jsp[key] = ($ key).jScrollPane().data('jsp')
+
+
+  removeJScrollPane: ->
+    Ember.keys(app.jsp).forEach (key) -> app.jsp[key]?.destroy()
 }

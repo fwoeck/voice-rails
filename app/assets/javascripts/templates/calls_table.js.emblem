@@ -1,7 +1,7 @@
 table#callstats_table
   colgroup
-    col width='50%'
-    col width='50%'
+    col.w50
+    col.w50
   tbody
     tr.thead
       td.split

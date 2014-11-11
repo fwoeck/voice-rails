@@ -20,21 +20,18 @@
 }
 
 #agent_overview_body {
-  border-top: 1px solid #eee;
-  padding-bottom: 10px;
-  overflow-x: hidden;
+  border-top: 1px solid #ddd;
   position: absolute;
-  padding-top: 10px;
-  overflow-y: auto;
+  overflow: hidden;
   width: 735px;
   top: 40px;
   bottom: 0;
 
-  > .ember-view {
+  .ember-view {
     float: left;
   }
 
-  > .ember-view:nth-child(even) {
+  .jspPane > .ember-view:nth-child(even) {
     margin-left: 10px;
   }
 }
@@ -66,7 +63,7 @@
   background-color: #f6f6f6;
   border: 1px solid #ddd;
   position: relative;
-  margin-bottom: 8px;
+  margin-top: 10px;
   width: 354px;
   float: left;
   padding: 0;

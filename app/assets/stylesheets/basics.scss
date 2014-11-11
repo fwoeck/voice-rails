@@ -41,9 +41,10 @@ html.touch {
   #team_chat,
   #call_queue_body,
   #agent_table_wrapper,
-  #agent_overview_body {
-    -webkit-overflow-scrolling: touch;
+  #agent_overview_body,
+  #customer_search_results {
     -webkit-backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
     -webkit-transform: translateZ(0);
   }
 }
@@ -264,6 +265,20 @@ form#new_user {
       line-height: 16px;
     }
   }
+}
+
+div.spacer-10, div.spacer-16, div.spacer-20 {
+  height: 10px;
+  float: left;
+  width: 100%;
+}
+
+div.spacer-16 {
+  height: 16px;
+}
+
+div.spacer-20 {
+  height: 20px;
 }
 
 .blurred {

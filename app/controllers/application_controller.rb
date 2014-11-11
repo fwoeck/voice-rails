@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   CSP_HEADER = [
     "default-src *;",
     "script-src 'self' https://#{WimConfig.hostname} 'unsafe-inline' 'unsafe-eval';",
-    "style-src 'self' https://#{WimConfig.hostname} https://fonts.googleapis.com 'unsafe-inline';"
+    "style-src 'self' https://#{WimConfig.hostname} https://fonts.gstatic.com https://fonts.googleapis.com 'unsafe-inline';"
   ].join
 
   def set_csp

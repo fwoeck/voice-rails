@@ -8,5 +8,7 @@
     view 'agent_search' value=pattern
 
   #agent_overview_body.bottom-mask
-    each matchingAgents
-      = render 'agent' this
+    .jspContainer: .jspPane
+      each matchingAgents
+        = render 'agent' this
+      .spacer-10

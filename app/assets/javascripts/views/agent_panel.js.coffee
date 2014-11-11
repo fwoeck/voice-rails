@@ -4,10 +4,15 @@ Voice.AgentPanelView = Ember.View.extend({
   slideTimer:        null
 
 
+  didInsertElement: ->
+    app.resetScrollPanes()
+
+
   actions:
     editAgent: ->
       return unless @get('controller.cuCanEditAgent')
       app.setCurrentAgentForm @$()
+      app.resetScrollPanes()
       false
 
 

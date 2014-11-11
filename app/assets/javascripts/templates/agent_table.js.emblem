@@ -7,5 +7,7 @@
       view 'agent_search' value=pattern
 
 #agent_table_wrapper.bottom-mask.expanded.large-12.medium-12
-  each matchingAgents
-    render 'agent_panel' this
+  .jspContainer: .jspPane
+    each matchingAgents
+      render 'agent_panel' this
+    .spacer-10
