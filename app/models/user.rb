@@ -28,8 +28,7 @@ class User < ActiveRecord::Base
   validates :email,      presence: true, uniqueness: true,
                          email: true
 
-  validates :locale,     allow_blank: true,
-                         inclusion: {in: WimConfig.ui_locales}
+  validates :locale,     inclusion: {in: WimConfig.ui_locales}
 
   validates :crmuser_id, numericality: {only_integer: true},
                          allow_blank: true, length: {is: 9}
@@ -73,11 +72,11 @@ class User < ActiveRecord::Base
     end
 
 
-    def build_param_hash(p)
-      {
-        name:       p.fetch(:name, nil).try(:strip),
+    def build_param_hash(p, loc=WimConfig.ui_locales)
+      { name:       p.fetch(:name, nil).try(:strip),
         email:      p.fetch(:email).strip.downcase,
         secret:     p.fetch(:secret, nil).try(:strip),
+        locale:     p.fetch(:locale, loc.first),
         password:   p.fetch(:password),
         full_name:  p.fetch(:full_name).strip,
         crmuser_id: p.fetch(:crmuser_id, nil).try(:strip),
@@ -98,7 +97,7 @@ class User < ActiveRecord::Base
 
 
     def sanitize_params(p)
-      [:name, :secret, :crmuser_id].each { |sym|
+      [:name, :secret, :crmuser_id, :locale].each { |sym|
         p[sym] = nil if p[sym].blank?
       }
 
