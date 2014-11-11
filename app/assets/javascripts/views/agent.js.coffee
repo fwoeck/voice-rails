@@ -1,6 +1,7 @@
 Voice.AgentView = Ember.View.extend(DragNDrop.Droppable, {
 
   didInsertElement: ->
+    app.resetScrollPanes()
     app.initFoundation()
 
 

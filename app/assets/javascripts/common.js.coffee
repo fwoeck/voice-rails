@@ -280,7 +280,6 @@ window.app = {
 
   setupDashboard: ->
     @agentOverviewToggle()
-    @invokeJScrollPane()
     @mySettingsToggle()
     @callQueueToggle()
     @setupLabelInputs()
@@ -485,21 +484,21 @@ window.app = {
     Ember.run.later app, app.invokeJScrollPane, 500
 
 
-  jsp: {}
+  jsp:     {}
+  jspKeys: [
+    '#team_chat',
+    '#call_queue_body',
+    '#agent_table_wrapper',
+    '#agent_overview_body',
+    '#customer_search_results'
+  ]
 
 
   invokeJScrollPane: ->
-    app.jsp.tch = ($ '#team_chat').jScrollPane().data('jsp')
-    app.jsp.cqb = ($ '#call_queue_body').jScrollPane().data('jsp')
-    app.jsp.atw = ($ '#agent_table_wrapper').jScrollPane().data('jsp')
-    app.jsp.aob = ($ '#agent_overview_body').jScrollPane().data('jsp')
-    app.jsp.csr = ($ '#customer_search_results').jScrollPane().data('jsp')
+    app.jspKeys.forEach (key) ->
+      app.jsp[key] = ($ key).jScrollPane().data('jsp')
 
 
   removeJScrollPane: ->
-    app.jsp.tch?.destroy()
-    app.jsp.cqb?.destroy()
-    app.jsp.atw?.destroy()
-    app.jsp.aob?.destroy()
-    app.jsp.csr?.destroy()
+    Ember.keys(app.jsp).forEach (key) -> app.jsp[key]?.destroy()
 }

@@ -18,7 +18,8 @@
       = view 'search_limit' value=t
 
     #customer_search_results.bottom-mask
-      each result in searchResults
-        = render 'search_result' result
-      else
-        = view 'search_examples'
+      .jspContainer: .jspPane
+        each result in searchResults
+          = render 'search_result' result
+        else
+          = view 'search_examples'

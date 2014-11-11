@@ -2,6 +2,7 @@
   border-bottom: 1px solid #ddd;
   background: #fff;
   height: 122px;
+  width: 232px;
   z-index: 10;
 
   h5 {
@@ -15,17 +16,16 @@
 
   input {
     height: 42px;
-    width: 100%;
+    width: 220px;
   }
 }
 
 #team_chat {
   position: absolute;
-  padding-top: 4px;
   overflow: hidden;
   width: 232px;
+  z-index: -1;
   top: 124px; // ! This must match tcTop in ChatMessageView
-  z-index: 1;
   bottom: 0;
 
   .header {
