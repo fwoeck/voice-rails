@@ -37,7 +37,7 @@ Voice.StatsView = Ember.View.extend({
   setRrdTimer: ->
     self = @
     @rrdTimer = window.setInterval (->
-      self.updateRrdSource()
+      Ember.run -> self.updateRrdSource()
     ), 60000
 
 

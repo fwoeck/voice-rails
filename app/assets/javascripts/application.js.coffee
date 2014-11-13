@@ -47,10 +47,14 @@ app.bindWindowResize()
 app.setupMoment()
 app.setupAbide()
 
+
+Ember.testing = false # Set to true for testing auto-runs
+
 window.Voice = Ember.Application.create(
   rootElement: '#ember_main'
 )
 
 if app.noLogin()
   Voice.deferReadiness()
-  app.initFoundation()
+  Ember.run ->
+    app.initFoundation()

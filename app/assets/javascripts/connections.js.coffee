@@ -55,9 +55,10 @@ app.setupSSE = ->
       )
 
   env.sseSource.onmessage = (event) ->
-    data = JSON.parse(event.data)
-    console.log('SSE message:', data) if env.debug
+    Ember.run ->
+      data = JSON.parse(event.data)
+      console.log('SSE message:', data) if env.debug
 
-    app.parseIncomingData(data)
-    if env.railsEnv == 'test' && !data.servertime
-      env.messages.push(data)
+      app.parseIncomingData(data)
+      if env.railsEnv == 'test' && !data.servertime
+        env.messages.push(data)
