@@ -65,7 +65,7 @@ class CustomersController < ApplicationController
 
 
   def opts_for_search
-    {c: params[:c], h: params[:h], t: params[:t], s: 100}
+    {c: params[:c], h: params[:h], t: params[:t], s: 50}
   end
 
 

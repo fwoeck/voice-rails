@@ -2,14 +2,14 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
 
   name:          DS.attr 'string'
   email:         DS.attr 'string'
-  roles:         DS.attr 'array'
-  skills:        DS.attr 'array'
+  roles:         DS.attr 'array',  defaultValue: -> Ember.A()
+  skills:        DS.attr 'array',  defaultValue: -> Ember.A()
   secret:        DS.attr 'string'
-  locale:        DS.attr 'string'
+  locale:        DS.attr 'string', defaultValue: -> env.locale
   password:      DS.attr 'string'
   fullName:      DS.attr 'string'
   activity:      DS.attr 'string'
-  languages:     DS.attr 'array'
+  languages:     DS.attr 'array',  defaultValue: -> Ember.A()
   crmuserId:     DS.attr 'string'
   visibility:    DS.attr 'string'
   confirmation:  DS.attr 'string'
