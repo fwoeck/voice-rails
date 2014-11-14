@@ -104,7 +104,7 @@ class AmqpManager
       return if defined?(@@manager)
       prepare_cleanup
 
-      Celluloid.logger = ENV['SUBSCRIBE_AMQP'] ? Rails.logger : nil
+      Celluloid.logger.level = 3
       Celluloid::Actor[:amqp] = AmqpManager.pool(size: 32)
       @@manager = new.tap { |m| m.start }
     end
