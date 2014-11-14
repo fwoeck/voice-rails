@@ -33,6 +33,7 @@ class Agent
         password:     'P4ssw0rd',
         confirmation: 'P4ssw0rd',
         email:        email_for(fn),
+        locale:       ui_locales.next,
         languages:    samples_for(:langs),
         skills:       samples_for(:skills)
       )
@@ -46,6 +47,11 @@ class Agent
 
     def samples_for(sym)
       [send(sym).next, send(sym).next, send(sym).next].sample(1 + rand(3))
+    end
+
+
+    def ui_locales
+      @memo_loc ||= WimConfig.ui_locales.cycle
     end
 
 
