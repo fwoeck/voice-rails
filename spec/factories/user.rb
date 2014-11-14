@@ -1,10 +1,11 @@
 FactoryGirl.define do
 
   factory :user do
-    email                 '100@mail.com'  # => the devise login
-    password              'P4ssw0rd'      # => the devise password
+    email                 '100@mail.com'  # => devise login
+    password              'P4ssw0rd'      # => devise password
     password_confirmation 'P4ssw0rd'
-    name                  '100'           # => the asterisk extension
-    secret                '0000'          # => the sip secret
+    name                  '100'           # => asterisk extension
+    secret                '0000'          # => sip secret
+    locale                'en'            # => UI locale
   end
 end
