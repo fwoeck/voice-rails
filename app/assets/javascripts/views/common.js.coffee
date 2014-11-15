@@ -37,7 +37,7 @@ Voice.FromNowView = Ember.View.extend({
   didInsertElement: ->
     self = @
     @interval = window.setInterval (->
-      self.rerender()
+      Ember.run -> self.rerender()
     ), 5000
 
   willClearRender: ->

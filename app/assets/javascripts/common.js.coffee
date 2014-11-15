@@ -185,7 +185,8 @@ window.app = {
 
   bindWindowResize: ->
     ($ window).resize ->
-      app.resetScrollPanes()
+      Ember.run ->
+        app.resetScrollPanes()
 
 
   setupMoment: ->

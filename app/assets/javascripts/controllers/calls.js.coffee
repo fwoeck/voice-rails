@@ -12,8 +12,9 @@ Voice.CallsController = Ember.ArrayController.extend({
 
 
   wipeHungupCalls: ->
-    @get('model').forEach (call) ->
-      call.remove() if call.readyForWipe()
+    Ember.run =>
+      @get('model').forEach (call) ->
+        call.remove() if call.readyForWipe()
 
 
   bundlePairs: ( ->

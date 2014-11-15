@@ -3,9 +3,10 @@ Voice.ApplicationAdapter = DS.ActiveModelAdapter.extend(
   namespace: env.apiVersion
 
   ajaxError: (jqXHR) ->
-    error = @_super(jqXHR)
-    msg   = app.parseAjaxError(error.errors?[0]) || error.statusText
-    app.showDefaultError i18n.errors.ajax_error.replace('MSG', msg)
+    Ember.run =>
+      error = @_super(jqXHR)
+      msg   = app.parseAjaxError(error.errors?[0]) || error.statusText
+      app.showDefaultError i18n.errors.ajax_error.replace('MSG', msg)
 )
 
 
