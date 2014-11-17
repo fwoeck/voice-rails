@@ -24,7 +24,6 @@ class Agent
   class << self
 
     def create_fake
-      raise unless Rails.env.development?
       fn = Faker::Name.name
 
       User.create_from(

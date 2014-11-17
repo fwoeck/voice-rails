@@ -165,7 +165,7 @@ env.i18n =
       form_with_errors: 'Ein oder mehr Felder sind unvollständig. Bitte ergänzen/korrigieren Sie dies zuerst.'
       hangup:           'Auflegen'
       hangup_this_call: 'Möchten Sie diesen Anruf auflegen?'
-      i_am_busy:        'Ich bin beschäftigt'
+      i_am_busy:        'Jetzt nicht'
       incoming_call:    'Sie bekommen einen Anruf von<br /><strong>NAME</strong>'
       lost_server_conn: 'Leider haben wir die Verbindung zum Server verloren &mdash; bitte prüfen Sie Ihr Netzwerk<br />und melden sich erneut an.'
       no_messages:      'Wir empfangen keine Nachrichten mehr &mdash;<br />bitte öffnen Sie nur ein Fenster zur Zeit.'

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get      'app'                 => 'application#ember_index'
   get      'app/*any'            => 'application#ember_index'
 
-  if Rails.env.development?
+  constraints(ip: /127.0.0.1/) do
     get    'seed/agents'         => 'seeds#agents'
     get    'seed/customers'      => 'seeds#customers'
   end
