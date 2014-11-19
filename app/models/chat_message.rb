@@ -4,7 +4,7 @@ class ChatMessage
 
   field :to,         type: String
   field :from,       type: String
-  field :created_at, type: DateTime
+  field :created_at, type: Time
   field :content,    type: String
 
   index(created_at: -1)

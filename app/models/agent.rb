@@ -23,19 +23,26 @@ class Agent
 
   class << self
 
-    def create_fake
-      fn = Faker::Name.name
+    LOCALES = WimConfig.ui_locales
+    SKILLS  = WimConfig.skills.keys
+    LANGS   = WimConfig.languages.keys
 
-      User.create_from(
-        full_name:    fn,
+
+    def create_fake
+      User.create_from(fake_attributes Faker::Name.name)
+    end
+
+
+    def fake_attributes(fn)
+      { full_name:    fn,
         roles:        ['agent'],
         password:     'P4ssw0rd',
         confirmation: 'P4ssw0rd',
         email:        email_for(fn),
-        locale:       ui_locales.next,
-        languages:    samples_for(:langs),
-        skills:       samples_for(:skills)
-      )
+        locale:       LOCALES.sample,
+        languages:    samples_for(LANGS),
+        skills:       samples_for(SKILLS)
+      }
     end
 
 
@@ -44,23 +51,8 @@ class Agent
     end
 
 
-    def samples_for(sym)
-      [send(sym).next, send(sym).next, send(sym).next].sample(1 + rand(3))
-    end
-
-
-    def ui_locales
-      @memo_loc ||= WimConfig.ui_locales.cycle
-    end
-
-
-    def langs
-      @memo_langs ||= WimConfig.languages.keys.cycle
-    end
-
-
-    def skills
-      @memo_skills ||= WimConfig.skills.keys.cycle
+    def samples_for(pool)
+      pool.sample(1 + rand(3))
     end
   end
 end

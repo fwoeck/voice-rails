@@ -25,7 +25,7 @@ Voice.MySettingsController = Ember.ObjectController.extend({
 
 
   restoreLocalSettings: ->
-    Ember.run.next =>
+    Ember.run =>
       @set 'useWebRtc',    app.loadLocalKey('useWebRtc')
       @set 'useAutoReady', app.loadLocalKey('useAutoReady')
 
