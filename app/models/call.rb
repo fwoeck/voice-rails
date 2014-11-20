@@ -23,7 +23,7 @@ class Call
   #
   def related_agent_names
     [ caller_id, extension, (call_tag || '').scan(%r{SIP/(\d+)-})
-    ].flatten.uniq.compact.select { |name| name[/^\d\d\d\d?$/] }.sort
+    ].flatten.uniq.compact.select { |name| name[/^\d\d\d$/] }.sort
   end
 
 

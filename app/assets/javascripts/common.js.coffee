@@ -217,7 +217,7 @@ window.app = {
       , (->)
 
 
-  agentRegex:  /^(SIP\/)?(\d\d\d\d?)$/
+  agentRegex:  /^(SIP\/)?(\d\d\d)$/
   phoneNumber: /(^| )(\+?[0-9]+[0-9 .\/-]+[0-9])/g
 
 
@@ -450,6 +450,8 @@ window.app = {
       app.createMessageFrom(data)
     else if data.servertime
       app.resetServerTimer()
+    else
+      console.log(data)
 
 
   takeIncomingCall: (call, name) ->

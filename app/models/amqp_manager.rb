@@ -119,6 +119,7 @@ class AmqpManager
 
 
     def shutdown
+      return unless defined?(@@manager)
       @@manager.shutdown
     end
   end
