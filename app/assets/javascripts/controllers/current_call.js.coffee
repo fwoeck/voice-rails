@@ -1,6 +1,6 @@
 Voice.CurrentCallController = Ember.ObjectController.extend({
 
-  callerIdBinding: Ember.Binding.oneWay 'Voice.currentCall.origin.callerId'
+  callerIdBinding: Ember.Binding.oneWay 'Voice.currentCall.callerId'
   customerBinding: Ember.Binding.oneWay 'Voice.currentCustomer'
 
 
