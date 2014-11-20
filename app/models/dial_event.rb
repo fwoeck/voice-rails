@@ -1,7 +1,7 @@
 class DialEvent < Struct.new(:call_id, :from, :to, :reason)
 
   def handle_message
-    publish_to_agents if reason == :error
+    publish_to_agents
   end
 
 
