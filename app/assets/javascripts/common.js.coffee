@@ -273,6 +273,7 @@ window.app = {
     name = app.getAgentFrom(evt.to.match(/\d+/)?[0] || evt.to)
     return unless @weCalled(evt)
 
+    Voice.outboundCall = false
     switch evt.reason
       when 'reject' then @showDialReject(name)
       when 'error'  then @showDialError(name)
@@ -280,8 +281,10 @@ window.app = {
 
 
   weCalled: (evt) ->
-    cn = Voice.get('currentUser.name')
-    evt.from.match(/\d+/)?[0] == cn
+    call = Voice.outboundCall
+    name = Voice.get('currentUser.name')
+    call && evt.to.match(/\d+/)?[0] == call &&
+          evt.from.match(/\d+/)?[0] == name
 
 
   showDialReject: (name) ->
@@ -493,7 +496,6 @@ window.app = {
   takeIncomingCall: (call, name) ->
     callee = app.getAgentFrom(name)
     @showDialDialog(@incomingCallMessage name, callee, call)
-    Voice.outboundCall = false
 
 
   incomingCallMessage: (name, callee, call) ->
