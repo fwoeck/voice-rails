@@ -5,7 +5,7 @@ env.i18n =
       browser_warning:  'For now, Chrome CHROME+ and Firefox FIREFOX+ are the only supported browsers. Use this platform at own risk.'
       call_failed:      'Sorry, your call to<br /><strong>TO</strong> failed.'
       call_rejected:    'Sorry, your call to<br /><strong>TO</strong> was rejected.'
-      callee_busy:      'Sorry, the callee is currently busy:<br /><strong>TO</strong>.'
+      callee_busy:      'The callee is currently busy:<br /><strong>TO</strong>.'
       cancel:           'Cancel'
       dial_now:         'Dial now'
       enter_number:     'Please enter a number to dial:'
