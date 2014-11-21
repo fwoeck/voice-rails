@@ -7,7 +7,7 @@ class DialEvent < Struct.new(:call_id, :from, :to, :reason)
 
   def publish_to_agents
     AmqpManager.push_publish(
-      user_ids: online_user_ids, data: self.to_json
+      user_ids: online_user_ids, data: {dialevent: self}.to_json
     )
   end
 
