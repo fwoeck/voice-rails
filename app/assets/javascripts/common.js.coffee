@@ -274,13 +274,20 @@ window.app = {
     return unless @weCalled(evt)
 
     switch evt.reason
-      when 'error', 'reject' then @showDialError(name)
-      when 'busy'            then @showDialBusy(name)
+      when 'reject' then @showDialReject(name)
+      when 'error'  then @showDialError(name)
+      when 'busy'   then @showDialBusy(name)
 
 
   weCalled: (evt) ->
     cn = Voice.get('currentUser.name')
     evt.from.match(/\d+/)?[0] == cn
+
+
+  showDialReject: (name) ->
+    app.showDefaultMessage(
+      i18n.dialog.call_rejected.replace('TO', name)
+    )
 
 
   showDialError: (name) ->
@@ -492,7 +499,7 @@ window.app = {
   incomingCallMessage: (name, callee, call) ->
     if Voice.outboundCall == name
       message: i18n.dialog.outgoing_call.replace('NAME', callee)
-      textYes: i18n.dialog.dial_now
+      textYes: i18n.dialog.proceed
       textNo:  i18n.dialog.cancel
       call:    call
     else
