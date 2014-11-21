@@ -1,8 +1,10 @@
 env.i18n =
   en:
     dialog:
-      agent_created:    'You successfully added a new user:<br /><strong>NAME</strong>'
+      agent_created:    'You successfully added the new user<br /><strong>NAME</strong>.'
       browser_warning:  'For now, Chrome CHROME+ and Firefox FIREFOX+ are the only supported browsers. Use this platform at own risk.'
+      call_failed:      'Sorry, your call to<br /><strong>TO</strong> failed.'
+      callee_busy:      'Sorry, the callee is currently busy:<br /><strong>TO</strong>.'
       cancel:           'Cancel'
       dial_now:         'Dial now'
       enter_number:     'Please enter a number to dial:'
@@ -10,11 +12,11 @@ env.i18n =
       hangup:           'Hangup'
       hangup_this_call: 'Do you want to hangup this call?'
       i_am_busy:        'I\'m busy'
-      incoming_call:    'You have an incoming call from<br /><strong>NAME</strong>'
+      incoming_call:    'You have an incoming call from<br /><strong>NAME</strong>.'
       lost_server_conn: 'Sorry, we lost our connection to the server &mdash;<br />please check your network and try to re-login.'
       no_messages:      'Sorry, we stopped receiving messages &mdash;<br />please open just one app window at a time.'
       ok:               'Ok'
-      outgoing_call:    'You are about to call:<br /><strong>NAME</strong>'
+      outgoing_call:    'You are about to call<br /><strong>NAME</strong>.'
       no_hungup_call:   'This is only available after you finished a call.'
       reload_necessary: 'We need to reload the browser window to activate the new settings.'
       reload:           'Reload'
@@ -157,8 +159,10 @@ env.i18n =
 
   de:
     dialog:
-      agent_created:    'Sie haben einen neuen Benutzer hinzugefügt:<br /><strong>NAME</strong>'
+      agent_created:    'Sie haben den Benutzer<br /><strong>NAME</strong> hinzugefügt.'
       browser_warning:  'Derzeit werden nur Chrome CHROME+ und Firefox FIREFOX+ als Browser unterstützt. Diese Plattform arbeitet eventuell fehlerhaft.'
+      call_failed:      'Leider schlug Ihr Anruf nach<br /><strong>TO</strong> fehl.'
+      callee_busy:      'Die angerufene Nummer<br /><strong>TO</strong> ist im Moment besetzt.'
       cancel:           'Abbruch'
       dial_now:         'Jetzt wählen'
       enter_number:     'Bitte geben Sie eine Nummer ein:'
@@ -166,11 +170,11 @@ env.i18n =
       hangup:           'Auflegen'
       hangup_this_call: 'Möchten Sie diesen Anruf auflegen?'
       i_am_busy:        'Jetzt nicht'
-      incoming_call:    'Sie bekommen einen Anruf von<br /><strong>NAME</strong>'
+      incoming_call:    'Sie bekommen einen Anruf von<br /><strong>NAME</strong>.'
       lost_server_conn: 'Leider haben wir die Verbindung zum Server verloren &mdash; bitte prüfen Sie Ihr Netzwerk<br />und melden sich erneut an.'
       no_messages:      'Wir empfangen keine Nachrichten mehr &mdash;<br />bitte öffnen Sie nur ein Fenster zur Zeit.'
       ok:               'Ok'
-      outgoing_call:    'Möchten Sie<br /><strong>NAME</strong> anrufen?'
+      outgoing_call:    'Sie rufen jetzt<br /><strong>NAME</strong> an.'
       no_hungup_call:   'Diese Funktion ist nur nach einem beendeten Anruf verfügbar.'
       reload_necessary: 'Um diese Einstellung zu aktivieren, muss der Browser neu geladen werden.'
       reload:           'Neu laden'
