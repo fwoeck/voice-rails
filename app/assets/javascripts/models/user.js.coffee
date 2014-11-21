@@ -32,7 +32,6 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
 
 
   call: ->
-    Voice.callIsOriginate = true
     Voice.Call.originate @get('name')
 
 

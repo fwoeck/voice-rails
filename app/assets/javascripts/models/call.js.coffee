@@ -107,5 +107,6 @@ Voice.Call = DS.Model.extend(Ember.Comparable, Voice.CompCall, Voice.Resetable, 
 Voice.Call.reopenClass({
 
   originate: (to) ->
+    Voice.outboundCall = to
     $.post "/#{env.apiVersion}/calls", to: to
 })

@@ -27,7 +27,7 @@ window.app = {
   sanitizeCallerName: (call) ->
     name = call.caller
     name = call.visibleNameCaller if name.match(/asterisk/)
-    app.getAgentFrom(name.match(/\d+/)?[0] || name)
+    name.match(/\d+/)?[0] || name
 
 
   setCurrentAgentForm: (el) ->
@@ -268,6 +268,33 @@ window.app = {
     ), 15000
 
 
+  showDialEvent: (data) ->
+    evt  = data.dialevent
+    name = app.getAgentFrom(evt.to.match(/\d+/)?[0] || evt.to)
+    return unless @weCalled(evt)
+
+    switch evt.reason
+      when 'error', 'reject' then @showDialError(name)
+      when 'busy'            then @showDialBusy(name)
+
+
+  weCalled: (evt) ->
+    cn = Voice.get('currentUser.name')
+    evt.from.match(/\d+/)?[0] == cn
+
+
+  showDialError: (name) ->
+    app.showDefaultError(
+      i18n.dialog.call_failed.replace('TO', name)
+    )
+
+
+  showDialBusy: (name) ->
+    app.showDefaultMessage(
+      i18n.dialog.callee_busy.replace('TO', name)
+    )
+
+
   logout: ->
     phone.app.logoff() unless Modernizr.touch
     $.post('/auth/logout', {'_method': 'DELETE'}). then (->
@@ -450,24 +477,29 @@ window.app = {
       app.createMessageFrom(data)
     else if data.servertime
       app.resetServerTimer()
+    else if data.dialevent
+      app.showDialEvent(data)
     else
       console.log(data)
 
 
   takeIncomingCall: (call, name) ->
-    par = if Voice.callIsOriginate
-      message: i18n.dialog.outgoing_call.replace('NAME', name)
+    callee = app.getAgentFrom(name)
+    @showDialDialog(@incomingCallMessage name, callee, call)
+    Voice.outboundCall = false
+
+
+  incomingCallMessage: (name, callee, call) ->
+    if Voice.outboundCall == name
+      message: i18n.dialog.outgoing_call.replace('NAME', callee)
       textYes: i18n.dialog.dial_now
       textNo:  i18n.dialog.cancel
       call:    call
     else
-      message: i18n.dialog.incoming_call.replace('NAME', name)
+      message: i18n.dialog.incoming_call.replace('NAME', callee)
       textYes: i18n.dialog.take_call
       textNo:  i18n.dialog.i_am_busy
       call:    call
-
-    Voice.callIsOriginate = false
-    @showDialDialog(par)
 
 
   showDialDialog: (par) ->
