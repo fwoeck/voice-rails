@@ -1,12 +1,13 @@
 Voice.SearchResultView = Ember.View.extend({
-
-  didInsertElement: ->
-    app.resetScrollPanes()
-    app.initFoundation()
 })
 
 
 Voice.SearchResultEntryView = Ember.View.extend({
+
+  didInsertElement: ->
+    app.resetScrollPanes()
+    app.initFoundation()
+
 
   willDestroyElement: ->
     app.resetScrollPanes()
