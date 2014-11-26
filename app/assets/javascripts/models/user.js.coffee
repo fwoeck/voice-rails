@@ -74,3 +74,10 @@ Voice.User = DS.Model.extend(Voice.LanguageSettings, Voice.SkillSettings, Voice.
     if @ == Voice.get('currentUser') && @get('locale') != env.locale
       app.showReloadDialog()
 })
+
+
+Voice.User.reopenClass({
+
+  findByName: (name) ->
+    Voice.store.all('user').findProperty('name', name)
+})

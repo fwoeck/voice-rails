@@ -46,6 +46,7 @@ Voice.CallsController = Ember.ArrayController.extend({
 
       Ember.run.later @, (->
         Voice.set('currentCall', call)
+        Voice.outboundCall = false
       ), 500
 
 

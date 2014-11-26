@@ -42,12 +42,8 @@ window.app = {
   # TODO This needs some generalization/i18n:
   #
   parseAjaxError: (msg) ->
-    validationRegex = /Validation failed: /
-    if validationRegex.test(msg)
-      msg = msg.replace(validationRegex, '')
-               .split(', ').uniq().join(', ')
-               .replace('Name', 'SIP Extension')
-    msg
+    msg.match(/{errors: (.*)}/)?[1].split(/[,:]/).uniq()
+       .join(',').replace('Name', 'SIP Extension') || msg
 
 
   expandAgentForm: (oldF, curF) ->
@@ -273,14 +269,24 @@ window.app = {
     name = app.getAgentFrom(evt.to.match(/\d+/)?[0] || evt.to)
     return unless @weCalled(evt)
 
+    Voice.outboundCall = false
     switch evt.reason
-      when 'error', 'reject' then @showDialError(name)
-      when 'busy'            then @showDialBusy(name)
+      when 'reject' then @showDialReject(name)
+      when 'error'  then @showDialError(name)
+      when 'busy'   then @showDialBusy(name)
 
 
   weCalled: (evt) ->
-    cn = Voice.get('currentUser.name')
-    evt.from.match(/\d+/)?[0] == cn
+    call = Voice.outboundCall
+    name = Voice.get('currentUser.name')
+    call && evt.to.match(/\d+/)?[0] == call &&
+          evt.from.match(/\d+/)?[0] == name
+
+
+  showDialReject: (name) ->
+    app.showDefaultMessage(
+      i18n.dialog.call_rejected.replace('TO', name)
+    )
 
 
   showDialError: (name) ->
@@ -486,13 +492,12 @@ window.app = {
   takeIncomingCall: (call, name) ->
     callee = app.getAgentFrom(name)
     @showDialDialog(@incomingCallMessage name, callee, call)
-    Voice.outboundCall = false
 
 
   incomingCallMessage: (name, callee, call) ->
     if Voice.outboundCall == name
       message: i18n.dialog.outgoing_call.replace('NAME', callee)
-      textYes: i18n.dialog.dial_now
+      textYes: i18n.dialog.proceed
       textNo:  i18n.dialog.cancel
       call:    call
     else
