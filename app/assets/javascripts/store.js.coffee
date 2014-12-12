@@ -5,7 +5,7 @@ Voice.ApplicationAdapter = DS.ActiveModelAdapter.extend(
   ajaxError: (jqXHR) ->
     Ember.run =>
       error = @_super(jqXHR)
-      msg   = app.parseAjaxError(error.message) || error.statusText
+      msg   = app.parseAjaxError(error) || error.statusText
       app.showDefaultError i18n.errors.ajax_error.replace('MSG', msg + '.')
 )
 

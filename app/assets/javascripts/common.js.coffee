@@ -41,9 +41,14 @@ window.app = {
 
   # TODO This needs some generalization/i18n:
   #
-  parseAjaxError: (msg) ->
-    msg.match(/{errors: (.*)}/)?[1].split(/[,:]/).uniq()
-       .join(',').replace('Name', 'SIP Extension') || msg
+  parseAjaxError: (err) ->
+    if (key = Ember.keys(err.errors)[0])
+      msg = err.errors[key][0][1][0]
+      msg.replace(/^.*: /, '')
+         .split(/, /).uniq().join(', ')
+         .replace('Name', 'SIP Extension')
+    else
+      err.message
 
 
   expandAgentForm: (oldF, curF) ->
