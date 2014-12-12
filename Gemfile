@@ -27,6 +27,7 @@ gem 'emblem-rails'
 gem 'coffee-rails'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
+gem 'ember-source', '1.8.1'
 
 group :test, :development do
   gem 'pry'
